@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% if page_name == 'index' and SITEDESCRIPTION %}<meta name="description" content="{{ SITEDESCRIPTION }}" />
+  {% endif %}
+  <link href="{{ SITEURL }}/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="{{ SITEURL }}/theme/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>
+  <link href="{{ SITEURL }}/theme/css/{{ CSS_FILE }}" rel="stylesheet" type="text/css"/>
+  <link href="{{ SITEURL }}/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+  {% if FEED_RSS %}<link href="{{ SITEURL }}/{{ FEED_RSS }}" rel="alternate" type="application/atom+xml" title="{{ SITENAME }} RSS" />
+  {% endif %}
+  
+  {% block head %}{% endblock head %}
+  
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+relapse - a Pelican theme using Bootstrap 
+Copyright (c) 2012 Warren Moore
+https://github.com/wamonite/relapse
+-->
+<body>
+{% if GITHUB_URL %}
+  {% include 'block_github.html' %}
+{% endif %}
+
+<!-- Header -->
+<header><div class="container">
+<h1 class="page-header"><a href="{{ SITEURL }}/index.html">{{ SITENAME }}</a>
+{% if SITESUBTITLE %}<small>{{ SITESUBTITLE }}</small>{% endif %}</h1>
+</div></header>
+<!-- /Header -->
+
+<!-- Body -->
+<section id="body"><div class="container">
+
+<!-- Nav bar -->
+<div class="row"><div class="span12">
+<nav class="navbar"><div class="navbar-inner">
+<ul class="nav">
+{% if DISPLAY_PAGES_ON_MENU != False %}
+  <li{% if page_name == 'index' %} class="active"{% endif %}><a href="{{ SITEURL }}/index.html">Home</a></li>
+  
+  {% for page_num in range(1, PAGES|length + 1) %} {# TODO: improve wasteful inner loop #}
+    {% for page_iter in PAGES if page_iter.order and page_iter.order|int > 0 %}
+      {% if page_iter.order|int == page_num %}
+        <li {% if page_iter == page %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ page_iter.url }}">{{ page_iter.title }}</a></li>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+  
+  {% for page_iter in PAGES if not page_iter.order %}
+    <li {% if page_iter == page %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ page_iter.url }}">{{ page_iter.title }}</a></li>
+  {% endfor %}
+{% endif %}
+
+{% for title, link in MENUITEMS %}
+  <li><a href="{{ link }}">{{ title }}</a></li>
+{% endfor %}
+</ul>
+</div></nav>
+</div></div>
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content --> 
+<div class="span9">
+{% block content %}
+{% endblock content %}
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="span3">
+
+<h2>Categories</h2>
+<ul class="nav nav-pills nav-stacked">
+{% for cat, null in categories %}
+  <li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+{% endfor %}
+</ul>
+
+{% if LINKS %}
+<h2>Links</h2>
+<ul class="nav nav-pills nav-stacked">
+{% for name, link in LINKS %}
+  <li><a href="{{ link }}">{{ name }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% if SOCIAL %}
+<h2>Social</h2>
+<ul class="nav nav-pills nav-stacked">
+  {% if FEED_ATOM %}
+  <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate">Site Feed{% if FEED_RSS or not FEED_DOMAIN %} (Atom){% endif %}</a></li>
+  {% endif %}
+  {% if FEED_RSS %}
+  <li><a href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate">Site Feed{% if FEED_ATOM or not FEED_DOMAIN %} (RSS){% endif %}</a></li>
+  {% endif %}
+
+  {% for name, link in SOCIAL %}
+  <li><a href="{{ link }}">{{ name }}</a></li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="span12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a>, the 
+<a href="https://github.com/wamonite/relapse">relapse</a> theme and 
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="{{ SITEURL }}/theme/js/jquery.js"></script>
+<script src="{{ SITEURL }}/theme/js/bootstrap.js"></script>
+  
+{% if GOOGLE_ANALYTICS %}
+  {% include 'block_google_analytics.html' %}
+{% endif %}
+
+</body>
+</html>
