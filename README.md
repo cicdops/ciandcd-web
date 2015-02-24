@@ -9,12 +9,12 @@
 1. add new blog entities or pages in content/.
 1. preview by ./develop_server.sh.
 
-###push to ciandcd.github.io
+###deploy by push
 1. by ./push.sh
-
 
 ###contribution
 1. file issues.
 1. pull requests.
-1. by email itech001@126.com.
 
+###contact
+1. by email itech001@126.com.
