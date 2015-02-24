@@ -16,11 +16,17 @@ USE_FOLDER_AS_CATEGORY = True
 DEFAULT_CATEGORY = 'misc'
 DISPLAY_PAGES_ON_MENU = True
 DISPLAY_CATEGORIES_ON_MENU = False
+TYPOGRIFY = False
+CACHE_CONTENT = True
+CACHE_PATH = 'cache'
+PDF_GENERATOR = False
 READERS = {'html': None}
-STATIC_PATHS = ['images', 'extra/CNAME']
+PAGE_PATHS = ['pages']
+STATIC_PATHS = ['images', 'extra/CNAME','extra/robots.txt',]
 # path-specific metadata
 EXTRA_PATH_METADATA = {
         'extra/CNAME': {'path': 'CNAME'},
+        'extra/robots.txt': {'path': 'robots.txt'},
     }
 
 #theme
@@ -32,12 +38,14 @@ DISQUS_SITENAME = ''
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
-FEED_ATOM = 'atom.xml'
-FEED_RSS = 'rss.xml'
+FEED_ATOM = None
+FEED_RSS = 'feeds/all.rss.xml'
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
+FEED_ALL_RSS = 'feeds/all.rss.xml'
+CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'
 
 # Blogroll
 LINKS = (('Pelican', 'http://getpelican.com/'),
