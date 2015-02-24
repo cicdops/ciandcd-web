@@ -7,10 +7,10 @@
 
 ###edit
 1. add new blog entities or pages in content/.
-1. preview by ./develop_server.sh.
+1. preview by make clean && make html or ./develop_server.sh.
 
 ###deploy by push
-1. by ./push.sh
+1. by make clean && make publish && make github
 
 ###contribution
 1. file issues.

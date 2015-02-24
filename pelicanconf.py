@@ -39,7 +39,7 @@ DISQUS_SITENAME = ''
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
 FEED_ATOM = None
-FEED_RSS = 'feeds/all.rss.xml'
+FEED_RSS = 'feeds/rss.xml'
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
