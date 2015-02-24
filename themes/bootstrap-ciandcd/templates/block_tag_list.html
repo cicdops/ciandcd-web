@@ -1,0 +1,2 @@
+{% if article.tags %}({% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>{% if loop.length > 1 and not loop.last %}, {% endif %}{% endfor %}){% endif %}
+{% if PDF_PROCESSOR %}<a href="{{ SITEURL }}/pdf/{{ article.slug }}.pdf">PDF</a>{% endif %}
