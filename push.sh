@@ -1,5 +1,5 @@
 #!/bin/bash
 #./build.sh
 
-ghp-import output
-git push https://github.com/ciandcd/ciandcd.github.io.git gh-pages:master
+ghp-import -m "update site" -b gh-pages output
+git push origin gh-pages
