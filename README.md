@@ -5,12 +5,12 @@
 1. install pelican : pip install pelican Markdown typogrify
 1. install ghp-import: pip install ghp-import
 
-###edit
+###edit or add
 1. add new blog entities or pages in content/.
 1. build by make clean && make html
 1. preview by ./develop_server.sh.
 
-###deploy by push
+###push and deploy
 1. submit by git commit and git push
 1. deploy by make clean && make publish && make github (obsolete)
 1. will be deployed by trivs CI automatically
