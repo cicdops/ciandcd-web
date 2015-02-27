@@ -1,4 +1,4 @@
-# ciandcd.github.io
+# www.ciandcd.com
 
 ###env
 1. need python installed
@@ -7,10 +7,13 @@
 
 ###edit
 1. add new blog entities or pages in content/.
-1. preview by make clean && make html or ./develop_server.sh.
+1. build by make clean && make html
+1. preview by ./develop_server.sh.
 
 ###deploy by push
-1. by make clean && make publish && make github
+1. submit by git commit and git push
+1. deploy by make clean && make publish && make github (obsolete)
+1. will be deployed by trivs CI automatically
 
 ###contribution
 1. file issues.
