@@ -8,6 +8,6 @@ install:
   - pip install typogrify
   - pip install ghp-import
 script:
-  - echo OK
-after_success:
   - ghp-import -n -m update-gh-pages -p -r origin -b gh-pages output
+after_success:
+  - echo OK
