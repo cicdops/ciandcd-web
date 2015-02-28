@@ -9,7 +9,8 @@ install:
   - pip install typogrify
   - pip install ghp-import
 script:
-  - ghp-import -n output 
-  - git push -qf https://${TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
+  - make publish
 after_success:
-  - echo OK
+  - ghp-import -n output -m "update by travis-ci"
+  - git push -qf https://${TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
+
