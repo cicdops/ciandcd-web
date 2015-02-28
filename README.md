@@ -1,5 +1,8 @@
 # www.ciandcd.com
 
+###build status
+![build and deploy status:](https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master)
+
 ###env
 1. need python installed
 1. install pelican : pip install pelican Markdown typogrify
