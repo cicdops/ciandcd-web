@@ -24,6 +24,10 @@
 1. file issues.
 1. pull requests.
 
+###License
+1. MIT License for web this source code
+1. [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/) for the content of www.ciandcd.com which includes all blogs, pages and articles 
+
 ###contact
 1. by email itech001@126.com.
 
