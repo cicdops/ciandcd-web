@@ -1,5 +1,7 @@
 # www.ciandcd.com
 
+![logo](ciandcd.png)  
+
 ###build status
 ![build and deploy status:](https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master)
 
