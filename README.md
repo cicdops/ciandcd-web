@@ -3,7 +3,7 @@
 ![logo](ciandcd.png)  
 
 ###build status
-![build and deploy status:](https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master)
+[build status](https://travis-ci.org/ciandcd/ciandcd-web/)![](https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master)
 
 ###env
 1. need python installed
