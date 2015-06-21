@@ -17,6 +17,7 @@ DEFAULT_DATE = 'fs'
 DEFAULT_CATEGORY = 'misc'
 DISPLAY_PAGES_ON_MENU = True
 DISPLAY_CATEGORIES_ON_MENU = False
+SUMMARY_MAX_LENGTH = 50
 TYPOGRIFY = False
 CACHE_CONTENT = True
 CACHE_PATH = 'cache'
@@ -49,15 +50,13 @@ FEED_ALL_RSS = 'feeds/all.rss.xml'
 CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'
 
 # Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
+LINKS = (('itech', 'http://www.cnblogs.com/itech/'),
          )
 
 # Social widget
 SOCIAL = (('GITHUB', 'https://github.com/ciandcd'),
           )
-GITHUB_URL = 'https://github.com/ciandcd'
+#GITHUB_URL = 'https://github.com/ciandcd'
 TWITTER_URL = ''
 FACEBOOK_URL = ''
 GOOGLEPLUS_URL = ''
