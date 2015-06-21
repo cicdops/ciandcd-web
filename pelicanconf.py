@@ -13,6 +13,7 @@ TIMEZONE = 'Asia/Shanghai'
 DEFAULT_LANG = u'zh'
 DEFAULT_PAGINATION = 10
 USE_FOLDER_AS_CATEGORY = True
+DEFAULT_DATE = 'fs'
 DEFAULT_CATEGORY = 'misc'
 DISPLAY_PAGES_ON_MENU = True
 DISPLAY_CATEGORIES_ON_MENU = False
@@ -20,7 +21,7 @@ TYPOGRIFY = False
 CACHE_CONTENT = True
 CACHE_PATH = 'cache'
 PDF_GENERATOR = False
-READERS = {'html': None}
+#READERS = {'html': None}
 PAGE_PATHS = ['pages']
 STATIC_PATHS = ['images', 'extra/CNAME','extra/robots.txt',]
 # path-specific metadata

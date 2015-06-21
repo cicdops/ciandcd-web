@@ -32,6 +32,8 @@ ifeq ($(DEBUG), 1)
 	PELICANOPTS += -D
 endif
 
+PROT=8000
+
 help:
 	@echo 'Makefile for a pelican Web site                                           '
 	@echo '                                                                          '

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    Helix DVCS - How to Initialize Like a Pro</title></head><body><div><p><img alt="" src="/sites/default/files/title-tip-tricks9.png"></p>
+<p>We are all very excited about the new distributed version control system (DVCS)&#160;capabilities of Perforce Helix. Here are a few tips for getting started.</p>
+<p>Keep in mind that in order to use Helix DVCS, you need to have the 2015.1 version of both Helix client P4 and Helix server P4D installed. Some of the commands (e.g., <strong>init</strong> and <strong>clone</strong>) are implemented in P4, so you need the latest version of both executables.</p>
+<p>The first thing you need to do when you want to use a local Helix server (called a personal server) is to run &#8220;p4 init&#8221;.&#160; This command will create the personal server for you (in a subdirectory called .p4root) and set up the P4CONFIG and P4IGNORE files, as well.</p>
+<p>&#8220;p4 init&#8221; also turns your current directory into the client workspace root for your new <a>personal server</a>, which is useful if you already have some files and realize it might be a good thing to version them:</p>
+<pre>    p4 init
+    p4 rec
+    p4 submit -n "Initial checkin"
+</pre><p>In the above, &#8220;rec&#8221; is a handy alias for &#8220;reconcile&#8221;<a href="http://www.perforce.com/blog/150506/ten-time-savers-20151"> to save you typing</a>.</p>
+<p>If you start a new project from scratch and want to place it in another directory instead, use the &#8220;-d&#8221; option like such:</p>
+<pre>    p4 &#8211;d path-to-new-project init
+</pre><h2>Case and Unicode</h2>
+<p>Let&#8217;s take a closer look at the output of the &#8220;p4 init&#8221; command:</p>
+<pre>    Matching server configuration from &#8216;wayfarer-p4d:1666':
+    case-sensitive (-C0), non-unicode (-n)
+    Server sknop-dvcs-1429629213 saved.
+</pre><p>One might ask: what is case-sensitive and Unicode about?</p>
+<p>Because the Helix versioning engine supports many platforms, both case sensitive and insensitive, you can choose how your personal server handles case. By default, the Helix versioning engine adopts the case policy of the platform you run it on: insensitive on Mac and Windows, sensitive on Linux and other Unix platforms.</p>
+<p>Also by default, the Helix versioning engine does no Unicode translation and simply accepts any encoding for file content and metadata. For cross-platform development it is better to put a shared server into Unicode mode.</p>
+<p>For a personal server you may not care at first what these settings are, but what if you want to push your changes to another server at a later stage? The settings of your personal server have to match the settings on the destination server or there could be chaos, as the destination server will refuse the push if the settings do not match.</p>
+<p>It is cumbersome to change case sensitivity and Unicode settings after the Helix versioning engine is populated, so it is important to get this right up front. &#8220;p4 init&#8221; will &#8220;guess&#8221; what the standard settings within your enterprise are by connecting to and inquiring with the Helix versioning engine specified by the P4PORT environment variable (or &#8220;perforce:1666&#8221; if that is not set).</p>
+<p>If you&#8217;d rather inquire with a particular server when initializing a personal server, use the &#8220;-p&#8221; option:</p>
+<pre>    p4 init &#8211;p myserver:1666
+</pre><p>Alternately, you can also explicitly set case and Unicode support with the following options:</p>
+<strong>Option</strong>
+<strong>Meaning</strong>
+<strong>-C0</strong>
+<p>Case insensitive</p>
+<strong>-C1</strong>
+<p>Case sensitive</p>
+<strong>-n</strong>
+<p>No Unicode support</p>
+<strong>-xi</strong>
+<p>Unicode support</p>
+<p>Server and User NameNote well: if you have P4CHARSET defined in your environment and not set to &#8220;none&#8221;, a new personal server will automatically be initialized as a Unicode-enabled server.</p>
+<p>So what is the story with the server and user name?</p>
+<p>The name of your personal server and client workspace coincide. Although in principle you can have more than one workspace against your personal server, in practice there is rarely any need for it. Locally the name does not matter, but when you push your changes into another server, the changes are linked to your local workspace name. An automatically generated name like &#8220;sknop-dvcs-1429629213&#8221; is highly likely do be unique, but you are free to choose a different name if you so wish by using the &#8220;-c&#8221; option.</p>
+<p>The same is true for your user name: locally it does not matter and will typically coincide with either your OS user name and/or whatever P4USER is set to, but when pushing to another server the user name becomes important.</p>
+<p>Take the Perforce workshop for example: my local user name is always &#8220;sknop&#8221;, but for the workshop I use &#8220;sven_erik_knop&#8221;. If I create a local DVCS server under the user name &#8220;sknop&#8221;, submit my changes, set up a remote to the workshop, and push, I&#8217;ll receive only an error message.</p>
+<p>Fortunately, the solution is very simple. I add another user to my local server and update my local protection table:</p>
+<pre>    p4 user &#8211;f sven_erik_knop
+    p4 protect
+</pre><p>Now I can push my changes under the new user name (I might have to log into the target server first):</p>
+<pre>    p4 &#8211;u sven_erik_knop push
+</pre><h2>Conclusion</h2>
+<p>A simple &#8220;p4 init&#8221; will create you a new personal server to which you can submit changes, but if you want to push these changes to another server, it makes sense to pay attention to case sensitivity, Unicode support, and workspace and user name.</p>
+<p>Let me know if you are using our new DVCS features and how you are getting on. My Twitter handle is @p4sven.</p>
+<p>For a live technical overview of DVCS features in the Helix Versioning engine sign up for our <a href="http://info.perforce.com/webinar-overview-helix-dvcs.html?utm_source=p4blog&amp;utm_medium=social&amp;utm_campaign=Global_2015Q2_EW_Helix_DVCS">DevTalk Webinar </a>on June 26th.&#160;</p>
+</div></body></html>

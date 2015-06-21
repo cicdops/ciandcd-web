@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    Finding the ‘Needle in a Haystack’ with Helix Threat Detection</title></head><body><div><p>Software development projects in bigger companies typically involve large teams collaborating across multiple locations. A large corporation may employ tens of thousands of developers working on thousands of projects over a span of many years.&#160;</p>
+<p align="center"><img alt="" src="/sites/default/files/needle-in-haystack-blog.jpg"></p>
+<p>For many companies, developer access to older software projects and files may continue long after the project has been completed, sometimes because of lax processes and stagnant access control policies. Yet, these projects can represent valuable IP worth tens of millions of dollars. In light of the ramifications of a competitor getting ahold of these files, what can companies do to better protect their crown jewels from theft?</p>
+<p>The answer might be found in the source code management (SCM) or version control tools companies use to drive their development workflows. SCM tools typically track access to key projects and files via audit logs. However, the sheer volume of these logs can overwhelm security teams. A month of log data might yield millions of different interactions with files and projects, making it virtually impossibe to find important clues.</p>
+<p>Done the right way, however, this approach can bring the real threats to the surface. A recent Fortune article entitled&#160;<a href="http://www.forbes.com/sites/benkepes/2015/03/27/using-log-data-and-machine-learning-to-weed-out-the-bad-guys/">Using Log Data and Machine Learning to Weed out the Bad&#160;Guys</a>&#160;shares how a large company&#160;applied our Helix Threat Detection capabilities to quickly identify data theft. Likening this approach to &#8216;finding a needle in a haystack,&#8217; the article describes how effective it can be to apply&#160;behavioral analytics to the audit logs in our Helix Versioning Engine.&#160;</p>
+<h4>Leveraging Machine Learning to Establish a Baseline</h4>
+<p>Conventional security tools (e.g., SIEMs) are often rule-based and require time-consuming manual setting of thresholds and iterative tuning of multiple parameters in order to identify anomalous behavior. Yet manually setting alerts to trigger when developers access an arbitrary number of files may be problematic for large projects and can inundate security teams with too many false positives.</p>
+<p>A better approach is to use machine-learning algorithms and risk-based-behavior-analytics models to audit logs to first establish a baseline understanding of normal behavior. It&#8217;s possible to create cluster models that group similar users based on their past activities. Continuous self-learning more accurately identifies high-risk events, like someone accessing a project he or she doesn't normally work on, putting a spotlight on threats to an organization&#8217;s most sensitive assets.</p>
+<h4>Identifying High-Risk Behaviors</h4>
+<p>Once you've establised what's normal behavior, the next step is to apply advanced mathematical models that generate a behavioral risk score. This score represents multiple factors, including the importance of an asset or file, the method of access, the activity (e.g., volume or type), and the user. These behavioral analytics models can then be used to find anomalies by:</p>
+<ul><li>Comparing access patterns, data usage patterns and data movement patterns against historic behavior</li>
+<li>Determining similar user patterns across the environment and comparing behavioral patterns between users and groups of users</li>
+<li>Detecting dissimilar patterns among members of the same project group or job role</li>
+<li>Comparing individuals against the entire user group</li>
+</ul><p>To learn more about the behavioral analytics models used in Helix Threat Detection, download the white paper&#160;<a href="http://info.perforce.com/whitepaper-helix-threat-detection.html">Helix Threat Detection: IP Security and Risk Analytics.</a></p>
+<p>To learn more download our white paper:<br>A Unified Approach to Securing and Protecting IP.</p>
+<a href="http://info.perforce.com/whitepaper-secure-protect-ip-ty.html">READ NOW</a><p>&#160;</p>
+</div></body></html>
