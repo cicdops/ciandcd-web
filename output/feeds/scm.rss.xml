@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ciandcd</title><link>http://www.ciandcd.com/</link><description>continuous integration and continuous delivery</description><atom:link href="http://www.ciandcd.com/feeds/scm.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 21 Jun 2015 00:34:29 +0800</lastBuildDate><item><title>CodeConf 2015: Speakers, Workshops and Hotel Discount</title><link>http://www.ciandcd.com/codeconf-2015-speakers-workshops-and-hotel-discount.html</link><description>&lt;div&gt;
+
+&lt;p&gt;We thought you'd like a preview of what we have in store for CodeConf 2015 in June before &lt;a href="http://www.ticketbase.com/events/codeconf-2015"&gt;discounted ticket sales end on May 25th&lt;/a&gt;. We're beyond excited to be welcoming speakers from all over the globe and from companies and organizations of all sizes, who work on every facet of open source technology and represent many different parts of the community. Here's a sneak peak at some of the excellent speakers who will be presenting at CodeConf this year:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Eric Levine of Airbnb&lt;/li&gt;
+&lt;li&gt;Casey Rosenthal of Netflix&lt;/li&gt;
+&lt;li&gt;Christine Abernathy of Facebook&lt;/li&gt;
+&lt;li&gt;Corinne Warnshuis of Girl Develop It&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is just a sampling of the amazing line-up. Check out the full preview over at the &lt;a href="http://codeconf.com/"&gt;CodeConf site&lt;/a&gt;. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;But wait there's more!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Reserve a spot in one of our &lt;a href="http://codeconf.com/#workshops"&gt;hands-on workshops&lt;/a&gt; led by expert trainers. Space is limited, so &lt;a href="http://codeconf.com/#workshops"&gt;register early&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Join us the evening before the conference to enjoy the company of the Nashville open source community and grab your badge early. You won't want to miss the food from legendary &lt;a href="http://www.hattieb.com/"&gt;Hattie B's&lt;/a&gt;. &lt;/li&gt;
+&lt;li&gt;Register for a discounted room at the &lt;a href="https://resweb.passkey.com/Resweb.do?mode=welcome_ei_new&amp;amp;eventID=13906369"&gt;Gaylord Opryland Hotel&lt;/a&gt;. Shuttles will depart at convenient intervals so you can easily get to and from the conference. By booking a room at the Opryland instead of a downtown hotel, you save about $100. &lt;/li&gt;
+&lt;li&gt;There are still a few sponsorship opportunities left, including our scholarship program. &lt;a href="http://f.cl.ly/items/0V3p3p0D0l3d3s1j2l2r/CodeConf.Prospectus.2015.pdf"&gt;Check out the prospectus&lt;/a&gt; and drop us a line at &lt;a href="mailto:events@github.com"&gt;events@github.com&lt;/a&gt;. &lt;/li&gt;
+&lt;li&gt;Find more details about everything we have in store for you on the new &lt;a href="http://codeconf.com/"&gt;codeconf.com&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Lastly, we'd like to thank everyone who took the time to send us their ideas. We were overwhelmed by the quality and creativity of the 300+ proposals submitted. You are the heart of CodeConf. &lt;/p&gt;
+
+&lt;p&gt;Ticket prices go up to $399 on May 25th and we can't wait to see you in Nashville, &lt;a href="http://www.ticketbase.com/events/codeconf-2015"&gt;so what are you waiting for?&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sun, 21 Jun 2015 00:34:29 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-21:codeconf-2015-speakers-workshops-and-hotel-discount.html</guid></item><item><title>Adding a billing manager to your organization</title><link>http://www.ciandcd.com/adding-a-billing-manager-to-your-organization.html</link><description>&lt;div&gt;&lt;p&gt;With the new billing manager role, you can invite individuals to manage the billing details of your organization without giving them access to code. The new role enables a user to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Upgrade or downgrade the organization&amp;#8217;s plan.&lt;/li&gt;
+&lt;li&gt;Update payment details like the credit card on file.&lt;/li&gt;
+&lt;li&gt;View history of past transactions and download receipts.&lt;/li&gt;
+&lt;li&gt;Receive receipts via email.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Billing managers &lt;strong&gt;won&amp;#8217;t&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Be able to create or access repositories in your organization.&lt;/li&gt;
+&lt;li&gt;See private members of your organization.&lt;/li&gt;
+&lt;li&gt;Be seen in the list of organization members.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/1153134/7747339/35f197fa-ffec-11e4-8123-bb546429f5b6.png" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/1153134/7747339/35f197fa-ffec-11e4-8123-bb546429f5b6.png" alt="billing-managers-list"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Leave the payment details to your wonderful finance team, and get back to your code! &lt;/p&gt;
+
+&lt;p&gt;For more information on adding a billing manager to your organization, check out the &lt;a href="https://help.github.com/articles/adding-a-billing-manager-to-your-organization/"&gt;help article&lt;/a&gt;.&lt;/p&gt;
+  &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sun, 21 Jun 2015 00:34:26 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-21:adding-a-billing-manager-to-your-organization.html</guid></item><item><title>Diversity Partners for CodeConf 2015</title><link>http://www.ciandcd.com/diversity-partners-for-codeconf-2015.html</link><description>&lt;div&gt;&lt;p&gt;When a diverse set of presenters and participants comes together for a conference, everyone benefits from the variety of experiences, perspectives and voices in the room. We realize, however, that ticket costs can sometimes be prohibitive for individuals from underrepresented groups. That's why we've partnered with six fantastic organizations to distribute &lt;a href="http://codeconf.com"&gt;CodeConf&lt;/a&gt; tickets to their members. Each one has a mission to connect, support and/or educate people from backgrounds underrepresented in tech. This will help us build a diverse audience and a great experience for everyone.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/2394243/7819632/f46ca1c4-03da-11e5-9851-8a77ad6ca5a3.jpg" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/2394243/7819632/f46ca1c4-03da-11e5-9851-8a77ad6ca5a3.jpg" alt="untitled"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Our partner groups have shared a little more about their work and upcoming projects, as well as details of how they're distributing their CodeConf tickets. Read on to get inspired, involved, and potentially grab a ticket for yourself, and remember too that you can help on a personal level by choosing to purchase the "scholarship" ticket option on the
+&lt;a href="http://www.ticketbase.com/events/codeconf-2015"&gt;registration page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1&gt;Black Girls CODE&lt;/h1&gt;
+
+&lt;p&gt;Black Girls CODE is an international non-profit that empowers young women of color to enter the tech space as builders and creators by introducing them to coding and technology. &lt;a href="http://www.blackgirlscode.org"&gt;www.blackgirlscode.org&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Upcoming events:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;strong&gt;June 19th - 21st:&lt;/strong&gt; All Girls Hackathon, Oakland&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;June 20th:&lt;/strong&gt; Oracle Academy's Greenfoot brought to you by Black Girls CODE, Memphis&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;June 20th:&lt;/strong&gt; Introduction to Javascript Workshop, New York&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;July 24th-26th:&lt;/strong&gt; All Girls Hackathon, New York&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;July:&lt;/strong&gt; 1 week summer camps, Raleigh, NC and Washington D.C.&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;August:&lt;/strong&gt; 1 week summer camps, Bay Area and New York&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Ticket Details&lt;/strong&gt;: We will be distributing our tickets directly to the Black Girls CODE network.&lt;/p&gt;
+
+&lt;h1&gt;Coding While Black&lt;/h1&gt;
+
+&lt;p&gt;Coding While Black is headquartered in Chicago; our focus is code education, professional development, and entrepreneurship. We welcome blacks in technology from around the globe to become active members of a growing community that supports, encourages, and connects black technology professionals. Members can post articles, share events, find other black technology professionals to connect with, and enjoy community features. &lt;a href="http://www.codingwhileblack.com"&gt;www.codingwhileblack.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ticket details&lt;/strong&gt;: Coding While Black is excited to partner in promoting CodeConf to a diverse audience. We will be distributing the tickets by sharing them with members who have volunteered with us and/or have been active participants in our community.&lt;/p&gt;
+
+&lt;h1&gt;Girl Geek Dinner Nashville&lt;/h1&gt;
+
+&lt;p&gt;The Nashville chapter of Girl Geek Dinner was founded with the goal to encourage and inspire Nashville&amp;#8217;s young women and girls to pursue technology careers. Girl Geek Dinners have grown into an international movement. The ask is simple to sponsors &amp;#8212; buy dinner and drinks for girl geeks, invite speakers and encourage networking amongst the girl geeks. &lt;a href="http://www.ggdnashville.com"&gt;www.ggdnashville.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Upcoming events:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;June 5th:&lt;/strong&gt; Eventbrite is hosting our next Girl Geek Dinner where they are flying in 3 Software Engineers and a Product Manager to Nashville to give lighting tech talks.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Third Thursday of every month:&lt;/strong&gt; Code &amp;amp; Pinot night is a great opportunity for beginner programmers to come out and get a taste of what programming is like. Bring your favorite wine and learn to code! Food provided.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Ticket details&lt;/strong&gt;: We plan to distribute the tickets to our Girl Geeks through a coding contest and drawing. Coding contest: the first to give the correct answer will get a ticket.  Drawing: we will randomly select a winner from contest entries.&lt;/p&gt;
+
+&lt;h1&gt;Lesbians Who Tech&lt;/h1&gt;
+
+&lt;p&gt;Lesbians Who Tech is a global community of 9,000 queer women in tech. It exists to provide value to queer women in tech, a demographic that is rarely represented in both the tech community and the LGBTQ community. We've hosted events in 22 cities worldwide and focus on connecting our community, increasing visibility and increasing women in tech and leadership positions. &lt;a href="http://www.lesbianswhotech.org"&gt;www.lesbianswhotech.org&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Upcoming events:&lt;/strong&gt; &lt;/p&gt;
+
+ 
+
+&lt;p&gt;&lt;strong&gt;Ticket details&lt;/strong&gt;: We'll be offering the tickets through Lesbians Who Tech chapters in the Midwest&lt;/p&gt;
+
+&lt;h1&gt;Rails Girls Atlanta&lt;/h1&gt;
+
+&lt;p&gt;Rails Girls Atlanta is an encouraging place for women to take the plunge into learning to code. We host monthly meetups and socials where dev-minded ladies can ask questions, learn from others, and get the support they need to be successful. &lt;a href="http://www.meetup.com/Rails-Girls-Atlanta"&gt;www.meetup.com/Rails-Girls-Atlanta&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Upcoming events:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;strong&gt;June 1st:&lt;/strong&gt; All the Nerdy Ladies Social at Joystick. No agenda, just a time to visit and catch up with other nerdy lady types.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Ticket details&lt;/strong&gt;: We&amp;#8217;re planning to raffle off the tickets at our May meetup.&lt;/p&gt;
+
+&lt;h1&gt;Trans*H4CK&lt;/h1&gt;
+
+&lt;p&gt;Trans*H4CK is a hackathon and speaker series that tackles social problems by developing new and useful open source tech products that benefit the trans and gender non-conforming communities, while bringing visibility to transgender tech innovators and entrepreneurs.&lt;/p&gt;
+
+&lt;p&gt;We are planning to launch an online hackathon space this year--stay tuned! &lt;a href="http://www.transhack.org"&gt;http://www.transhack.org&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ticket details&lt;/strong&gt;: We will be distributing our CodeConf tickets through the Trans*H4CK network.&lt;/p&gt;
+  &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sun, 21 Jun 2015 00:33:17 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-21:diversity-partners-for-codeconf-2015.html</guid></item><item><title>Support LGBTQ tech organizations with the Pridetocat Shirt</title><link>http://www.ciandcd.com/support-lgbtq-tech-organizations-with-the-pridetocat-shirt.html</link><description>&lt;div&gt;&lt;p&gt;With the purchase of the Pridetocat Shirt you will be assisting &lt;a href="http://www.lesbianswhotech.org"&gt;Lesbians Who Tech&lt;/a&gt;,
+&lt;a href="http://www.mymaven.org"&gt;Maven&lt;/a&gt;, and &lt;a href="http://www.transhack.org"&gt;Trans*H4CK&lt;/a&gt; to further their work.  All proceeds from sales will be donated to these organizations that are helping educate, connect and empower LGBTQ people in tech.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://github.myshopify.com/products/pridetocat-shirt"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/5945961/7922248/daa5a220-085f-11e5-88fa-308dfd374aea.jpg" alt="Pridetocat Shirts"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This limited edition shirt is available in the &lt;a href="http://github.myshopify.com/"&gt;GitHub Shop&lt;/a&gt; until August 31st.&lt;/p&gt;
+
+&lt;p&gt;More info about the LGBTQ tech organizations that benefit from the purchase of this shirt:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Lesbians Who Tech&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.lesbianswhotech.org"&gt;Lesbians Who Tech&lt;/a&gt; is a global community of 9,000 queer women in tech. It exists to provide value to queer women in tech, a demographic that is rarely represented in both the tech community and the LGBTQ community. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Trans*H4CK&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.transhack.org"&gt;Trans*H4CK&lt;/a&gt; is a hackathon and speaker series that tackles social problems by developing new and useful open source tech products that benefit the trans and gender non-conforming communities, while bringing visibility to transgender tech innovators and entrepreneurs.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Maven&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.mymaven.org"&gt;Maven&lt;/a&gt; partner with local LGBTQA youth serving organizations and LGBTQA tech professionals to provide free tech camps, workshops, Game Jams/hackathons for the queer youth community.&lt;/p&gt;
+  &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sun, 21 Jun 2015 00:33:15 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-21:support-lgbtq-tech-organizations-with-the-pridetocat-shirt.html</guid></item><item><title>Focus on your changes in GitHub for Windows</title><link>http://www.ciandcd.com/focus-on-your-changes-in-github-for-windows.html</link><description>&lt;div&gt;&lt;p&gt;GitHub for Windows now makes it even easier to see everything local to your machine, whether it's uncommitted changes or commits you haven't synced yet.&lt;/p&gt;
+
+&lt;p&gt;One of the things you'll notice when creating commits is the new, compact list of changed files in your working directory. &lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/634063/7920112/0f2085a0-089d-11e5-804b-d42eff5b5987.png" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/634063/7920112/0f2085a0-089d-11e5-804b-d42eff5b5987.png" alt="Dedicated view of your local changes"&gt;&lt;/a&gt; &lt;/p&gt;
+
+&lt;p&gt;GitHub for Windows shows the number of files that a commit changed and lets you drill down to see what changed in a given file.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/634063/7920127/295d7c3e-089d-11e5-9209-8592a431a208.png" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/634063/7920127/295d7c3e-089d-11e5-9209-8592a431a208.png" alt="Commit lists now show number of files and lets you select individual files to view changes for"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The updated branch selector now groups your recently used branches so that you can jump straight back in to what you were doing before that pesky hotfix distracted you.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/634063/7920242/011e3d8e-089e-11e5-972c-c9c5ca5ff386.png" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/634063/7920242/011e3d8e-089e-11e5-972c-c9c5ca5ff386.png" alt="New branch selector lets you see recently checked out branches"&gt;&lt;/a&gt; &lt;/p&gt;
+
+&lt;p&gt;We've given branch creation a dedicated place in the toolbar. As a bonus, you can pick which branch to base the new one off.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/634063/7920243/0122381c-089e-11e5-9d52-d82b168d49f4.png" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/634063/7920243/0122381c-089e-11e5-9d52-d82b168d49f4.png" alt="The new create branch popover lets you pick which base branch to use for your new branch"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, you can collapse the repository list to reclaim some screen space.&lt;/p&gt;
+
+&lt;p&gt;If you have GitHub for Windows installed it will automatically update to the latest version. If you don't have it installed, download GitHub for Windows from &lt;a href="https://windows.github.com"&gt;windows.github.com&lt;/a&gt;.&lt;/p&gt;
+  &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sun, 21 Jun 2015 00:33:12 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-21:focus-on-your-changes-in-github-for-windows.html</guid></item><item><title>Filter Pull Requests by Status</title><link>http://www.ciandcd.com/filter-pull-requests-by-status.html</link><description>&lt;div&gt;&lt;p&gt;When we shipped &lt;a href="https://github.com/blog/1866-the-new-github-issues"&gt;the new GitHub Issues&lt;/a&gt;, we made it easy to &lt;a href="https://help.github.com/articles/searching-issues/"&gt;scope lists of Issues and Pull Requests&lt;/a&gt; with filters like author, date, mentions, and team mentions. With the new &lt;code&gt;status:&lt;/code&gt; filter you can now filter the Pull Requests in your repositories by &lt;a href="https://developer.github.com/v3/repos/statuses/#get-the-combined-status-for-a-specific-ref"&gt;combined status&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/483/7819956/1422929e-039a-11e5-98d5-f273b9fe4472.gif" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/483/7819956/1422929e-039a-11e5-98d5-f273b9fe4472.gif" alt="example gif of filtering by status"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;If you're taking advantage of the &lt;a href="https://developer.github.com/v3/repos/statuses/"&gt;Status API&lt;/a&gt;, or using an integration that does, try out the new filters:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;status:success&lt;/code&gt; Only pull requests with all successful statuses&lt;/li&gt;
+&lt;li&gt;
+&lt;code&gt;status:failure&lt;/code&gt; Only pull requests that have statuses in the &lt;code&gt;failure&lt;/code&gt; or &lt;code&gt;error&lt;/code&gt; state&lt;/li&gt;
+&lt;li&gt;
+&lt;code&gt;status:pending&lt;/code&gt; Only pull requests with no statuses or at least one status in the &lt;code&gt;pending&lt;/code&gt; state&lt;/li&gt;
+&lt;/ul&gt;
+  &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sun, 21 Jun 2015 00:33:11 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-21:filter-pull-requests-by-status.html</guid></item><item><title>Atom at CodeConf 2015</title><link>http://www.ciandcd.com/atom-at-codeconf-2015.html</link><description>&lt;div&gt;&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/4154342/7970619/2b15c3e4-09f4-11e5-89e0-1affcfcf80ba.png" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/4154342/7970619/2b15c3e4-09f4-11e5-89e0-1affcfcf80ba.png" alt="atom"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://codeconf.com"&gt;CodeConf&lt;/a&gt; is coming June 25 &amp;amp; 26 to Nashville and will feature the best that the open source community has to offer.&lt;/p&gt;
+
+&lt;p&gt;We're excited to share that there will be several talks about the &lt;a href="https://atom.io/"&gt;Atom&lt;/a&gt; ecosystem presented for your enjoyment and edification, kicked off by GitHub CEO &lt;a href="https://github.com/defunkt"&gt;Chris Wanstrath&lt;/a&gt;. Speakers will include: &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href="https://github.com/bolinfest"&gt;@bolinfest&lt;/a&gt; talking about &lt;a href="http://nuclide.io"&gt;Nuclide&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a href="https://github.com/lee-dohm"&gt;@lee-dohm&lt;/a&gt; talking about the Atom community&lt;/li&gt;
+&lt;li&gt;
+&lt;a href="https://github.com/paulcbetts"&gt;@paulcbetts&lt;/a&gt; talking about &lt;a href="https://slack.com"&gt;Slack&lt;/a&gt; and &lt;a href="http://electron.atom.io"&gt;Electron&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We will also be hosting an Atom workshop led by &lt;a href="https://github.com/nathansobo"&gt;Nathan Sobo&lt;/a&gt;, and a lounge where you will be able to meet with the core team and hack on Atom together.  &lt;/p&gt;
+
+&lt;p&gt;Grab your &lt;a href="http://www.ticketbase.com/events/codeconf-2015"&gt;CodeConf and workshop tickets now&lt;/a&gt; and we'll see you there in Nashville! &lt;/p&gt;
+
+
+  &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sun, 21 Jun 2015 00:33:09 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-21:atom-at-codeconf-2015.html</guid></item><item><title>Announcing GitHub Japan</title><link>http://www.ciandcd.com/announcing-github-japan.html</link><description>&lt;div&gt;&lt;p&gt;GitHub &amp;lt;3s Japan, and today we&amp;#8217;re excited to announce the formation of GitHub Japan G.K., a subsidiary of GitHub, Inc. Our new office in Tokyo is our first official office outside of the United States. &lt;/p&gt;
+
+&lt;h3&gt;The Japanese developer community&lt;/h3&gt;
+
+&lt;p&gt;GitHub couldn&amp;#8217;t exist without the Japanese open source community &amp;#8212; after all, our site is built on &lt;a href="https://github.com/rails/rails"&gt;Rails&lt;/a&gt;, which is built on &lt;a href="https://github.com/ruby/ruby"&gt;Ruby&lt;/a&gt;, an open source project &lt;a href="https://www.ruby-lang.org/en/about/"&gt;started in Japan&lt;/a&gt;. Japan has historically been one of the most active countries on GitHub, ranking in the top 10 countries visiting github.com since GitHub was founded in 2008. The thriving software community in Japan keeps growing; in 2014, activity on github.com from Japan increased more than 60 percent from the previous year. &lt;/p&gt;
+
+&lt;h3&gt;GitHub Enterprise in Japan&lt;/h3&gt;
+
+&lt;p&gt;In addition to an active local open source community, Japanese businesses including &lt;a href="http://www.hitachi-systems.com/eng/"&gt;Hitachi Systems&lt;/a&gt;, &lt;a href="https://enterprise.github.com/stories/cyberagent"&gt;CyberAgent&lt;/a&gt; and &lt;a href="https://www.youtube.com/watch?v=j1-G14EJRQ8"&gt;GREE&lt;/a&gt; are collaborating and building the best software with GitHub Enterprise. To that end, we&amp;#8217;re also announcing that we'll be partnering locally to provide Japanese language technical support for GitHub Enterprise users, as well as the ability to pay in Japanese Yen in Japan. &lt;/p&gt;
+
+&lt;h3&gt;Stay up to date&lt;/h3&gt;
+
+&lt;p&gt;Keep tabs on everything happening in our Tokyo office by following &lt;a href="https://twitter.com/githubjapan"&gt;@GitHubJapan&lt;/a&gt; on Twitter and checking out &lt;a href="http://github.co.jp/"&gt;github.co.jp&lt;/a&gt;. We&amp;#8217;d also love to see you at our &lt;a href="http://ptix.co/1cIsp83"&gt;meetup in Osaka on June 6&lt;/a&gt;. &lt;/p&gt;
+
+&lt;p&gt;Yoroshiku-Onegaiitashimasu!&lt;/p&gt;
+
+&lt;h1&gt;&amp;#21021;&amp;#12417;&amp;#12414;&amp;#12375;&amp;#12390;GitHub Japan&amp;#12391;&amp;#12377;&amp;#65281;&lt;/h1&gt;
+
+&lt;p&gt;GitHub &amp;lt;3s Japan, &amp;#26412;&amp;#26085;&amp;#12289;&amp;#31169;&amp;#36948;&amp;#12399;GitHub, Inc.&amp;#12398;&amp;#23376;&amp;#20250;&amp;#31038;&amp;#12391;&amp;#12354;&amp;#12427;&amp;#12289;GitHub Japan&amp;#21512;&amp;#21516;&amp;#20250;&amp;#31038;&amp;#12398;&amp;#35373;&amp;#31435;&amp;#12398;&amp;#30330;&amp;#34920;&amp;#12364;&amp;#12391;&amp;#12365;&amp;#12427;&amp;#20107;&amp;#12434;&amp;#12392;&amp;#12390;&amp;#12418;&amp;#20809;&amp;#26628;&amp;#12395;&amp;#24605;&amp;#12387;&amp;#12390;&amp;#12362;&amp;#12426;&amp;#12414;&amp;#12377; &amp;#12290;&amp;#26481;&amp;#20140;&amp;#12395;&amp;#12458;&amp;#12540;&amp;#12503;&amp;#12531;&amp;#12375;&amp;#12383;&amp;#26032;&amp;#12375;&amp;#12356;&amp;#12458;&amp;#12501;&amp;#12451;&amp;#12473;&amp;#12399;&amp;#12289;&amp;#31859;&amp;#22269;&amp;#22806;&amp;#12391;&amp;#12458;&amp;#12540;&amp;#12503;&amp;#12531;&amp;#12377;&amp;#12427;&amp;#21021;&amp;#12398;&amp;#12458;&amp;#12501;&amp;#12451;&amp;#12473;&amp;#12395;&amp;#12394;&amp;#12426;&amp;#12414;&amp;#12377;&amp;#12290;&lt;/p&gt;
+
+&lt;h3&gt;&amp;#12316;&amp;#26085;&amp;#26412;&amp;#12398;&amp;#12487;&amp;#12505;&amp;#12525;&amp;#12483;&amp;#12497;&amp;#12540;&amp;#12539;&amp;#12467;&amp;#12511;&amp;#12517;&amp;#12491;&amp;#12486;&amp;#12451;&amp;#12395;&amp;#12416;&amp;#12369;&amp;#12390;&amp;#12316;&lt;/h3&gt;
+
+&lt;p&gt;GitHub&amp;#12399;&amp;#12289;&amp;#26085;&amp;#26412;&amp;#12391;&amp;#29983;&amp;#12414;&amp;#12428;&amp;#12383;&amp;#12458;&amp;#12540;&amp;#12503;&amp;#12531;&amp;#12477;&amp;#12540;&amp;#12473;&amp;#12539;&amp;#12503;&amp;#12525;&amp;#12472;&amp;#12455;&amp;#12463;&amp;#12488;&amp;#12398;Ruby&amp;#12391;&amp;#20316;&amp;#12425;&amp;#12428;&amp;#12383;Rails&amp;#12392;&amp;#12356;&amp;#12358;&amp;#12501;&amp;#12524;&amp;#12540;&amp;#12512;&amp;#12527;&amp;#12540;&amp;#12463;&amp;#12395;&amp;#12424;&amp;#12387;&amp;#12390;&amp;#38283;&amp;#30330;&amp;#12373;&amp;#12428;&amp;#12390;&amp;#12362;&amp;#12426;&amp;#12289;&amp;#26085;&amp;#26412;&amp;#12398;&amp;#12458;&amp;#12540;&amp;#12503;&amp;#12531;&amp;#12477;&amp;#12540;&amp;#12473;&amp;#12539;&amp;#12467;&amp;#12511;&amp;#12517;&amp;#12491;&amp;#12486;&amp;#12451;&amp;#12540;&amp;#12394;&amp;#12375;&amp;#12391;&amp;#12399;GitHub&amp;#12399;&amp;#23384;&amp;#22312;&amp;#12375;&amp;#12360;&amp;#12394;&amp;#12356;&amp;#12392;&amp;#35328;&amp;#12387;&amp;#12390;&amp;#12399;&amp;#36942;&amp;#35328;&amp;#12391;&amp;#12399;&amp;#12394;&amp;#12356;&amp;#31243;&amp;#12289;&amp;#26085;&amp;#26412;&amp;#12392;GitHub&amp;#12399;&amp;#28145;&amp;#12356;&amp;#12388;&amp;#12394;&amp;#12364;&amp;#12426;&amp;#12364;&amp;#12354;&amp;#12426;&amp;#12414;&amp;#12377;&amp;#12290;
+&amp;#12414;&amp;#12383;&amp;#12289;2008&amp;#24180;&amp;#12398;GitHub&amp;#35373;&amp;#31435;&amp;#24403;&amp;#21021;&amp;#12363;&amp;#12425;&amp;#12289;&amp;#26085;&amp;#26412;&amp;#12363;&amp;#12425;github.com&amp;#12408;&amp;#12398;&amp;#12450;&amp;#12463;&amp;#12475;&amp;#12473;&amp;#25968;&amp;#12399;&amp;#19978;&amp;#20301;10&amp;#12534;&amp;#22269;&amp;#12395;&amp;#20837;&amp;#12426;&amp;#32154;&amp;#12369;&amp;#12390;&amp;#12365;&amp;#12414;&amp;#12375;&amp;#12383;&amp;#12290;&amp;#12381;&amp;#12375;&amp;#12390;&amp;#12289;&amp;#26085;&amp;#26412;&amp;#12398;&amp;#12518;&amp;#12540;&amp;#12470;&amp;#12540;&amp;#12399;&amp;#29694;&amp;#22312;&amp;#12418;&amp;#22679;&amp;#21152;&amp;#12375;&amp;#32154;&amp;#12369;&amp;#12390;&amp;#12362;&amp;#12426;&amp;#12289;2014&amp;#24180;&amp;#12398;&amp;#26085;&amp;#26412;&amp;#12518;&amp;#12540;&amp;#12470;&amp;#12540;&amp;#12398;GitHub&amp;#19978;&amp;#12391;&amp;#12398;&amp;#12450;&amp;#12463;&amp;#12486;&amp;#12451;&amp;#12499;&amp;#12486;&amp;#12451;&amp;#12399;&amp;#12289;&amp;#21069;&amp;#24180;&amp;#27604;60&amp;#65285;&amp;#12418;&amp;#22679;&amp;#21152;&amp;#12375;&amp;#12414;&amp;#12375;&amp;#12383;&amp;#12290;&lt;/p&gt;
+
+&lt;h3&gt;&amp;#65374;&amp;#12300;GitHub Enterprise&amp;#12301;&amp;#12398;&amp;#26085;&amp;#26412;&amp;#23637;&amp;#38283;&amp;#65374;&lt;/h3&gt;
+
+&lt;p&gt;GitHub&amp;#12399;&amp;#24195;&amp;#12367;&amp;#38283;&amp;#12363;&amp;#12428;&amp;#12383;&amp;#38283;&amp;#30330;&amp;#12434;&amp;#25903;&amp;#25588;&amp;#12377;&amp;#12427;&amp;#12458;&amp;#12540;&amp;#12503;&amp;#12531;&amp;#12477;&amp;#12540;&amp;#12473;&amp;#12539;&amp;#12503;&amp;#12521;&amp;#12483;&amp;#12488;&amp;#12501;&amp;#12457;&amp;#12540;&amp;#12512;&amp;#20197;&amp;#22806;&amp;#12395;&amp;#12418;&amp;#12289;&amp;#20840;&amp;#19990;&amp;#30028;&amp;#12391;&amp;#20225;&amp;#26989;&amp;#21521;&amp;#12369;&amp;#12395;&amp;#12300;GitHub Enterprise&amp;#12301;&amp;#12434;&amp;#25552;&amp;#20379;&amp;#12375;&amp;#12390;&amp;#21442;&amp;#12426;&amp;#12414;&amp;#12375;&amp;#12383;&amp;#12290;&amp;#12371;&amp;#12428;&amp;#12414;&amp;#12391;&amp;#12300;GitHub Enterprise&amp;#12301;&amp;#12399;&amp;#12289;&amp;#33521;&amp;#35486;&amp;#12391;&amp;#12398;&amp;#12469;&amp;#12509;&amp;#12540;&amp;#12488;&amp;#12398;&amp;#12415;&amp;#12384;&amp;#12387;&amp;#12383;&amp;#12395;&amp;#12418;&amp;#12363;&amp;#12363;&amp;#12431;&amp;#12425;&amp;#12378;&amp;#12289;&amp;#26085;&amp;#26412;&amp;#22269;&amp;#20869;&amp;#12391;&amp;#12399;&amp;#12289;&lt;a href="http://www.hitachi-systems.com/"&gt;&amp;#26666;&amp;#24335;&amp;#20250;&amp;#31038;&amp;#26085;&amp;#31435;&amp;#12471;&amp;#12473;&amp;#12486;&amp;#12512;&amp;#12474;&lt;/a&gt;&amp;#12289;&lt;a href="http://www.yahoo.co.jp/"&gt;&amp;#12516;&amp;#12501;&amp;#12540;&amp;#26666;&amp;#24335;&amp;#20250;&amp;#31038;&lt;/a&gt;&amp;#12289;&lt;a href="https://enterprise.github.com/stories/cyberagent"&gt;&amp;#26666;&amp;#24335;&amp;#20250;&amp;#31038;&amp;#12469;&amp;#12452;&amp;#12496;&amp;#12540;&amp;#12456;&amp;#12540;&amp;#12472;&amp;#12455;&amp;#12531;&amp;#12488;&lt;/a&gt;&amp;#12420;&lt;a href="https://www.youtube.com/watch?v=j1-G14EJRQ8"&gt;&amp;#12464;&amp;#12522;&amp;#12540;&amp;#26666;&amp;#24335;&amp;#20250;&amp;#31038;&lt;/a&gt; &amp;#12394;&amp;#12393;&amp;#12398;&amp;#22823;&amp;#25163;&amp;#20225;&amp;#26989;&amp;#12434;&amp;#12399;&amp;#12376;&amp;#12417;&amp;#12392;&amp;#12375;&amp;#12390;&amp;#12289;&amp;#22810;&amp;#12367;&amp;#12398;&amp;#20808;&amp;#36914;&amp;#30340;&amp;#12394;&amp;#20225;&amp;#26989;&amp;#12395;&amp;#12372;&amp;#27963;&amp;#29992;&amp;#38914;&amp;#12356;&amp;#12390;&amp;#21442;&amp;#12426;&amp;#12414;&amp;#12375;&amp;#12383;&amp;#12290;&amp;#12381;&amp;#12375;&amp;#12390;&amp;#20170;&amp;#22238;&amp;#12289;&amp;#12373;&amp;#12425;&amp;#12395;&amp;#36805;&amp;#36895;&amp;#12391;&amp;#12365;&amp;#12417;&amp;#32048;&amp;#12363;&amp;#12356;&amp;#12469;&amp;#12540;&amp;#12499;&amp;#12473;&amp;#12420;&amp;#12469;&amp;#12509;&amp;#12540;&amp;#12488;&amp;#12434;&amp;#25552;&amp;#20379;&amp;#12377;&amp;#12427;&amp;#12383;&amp;#12417;&amp;#12289;GitHub&amp;#12399;&amp;#22823;&amp;#25163;&amp;#20195;&amp;#29702;&amp;#24215;&amp;#12392;&amp;#26989;&amp;#21209;&amp;#25552;&amp;#25658;&amp;#12434;&amp;#34892;&amp;#12356;&amp;#12289;&amp;#26085;&amp;#26412;&amp;#35486;&amp;#12395;&amp;#12424;&amp;#12427;&amp;#12300;GitHub Enterprise&amp;#12301;&amp;#12398;&amp;#27861;&amp;#20154;&amp;#21521;&amp;#12369;&amp;#23566;&amp;#20837;&amp;#12469;&amp;#12509;&amp;#12540;&amp;#12488;&amp;#12418;&amp;#38283;&amp;#22987;&amp;#12375;&amp;#12414;&amp;#12375;&amp;#12383;&amp;#12290;&amp;#12371;&amp;#12398;&amp;#36009;&amp;#22770;&amp;#12497;&amp;#12540;&amp;#12488;&amp;#12490;&amp;#12540;&amp;#25552;&amp;#25658;&amp;#12395;&amp;#12424;&amp;#12426;&amp;#12289;&amp;#20870;&amp;#24314;&amp;#12390;&amp;#27770;&amp;#28168;&amp;#12420;&amp;#26085;&amp;#26412;&amp;#35486;&amp;#12398;&amp;#12486;&amp;#12463;&amp;#12491;&amp;#12459;&amp;#12523;&amp;#12469;&amp;#12509;&amp;#12540;&amp;#12488;&amp;#12418;&amp;#21487;&amp;#33021;&amp;#12395;&amp;#12394;&amp;#12426;&amp;#12414;&amp;#12377;&amp;#12290;&lt;/p&gt;
+
+&lt;h3&gt;GitHub &amp;#12398;&amp;#26368;&amp;#26032;&amp;#12398;&amp;#24773;&amp;#22577;&amp;#12434;&amp;#24471;&amp;#12424;&amp;#12358;&lt;/h3&gt;
+
+&lt;p&gt;&amp;#26481;&amp;#20140;&amp;#12458;&amp;#12501;&amp;#12451;&amp;#12473;&amp;#12391;&amp;#20309;&amp;#12364;&amp;#36215;&amp;#12371;&amp;#12387;&amp;#12390;&amp;#12356;&amp;#12427;&amp;#12363;&amp;#30693;&amp;#12427;&amp;#28858;&amp;#12395;&amp;#12399;Twitter&amp;#12391;  &lt;a href="https://twitter.com/githubjapan"&gt;@GitHubJapan&lt;/a&gt;&amp;#160;&amp;#12434;&amp;#12501;&amp;#12457;&amp;#12525;&amp;#12540;&amp;#12377;&amp;#12427;&amp;#12363;&amp;#12289; &lt;a href="http://github.co.jp/"&gt;github.co.jp&lt;/a&gt;&amp;#12395;&amp;#12450;&amp;#12463;&amp;#12475;&amp;#12473;&amp;#12375;&amp;#12390;&amp;#12367;&amp;#12384;&amp;#12373;&amp;#12356;&amp;#12397;&amp;#12290;&amp;#12381;&amp;#12375;&amp;#12390;&lt;a href="http://ptix.co/1cIsp83"&gt;&amp;#22823;&amp;#38442;&amp;#12391;&amp;#38283;&amp;#20652;&amp;#12373;&amp;#12428;&amp;#12427;user meetup&lt;/a&gt; &amp;#12395;&amp;#12418;&amp;#26159;&amp;#38750;&amp;#12362;&amp;#36234;&amp;#12375;&amp;#12367;&amp;#12384;&amp;#12373;&amp;#12356;&amp;#65281; &amp;#12362;&amp;#24453;&amp;#12385;&amp;#12375;&amp;#12390;&amp;#12362;&amp;#12426;&amp;#12414;&amp;#12377;&amp;#65281;.&lt;/p&gt;
+
+&lt;p&gt;&amp;#12424;&amp;#12429;&amp;#12375;&amp;#12367;&amp;#12362;&amp;#39000;&amp;#12356;&amp;#33268;&amp;#12375;&amp;#12414;&amp;#12377;&amp;#65281;&lt;/p&gt;
+  &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sun, 21 Jun 2015 00:33:07 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-21:announcing-github-japan.html</guid></item><item><title>How to undo (almost) anything with Git</title><link>http://www.ciandcd.com/how-to-undo-almost-anything-with-git.html</link><description>&lt;div&gt;&lt;p&gt;One of the most useful features of any version control system is the ability to "undo" your mistakes. In Git, "undo" can mean many slightly different things.&lt;/p&gt;
+
+&lt;p&gt;When you make a new commit, Git stores a snapshot of your repository at that specific moment in time; later, you can use Git to go back to an earlier version of your project.&lt;/p&gt;
+
+&lt;p&gt;In this post, I'm going to take a look at some common scenarios where you might want to "undo" a change you've made and the best way to do it using Git.&lt;/p&gt;
+
+&lt;h2&gt;Undo a "public" change&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Scenario:&lt;/strong&gt; You just ran &lt;code&gt;git push&lt;/code&gt;, sending your changes to GitHub, now you realize there's a problem with one of those commits. You'd like to undo that commit.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Undo with:&lt;/strong&gt; &lt;code&gt;git revert &amp;lt;SHA&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What's happening:&lt;/strong&gt; &lt;code&gt;git revert&lt;/code&gt; will create a new commit that's the opposite (or inverse) of the given SHA. If the old commit is "matter", the new commit is "anti-matter"&amp;#8212;anything removed in the old commit will be added in the new commit and anything added in the old commit will be removed in the new commit. &lt;/p&gt;
+
+&lt;p&gt;This is Git's safest, most basic "undo" scenario, because it doesn't alter history&amp;#8212;so you can now &lt;code&gt;git push&lt;/code&gt; the new "inverse" commit to undo your mistaken commit.&lt;/p&gt;
+
+&lt;h2&gt;Fix the last commit message&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Scenario:&lt;/strong&gt; You just typo'd the last commit message, you did &lt;code&gt;git commit -m "Fxies bug #42"&lt;/code&gt; but before &lt;code&gt;git push&lt;/code&gt; you realized that really should say "Fixes bug #42".&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Undo with:&lt;/strong&gt; &lt;code&gt;git commit --amend&lt;/code&gt; or &lt;code&gt;git commit --amend -m "Fixes bug #42"&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What's happening:&lt;/strong&gt; &lt;code&gt;git commit --amend&lt;/code&gt; will update and replace the most recent commit with a new commit that combines any staged changes with the contents of the previous commit. With nothing currently staged, this just rewrites the previous commit message.&lt;/p&gt;
+
+&lt;h2&gt;Undo "local" changes&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Scenario:&lt;/strong&gt; The cat walked across the keyboard and somehow saved the changes, then crashed the editor. You haven't committed those changes, though. You want to undo everything in that file&amp;#8212;just go back to the way it looked in the last commit.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Undo with:&lt;/strong&gt; &lt;code&gt;git checkout -- &amp;lt;bad filename&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What's happening:&lt;/strong&gt; &lt;code&gt;git checkout&lt;/code&gt; alters files in the working directory to a state previously known to Git. You could provide a branch name or specific SHA you want to go back to or, by default, Git will assume you want to checkout &lt;code&gt;HEAD&lt;/code&gt;, the last commit on the currently-checked-out branch.&lt;/p&gt;
+
+&lt;p&gt;Keep in mind: any changes you "undo" this way are really gone. They were never committed, so Git can't help us recover them later. Be sure you know what you're throwing away here! (Maybe use &lt;code&gt;git diff&lt;/code&gt; to confirm.)&lt;/p&gt;
+
+&lt;h2&gt;Reset "local" changes&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Scenario:&lt;/strong&gt; You've made some commits locally (not yet pushed), but everything is terrible, you want to undo the last three commits&amp;#8212;like they never happened.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Undo with:&lt;/strong&gt; &lt;code&gt;git reset &amp;lt;last good SHA&amp;gt;&lt;/code&gt; or &lt;code&gt;git reset --hard &amp;lt;last good SHA&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What's happening:&lt;/strong&gt; &lt;code&gt;git reset&lt;/code&gt; rewinds your repository's history all the way back to the specified SHA. It's as if those commits never happened. By default, &lt;code&gt;git reset&lt;/code&gt; preserves the working directory. The commits are gone, but the contents are still on disk. This is the safest option, but often, you'll want to "undo" the commits and the changes in one move&amp;#8212;that's what &lt;code&gt;--hard&lt;/code&gt; does.&lt;/p&gt;
+
+&lt;h2&gt;Redo after undo "local"&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Scenario:&lt;/strong&gt; You made some commits, did a &lt;code&gt;git reset --hard&lt;/code&gt; to "undo" those changes (see above), and then realized: you want those changes back!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Undo with:&lt;/strong&gt; &lt;code&gt;git reflog&lt;/code&gt; and &lt;code&gt;git reset&lt;/code&gt; or &lt;code&gt;git checkout&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What's happening:&lt;/strong&gt; &lt;code&gt;git reflog&lt;/code&gt; is an amazing resource for recovering project history. You can recover almost anything&amp;#8212;anything you've committed&amp;#8212;via the reflog.&lt;/p&gt;
+
+&lt;p&gt;You're probably familiar with the &lt;code&gt;git log&lt;/code&gt; command, which shows a list of commits. &lt;code&gt;git reflog&lt;/code&gt; is similar, but instead shows a list of times when &lt;code&gt;HEAD&lt;/code&gt; changed.&lt;/p&gt;
+
+&lt;p&gt;Some caveats:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;code&gt;HEAD&lt;/code&gt; changes only.&lt;code&gt;HEAD&lt;/code&gt; changes when you switch branches, make commits with &lt;code&gt;git commit&lt;/code&gt; and un-make commits with &lt;code&gt;git reset&lt;/code&gt;, but &lt;code&gt;HEAD&lt;/code&gt; does not change when you &lt;code&gt;git checkout -- &amp;lt;bad filename&amp;gt;&lt;/code&gt; (from an earlier scenario&amp;#8212;as mentioned before, those changes were never committed, so the reflog can't help us recover those.&lt;/li&gt;
+&lt;li&gt;
+&lt;code&gt;git reflog&lt;/code&gt; doesn't last forever. Git will periodically clean up objects which are "unreachable." Don't expect to find months-old commits lying around in the reflog forever.&lt;/li&gt;
+&lt;li&gt;Your &lt;code&gt;reflog&lt;/code&gt; is yours and yours alone. You can't use &lt;code&gt;git reflog&lt;/code&gt; to restore another developer's un-pushed commits.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/2077/6953866/f6b9f054-d891-11e4-8c53-838eff9f40ae.png" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/2077/6953866/f6b9f054-d891-11e4-8c53-838eff9f40ae.png" alt="reflog"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;So... how do you use the reflog to "redo" a previously "undone" commit or commits? It depends on what exactly you want to accomplish:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If you want to restore the project's history as it was at that moment in time use &lt;code&gt;git reset --hard &amp;lt;SHA&amp;gt;&lt;/code&gt;
+&lt;/li&gt;
+&lt;li&gt;If you want to recreate one or more files in your working directory as they were at that moment in time, without altering history use &lt;code&gt;git checkout &amp;lt;SHA&amp;gt; -- &amp;lt;filename&amp;gt;&lt;/code&gt;
+&lt;/li&gt;
+&lt;li&gt;If you want to replay exactly one of those commits into your repository use &lt;code&gt;git cherry-pick &amp;lt;SHA&amp;gt;&lt;/code&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Once more, with branching&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Scenario:&lt;/strong&gt; You made some commits, then realized you were checked out on &lt;code&gt;master&lt;/code&gt;. You wish you could make those commits on a feature branch instead.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Undo with:&lt;/strong&gt; &lt;code&gt;git branch feature&lt;/code&gt;, &lt;code&gt;git reset --hard origin/master&lt;/code&gt;, and &lt;code&gt;git checkout feature&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What's happening:&lt;/strong&gt; You may be used to creating new branches with &lt;code&gt;git checkout -b &amp;lt;name&amp;gt;&lt;/code&gt;&amp;#8212;it's a popular short-cut for creating a new branch and checking it out right away&amp;#8212;but you don't want to switch branches just yet. Here, &lt;code&gt;git branch feature&lt;/code&gt; creates a new branch called &lt;code&gt;feature&lt;/code&gt; pointing at your most recent commit, but leaves you checked out to &lt;code&gt;master&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next, &lt;code&gt;git reset --hard&lt;/code&gt; rewinds &lt;code&gt;master&lt;/code&gt; back to &lt;code&gt;origin/master&lt;/code&gt;, before any of your new commits. Don't worry, though, they are still available on &lt;code&gt;feature&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finally, &lt;code&gt;git checkout&lt;/code&gt; switches to the new &lt;code&gt;feature&lt;/code&gt; branch, with all of your recent work intact.&lt;/p&gt;
+
+&lt;h2&gt;Branch in time saves nine&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Scenario:&lt;/strong&gt; You started a new branch &lt;code&gt;feature&lt;/code&gt; based on &lt;code&gt;master&lt;/code&gt;, but &lt;code&gt;master&lt;/code&gt; was pretty far behind &lt;code&gt;origin/master&lt;/code&gt;. Now that &lt;code&gt;master&lt;/code&gt; branch is in sync with &lt;code&gt;origin/master&lt;/code&gt;, you wish commits on &lt;code&gt;feature&lt;/code&gt; were starting now, instead of being so far behind.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Undo with:&lt;/strong&gt; &lt;code&gt;git checkout feature&lt;/code&gt; and &lt;code&gt;git rebase master&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What's happening:&lt;/strong&gt; You could have done this with &lt;code&gt;git reset&lt;/code&gt; (no &lt;code&gt;--hard&lt;/code&gt;, intentionally preserving changes on disk) then &lt;code&gt;git checkout -b &amp;lt;new branch name&amp;gt;&lt;/code&gt; and then re-commit the changes, but that way, you'd lose the commit history. There's a better way.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git rebase master&lt;/code&gt; does a couple of things:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;First it locates the common ancestor between your currently-checked-out branch and &lt;code&gt;master&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Then it resets the currently-checked-out branch to that ancestor, holding all later commits in a temporary holding area.&lt;/li&gt;
+&lt;li&gt;Then it advances the currently-checked-out-branch to the end of &lt;code&gt;master&lt;/code&gt; and replays the commits from the holding area after &lt;code&gt;master&lt;/code&gt;'s last commit.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Mass undo/redo&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Scenario:&lt;/strong&gt; You started this feature in one direction, but mid-way through, you realized another solution was better. You've got a dozen or so commits, but you only want some of them. You'd like the others to just disappear.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Undo with:&lt;/strong&gt; &lt;code&gt;git rebase -i &amp;lt;earlier SHA&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What's happening:&lt;/strong&gt; &lt;code&gt;-i&lt;/code&gt; puts &lt;code&gt;rebase&lt;/code&gt; in "interactive mode". It starts off like the rebase discussed above, but before replaying any commits, it pauses and allows you to gently modify each commit as it's replayed. &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;rebase -i&lt;/code&gt; will open in your default text editor, with a list of commits being applied, like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/2077/6953863/f6b1ab88-d891-11e4-97c1-e0630ac74e74.png" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/2077/6953863/f6b1ab88-d891-11e4-97c1-e0630ac74e74.png" alt="rebase-interactive1"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The first two columns are key: the first is the selected command for the commit identified by the SHA in the second column. By default, &lt;code&gt;rebase -i&lt;/code&gt; assumes each commit is being applied, via the &lt;code&gt;pick&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;To drop a commit, just delete that line in your editor. If you no longer want the bad commits in your project, you can delete lines 1 and 3-4 above. &lt;/p&gt;
+
+&lt;p&gt;If you want to preserve the contents of the commit but edit the commit message, you use the &lt;code&gt;reword&lt;/code&gt; command. Just replace the word &lt;code&gt;pick&lt;/code&gt; in the first column with the word &lt;code&gt;reword&lt;/code&gt; (or just &lt;code&gt;r&lt;/code&gt;). It can be tempting to rewrite the commit message right now, but that won't work&amp;#8212;&lt;code&gt;rebase -i&lt;/code&gt; ignores everything after the SHA column. The text after that is really just to help us remember what &lt;code&gt;0835fe2&lt;/code&gt; is all about. When you've finished with &lt;code&gt;rebase -i&lt;/code&gt;, you'll be prompted for any new commit messages you need to write.&lt;/p&gt;
+
+&lt;p&gt;If you want to combine two commits together, you can use the &lt;code&gt;squash&lt;/code&gt; or &lt;code&gt;fixup&lt;/code&gt; commands, like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/2077/6953865/f6b605ca-d891-11e4-98cf-d567ca9f4edc.png" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/2077/6953865/f6b605ca-d891-11e4-98cf-d567ca9f4edc.png" alt="rebase-interactive2"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;squash&lt;/code&gt; and &lt;code&gt;fixup&lt;/code&gt; combine "up"&amp;#8212;the commit with the "combine" command will be merged into the commit immediately before it. In this scenario, &lt;code&gt;0835fe2&lt;/code&gt; and &lt;code&gt;6943e85&lt;/code&gt; will be combined into one commit, then &lt;code&gt;38f5e4e&lt;/code&gt; and &lt;code&gt;af67f82&lt;/code&gt; will be combined together into another. &lt;/p&gt;
+
+&lt;p&gt;When you select &lt;code&gt;squash&lt;/code&gt;, Git will prompt us to give the new, combined commit a new commit message; &lt;code&gt;fixup&lt;/code&gt; will give the new commit the message from the first commit in the list. Here, you know that &lt;code&gt;af67f82&lt;/code&gt; is an "ooops" commit, so you'll just use the commit message from &lt;code&gt;38f5e4e&lt;/code&gt; as is, but you'll write a new message for the new commit you get from combining &lt;code&gt;0835fe2&lt;/code&gt; and &lt;code&gt;6943e85&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;When you save and exit your editor, Git will apply your commits in order from top to bottom. You can alter the order commits apply by changing the order of commits before saving. If you'd wanted, you could have combined &lt;code&gt;af67f82&lt;/code&gt; with &lt;code&gt;0835fe2&lt;/code&gt; by arranging things like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/2077/6953864/f6b4a9d2-d891-11e4-9ac9-10039c031d06.png" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/2077/6953864/f6b4a9d2-d891-11e4-9ac9-10039c031d06.png" alt="rebase-interactive3"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Fix an earlier commit&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Scenario:&lt;/strong&gt; You failed to include a file in an earlier commit, it'd be great if that earlier commit could somehow include the stuff you left out. You haven't pushed, yet, but it wasn't the most recent commit, so you can't use &lt;code&gt;commit --amend&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Undo with:&lt;/strong&gt; &lt;code&gt;git commit --squash &amp;lt;SHA of the earlier commit&amp;gt;&lt;/code&gt; and &lt;code&gt;git rebase --autosquash -i &amp;lt;even earlier SHA&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What's happening:&lt;/strong&gt; &lt;code&gt;git commit --squash&lt;/code&gt; will create a new commit with a commit message like &lt;code&gt;squash! Earlier commit&lt;/code&gt;. (You could manually create a commit with a message like that, but &lt;code&gt;commit --squash&lt;/code&gt; saves you some typing.)&lt;/p&gt;
+
+&lt;p&gt;You can also use &lt;code&gt;git commit --fixup&lt;/code&gt; if you don't want to be prompted to write a new commit message for the combined commit. In this scenario, you'd probably use &lt;code&gt;commit --fixup&lt;/code&gt;, since you just want to use the earlier commit's commit message during &lt;code&gt;rebase&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;rebase --autosquash -i&lt;/code&gt; will launch an interactive &lt;code&gt;rebase&lt;/code&gt; editor, but the editor will open with any &lt;code&gt;squash!&lt;/code&gt; and &lt;code&gt;fixup!&lt;/code&gt; commits already paired to the commit target in the list of commits, like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/2077/6953862/f6a7a1d8-d891-11e4-8784-c32262ff54da.png" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/2077/6953862/f6a7a1d8-d891-11e4-8784-c32262ff54da.png" alt="rebase-autosquash"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;When using &lt;code&gt;--squash&lt;/code&gt; and &lt;code&gt;--fixup&lt;/code&gt;, you might not remember the SHA of the commit you want to fix&amp;#8212;only that it was one or five commits ago. You might find using Git's &lt;code&gt;^&lt;/code&gt; and &lt;code&gt;~&lt;/code&gt; operators especially handy. &lt;code&gt;HEAD^&lt;/code&gt; is one commit before &lt;code&gt;HEAD&lt;/code&gt;. &lt;code&gt;HEAD~4&lt;/code&gt; is four commits before &lt;code&gt;HEAD&lt;/code&gt; - or, altogether, five commits back. &lt;/p&gt;
+
+&lt;h2&gt;Stop tracking a tracked file&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Scenario:&lt;/strong&gt; You accidentally added &lt;code&gt;application.log&lt;/code&gt; to the repository, now every time you run the application, Git reports there are unstaged changes in &lt;code&gt;application.log&lt;/code&gt;. You put &lt;code&gt;*.log&lt;/code&gt; in the &lt;code&gt;.gitignore&lt;/code&gt; file, but it's still there&amp;#8212;how do you tell git to to "undo" tracking changes in this file?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Undo with:&lt;/strong&gt; &lt;code&gt;git rm --cached application.log&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What's happening:&lt;/strong&gt; While &lt;code&gt;.gitignore&lt;/code&gt; prevents Git from tracking changes to files or even noticing the existence of files it's never tracked before, once a file has been added and committed, Git will continue noticing changes in that file. Similarly, if you've used &lt;code&gt;git add -f&lt;/code&gt; to "force", or override, &lt;code&gt;.gitignore&lt;/code&gt;, Git will keep tracking changes. You won't have to use &lt;code&gt;-f&lt;/code&gt; to add it in the future.&lt;/p&gt;
+
+&lt;p&gt;If you want to remove that should-be-ignored file from Git's tracking, &lt;code&gt;git rm --cached&lt;/code&gt; will remove it from tracking but leave the file untouched on disk. Since it's now being ignored, you won't see that file in &lt;code&gt;git status&lt;/code&gt; or accidentally commit changes from that file again.&lt;/p&gt;
+
+
+
+&lt;p&gt;That's how to undo anything with Git. To learn more about any of the Git commands used here, check out the relevant documentation:&lt;/p&gt;
+
+ 
+  &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sun, 21 Jun 2015 00:33:05 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-21:how-to-undo-almost-anything-with-git.html</guid></item><item><title>Improved organization permissions</title><link>http://www.ciandcd.com/improved-organization-permissions.html</link><description>&lt;div&gt;&lt;p&gt;Organizations have always been the best way for teams to work together and collaborate on code. We're happy to announce &lt;a href="https://github.com/orgs/improved-permissions?utm_source=github_site&amp;amp;utm_medium=blog&amp;amp;utm_campaign=organization-permissions"&gt;major improvements to GitHub organization permissions&lt;/a&gt;. These improvements include new customizable member privileges, fine-grained team permissions, and more open communication.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/orgs/improved-permissions?utm_source=github_site&amp;amp;utm_medium=blog&amp;amp;utm_campaign=organization-permissions"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/874145/8073289/cc2561da-0ed7-11e5-8bed-36f15367c914.png" alt="improved-organization-permissions"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The improved permissions system gives your organization the flexibility to work the way you want. Here are just a few highlights:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(Opt-in) Members can view and mention all teams, even when they're not on those teams.&lt;/li&gt;
+&lt;li&gt;(Opt-in) Members can create repositories without help from an owner.&lt;/li&gt;
+&lt;li&gt;Members can create new teams to self-organize with the people they work with.&lt;/li&gt;
+&lt;li&gt;Owners can give just the right amount of access to contractors and interns by adding them to repositories without giving them the privileges of organization members.&lt;/li&gt;
+&lt;li&gt;And many more! &lt;a href="https://github.com/orgs/improved-permissions?utm_source=github_site&amp;amp;utm_medium=blog&amp;amp;utm_campaign=organization-permissions"&gt;Learn about GitHub's improved organization permissions&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All of these new features give your organization the ability to work together seamlessly without everyone needing to be an owner.&lt;/p&gt;
+
+&lt;p&gt;Once these features launch, organization owners will be able to turn on new permissions as needed. Simply opt-in when you're ready.&lt;/p&gt;
+
+&lt;h2&gt;Early access&lt;/h2&gt;
+
+&lt;p&gt;We're rolling out our improved permissions system to a select group of users who will be asked to provide feedback over a short survey as part of the program. If you're interested in being one of the first to try it out on GitHub.com, &lt;a href="https://github.com/orgs/improved-permissions?utm_source=github_site&amp;amp;utm_medium=blog&amp;amp;utm_campaign=organization-permissions"&gt;sign your organization up for early access&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the next few months, every organization on GitHub.com will have the improved permissions system.&lt;/p&gt;
+  &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sun, 21 Jun 2015 00:33:03 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-21:improved-organization-permissions.html</guid></item><item><title>An updated header, just for you</title><link>http://www.ciandcd.com/an-updated-header-just-for-you.html</link><description>&lt;div&gt;&lt;p&gt;Navigating what's most important to you on GitHub.com just got a little easier with our updated site header.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/98681/8116294/212a0ff0-1036-11e5-9450-b08d1cb7999c.jpg" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/98681/8116294/212a0ff0-1036-11e5-9450-b08d1cb7999c.jpg" alt="New GitHub header"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The new header gives you faster access to &lt;a href="https://github.com/blog/1901-managing-issues-and-pull-requests-across-repositories"&gt;your pull requests and issues dashboards&lt;/a&gt; from anywhere on the site. If you're unfamiliar with them, these dashboards list all of your open pull requests and issues&amp;#8212;as well as those you've been mentioned in or are assigned to&amp;#8212;in one place. Use them to stay up to date on what needs to be done across your projects.&lt;/p&gt;
+
+&lt;p&gt;Lastly, clicking your avatar now opens a new dropdown menu with links to your profile, account settings, and more. As a small bonus, we've also included a new Your stars link for easy access to your starred repositories.&lt;/p&gt;
+
+&lt;p&gt;Enjoy!&lt;/p&gt;
+  &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sun, 21 Jun 2015 00:33:01 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-21:an-updated-header-just-for-you.html</guid></item><item><title>Read-only deploy keys</title><link>http://www.ciandcd.com/read-only-deploy-keys.html</link><description>&lt;div&gt;&lt;p&gt;You can now create deploy keys with read-only access. A deploy key is an SSH key that is stored on your server and grants access to a single GitHub repository. They are often used to clone repositories during deploys or continuous integration runs. Deploys sometimes involve merging branches and pushing code, so deploy keys have always allowed both read and write access. Because write access is undesirable in many cases, you now have the ability to create deploy keys with read-only access.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/1144197/8164374/e76a0e24-1345-11e5-93b0-fd04b6a3446c.png" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/1144197/8164374/e76a0e24-1345-11e5-93b0-fd04b6a3446c.png" alt="viewing and adding deploy keys"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;New deploy keys created through GitHub.com will be read-only by default and can be given write access by selecting "Allow write access" during creation. Access level can be specified when &lt;a href="https://developer.github.com/v3/repos/keys/"&gt;creating deploy keys from the API&lt;/a&gt; as well.&lt;/p&gt;
+  &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sun, 21 Jun 2015 00:33:00 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-21:read-only-deploy-keys.html</guid></item><item><title>A closer look at Europe</title><link>http://www.ciandcd.com/a-closer-look-at-europe.html</link><description>&lt;div&gt;&lt;p&gt;Last week we opened our first &lt;a href="https://github.com/blog/2017-announcing-github-japan"&gt;international office in Japan&lt;/a&gt;. This week we thought we'd take a closer look at Europe, which happens to be the largest demographic of GitHub users around the world, representing 36% of site traffic.&lt;/p&gt;
+
+&lt;p&gt;Around 32 million people visit GitHub each month, and most of this traffic comes from outside of the United States (74% in fact!).
+The most active countries in Europe are Germany, the United Kingdom, and France, but if we look at users per capita we see a different story -- Sweden, Finland, and the Netherlands lead the way. London, Paris and Stockholm top the list of European cities most active on GitHub.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/25/8152704/83b76acc-12d5-11e5-851c-3fa139ee3137.png" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/25/8152704/83b76acc-12d5-11e5-851c-3fa139ee3137.png" alt="Growth of most active European countries on GitHub"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The goals of building better software are universal, and several European organizations are setting the example.
+Companies like &lt;a href="https://enterprise.github.com/stories/sap"&gt;SAP&lt;/a&gt; and XS4ALL are driving innovation with software, while &lt;a href="https://alphagov.github.io/"&gt;The UK Government Digital Services&lt;/a&gt; and &lt;a href="https://government.github.com/community/"&gt;dozens of other European government agencies and services&lt;/a&gt; are developing new ways to serve citizens.&lt;/p&gt;
+
+&lt;p&gt;Today, around 10% of GitHub employees are based in Europe, with a dozen new faces in the last year alone -- many of whom are focused solely on helping our European customers build great software.
+A few of us are here in the UK for &lt;a href="http://londontechnologyweek.co.uk/"&gt;London Tech Week&lt;/a&gt; and &lt;a href="https://enterconf.com/"&gt;EnterConf&lt;/a&gt; in Belfast. There will be plenty more meetups ahead if we don't see you there.&lt;/p&gt;
+  &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sun, 21 Jun 2015 00:32:58 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-21:a-closer-look-at-europe.html</guid></item><item><title>CodeConf Updates: Meet &amp; Greet and Workshop Tickets</title><link>http://www.ciandcd.com/codeconf-updates-meet-greet-and-workshop-tickets.html</link><description>&lt;div&gt;&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/4154342/8258112/331e2444-1667-11e5-8e3a-d14384941fd5.png" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/4154342/8258112/331e2444-1667-11e5-8e3a-d14384941fd5.png" alt="codeconf-twitter-topheader"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://codeconf.com/"&gt;CodeConf&lt;/a&gt; is next week, and I couldn't be more excited to bring the open source community together to exchange ideas and have some fun in Nashville. There are a few updates I'd like to share: &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;On June 24, the day before the conference, we'll be hosting a &lt;strong&gt;meet &amp;amp; greet&lt;/strong&gt; for attendees who would like to register early. This event is free and open to the public, so if you aren't attending CodeConf but live in the Nashville area and would like to stop by, &lt;a href="http://www.ticketbase.com/events/codeconf-2015"&gt;grab a ticket here&lt;/a&gt;. We'll be congregating on the second floor of &lt;a href="http://theacmenashville.com/"&gt;Acme Feed &amp;amp; Seed&lt;/a&gt; downtown beginning at 5:30pm &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The &lt;strong&gt;workshop schedule&lt;/strong&gt; has been updated, and I have opened up more space in each session for those interested. If you'd like to snag one of the newly available tickets, &lt;a href="http://www.ticketbase.com/events/codeconf-2015"&gt;go for it!&lt;/a&gt; &lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There's still time to grab a CodeConf ticket. &lt;a href="http://codeconf.com/"&gt;Take a look at the website for the full schedule of sessions, workshops, and sponsors.&lt;/a&gt; I hope to see you in Nashville. &lt;/p&gt;
+  &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sun, 21 Jun 2015 00:32:52 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-21:codeconf-updates-meet-greet-and-workshop-tickets.html</guid></item><item><title>Helix Versioning Engine for Hg Users</title><link>http://www.ciandcd.com/helix-versioning-engine-for-hg-users.html</link><description>&lt;div&gt;&lt;p&gt;As I said recently &lt;a href="http://www.perforce.com/blog/150521/helix-versioning-engine-git-users"&gt;when offering advice for Git users&lt;/a&gt;, the new DVCS features of Perforce Helix are easy to use, but making the transition from another system always involves climbing a learning curve. The purpose of today&amp;#8217;s post is to provide some guidance specifically for Mercurial (Hg) users.&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img alt="" src="/sites/default/files/mercurialhg-users%281%29.png"&gt;&lt;/p&gt;
+&lt;h4&gt;Concepts&lt;/h4&gt;
+&lt;p&gt;Let&amp;#8217;s start with some basics. Hg supplies only DVCS features and was developed with a particular eye toward simplifying branching and merging. In contrast, Helix was developed with a more broadly based feature set for a wider variety of workflows/needs. Yet Hg and Helix actually have more in common than one might otherwise expect.&lt;/p&gt;
+&lt;h4&gt;Status&lt;/h4&gt;
+&lt;p&gt;For starters, work-in-progress is handled similarly by Hg and Helix. Modifications to versioned files are part of your next commit by default, so the only operations an Hg user typically expects to &amp;#8220;tell&amp;#8221; the system about are file adds and deletes.&lt;/p&gt;
+&lt;p&gt;This is usually handled via the &amp;#8220;hg add&amp;#8221; and &amp;#8220;hg remove&amp;#8221; commands, but the &amp;#8220;hg addremove&amp;#8221; command is a third alternative. It adds all new files and removes all missing files previously tracked with a single command. I mention this because the Helix reconcile command achieves a similar end result.&lt;/p&gt;
+&lt;p&gt;The main difference is that while Hg includes modifications automatically, Helix does not. Helix maintains all work-in-progress via a concept known as a changelist, and in particular your DVCS work-in-progress is maintained in a changelist named &amp;#8220;default&amp;#8221;.&lt;/p&gt;
+&lt;p&gt;Hg users largely don&amp;#8217;t need to worry about this. Simply run the reconcile command to prepare for a commit, and it will include all adds, deletes, and modifications in your default changelist.&lt;/p&gt;
+&lt;h4&gt;Shelving&lt;/h4&gt;
+&lt;p&gt;Hg users have long enjoyed shelving as a feature, previously as an extension and natively since the v2.8 release. Shelving in Helix is similar but differs in that Hg shelves can be named whereas Helix shelves are a unary feature of a changelist, which is numbered and has a description instead. For example, the default changelist has one shelf where work in progress will be saved automatically when switching branches or what not.&lt;/p&gt;
+&lt;h4&gt;Paths&lt;/h4&gt;
+&lt;p&gt;In Hg parlance, a &amp;#8220;path&amp;#8221; is a &amp;#8220;pointer&amp;#8221; from/to which content may be cloned/pushed, whereas Helix users know these as &amp;#8220;remote specifications&amp;#8221; or just &amp;#8220;remotes&amp;#8221; for short. Further, an Hg &amp;#8220;path&amp;#8221; offers only a small subset of what Helix offers. A Helix remote specification is much more powerful insofar as it includes the ability to map content very selectively.&lt;a href="#_ftn1" name="_ftnref1" title="" id="_ftnref1"&gt;[1]&lt;/a&gt; Folders and files may be flexibly remapped, completely changing the hierarchical structure for the local repository as needed.&lt;/p&gt;
+&lt;p&gt;And unlike Hg, a single Helix local repository may also include content from multiple remote specifications (all of whose content may be re-mapped). But that&amp;#8217;s an advanced feature for a future post. It suffices for now that remotes are much more advanced with Helix.&lt;/p&gt;
+&lt;h4&gt;Commit&lt;/h4&gt;
+&lt;p&gt;The Hg notion of commit is also quite similar to the Helix submit, with one important difference. Hg users are accustomed to their commits having two separate IDs: (1) a monotonically increasing integer unique and valid only within the scope of the current, local repository, and (2) a forty-character hash value that is both unique and valid in every version of the repository.&lt;/p&gt;
+&lt;p&gt;In contrast, each Helix changelist, submitted or pending, is identified by a single, monotonically increasing integer number. Many developers won&amp;#8217;t care about these details, but DevOps personnel tasked with tying revision IDs to other integrated systems should be aware of them.&lt;/p&gt;
+&lt;h4&gt;Defaults&lt;/h4&gt;
+&lt;p&gt;There are also minor differences in the naming conventions. Hg users are accustomed to their default path for push and their default branch name both being &amp;#8220;default&amp;#8221;. In contrast, Helix uses &amp;#8220;origin&amp;#8221; for its default remote name and &amp;#8220;main&amp;#8221; for the default branch name. This can be a source of confusion when Hg users first get started and can&amp;#8217;t seem to switch back to the &amp;#8220;default&amp;#8221; branch; just use &amp;#8220;main&amp;#8221; instead and you&amp;#8217;ll be fine.&lt;/p&gt;
+&lt;h4&gt;Commands&lt;/h4&gt;
+&lt;p&gt;Having vaulted the conceptual hurdles, let&amp;#8217;s look at the commands for the most common tasks. Initializing a new repository requires a &amp;#8220;p4 init&amp;#8221; rather than an &amp;#8220;hg init&amp;#8221;, while the usual &amp;#8220;hg addremove&amp;#8221; followed by &amp;#8220;hg commit&amp;#8221; is instead &amp;#8220;p4 rec&amp;#8221; followed by &amp;#8220;p4 submit&amp;#8221;. All along the way &amp;#8220;hg status&amp;#8221; is replaced by &amp;#8220;p4 status&amp;#8221;. Many of the other commands are equally similar. Take a look:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Task&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Hg Command&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Helix Equivalent&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;p&gt;Stage your changes&lt;/p&gt;
+
+
+&lt;p&gt;addremove&lt;/p&gt;
+
+
+&lt;p&gt;reconcile (rec for short)&lt;/p&gt;
+
+
+&lt;p&gt;List all branches&lt;/p&gt;
+
+
+&lt;p&gt;branches&lt;/p&gt;
+
+
+&lt;p&gt;switch -l&lt;/p&gt;
+
+
+&lt;p&gt;Branch and switch to it&lt;/p&gt;
+
+
+&lt;p&gt;branch newBranch&lt;/p&gt;
+
+
+&lt;p&gt;switch -c newStream&lt;/p&gt;
+
+
+&lt;p&gt;Create an empty branch&lt;/p&gt;
+
+
+&lt;p&gt;(no equivalent)&lt;/p&gt;
+
+
+&lt;p&gt;switch -cm newStream&lt;/p&gt;
+
+
+&lt;p&gt;Switch to a branch&lt;/p&gt;
+
+
+&lt;p&gt;up branchName&lt;/p&gt;
+
+
+&lt;p&gt;switch streamName&lt;/p&gt;
+
+
+&lt;p&gt;Clone a repository&lt;/p&gt;
+
+
+&lt;p&gt;clone repository&lt;/p&gt;
+
+
+&lt;p&gt;clone -p host:port -r remote&lt;/p&gt;
+
+
+&lt;p&gt;Clone part of a repository&lt;/p&gt;
+
+
+&lt;p&gt;(no equivalent)&lt;/p&gt;
+
+
+&lt;p&gt;clone -p host:port -f fileSpecification&lt;a href="#_ftn1" id="_ftnref3" name="_ftnref3" title=""&gt;[2]&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;p&gt;Commit your work&lt;/p&gt;
+
+
+&lt;p&gt;commit&lt;/p&gt;
+
+
+&lt;p&gt;submit&lt;/p&gt;
+
+
+&lt;p&gt;Initialize a repository&lt;/p&gt;
+
+
+&lt;p&gt;init&lt;/p&gt;
+
+
+&lt;p&gt;init&lt;/p&gt;
+
+
+&lt;p&gt;Merge work from a branch&lt;/p&gt;
+
+
+&lt;p&gt;merge branchName&lt;/p&gt;
+
+
+&lt;p&gt;merge --from streamName&lt;/p&gt;
+
+
+&lt;p&gt;Get latest updates&lt;/p&gt;
+
+
+&lt;p&gt;pull&amp;#160;update&lt;a href="#_ftn1" name="_ftnref1" title="" id="_ftnref1"&gt;[3]&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;p&gt;fetch -u -r remoteName -S streamName&lt;/p&gt;
+
+
+&lt;p&gt;Push all local commits&lt;/p&gt;
+
+
+&lt;p&gt;push&lt;/p&gt;
+
+
+&lt;p&gt;push&lt;/p&gt;
+
+
+&lt;p&gt;Rewrite history&lt;/p&gt;
+
+
+&lt;p&gt;rebase&lt;/p&gt;
+
+
+&lt;p&gt;unsubmit / resubmit&lt;a href="#_ftn1" name="_ftnref1" title="" id="_ftnref1"&gt;[4]&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;p&gt;List all remotes&lt;/p&gt;
+
+
+&lt;p&gt;paths&lt;/p&gt;
+
+
+&lt;p&gt;remotes&lt;/p&gt;
+
+
+&lt;p&gt;Create a new remote&lt;/p&gt;
+
+
+&lt;p&gt;(no equivalent)&lt;a href="#_ftn1" name="_ftnref1" title="" id="_ftnref1"&gt;[5]&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;p&gt;remote newRemoteName&lt;/p&gt;
+
+
+&lt;p&gt;View your changes&lt;/p&gt;
+
+
+&lt;p&gt;status&lt;/p&gt;
+
+
+&lt;p&gt;status&lt;/p&gt;
+
+&lt;br clear="all"&gt;&lt;p&gt;As you can see, many of the commands are identical while others are a little different, but those provide what you need to get started. In fact, the above &amp;#8220;cheat sheet&amp;#8221; nicely serves the majority of day-to-day use cases. In conclusion, Hg users should feel right at home with Helix with very little effort, so why not try the industry&amp;#8217;s first DVCS built with the enterprise in mind?&lt;/p&gt;
+&lt;p&gt;&amp;#160;&lt;/p&gt;
+&lt;p&gt;&lt;a href="#_ftnref1" name="_ftn1" title="" id="_ftn1"&gt;[1]&lt;/a&gt; For more information about remote specifications see: http://www.perforce.com/perforce/doc.current/manuals/dvcs/_create_a_remote.html&lt;/p&gt;
+&lt;p&gt;&lt;a href="#_ftnref2" name="_ftn2" title="" id="_ftn2"&gt;[2]&lt;/a&gt;&amp;#160;The Helix clone command may be used in a way that Hg cannot: to clone only&amp;#160;part&amp;#160;of a given shared server, though this has the side effect of bringing it all down in a single branch.&lt;/p&gt;
+&lt;p&gt;&lt;a href="#_ftnref3" name="_ftn3" title="" id="_ftn3"&gt;[3]&lt;/a&gt;&amp;#160;Hg separates the act of pulling new work from updating the local repository for philosophical reasons, so you have to execute its two commands compared to Helix&amp;#8217; fetch command.&lt;/p&gt;
+&lt;p&gt;&lt;a href="#_ftnref4" name="_ftn4" title="" id="_ftn4"&gt;[4]&lt;/a&gt;&amp;#160;For more information about changing local history see: http://www.perforce.com/blog/150401/neatness-counts-cleaning-history-sharing-work&lt;/p&gt;
+&lt;p&gt;&lt;a href="#_ftnref5" name="_ftn5" title="" id="_ftn5"&gt;[5]&lt;/a&gt;&amp;#160;Hg users have to edit the .hg/.hgrc file manually and add a new entry to the &amp;#8220;[paths]&amp;#8221; section.&lt;/p&gt;
+&lt;p&gt;All Perforce Version Management &amp;amp; Collaboration Products Are Free for 20 Users.&lt;/p&gt;
+&lt;a href="http://info.perforce.com/free.html"&gt;TRY IT NOW&lt;/a&gt;&lt;p&gt;&amp;#160;&lt;/p&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sat, 20 Jun 2015 23:50:43 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-20:helix-versioning-engine-for-hg-users.html</guid></item><item><title>Five Requirements for Securing and Protecting Your Intellectual Property</title><link>http://www.ciandcd.com/five-requirements-for-securing-and-protecting-your-intellectual-property.html</link><description>&lt;div&gt;&lt;p&gt;In this age of industrial espionage, insider theft and advanced cyber threats, it is becoming increasingly difficult to secure intellectual property (IP). The stakes are high. In fact, the &lt;a href="http://www.ipcommission.org/report/ip_commission_report_052213.pdf"&gt;IP Commission Report &lt;/a&gt;estimates annual losses of $300B attributed to IP theft in the United States alone. A &lt;a href="http://www.kroll.com/media/pdf/white-papers/Insider_Threat_WP_022213_THT_042_2013_Final.pdf"&gt;Kroll Advisory Systems white paper&lt;/a&gt; describes how industrial espionage and insider attacks were responsible for the loss of trade secrets valued at $300M at Dow Chemical; $225M in illicit proceeds of a DuPont competitor that obtained DuPont&amp;#8217;s Kevlar trade secrets; theft of Space Shuttle, jet and rocket design trade secrets from Rockwell and Boeing and technical IP theft from Motorola.&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img alt="" src="/sites/default/files/security-blog-6.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Many, if not most, large organizations are spread across multiple geographies. Their team members generally include not only internal staff but also contractors, service providers and business partners. They typically use an source code management system and content collaboration platform to create and store all their IP.&lt;/p&gt;
+&lt;p&gt;However, collaboration and security are often at odds with each other. Shared source code, designs, specifications, and digital assets can be easy targets for IP theft and leaks. To secure and protect your IP, your collaboration platform must address the following five requirements:&lt;/p&gt;
+&lt;h4&gt;1. Flexible Authentication&lt;/h4&gt;
+&lt;p&gt;Industry-standard authentication for LDAP and Active Directory is the minimum for any enterprise platform. More secure environments require custom authentication methods (e.g., two-factor authentication) to reduce the risk of stolen or compromised user credentials. When working with external contractors, service providers or business partners, it&amp;#8217;s also important to be able to enforce the use of unique user credentials and to avoid using a single shared username or password.&lt;/p&gt;
+&lt;h4&gt;2. Fine-Grained Access Control&lt;/h4&gt;
+&lt;p&gt;Project collaboration with internal and external teams requires file-level access control. Most users need access to just the intellectual property they are working on. Being able to employ IP address-specific access and limit access to only authorized locations or users in different regions may be useful when dealing with partner companies or external service providers. For example, this would allow limiting access to external collaborators to a specific section of a repository or set of files that they need to perform their job, based on the network IP address of those external collaborators.&lt;/p&gt;
+&lt;h4&gt;3. Strong Password Security&lt;/h4&gt;
+&lt;p&gt;Setting strong password guidelines and enabling password-strengthening options, such as minimum length, maximum login attempts, password reset upon login and password expiration time frames, help reduce the risk of stolen or compromised user credentials. In addition, preventing the storage of passwords in configuration files, the Windows registry or other parts of the system used for authentication may further improve password security.&lt;/p&gt;
+&lt;h4&gt;4. Detailed Audit Logs/Access Tracking&lt;/h4&gt;
+&lt;p&gt;Keeping detailed audit logs is useful in determining who accessed which corporate assets when. Audit logs are valuable for monitoring access to corporate assets to determine potential data misuse, security breaches or data theft. Detailed audit logs are also necessary for forensic purposes, audits and regulatory compliance.&lt;/p&gt;
+&lt;h4&gt;5. Automated Threat Detection&lt;/h4&gt;
+&lt;p&gt;Even with all security measures in place, you have to assume that your systems have been breached and your IP is always at risk. Your last line of defense must include apparatus for monitoring all IP-related activity within your environment to detect suspicious events. Many existing SIEM security tools attempt to identify security threats using data from traditional security products (e.g., firewall, IDS or anti-malware) or even newer data sources (e.g., OS logs, LDAP/AD, badge data, DNS and/or email or web servers). These tools examine and process massive amounts of data and quickly identify anomalous behavior or outliers that could represent security threats. But this step is insufficient. To fully protect your valuable IP you must track activity and detect threats at the origin&amp;#8212;within your collaboration environment itself.&lt;/p&gt;
+&lt;p&gt;A unified approach to securing and protecting your intellectual property addresses these challenges in a comprehensive manner, while informing your Security Operations Center and integrating with your existing security infrastructure.&amp;#160;&lt;/p&gt;
+&lt;p&gt;To learn more download our white paper:&lt;br&gt;A Unified Approach to Securing and Protecting IP.&lt;/p&gt;
+	&lt;a href="http://info.perforce.com/whitepaper-secure-protect-ip-ty.html"&gt;READ NOW&lt;/a&gt;&lt;p&gt;&amp;#160;&lt;/p&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sat, 20 Jun 2015 23:50:40 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-20:five-requirements-for-securing-and-protecting-your-intellectual-property.html</guid></item><item><title>Hear from Forrester DevOps and Security Analysts in Live Webinar June 16th</title><link>http://www.ciandcd.com/hear-from-forrester-devops-and-security-analysts-in-live-webinar-june-16th.html</link><description>&lt;div&gt;&lt;p&gt;LIVE WEBINARS on Tuesday, June 16th - Get Best Practices for Secure DevOps from Forrester Analysts&lt;/p&gt;
+&lt;p align="center"&gt;&lt;em&gt;&lt;img alt="" src="/sites/default/files/devops-security-forrester-webinar%282%29.png"&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The advantages of DevOps and Continuous Delivery have been much touted the last several years: faster application delivery, better product quality, cost savings&amp;#8230; the list goes on. What have gotten less attention are the security risks these new practices can place on your intellectual property.&lt;/p&gt;
+&lt;p&gt;Engineering and Operations teams need to understand these security implications. Similarly, Security teams need to better understand modern release practices. Above all, these teams need to work better together.&lt;/p&gt;
+&lt;p&gt;And that&amp;#8217;s why we&amp;#8217;re hosting a &lt;a href="http://info.perforce.com/webinar-overview-security-devops.html"&gt;webinar&lt;/a&gt;&amp;#160;featuring two principal analysts from Forrester Research who come at this issue from different vantage points. &lt;strong&gt;Kurt Bittner&lt;/strong&gt; focuses on application development and delivery, while &lt;strong&gt;Rick Holland&lt;/strong&gt; focuses on security and risk.&lt;/p&gt;
+&lt;p&gt;During our&amp;#160;webinar, Kurt and Rick will share&amp;#8230;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Perspectives on how modern product delivery practices introduce additional security threats to intellectual property&lt;/li&gt;
+	&lt;li&gt;Insights on how DevOps and Security teams can work better together&lt;/li&gt;
+	&lt;li&gt;Best practices for bringing greater security to product development and delivery&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;So here it is&amp;#8230; a great opportunity to get your Engineering, DevOps and Security teams on the same page. Book a conference room together. Jointly decide what questions to ask during the live Q&amp;amp;A.&lt;/p&gt;
+&lt;p&gt;We look forward to seeing you on our webinar!&lt;/p&gt;
+&lt;p&gt;Achieving Secure DevOps: Overcoming the Risks&lt;br&gt;
+		of Modern Service Delivery&lt;/p&gt;
+	&lt;p&gt;LIVE WEBINARS on Tuesday, June 16th&lt;/p&gt;
+	&lt;a class="add-sc" href="http://info.perforce.com/webinar-overview-security-devops.html"&gt;REGISTER NOW&lt;/a&gt;&lt;p&gt;&amp;#160;&lt;/p&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sat, 20 Jun 2015 23:50:37 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-20:hear-from-forrester-devops-and-security-analysts-in-live-webinar-june-16th.html</guid></item><item><title>P4Python goes pip</title><link>http://www.ciandcd.com/p4python-goes-pip.html</link><description>&lt;div&gt;&lt;p&gt;&lt;img alt="" src="/sites/default/files/title-tip-tricks9.png"&gt;&lt;/p&gt;
+&lt;p&gt;In recent years Python has changed its package manager strategy, and the result is &lt;strong&gt;pip&lt;/strong&gt;. Pip is a powerful package manager that simplifies the creation and consumption of Python packages, turning the &lt;a href="http://pypi.python.org"&gt;Python Package Index&lt;/a&gt; into a hub of an ever-growing number of useful packages.&lt;/p&gt;
+&lt;p&gt;P4Python always had to stay away from the package index because it requires binary builds for some platforms. With the advent of the &lt;a href="http://pythonwheels.com/"&gt;wheel&lt;/a&gt; format, this has changed. Wheels are Python packages that can contain binary builds on Windows and OSX, allowing package creators to precompile their packages.&lt;/p&gt;
+&lt;p&gt;P4Python 2015.1 has been uploaded to the Python Package Index. For you this means installing the latest release of P4Python becomes a simple:&lt;/p&gt;
+&lt;pre&gt;    pip install p4python&lt;/pre&gt;&lt;p&gt;Easier, isn&amp;#8217;t it?&lt;/p&gt;
+&lt;p&gt;However, there are a few preparations you need to make before you can run this command the first time successfully:&lt;/p&gt;
+&lt;ol&gt;&lt;li&gt;You need to have the right version of Python installed: 2.7, 3.3 or 3.4. Python 2.6 is supported but we have not uploaded binaries for it.&lt;/li&gt;
+&lt;li&gt;You need to install pip. It comes with Python 3.4 and 2.7.9 automatically; everyone else will need to install it, for example from &lt;a href="https://bootstrap.pypa.io/get-pip.py"&gt;here&lt;/a&gt;, and make sure the pip executable is in your PATH.&lt;/li&gt;
+&lt;li&gt;There is currently no binary wheel format available for Linux, so pip will download the source code of P4Python and attempt to build it. This requires &amp;#8216;python-dev&amp;#8217; and &amp;#8216;build-essential&amp;#8217; installed on Debian-based distributions (using apt) and the equivalent on RPM-based (using yum).&lt;/li&gt;
+&lt;/ol&gt;&lt;p&gt;In order to build P4Python automatically from Pip, setup.py has also gained some new tricks.&lt;/p&gt;
+&lt;p&gt;First of all, it now uses setuptools and not distutils, so you need to have setuptools installed if you want to build it on, say, Python 2.6.&lt;/p&gt;
+&lt;p&gt;If you run setup.py without the &amp;#8211;apidir option, setup will now go off and attempt to download the correct P4API binaries from &lt;a href="ftp://ftp.perforce.com"&gt;the Perforce FTP site&lt;/a&gt; for your platform. The API will be downloaded and unpacked into the temp directory and used automatically by the build process.&lt;/p&gt;
+&lt;p&gt;You can still download the source or the packages, of course, and install P4Python the traditional way if you prefer.&lt;/p&gt;
+&lt;p&gt;I found pip amazingly simple to use, and I hope it will make your life a lot easier when installing P4Python. As usual, if you have any issues or requests, let us know in &lt;a href="http://www.perforce.com/support-services"&gt;Perforce Support&lt;/a&gt; or ping me on my Twitter handle &lt;a href="https://twitter.com/p4sven"&gt;@p4sven&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Happy hacking.&lt;/p&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sat, 20 Jun 2015 23:50:36 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-20:p4python-goes-pip.html</guid></item><item><title>Helix Swarm 2015.1 Released</title><link>http://www.ciandcd.com/helix-swarm-20151-released.html</link><description>&lt;div&gt;&lt;p&gt;&lt;a href="/collaboration"&gt;Swarm&lt;/a&gt; is two years old this month!&amp;#128079;&lt;/p&gt;
+&lt;p&gt;It&amp;#8217;s rewarding to think that just two years ago, our collaboration engine was only just getting into the hands of our customers. Fast-forward to today, where Swarm plays a big part in the daily workflows of so many innovative companies. With much of the functionality now matured, we wanted to expand Swarm beyond just our English-speaking customers.&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img alt="" src="/sites/default/files/swarm-japan-bee.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;With the latest release of Helix Swarm, we&amp;#8217;ve translated the product into Japanese. It&amp;#8217;s available through our exclusive partner in Japan, the &lt;a href="http://www.toyo.co.jp"&gt;TOYO Corporation&lt;/a&gt;. TOYO provides expert consulting and support to our Japanese customers, and Swarm joins the &lt;a href="http://www.perforce.com/versioning-engine"&gt;Helix Versioning Engine&lt;/a&gt; and our popular visual client, &lt;a href="http://www.perforce.com/product/components/perforce-visual-client"&gt;P4V&lt;/a&gt;, in the suite of Perforce products available in Japanese.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Localization Support for Swarm &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The Swarm team spent the last couple of months creating a localization framework and translating the product and documentation into Japanese. The next languages on our list are Korean and Simplified Chinese. If there&amp;#8217;s a language you&amp;#8217;d like us to add to our list of localizations, please send us your request via the &lt;a href="http://forums.perforce.com/index.php?/forum/29-swarm/"&gt;Perforce Swarm Forums&lt;/a&gt; or by emailing &lt;a href="mailto:support@perforce.com?subject=Request%20for%20Perforce%20Helix%20Swarm"&gt;support&lt;/a&gt; and we&amp;#8217;ll put it on our radar.&lt;/p&gt;
+&lt;p&gt;Aside from the &lt;strong&gt;localization support&lt;/strong&gt;, other new functionalities include: &amp;#160; &amp;#160;&amp;#160;&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Files and folders are downloadable as ZIP archives&lt;/li&gt;
+&lt;li&gt;Swarm now limits the number of files to display in a committed change to a configurable default of 1000&lt;/li&gt;
+&lt;li&gt;Configurable timeout sets thresholds for large commits&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;More details can be found in the &lt;a href="http://www.perforce.com/perforce/doc.current/manuals/swarm/whatsnew.html"&gt;What's new in 2015.1&lt;/a&gt; section of our user guide.&lt;/p&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sat, 20 Jun 2015 23:50:33 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-20:helix-swarm-20151-released.html</guid></item><item><title>Living la Vida Helix: Submitting Without Fear</title><link>http://www.ciandcd.com/living-la-vida-helix-submitting-without-fear.html</link><description>&lt;div&gt;&lt;p&gt;One of the common complaints I hear about centralized version control systems is that they are scary. With every commit being immediately visible there is a feeling that you may screw up everything for your co-workers. What&amp;#8217;s worse is that you generally don&amp;#8217;t have the power to clean up after yourself. How many of us have had to sheepishly go ask the admin to obliterate something?&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/sites/default/files/viva-la-helix-fear-blog.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;With P4D (which we now call Helix Versioning Engine) becoming a proper DVCS, you now can manipulate history that has not yet been shared with other people. Than means you can commit to your heart&amp;#8217;s content, and then sweep through later to keep just the interesting commits. It also means that if you accidentally submit something you can deal with it.&lt;/p&gt;
+&lt;p&gt;Just recently while doing some cleanup work in the Workshop I had just one of these cases. I&amp;#8217;d like to walk you through what happened so that you can see how unsubmit and resubmit will help you.&lt;/p&gt;
+&lt;h4&gt;Setting the scene&lt;/h4&gt;
+&lt;p&gt;A user had reported that a number of files that I had added the day before had all of their line endings mangled. The files were already in the shared server, so I didn&amp;#8217;t want to run p4 unsubmit there, and anyway I feel it is important for my failures to remain on display for all to see.&lt;/p&gt;
+&lt;p&gt;So I got to work updating the files.&lt;/p&gt;
+&lt;pre&gt; p4 fetch&lt;/pre&gt;
+&lt;p&gt;Everyting was up-to-date. Next to find the files with the bad line endings.&lt;/p&gt;
+&lt;pre&gt;grep -lIUr --color &lt;p&gt;"^R"&lt;/p&gt;&lt;/pre&gt;
+&lt;p&gt;I was lucky and it was just a handful of files. Thankfully turning Windows line endings into Unixones is a piece of cake with P4D.&lt;/p&gt;
+&lt;pre&gt;p4 client -o | sed s/LineEnd: local/LineEnd: share | p4 client -i&lt;/pre&gt;
+&lt;p&gt;Now to get the files synced with the correct line endings and submitted:&lt;/p&gt;
+&lt;pre&gt;p4 sync -f &lt;/pre&gt;
+&lt;pre&gt;p4 submit -d &lt;p&gt;"Fixing up some busted line endings that snuck in"&lt;/p&gt;&lt;/pre&gt;
+&lt;p&gt;All was well and good until I realized that in my excitement I&amp;#8217;d mangled some solution files which probably wanted those '\R&amp;#8217;s. Thankfully I hadn&amp;#8217;t pushed, so I could quickly clean up my mess.&lt;/p&gt;
+&lt;pre&gt;p4 changes -m1&lt;/pre&gt;
+&lt;pre&gt;p4 unsubmit @&lt;p&gt;12345&lt;/p&gt;&lt;/pre&gt;
+&lt;p&gt;I identified my last change number, and then unsubmitted it. At this point I had all of my changed files in a shelf. In this case I had only one changelist, but I still decided to use p4 resubmit to apply the change. p4 resubmit makes it easy to reapply the changes in order.&lt;/p&gt;
+&lt;pre&gt;p4 resubmit&lt;/pre&gt;
+&lt;p&gt;This kicks me into interactive mode. Because there is a lot you can do with resubmit and I always forget the options, I hit '?' to see the list.&lt;/p&gt;
+&lt;pre&gt;Specify next action ( l/m/e/c/r/R/s/d/b/v/V/a/q ) or ? &lt;p class="s1"&gt;for &lt;/p&gt;help: ?
+The following actions are available:
+c Modify the change description &lt;p class="s1"&gt;for &lt;/p&gt;this change
+m Merge this change, &lt;p class="s1"&gt;then &lt;/p&gt;submit &lt;p class="s1"&gt;if &lt;/p&gt;no conflicts
+e Merge this change, &lt;p class="s1"&gt;then exit for &lt;/p&gt;further editing
+r Interactively resolve this change, &lt;p class="s1"&gt;then&lt;/p&gt;
+submit &lt;p class="s1"&gt;if &lt;/p&gt;no conflicts
+a Add (squash) this change into the next unsubmitted
+change
+s Skip this change and move on to the next
+d Delete this change without submitting it
+b Begin again from the earliest remaining change
+l List the changes remaining to be processed
+v View the current change in short form
+V View the current change with full diffs
+R Display the status of resolved and unresolved merges
+q Quit the resubmit operation&amp;lt;
+? Display this help.&lt;/pre&gt;
+&lt;p&gt;In this case I wanted to resubmit all of the files except the solution files, so I selected e&lt;/p&gt;
+&lt;p&gt;That merged my change back in, but then dropped me back to the command prompt so I could further mangle the files. A quick revert got rid of the changed solution files, and then I used p4 resubmit -Re to resume the resubmit process.&lt;/p&gt;
+&lt;pre&gt;p4 revert ....sln
+p4 resubmit -Re&lt;/pre&gt;
+&lt;p&gt;P4D submitted the change again, and cleaned up the shelf for me since I no longer needed it. With that tidied up I was ready to push and share my changes with the community.&lt;/p&gt;
+&lt;pre&gt;p4 push&lt;/pre&gt;
+&lt;p&gt;Sharing that broken change wouldn&amp;#8217;t have been the end of the world, but I felt so much more in control being able to clean up those .sln files before pushing out my change. Ever wish you could undo a merge between branches? With p4 unsubmit you can. Helix Versioning Engine gives you a way to safely experiment, modifying history as need be to make sure the changes your coworkers see are the ones you want them to see.&lt;/p&gt;
+&lt;p&gt;Interested in trying it yourself? You&amp;#8217;re just a download of our Helix Versioning Engine and p4 init away from being able to try this all yourself. If you&amp;#8217;d like to push to a shared server the Workshop has been running 2015.1 since beta, and Helix Cloud is also using it. As always we&amp;#8217;re here to help, so if you have questions, just shout!&lt;/p&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sat, 20 Jun 2015 23:50:31 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-20:living-la-vida-helix-submitting-without-fear.html</guid></item><item><title>News from InfoSecurity 2015</title><link>http://www.ciandcd.com/news-from-infosecurity-2015.html</link><description>&lt;div&gt;&lt;p align="center"&gt;&lt;img alt="" src="/sites/default/files/infoSec-blog-post.png"&gt;&lt;/p&gt;
+&lt;p&gt;I've just returned from my first visit to &lt;a href="http://www.infosecurityeurope.com/"&gt;InfoSecurity 2015 in London&lt;/a&gt;. With the launch earlier this year of &lt;a href="http://www.perforce.com/threat-detection"&gt;Perforce Helix Threat Detection&lt;/a&gt; this was a great opportunity to review the state of the cyber-security world, hear about the key challenges facing governments, businesses and individuals and review some of the solutions being offered. This couldn't be more timely as, right when I'm writing this, it has been &lt;a href="http://www.bbc.co.uk/news/world-us-canada-33017310"&gt;announced&lt;/a&gt; that the U.S. government suffered a serious attack earlier this year which compromised the personal details of thousands of federal employees.&lt;/p&gt;
+&lt;p&gt;My particular area of interest is the emerging role of security in DevOps. There are a few key aspects to consider:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+		&lt;p&gt;As a developer what do you need to do and how does that fit with agile and development processes?&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;p&gt;As a Release Manager/Operations Specialist/DevOps Engineer what do you need to know to roll out and manage secure applications?&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;p&gt;As a Chief Information Security Officer or Risk Manager what is going on in the development and operations areas that I ought to be concerned about?&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;I haven't got space here to cover all of these topics, but here are a few highlights from the conversations I had at the conference.&lt;/p&gt;
+&lt;p&gt;Development Managers and DevOps specialists are increasingly aware of the need for secure applications. They are concerned that as release cycle times reduce with the adoption of Continuous Delivery they don't reduce security nor slow down deliveries. Some companies are working out how to do this by involving security experts in the earliest stages of sprint planning and ensuring security stories are &amp;#8220;groomed&amp;#8221; to ensure they are properly positioned for priority in their backlogs. They're also adopting tools for automated code and application validation. It was interesting to see an increasing number of tools addressing the need for dynamic security testing. Although the term seems to have been around a few years already, there were a number of people talking about &amp;#8220;&lt;a href="https://vimeo.com/36342207"&gt;Rugged DevOps&lt;/a&gt;&amp;#8221; and I think this is an area that will continue to grow.&lt;/p&gt;
+&lt;p&gt;Security experts, especially those involved in IT audits or risk assessments are busier than ever. Some are aware of the potential risks that may exist in their development organizations but I suspect the majority are not. This is the result of two issues.&lt;/p&gt;
+&lt;p&gt;Firstly, they may not fully appreciate the value of the software being developed. They know that they need to protect customer and staff personal data, but they don't necessarily realize that the software is actually their company&amp;#8217;s competitive differentiator and could be critical if leaked to a competitor.&lt;/p&gt;
+&lt;p&gt;Secondly there is a lot of technology involved that they don't understand. They may be familiar with firewalls, VPNs, email, etc., but developers often bring tools into the business without their knowledge and these tools, such as Subversion or Git are inherently vulnerable. It's increasingly hard to keep track of business documents in a world full of email, cloud file sharing services and BYOD mobiles, but this technical software content is even harder to grasp.&lt;/p&gt;
+&lt;p&gt;I saw a number of tools that try to address some of these problems by monitoring network traffic rather than trying to lock down each application. This generates another problem though &amp;#8211; if you're monitoring hundreds or thousands of different file types and communications, it quickly becomes an impossible management challenge.&lt;/p&gt;
+&lt;p&gt;A few tools are trying to address that problem by using analytics to analyze the basic data and infer what looks like suspicious behavior.&amp;#160; This helps with the management issue but they still don't understand the context of the data being moved around the organization which makes them inefficient for DevOps.&lt;/p&gt;
+&lt;p&gt;I didn't see anything that was close to &lt;a href="http://www.perforce.com/threat-detection"&gt;Perforce Helix Threat Detection&lt;/a&gt;, which focuses on protecting this valuable IP being created by design and development teams. Because it uses the rich data available from the &lt;a href="http://www.perforce.com/helix"&gt;Helix Versioning Engine&lt;/a&gt; it understands the context of the files being accessed. It can not only track that a user may be accessing more files than usual (and most tools can't work out what &amp;#8220;normal&amp;#8221; means), but it also understands whether those files are in projects they &amp;#8220;normally&amp;#8221; use or whether they're using the files in ways that are unusual for the user.&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;m really looking forward to the &lt;a href="http://info.perforce.com/webinar-overview-security-devops.html"&gt;webinar Perforce are hosting on June 16th&lt;/a&gt; where the Forrester DevOps Analysts, Kirt Bittner, and Security Analyst, Rick Holland will talk about the issues raised above and the solutions to them.&amp;#160;&lt;/p&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sat, 20 Jun 2015 23:50:29 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-20:news-from-infosecurity-2015.html</guid></item><item><title>Next Round of Online Training: Helix DVCS</title><link>http://www.ciandcd.com/next-round-of-online-training-helix-dvcs.html</link><description>&lt;div&gt;&lt;p align="center"&gt;&lt;img alt="Perforce Helix Training" src="/sites/default/files/training-blogimage.png"&gt;&lt;/p&gt;
+&lt;p&gt;Back in March, we announced our new &lt;a href="http://www.perforce.com/blog/150402/now-available-helix-versioning-engine-dvcs-capabilities"&gt;Helix platform&lt;/a&gt; which includes highly anticipated distributed version control (DVCS) capabilities. For some of you, hearing that we now offer DVCS may have been music to your ears. For others, it may have invoked curiosity and added another acronym to your lexicon.&lt;/p&gt;
+&lt;p&gt;Given the recent proliferation of Git-style workflows, we are seeing a lot of developers finding themselves working with their own private, local versioning repositories while collaborating with teammates via the new init/clone/pull/push command set. But did you know that you can now rewrite the history of changes in your personal repository before sharing them?&lt;/p&gt;
+&lt;p&gt;To help you come up to speed with Helix DVCS, we are pleased to announce the availability of a new instructor-led training course. The Helix DVCS course will take place online via Webex and will include hands-on lab exercises within our lab environment.&lt;/p&gt;
+&lt;p&gt;The class is taught by our expert Professional Services consultants who have a lot of experience advising customers. Topics on this new half-day course will include:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Why do you need DVCS?&lt;/li&gt;
+	&lt;li&gt;Overview of DVCS architecture and workflows&lt;/li&gt;
+	&lt;li&gt;Basic DVCS operations&lt;/li&gt;
+	&lt;li&gt;How to perform initial setup&lt;/li&gt;
+	&lt;li&gt;Working with multiple streams&lt;/li&gt;
+	&lt;li&gt;Rewriting history&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;The first class is now scheduled for European customers on June 29, 9am &amp;#8211; 1pm, British Summer Time (GMT+1). We will have a DVCS training for North American customers in the weeks that follow. So &lt;a href="http://www.perforce.com/support-services/instructor-led-training/course-schedule"&gt;sign up here&lt;/a&gt; and bring along your questions about DVCS.&amp;#160;&lt;/p&gt;
+&lt;p&gt;The class does assume that you are already familiar with Perforce Helix, so if you&amp;#8217;re new to Helix, we also offer introductory courses. Check out our &lt;a href="http://www.perforce.com/support-services/instructor-led-training/course-schedule"&gt;course schedule&lt;/a&gt; for details.&lt;/p&gt;
+&lt;p&gt;Any questions, just email training@perforce.com.&lt;/p&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sat, 20 Jun 2015 23:50:27 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-20:next-round-of-online-training-helix-dvcs.html</guid></item><item><title>Helix DVCS - How to Initialize Like a Pro</title><link>http://www.ciandcd.com/helix-dvcs-how-to-initialize-like-a-pro.html</link><description>&lt;div&gt;&lt;p&gt;&lt;img alt="" src="/sites/default/files/title-tip-tricks9.png"&gt;&lt;/p&gt;
+&lt;p&gt;We are all very excited about the new distributed version control system (DVCS)&amp;#160;capabilities of Perforce Helix. Here are a few tips for getting started.&lt;/p&gt;
+&lt;p&gt;Keep in mind that in order to use Helix DVCS, you need to have the 2015.1 version of both Helix client P4 and Helix server P4D installed. Some of the commands (e.g., &lt;strong&gt;init&lt;/strong&gt; and &lt;strong&gt;clone&lt;/strong&gt;) are implemented in P4, so you need the latest version of both executables.&lt;/p&gt;
+&lt;p&gt;The first thing you need to do when you want to use a local Helix server (called a personal server) is to run &amp;#8220;p4 init&amp;#8221;.&amp;#160; This command will create the personal server for you (in a subdirectory called .p4root) and set up the P4CONFIG and P4IGNORE files, as well.&lt;/p&gt;
+&lt;p&gt;&amp;#8220;p4 init&amp;#8221; also turns your current directory into the client workspace root for your new &lt;a&gt;personal server&lt;/a&gt;, which is useful if you already have some files and realize it might be a good thing to version them:&lt;/p&gt;
+&lt;pre&gt;    p4 init
+    p4 rec
+    p4 submit -n "Initial checkin"
+&lt;/pre&gt;&lt;p&gt;In the above, &amp;#8220;rec&amp;#8221; is a handy alias for &amp;#8220;reconcile&amp;#8221;&lt;a href="http://www.perforce.com/blog/150506/ten-time-savers-20151"&gt; to save you typing&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you start a new project from scratch and want to place it in another directory instead, use the &amp;#8220;-d&amp;#8221; option like such:&lt;/p&gt;
+&lt;pre&gt;    p4 &amp;#8211;d path-to-new-project init
+&lt;/pre&gt;&lt;h2&gt;Case and Unicode&lt;/h2&gt;
+&lt;p&gt;Let&amp;#8217;s take a closer look at the output of the &amp;#8220;p4 init&amp;#8221; command:&lt;/p&gt;
+&lt;pre&gt;    Matching server configuration from &amp;#8216;wayfarer-p4d:1666':
+    case-sensitive (-C0), non-unicode (-n)
+    Server sknop-dvcs-1429629213 saved.
+&lt;/pre&gt;&lt;p&gt;One might ask: what is case-sensitive and Unicode about?&lt;/p&gt;
+&lt;p&gt;Because the Helix versioning engine supports many platforms, both case sensitive and insensitive, you can choose how your personal server handles case. By default, the Helix versioning engine adopts the case policy of the platform you run it on: insensitive on Mac and Windows, sensitive on Linux and other Unix platforms.&lt;/p&gt;
+&lt;p&gt;Also by default, the Helix versioning engine does no Unicode translation and simply accepts any encoding for file content and metadata. For cross-platform development it is better to put a shared server into Unicode mode.&lt;/p&gt;
+&lt;p&gt;For a personal server you may not care at first what these settings are, but what if you want to push your changes to another server at a later stage? The settings of your personal server have to match the settings on the destination server or there could be chaos, as the destination server will refuse the push if the settings do not match.&lt;/p&gt;
+&lt;p&gt;It is cumbersome to change case sensitivity and Unicode settings after the Helix versioning engine is populated, so it is important to get this right up front. &amp;#8220;p4 init&amp;#8221; will &amp;#8220;guess&amp;#8221; what the standard settings within your enterprise are by connecting to and inquiring with the Helix versioning engine specified by the P4PORT environment variable (or &amp;#8220;perforce:1666&amp;#8221; if that is not set).&lt;/p&gt;
+&lt;p&gt;If you&amp;#8217;d rather inquire with a particular server when initializing a personal server, use the &amp;#8220;-p&amp;#8221; option:&lt;/p&gt;
+&lt;pre&gt;    p4 init &amp;#8211;p myserver:1666
+&lt;/pre&gt;&lt;p&gt;Alternately, you can also explicitly set case and Unicode support with the following options:&lt;/p&gt;
+&lt;strong&gt;Option&lt;/strong&gt;
+&lt;strong&gt;Meaning&lt;/strong&gt;
+&lt;strong&gt;-C0&lt;/strong&gt;
+&lt;p&gt;Case insensitive&lt;/p&gt;
+&lt;strong&gt;-C1&lt;/strong&gt;
+&lt;p&gt;Case sensitive&lt;/p&gt;
+&lt;strong&gt;-n&lt;/strong&gt;
+&lt;p&gt;No Unicode support&lt;/p&gt;
+&lt;strong&gt;-xi&lt;/strong&gt;
+&lt;p&gt;Unicode support&lt;/p&gt;
+&lt;p&gt;Server and User NameNote well: if you have P4CHARSET defined in your environment and not set to &amp;#8220;none&amp;#8221;, a new personal server will automatically be initialized as a Unicode-enabled server.&lt;/p&gt;
+&lt;p&gt;So what is the story with the server and user name?&lt;/p&gt;
+&lt;p&gt;The name of your personal server and client workspace coincide. Although in principle you can have more than one workspace against your personal server, in practice there is rarely any need for it. Locally the name does not matter, but when you push your changes into another server, the changes are linked to your local workspace name. An automatically generated name like &amp;#8220;sknop-dvcs-1429629213&amp;#8221; is highly likely do be unique, but you are free to choose a different name if you so wish by using the &amp;#8220;-c&amp;#8221; option.&lt;/p&gt;
+&lt;p&gt;The same is true for your user name: locally it does not matter and will typically coincide with either your OS user name and/or whatever P4USER is set to, but when pushing to another server the user name becomes important.&lt;/p&gt;
+&lt;p&gt;Take the Perforce workshop for example: my local user name is always &amp;#8220;sknop&amp;#8221;, but for the workshop I use &amp;#8220;sven_erik_knop&amp;#8221;. If I create a local DVCS server under the user name &amp;#8220;sknop&amp;#8221;, submit my changes, set up a remote to the workshop, and push, I&amp;#8217;ll receive only an error message.&lt;/p&gt;
+&lt;p&gt;Fortunately, the solution is very simple. I add another user to my local server and update my local protection table:&lt;/p&gt;
+&lt;pre&gt;    p4 user &amp;#8211;f sven_erik_knop
+    p4 protect
+&lt;/pre&gt;&lt;p&gt;Now I can push my changes under the new user name (I might have to log into the target server first):&lt;/p&gt;
+&lt;pre&gt;    p4 &amp;#8211;u sven_erik_knop push
+&lt;/pre&gt;&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;A simple &amp;#8220;p4 init&amp;#8221; will create you a new personal server to which you can submit changes, but if you want to push these changes to another server, it makes sense to pay attention to case sensitivity, Unicode support, and workspace and user name.&lt;/p&gt;
+&lt;p&gt;Let me know if you are using our new DVCS features and how you are getting on. My Twitter handle is @p4sven.&lt;/p&gt;
+&lt;p&gt;For a live technical overview of DVCS features in the Helix Versioning engine sign up for our &lt;a href="http://info.perforce.com/webinar-overview-helix-dvcs.html?utm_source=p4blog&amp;amp;utm_medium=social&amp;amp;utm_campaign=Global_2015Q2_EW_Helix_DVCS"&gt;DevTalk Webinar &lt;/a&gt;on June 26th.&amp;#160;&lt;/p&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sat, 20 Jun 2015 23:50:26 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-20:helix-dvcs-how-to-initialize-like-a-pro.html</guid></item><item><title>Finding the ‘Needle in a Haystack’ with Helix Threat Detection</title><link>http://www.ciandcd.com/finding-the-needle-in-a-haystack-with-helix-threat-detection.html</link><description>&lt;div&gt;&lt;p&gt;Software development projects in bigger companies typically involve large teams collaborating across multiple locations. A large corporation may employ tens of thousands of developers working on thousands of projects over a span of many years.&amp;#160;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;img alt="" src="/sites/default/files/needle-in-haystack-blog.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;For many companies, developer access to older software projects and files may continue long after the project has been completed, sometimes because of lax processes and stagnant access control policies. Yet, these projects can represent valuable IP worth tens of millions of dollars. In light of the ramifications of a competitor getting ahold of these files, what can companies do to better protect their crown jewels from theft?&lt;/p&gt;
+&lt;p&gt;The answer might be found in the source code management (SCM) or version control tools companies use to drive their development workflows. SCM tools typically track access to key projects and files via audit logs. However, the sheer volume of these logs can overwhelm security teams. A month of log data might yield millions of different interactions with files and projects, making it virtually impossibe to find important clues.&lt;/p&gt;
+&lt;p&gt;Done the right way, however, this approach can bring the real threats to the surface. A recent Fortune article entitled&amp;#160;&lt;a href="http://www.forbes.com/sites/benkepes/2015/03/27/using-log-data-and-machine-learning-to-weed-out-the-bad-guys/"&gt;Using Log Data and Machine Learning to Weed out the Bad&amp;#160;Guys&lt;/a&gt;&amp;#160;shares how a large company&amp;#160;applied our Helix Threat Detection capabilities to quickly identify data theft. Likening this approach to &amp;#8216;finding a needle in a haystack,&amp;#8217; the article describes how effective it can be to apply&amp;#160;behavioral analytics to the audit logs in our Helix Versioning Engine.&amp;#160;&lt;/p&gt;
+&lt;h4&gt;Leveraging Machine Learning to Establish a Baseline&lt;/h4&gt;
+&lt;p&gt;Conventional security tools (e.g., SIEMs) are often rule-based and require time-consuming manual setting of thresholds and iterative tuning of multiple parameters in order to identify anomalous behavior. Yet manually setting alerts to trigger when developers access an arbitrary number of files may be problematic for large projects and can inundate security teams with too many false positives.&lt;/p&gt;
+&lt;p&gt;A better approach is to use machine-learning algorithms and risk-based-behavior-analytics models to audit logs to first establish a baseline understanding of normal behavior. It&amp;#8217;s possible to create cluster models that group similar users based on their past activities. Continuous self-learning more accurately identifies high-risk events, like someone accessing a project he or she doesn't normally work on, putting a spotlight on threats to an organization&amp;#8217;s most sensitive assets.&lt;/p&gt;
+&lt;h4&gt;Identifying High-Risk Behaviors&lt;/h4&gt;
+&lt;p&gt;Once you've establised what's normal behavior, the next step is to apply advanced mathematical models that generate a behavioral risk score. This score represents multiple factors, including the importance of an asset or file, the method of access, the activity (e.g., volume or type), and the user. These behavioral analytics models can then be used to find anomalies by:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Comparing access patterns, data usage patterns and data movement patterns against historic behavior&lt;/li&gt;
+&lt;li&gt;Determining similar user patterns across the environment and comparing behavioral patterns between users and groups of users&lt;/li&gt;
+&lt;li&gt;Detecting dissimilar patterns among members of the same project group or job role&lt;/li&gt;
+&lt;li&gt;Comparing individuals against the entire user group&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;To learn more about the behavioral analytics models used in Helix Threat Detection, download the white paper&amp;#160;&lt;a href="http://info.perforce.com/whitepaper-helix-threat-detection.html"&gt;Helix Threat Detection: IP Security and Risk Analytics.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;To learn more download our white paper:&lt;br&gt;A Unified Approach to Securing and Protecting IP.&lt;/p&gt;
+&lt;a href="http://info.perforce.com/whitepaper-secure-protect-ip-ty.html"&gt;READ NOW&lt;/a&gt;&lt;p&gt;&amp;#160;&lt;/p&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sat, 20 Jun 2015 23:50:25 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-20:finding-the-needle-in-a-haystack-with-helix-threat-detection.html</guid></item><item><title>Transforming the Future of NASA with CodeConf's Ariel Waldman</title><link>http://www.ciandcd.com/transforming-the-future-of-nasa-with-codeconfs-ariel-waldman.html</link><description>&lt;div&gt;&lt;p&gt;&lt;a href="http://codeconf.com/"&gt;CodeConf 2015&lt;/a&gt; will take place in Nashville on June 25 and 26. Ariel Waldman is one of many incredible speakers that will take the stage at the Bell Tower to share her expertise. We asked her some questions about her experiences at NASA, her vision for the future, and more. Check out her answers below! &lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://cloud.githubusercontent.com/assets/4154342/7820484/84684f82-039d-11e5-93ef-3a6b726df867.jpg" target="_blank"&gt;&lt;img src="https://cloud.githubusercontent.com/assets/4154342/7820484/84684f82-039d-11e5-93ef-3a6b726df867.jpg" alt="ariel"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q: Why is collaboration important to you, and how do you think it can further scientific exploration and discovery?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A: To me, multidisciplinary collaboration is at the heart of furthering scientific exploration and discovery. In my work, I especially focus on unusual collaborations between people from different backgrounds. By having a fresh set of eyes from those who solve problems across a wide range of industries, new concepts emerge and go on to influence scientific processes, communication and discoveries in unexpected ways. Science doesn't require serendipity, but I'd argue it's significantly disadvantaged without it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q: You spoke at the very first CodeConf in 2011, and we&amp;#8217;re excited to have you back since you&amp;#8217;ve been doing so much exciting stuff in the meantime. What was your experience of CodeConf 2011, and what are you looking forward to seeing at CodeConf 2015?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A: CodeConf was fantastic. The community was so excited to have a wide range of topics at a "code" conference and I think it really helped open everyone up to new opportunities and aspirations. I think what made CodeConf 2011, and what will make CodeConf 2015, so special was the unexpected connections people end up drawing and a broadening of how big the universe to play in is.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q: GitHub had the pleasure of hosting &lt;a href="http://sciencehackday.org/"&gt;Science Hack Day&lt;/a&gt; in 2014, and we&amp;#8217;ll do so again this year. What is the purpose of Science Hack Day, and what were some of the most exciting projects to come out of that event?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A: The mission of Science Hack Day is to get excited and make things with science! Science Hack Day is a 2-day-all-night event where anyone excited about making weird, silly or serious things with science comes together in the same physical space to see what they can prototype within 24 consecutive hours. Designers, developers, scientists and anyone who is excited about making things with science are welcome to attend &amp;#8211; no experience in science or hacking is necessary, just an insatiable curiosity.&lt;/p&gt;
+
+&lt;p&gt;One of the projects I loved that came out of the Science Hack Day SF at GitHub last year was an interactive planetarium where you could explore the distance between stars, planets and constellations using your hands via a Kinect. I loved the idea of making a planetarium more physical. Because the code was made open source on GitHub, the project was then hacked on further and installed as a temporary exhibit at the American Museum of Natural History in NYC, where school kids, families and even an astronaut got to try it out!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Q: Tell us about &lt;a href="http://www.nasa.gov/directorates/spacetech/niac/index.html"&gt;NASA Innovative Advanced Concepts (NIAC)&lt;/a&gt;. How can we participate in and contribute to the vision of this project?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A: NASA Innovative Advanced Concepts (NIAC) is arguably the coolest program at NASA - they fund and nurture all the radical, sci-fi-esque ideas that could one day transform future space missions. Submarines on Titan, human hibernation to Mars, comet hitchhiking space probes, you name it. Some utilize computer science and computer vision techniques &amp;#8211; one project analyzes light versus dark areas on the Moon so that a lunar rover could navigate staying in continuous sunlight, thus able to be more efficient by having continuous solar power. The cool thing about NIAC is that they accept proposals from anyone every year around October, so if you have a credible idea you'd like to do further research and prototyping on that could transform a future space mission, you can apply!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://twitter.com/arielwaldman"&gt;Follow Ariel on Twitter&lt;/a&gt; for more updates on all of her projects, and &lt;a href="http://www.ticketbase.com/events/codeconf-2015"&gt;grab your CodeConf ticket now&lt;/a&gt;! We can't wait to see you in Nashville next month. &lt;/p&gt;
+  &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">itech001</dc:creator><pubDate>Sat, 20 Jun 2015 23:49:53 +0800</pubDate><guid>tag:www.ciandcd.com,2015-06-20:transforming-the-future-of-nasa-with-codeconfs-ariel-waldman.html</guid></item></channel></rss>

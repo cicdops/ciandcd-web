@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    简单的proxy之TinyHTTPProxy.py - iTech - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+<link href="./feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+<a href="https://github.com/ciandcd">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" />
+</a>
+<!-- Header -->
+<header><div class="container">
+<h1 class="page-header"><a href="./index.html">ciandcd</a>
+<h4>continuous integration and continuous delivery</h4></h1>
+</div></header>
+<!-- /Header -->
+
+<!-- Body -->
+<section id="body"><div class="container-fluid">
+
+<!-- Nav bar -->
+<div class="row"><div class="col-lg-12">
+<nav class="navbar navbar-default"><div class="collapse navbar-collapse">
+<ul class="nav navbar-nav">
+  <li><a href="./index.html">Home</a></li>
+
+
+
+</ul>
+</div></nav>
+</div></div>
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h1>
+    简单的proxy之TinyHTTPProxy.py - iTech</h1>
+
+<div><p>&#22914;&#26524;&#26159;&#22312;&#22806;&#20225;&#24037;&#20316;&#30340;&#35805;&#65292;&#21487;&#20197;&#35775;&#38382;&#32654;&#22269;&#30340;&#26426;&#22120;&#65292;&#36825;&#26679;&#23601;&#21487;&#20197;&#22312;&#32654;&#22269;&#30340;&#26426;&#22120;&#19978;&#20026;&#33258;&#24049;&#35013;&#20010;proxy&#65292;&#28982;&#21518;&#26412;&#22320;&#23601;&#21487;&#20197;&#24456;&#23481;&#26131;&#30340;&#20351;&#29992;proxy&#26469;&#19978;&#32593;&#20102;&#12290;</p><p>&#20027;&#39029;&#65306;<a href="http://www.voidtrance.net/2010/01/simple-python-http-proxy/">http://www.voidtrance.net/2010/01/simple-python-http-proxy/</a>&#160;<br>&#19979;&#36733;&#65306;<a href="http://www.voidtrance.net/downloads/tiny-proxy-0.3.1.tar.gz">http://www.voidtrance.net/downloads/tiny-proxy-0.3.1.tar.gz</a>&#160;</p><p>1&#65289;&#24456;&#22909;&#29992;&#65292;&#19979;&#36733;&#28982;&#21518;&#22312;&#21518;&#21488;&#36816;&#34892;&#12290;&#21482;&#20381;&#36182;&#20110;&#22522;&#26412;&#30340;python modules&#65292;&#36816;&#34892;&#30340;&#26102;&#20505;&#19981;&#38656;&#35201;root&#26435;&#38480;&#12290;</p><p>2&#65289; Chrome&#20013;&#30340;switchsharper&#25554;&#20214;&#30340;&#37197;&#32622;&#65306;</p><pre class="brush:python;gutter:true;">#!/usr/bin/python&#13;
+ &#13;
+__doc__ = """Tiny HTTP Proxy.&#13;
+ &#13;
+This module implements GET, HEAD, POST, PUT and DELETE methods&#13;
+on BaseHTTPServer, and behaves as an HTTP proxy.  The CONNECT&#13;
+method is also implemented experimentally, but has not been&#13;
+tested yet.&#13;
+ &#13;
+Any help will be greatly appreciated.       SUZUKI Hisao&#13;
+ &#13;
+2009/11/23 - Modified by Mitko Haralanov&#13;
+             * Added very simple FTP file retrieval&#13;
+             * Added custom logging methods&#13;
+             * Added code to make this a standalone application&#13;
+"""&#13;
+ &#13;
+__version__ = "0.3.1"&#13;
+ &#13;
+import BaseHTTPServer, select, socket, SocketServer, urlparse&#13;
+import logging&#13;
+import logging.handlers&#13;
+import getopt&#13;
+import sys&#13;
+import os&#13;
+import signal&#13;
+import threading&#13;
+from types import FrameType, CodeType&#13;
+from time import sleep&#13;
+import ftplib&#13;
+ &#13;
+DEFAULT_LOG_FILENAME = "proxy.log"&#13;
+ &#13;
+class ProxyHandler (BaseHTTPServer.BaseHTTPRequestHandler):&#13;
+    __base = BaseHTTPServer.BaseHTTPRequestHandler&#13;
+    __base_handle = __base.handle&#13;
+ &#13;
+    server_version = "TinyHTTPProxy/" + __version__&#13;
+    rbufsize = 0                        # self.rfile Be unbuffered&#13;
+ &#13;
+    def handle(self):&#13;
+        (ip, port) =  self.client_address&#13;
+        self.server.logger.log (logging.INFO, "Request from '%s'", ip)&#13;
+        if hasattr(self, 'allowed_clients') and ip not in self.allowed_clients:&#13;
+            self.raw_requestline = self.rfile.readline()&#13;
+            if self.parse_request(): self.send_error(403)&#13;
+        else:&#13;
+            self.__base_handle()&#13;
+ &#13;
+    def _connect_to(self, netloc, soc):&#13;
+        i = netloc.find(':')&#13;
+        if i &gt;= 0:&#13;
+            host_port = netloc[:i], int(netloc[i+1:])&#13;
+        else:&#13;
+            host_port = netloc, 80&#13;
+        self.server.logger.log (logging.INFO, "connect to %s:%d", host_port[0], host_port[1])&#13;
+        try: soc.connect(host_port)&#13;
+        except socket.error, arg:&#13;
+            try: msg = arg[1]&#13;
+            except: msg = arg&#13;
+            self.send_error(404, msg)&#13;
+            return 0&#13;
+        return 1&#13;
+ &#13;
+    def do_CONNECT(self):&#13;
+        soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)&#13;
+        try:&#13;
+            if self._connect_to(self.path, soc):&#13;
+                self.log_request(200)&#13;
+                self.wfile.write(self.protocol_version +&#13;
+                                 " 200 Connection established\r\n")&#13;
+                self.wfile.write("Proxy-agent: %s\r\n" % self.version_string())&#13;
+                self.wfile.write("\r\n")&#13;
+                self._read_write(soc, 300)&#13;
+        finally:&#13;
+            soc.close()&#13;
+            self.connection.close()&#13;
+ &#13;
+    def do_GET(self):&#13;
+        (scm, netloc, path, params, query, fragment) = urlparse.urlparse(&#13;
+            self.path, 'http')&#13;
+        if scm not in ('http', 'ftp') or fragment or not netloc:&#13;
+            self.send_error(400, "bad url %s" % self.path)&#13;
+            return&#13;
+        soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)&#13;
+        try:&#13;
+            if scm == 'http':&#13;
+                if self._connect_to(netloc, soc):&#13;
+                    self.log_request()&#13;
+                    soc.send("%s %s %s\r\n" % (self.command,&#13;
+                                               urlparse.urlunparse(('', '', path,&#13;
+                                                                    params, query,&#13;
+                                                                    '')),&#13;
+                                               self.request_version))&#13;
+                    self.headers['Connection'] = 'close'&#13;
+                    del self.headers['Proxy-Connection']&#13;
+                    for key_val in self.headers.items():&#13;
+                        soc.send("%s: %s\r\n" % key_val)&#13;
+                    soc.send("\r\n")&#13;
+                    self._read_write(soc)&#13;
+            elif scm == 'ftp':&#13;
+                # fish out user and password information&#13;
+                i = netloc.find ('@')&#13;
+                if i &gt;= 0:&#13;
+                    login_info, netloc = netloc[:i], netloc[i+1:]&#13;
+                    try: user, passwd = login_info.split (':', 1)&#13;
+                    except ValueError: user, passwd = "anonymous", None&#13;
+                else: user, passwd ="anonymous", None&#13;
+                self.log_request ()&#13;
+                try:&#13;
+                    ftp = ftplib.FTP (netloc)&#13;
+                    ftp.login (user, passwd)&#13;
+                    if self.command == "GET":&#13;
+                        ftp.retrbinary ("RETR %s"%path, self.connection.send)&#13;
+                    ftp.quit ()&#13;
+                except Exception, e:&#13;
+                    self.server.logger.log (logging.WARNING, "FTP Exception: %s",&#13;
+                                            e)&#13;
+        finally:&#13;
+            soc.close()&#13;
+            self.connection.close()&#13;
+ &#13;
+    def _read_write(self, soc, max_idling=20, local=False):&#13;
+        iw = [self.connection, soc]&#13;
+        local_data = ""&#13;
+        ow = []&#13;
+        count = 0&#13;
+        while 1:&#13;
+            count += 1&#13;
+            (ins, _, exs) = select.select(iw, ow, iw, 1)&#13;
+            if exs: break&#13;
+            if ins:&#13;
+                for i in ins:&#13;
+                    if i is soc: out = self.connection&#13;
+                    else: out = soc&#13;
+                    data = i.recv(8192)&#13;
+                    if data:&#13;
+                        if local: local_data += data&#13;
+                        else: out.send(data)&#13;
+                        count = 0&#13;
+            if count == max_idling: break&#13;
+        if local: return local_data&#13;
+        return None&#13;
+ &#13;
+    do_HEAD = do_GET&#13;
+    do_POST = do_GET&#13;
+    do_PUT  = do_GET&#13;
+    do_DELETE=do_GET&#13;
+ &#13;
+    def log_message (self, format, *args):&#13;
+        self.server.logger.log (logging.INFO, "%s %s", self.address_string (),&#13;
+                                format % args)&#13;
+ &#13;
+    def log_error (self, format, *args):&#13;
+        self.server.logger.log (logging.ERROR, "%s %s", self.address_string (),&#13;
+                                format % args)&#13;
+ &#13;
+class ThreadingHTTPServer (SocketServer.ThreadingMixIn,&#13;
+                           BaseHTTPServer.HTTPServer):&#13;
+    def __init__ (self, server_address, RequestHandlerClass, logger=None):&#13;
+        BaseHTTPServer.HTTPServer.__init__ (self, server_address,&#13;
+                                            RequestHandlerClass)&#13;
+        self.logger = logger&#13;
+ &#13;
+def logSetup (filename, log_size, daemon):&#13;
+    logger = logging.getLogger ("TinyHTTPProxy")&#13;
+    logger.setLevel (logging.INFO)&#13;
+    if not filename:&#13;
+        if not daemon:&#13;
+            # display to the screen&#13;
+            handler = logging.StreamHandler ()&#13;
+        else:&#13;
+            handler = logging.handlers.RotatingFileHandler (DEFAULT_LOG_FILENAME,&#13;
+                                                            maxBytes=(log_size*(1&lt;&lt;20)),&#13;
+                                                            backupCount=5)&#13;
+    else:&#13;
+        handler = logging.handlers.RotatingFileHandler (filename,&#13;
+                                                        maxBytes=(log_size*(1&lt;&lt;20)),&#13;
+                                                        backupCount=5)&#13;
+    fmt = logging.Formatter ("[%(asctime)-12s.%(msecs)03d] "&#13;
+                             "%(levelname)-8s {%(name)s %(threadName)s}"&#13;
+                             " %(message)s",&#13;
+                             "%Y-%m-%d %H:%M:%S")&#13;
+    handler.setFormatter (fmt)&#13;
+ &#13;
+    logger.addHandler (handler)&#13;
+    return logger&#13;
+ &#13;
+def usage (msg=None):&#13;
+    if msg: print msg&#13;
+    print sys.argv[0], "[-p port] [-l logfile] [-dh] [allowed_client_name ...]]"&#13;
+    print&#13;
+    print "   -p       - Port to bind to"&#13;
+    print "   -l       - Path to logfile. If not specified, STDOUT is used"&#13;
+    print "   -d       - Run in the background"&#13;
+    print&#13;
+ &#13;
+def handler (signo, frame):&#13;
+    while frame and isinstance (frame, FrameType):&#13;
+        if frame.f_code and isinstance (frame.f_code, CodeType):&#13;
+            if "run_event" in frame.f_code.co_varnames:&#13;
+                frame.f_locals["run_event"].set ()&#13;
+                return&#13;
+        frame = frame.f_back&#13;
+ &#13;
+def daemonize (logger):&#13;
+    class DevNull (object):&#13;
+        def __init__ (self): self.fd = os.open ("/dev/null", os.O_WRONLY)&#13;
+        def write (self, *args, **kwargs): return 0&#13;
+        def read (self, *args, **kwargs): return 0&#13;
+        def fileno (self): return self.fd&#13;
+        def close (self): os.close (self.fd)&#13;
+    class ErrorLog:&#13;
+        def __init__ (self, obj): self.obj = obj&#13;
+        def write (self, string): self.obj.log (logging.ERROR, string)&#13;
+        def read (self, *args, **kwargs): return 0&#13;
+        def close (self): pass&#13;
+ &#13;
+    if os.fork () != 0:&#13;
+        ## allow the child pid to instanciate the server&#13;
+        ## class&#13;
+        sleep (1)&#13;
+        sys.exit (0)&#13;
+    os.setsid ()&#13;
+    fd = os.open ('/dev/null', os.O_RDONLY)&#13;
+    if fd != 0:&#13;
+        os.dup2 (fd, 0)&#13;
+        os.close (fd)&#13;
+    null = DevNull ()&#13;
+    log = ErrorLog (logger)&#13;
+    sys.stdout = null&#13;
+    sys.stderr = log&#13;
+    sys.stdin = null&#13;
+    fd = os.open ('/dev/null', os.O_WRONLY)&#13;
+    #if fd != 1: os.dup2 (fd, 1)&#13;
+    os.dup2 (sys.stdout.fileno (), 1)&#13;
+    if fd != 2: os.dup2 (fd, 2)&#13;
+    if fd not in (1, 2): os.close (fd)&#13;
+ &#13;
+def main ():&#13;
+    logfile = None&#13;
+    daemon  = False&#13;
+    max_log_size = 20&#13;
+    port = 8000&#13;
+    allowed = []&#13;
+    run_event = threading.Event ()&#13;
+    local_hostname = socket.gethostname ()&#13;
+ &#13;
+    try: opts, args = getopt.getopt (sys.argv[1:], "l:dhp:", [])&#13;
+    except getopt.GetoptError, e:&#13;
+        usage (str (e))&#13;
+        return 1&#13;
+ &#13;
+    for opt, value in opts:&#13;
+        if opt == "-p": port = int (value)&#13;
+        if opt == "-l": logfile = value&#13;
+        if opt == "-d": daemon = not daemon&#13;
+        if opt == "-h":&#13;
+            usage ()&#13;
+            return 0&#13;
+ &#13;
+    # setup the log file&#13;
+    logger = logSetup (logfile, max_log_size, daemon)&#13;
+ &#13;
+    if daemon:&#13;
+        daemonize (logger)&#13;
+    signal.signal (signal.SIGINT, handler)&#13;
+ &#13;
+    if args:&#13;
+        allowed = []&#13;
+        for name in args:&#13;
+            client = socket.gethostbyname(name)&#13;
+            allowed.append(client)&#13;
+            logger.log (logging.INFO, "Accept: %s (%s)" % (client, name))&#13;
+        ProxyHandler.allowed_clients = allowed&#13;
+    else:&#13;
+        logger.log (logging.INFO, "Any clients will be served...")&#13;
+ &#13;
+    server_address = (socket.gethostbyname (local_hostname), port)&#13;
+    ProxyHandler.protocol = "HTTP/1.0"&#13;
+    httpd = ThreadingHTTPServer (server_address, ProxyHandler, logger)&#13;
+    sa = httpd.socket.getsockname ()&#13;
+    print "Servering HTTP on", sa[0], "port", sa[1]&#13;
+    req_count = 0&#13;
+    while not run_event.isSet ():&#13;
+        try:&#13;
+            httpd.handle_request ()&#13;
+            req_count += 1&#13;
+            if req_count == 1000:&#13;
+                logger.log (logging.INFO, "Number of active threads: %s",&#13;
+                            threading.activeCount ())&#13;
+                req_count = 0&#13;
+        except select.error, e:&#13;
+            if e[0] == 4 and run_event.isSet (): pass&#13;
+            else:&#13;
+                logger.log (logging.CRITICAL, "Errno: %d - %s", e[0], e[1])&#13;
+    logger.log (logging.INFO, "Server shutdown")&#13;
+    return 0&#13;
+ &#13;
+if __name__ == '__main__':&#13;
+    sys.exit (main ())&#13;
+</pre>&#13;
+</div>
+
+<p class="info">
+Posted Sat 20 June 2015
+ by <a class="url fn" href="./author/itech001.html">itech001</a>
+in <a href="./category/zh.html">zh</a>
+</p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>Categories</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="./category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="./category/devops.html">devops</a></li>
+  <li ><a href="./category/scm.html">scm</a></li>
+  <li class="active"><a href="./category/zh.html">zh</a></li>
+</ul>
+
+<h2>Links</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://getpelican.com/">Pelican</a></li>
+  <li><a href="http://python.org/">Python.org</a></li>
+  <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+</ul>
+
+<h2>Social</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+
+  <li><a href="https://github.com/ciandcd">GITHUB</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="./theme/js/jquery.js"></script>
+<script src="./theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

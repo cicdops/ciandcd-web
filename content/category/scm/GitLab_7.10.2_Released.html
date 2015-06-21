@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    GitLab 7.10.2 Released</title></head><body><div><h1 class="title">GitLab 7.10.2 released</h1>
+                     
+                    
+                  
+
+                  <p>Please note that we have discovered an issue in the migrations in this patch
+release. The tag migration will fail on certain duplicate tags in the database.</p>
+
+<p><strong>Do not upgrade to 7.10.2 at this time.</strong></p>
+
+<p>If you have already updated to 7.10.2 and everything is working fine,
+there is no need to worry. You can keep using GitLab normally.</p>
+
+
+
+<p>We&#8217;ve released GitLab 7.10.2 CE, EE and CI.</p>
+
+<p>It includes the following fixes, that apply to both CE and EE:</p>
+
+<ul>
+<li>A bug when using the Gitorious importer</li>
+<li>A bug that prevented adding group members through the admin screen</li>
+<li>Broken links on the merge request page leading to CI services</li>
+<li>A 500 error when trying to search in the wiki</li>
+<li>A 500 error when trying to add new tags to a project</li>
+<li>A bug where commit data would not appear in some subdirectories due to escaped slashes</li>
+<li>A bug where branches with escaped characters in their names would not always work
+in the compare view</li>
+</ul>
+
+
+ 
+
+
+<h2>Upgrade barometer</h2>
+
+<p>There is a migration that loops through all tags.
+This can take a while for larger installations.</p>
+
+<p>The upgrade can be performed online.</p>
+
+<p>Theoretically, there is a small chance that if a tag is created during
+the <a href="https://gitlab.com/gitlab-org/gitlab-ce/blob/master/db/migrate/20150425164649_add_taggings_counter_cache_to_tags.acts_as_taggable_on_engine.rb">migration</a>
+of that specific tag, the tag counter gets a value that is
+slightly higher or lower than its actual value. We do not believe this
+is reason to schedule downtime and recommend performing the upgrade online.</p>
+
+<h2>Updating</h2>
+
+<p>To update, check out our <a href="https://about.gitlab.com/update">update page</a>.</p>
+
+<h2>Enterprise Edition</h2>
+
+<p>Omnibus packages for GitLab Enterprise Edition 7.10.2 are available for subscribers <a href="https://gitlab.com/subscribers/gitlab-ee/blob/master/doc/install/packages.md">here</a>. For installations from source, use <a href="https://gitlab.com/subscribers/gitlab-ee/blob/master/doc/update/patch_versions.md">this guide</a>.</p>
+
+<p>Interested in GitLab Enterprise Edition?
+For an overview of feature exclusive to GitLab Enterprise Edition please have a look at the <a href="http://about.gitlab.com/features/#enterprise">features exclusive to GitLab EE</a>.</p>
+
+<p>Access to GitLab Enterprise Edition is included with a <a href="http://www.gitlab.com/subscription/">subscription</a>.
+No time to upgrade GitLab yourself?
+A subscription also entitles to our upgrade and installation services.</p>
+
+                  <a></a><p>Install GitLab on your own server in 2 minutes <a href="/downloads" id="dl-partial">Let's do it!</a> </p><a href="/downloads" class="btn btn-block btn-lg btn-purple visible-xs" id="dl-partial-sm">
+  Install GitLab on your own server in 2 minutes
+</a>
+
+
+                  
+                  <p>&#8594; <a href="/blog/archives.html">Browse all posts</a></p>
+
+                  <strong><a href="https://twitter.com/gitlab">@gitlab</a></strong>
+    on Twitter.
+
+    <a></a><p>For the latest and most detailed news followon Twitter. <a href="/atom.xml" class="rss-btn">
+      
+    </a> </p><p>Get every GitLab blog post and stay up to date.</p>
+     
+    <p id="mc_embed_signup" class="newsletter-form">
+       
+    </p>
+     
+
+  <p id="disqus_thread"></p>
+                   
+                  Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;
+                </div></body></html>

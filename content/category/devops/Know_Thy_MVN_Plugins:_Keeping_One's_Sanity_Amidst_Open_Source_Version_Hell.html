@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    Know Thy MVN Plugins: Keeping One's Sanity Amidst Open Source Version Hell</title></head><body><div><p class="print-link"></p><p>Problem #1: Everyone knows that keeping up with versions is tough.&#160; This is the reason tools such as <a href="http://www.openlogic.com/">OpenLogic</a> come to exist. Some companies pay, some companies develop home grown solutions, some live with the version which are getting older every day.</p>
+
+<p>Problem #2:&#160; When multiple open source projects once consumed by your product can bring in different versions of the same library. One never knows which will be picked up at run-time and behavior on the developer&#8217;s box based on the Murphy&#8217;s Law will be different from the server run-time.</p>
+
+<p>This does not have to be such an ordeal.&#160; With the power of maven plugins this can be solved relatively easy. <a href="http://www.mojohaus.org/versions-maven-plugin/">Versions Maven Plugin</a> and <a href="http://maven.apache.org/enforcer/maven-enforcer-plugin/">Maven Enforcer Plugin</a> to the rescue! </p>
+
+<p>Versions Maven Plugin will keep versions up-to-date and as you probably guessed from the name Maven Enforcer plugin will be guarding against multiple versions of the maven artifact in the build package produced.</p>
+
+<p>Let&#8217;s see how one introduced enforcer into the mix first. The code below can go in the parent pom.xml of the project, or global parent of the projects if one exists.</p><pre class="as3">&lt;project &#8230;&gt;
+&#8230;
+&lt;plugins&gt;
+&#8230;
+&lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-enforcer-plugin&lt;/artifactId&gt;
+        &lt;version&gt;1.4&lt;/version&gt;
+        &lt;executions&gt;
+          &lt;execution&gt;
+            &lt;id&gt;enforce-versions&lt;/id&gt;
+            &lt;goals&gt;
+              &lt;goal&gt;enforce&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;configuration&gt;
+              &lt;rules&gt;
+                &lt;requireMavenVersion&gt;
+                  &lt;version&gt;[2.2.*,)&lt;/version&gt;
+                &lt;/requireMavenVersion&gt;
+                &lt;requireJavaVersion&gt;
+                  &lt;version&gt;[1.7.*,)&lt;/version&gt;
+                &lt;/requireJavaVersion&gt;
+                &lt;DependencyConvergence/&gt;
+              &lt;/rules&gt;
+            &lt;/configuration&gt;
+          &lt;/execution&gt;
+        &lt;/executions&gt;
+      &lt;/plugin&gt;
+&#8230;
+&lt;/plugins&gt;
+&#8230;
+&lt;/project&gt;</pre><p>For each dependency version collision one has to pick the version to keep and exclude the ones that are mismatched. See maven <a href="https://maven.apache.org/guides/introduction/introduction-to-optional-and-excludes-dependencies.html">help page</a> for details. If one wants absolute guarantee of the version used, this is the only way to go. An example of excluded dependencies will be:</p><pre class="as3">&lt;project &#8230;&gt;
+&#8230;
+	&lt;dependencies&gt;
+&#8230;
+		&lt;dependency&gt;
+			&lt;groupId&gt;com.lordofthejars&lt;/groupId&gt;
+			&lt;artifactId&gt;nosqlunit-mongodb&lt;/artifactId&gt;
+			&lt;version&gt;${nosqlunit.veresion}&lt;/version&gt;
+		  &lt;scope&gt;test&lt;/scope&gt;
+		  &lt;exclusions&gt;
+	      	&lt;exclusion&gt;
+	      		&lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+	      		&lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+	      	&lt;/exclusion&gt;
+	      	&lt;exclusion&gt;
+	      		&lt;groupId&gt;com.github.fakemongo&lt;/groupId&gt;
+	      		&lt;artifactId&gt;fongo&lt;/artifactId&gt;
+	      	&lt;/exclusion&gt;
+	      	&lt;exclusion&gt;
+	      		&lt;groupId&gt;org.mongodb&lt;/groupId&gt;
+	      		&lt;artifactId&gt;mongo-java-driver&lt;/artifactId&gt;
+	      	&lt;/exclusion&gt;
+		  &lt;/exclusions&gt;
+		&lt;/dependency&gt;
+&#8230;
+	&lt;/dependencies&gt;
+&#8230;
+&lt;/project&gt;</pre><p>From the <b>open source developer side</b>, producing two flavors of the package for consumption with and without dependencies can make world a better place. This is the difference of maven scope &#8216;provided&#8217; vs. default scope &#8216;compile&#8217;. <a href="https://maven.apache.org/plugins/maven-shade-plugin/">Apache Maven Shade Plugin</a> can be used to produce the version with the dependencies to be used there no conflicts can arise along with the version that is artifact version independent and can be used without version conflicts.</p>
+
+<p>Once all conflicts are resolved and one version of each artifact is in the final build product guaranteed, one should check if ones project is up to date. &#160;It is a good practice to do the check at the beginning of the new version.</p>
+
+<p>To check for outdates dependencies, and plugins, and bring those up to date in the controlled manner (manually) one can execute:</p>
+
+<p></p><ul><li>mvn <a href="http://www.mojohaus.org/versions-maven-plugin/display-dependency-updates-mojo.html">versions:display-dependency-updates</a><br></li><li>mvn <a href="http://www.mojohaus.org/versions-maven-plugin/display-plugin-updates-mojo.html">versions:display-plugin-updates</a><br></li><li>mvn <a href="http://www.mojohaus.org/versions-maven-plugin/display-property-updates-mojo.html">versions:display-property-updates</a><br></li></ul><p></p>
+
+
+
+
+
+<p>As an alternative one can let the plugin update the versions by executing following</p>
+
+<p></p><ul><li>mvn <a href="http://www.mojohaus.org/versions-maven-plugin/use-latest-releases-mojo.html">versions:use-latest-releases</a><br></li><li>mvn <a href="http://www.mojohaus.org/versions-maven-plugin/update-properties-mojo.html">versions:update-properties</a><br></li></ul><p></p>
+
+
+
+<p>This last mvn command I am going to share is a bonus for the dedicated reader. It allows changing versions across the project and its modules painlessly:</p>
+
+<p></p><ul><li>mvn <a href="http://www.mojohaus.org/versions-maven-plugin/set-mojo.html">versions:set</a> -DgenerateBackupPoms=false&#8203; -DnewVersion=&lt;version&gt;<br></li></ul><p></p>	
+	<p></p>
+
+    </div></body></html>

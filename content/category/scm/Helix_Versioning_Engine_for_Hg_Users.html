@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    Helix Versioning Engine for Hg Users</title></head><body><div><p>As I said recently <a href="http://www.perforce.com/blog/150521/helix-versioning-engine-git-users">when offering advice for Git users</a>, the new DVCS features of Perforce Helix are easy to use, but making the transition from another system always involves climbing a learning curve. The purpose of today&#8217;s post is to provide some guidance specifically for Mercurial (Hg) users.</p>
+<p align="center"><img alt="" src="/sites/default/files/mercurialhg-users%281%29.png"></p>
+<h4>Concepts</h4>
+<p>Let&#8217;s start with some basics. Hg supplies only DVCS features and was developed with a particular eye toward simplifying branching and merging. In contrast, Helix was developed with a more broadly based feature set for a wider variety of workflows/needs. Yet Hg and Helix actually have more in common than one might otherwise expect.</p>
+<h4>Status</h4>
+<p>For starters, work-in-progress is handled similarly by Hg and Helix. Modifications to versioned files are part of your next commit by default, so the only operations an Hg user typically expects to &#8220;tell&#8221; the system about are file adds and deletes.</p>
+<p>This is usually handled via the &#8220;hg add&#8221; and &#8220;hg remove&#8221; commands, but the &#8220;hg addremove&#8221; command is a third alternative. It adds all new files and removes all missing files previously tracked with a single command. I mention this because the Helix reconcile command achieves a similar end result.</p>
+<p>The main difference is that while Hg includes modifications automatically, Helix does not. Helix maintains all work-in-progress via a concept known as a changelist, and in particular your DVCS work-in-progress is maintained in a changelist named &#8220;default&#8221;.</p>
+<p>Hg users largely don&#8217;t need to worry about this. Simply run the reconcile command to prepare for a commit, and it will include all adds, deletes, and modifications in your default changelist.</p>
+<h4>Shelving</h4>
+<p>Hg users have long enjoyed shelving as a feature, previously as an extension and natively since the v2.8 release. Shelving in Helix is similar but differs in that Hg shelves can be named whereas Helix shelves are a unary feature of a changelist, which is numbered and has a description instead. For example, the default changelist has one shelf where work in progress will be saved automatically when switching branches or what not.</p>
+<h4>Paths</h4>
+<p>In Hg parlance, a &#8220;path&#8221; is a &#8220;pointer&#8221; from/to which content may be cloned/pushed, whereas Helix users know these as &#8220;remote specifications&#8221; or just &#8220;remotes&#8221; for short. Further, an Hg &#8220;path&#8221; offers only a small subset of what Helix offers. A Helix remote specification is much more powerful insofar as it includes the ability to map content very selectively.<a href="#_ftn1" name="_ftnref1" title="" id="_ftnref1">[1]</a> Folders and files may be flexibly remapped, completely changing the hierarchical structure for the local repository as needed.</p>
+<p>And unlike Hg, a single Helix local repository may also include content from multiple remote specifications (all of whose content may be re-mapped). But that&#8217;s an advanced feature for a future post. It suffices for now that remotes are much more advanced with Helix.</p>
+<h4>Commit</h4>
+<p>The Hg notion of commit is also quite similar to the Helix submit, with one important difference. Hg users are accustomed to their commits having two separate IDs: (1) a monotonically increasing integer unique and valid only within the scope of the current, local repository, and (2) a forty-character hash value that is both unique and valid in every version of the repository.</p>
+<p>In contrast, each Helix changelist, submitted or pending, is identified by a single, monotonically increasing integer number. Many developers won&#8217;t care about these details, but DevOps personnel tasked with tying revision IDs to other integrated systems should be aware of them.</p>
+<h4>Defaults</h4>
+<p>There are also minor differences in the naming conventions. Hg users are accustomed to their default path for push and their default branch name both being &#8220;default&#8221;. In contrast, Helix uses &#8220;origin&#8221; for its default remote name and &#8220;main&#8221; for the default branch name. This can be a source of confusion when Hg users first get started and can&#8217;t seem to switch back to the &#8220;default&#8221; branch; just use &#8220;main&#8221; instead and you&#8217;ll be fine.</p>
+<h4>Commands</h4>
+<p>Having vaulted the conceptual hurdles, let&#8217;s look at the commands for the most common tasks. Initializing a new repository requires a &#8220;p4 init&#8221; rather than an &#8220;hg init&#8221;, while the usual &#8220;hg addremove&#8221; followed by &#8220;hg commit&#8221; is instead &#8220;p4 rec&#8221; followed by &#8220;p4 submit&#8221;. All along the way &#8220;hg status&#8221; is replaced by &#8220;p4 status&#8221;. Many of the other commands are equally similar. Take a look:</p>
+
+<p><strong>Task</strong></p>
+
+
+<p><strong>Hg Command</strong></p>
+
+
+<p><strong>Helix Equivalent</strong></p>
+
+
+<p>Stage your changes</p>
+
+
+<p>addremove</p>
+
+
+<p>reconcile (rec for short)</p>
+
+
+<p>List all branches</p>
+
+
+<p>branches</p>
+
+
+<p>switch -l</p>
+
+
+<p>Branch and switch to it</p>
+
+
+<p>branch newBranch</p>
+
+
+<p>switch -c newStream</p>
+
+
+<p>Create an empty branch</p>
+
+
+<p>(no equivalent)</p>
+
+
+<p>switch -cm newStream</p>
+
+
+<p>Switch to a branch</p>
+
+
+<p>up branchName</p>
+
+
+<p>switch streamName</p>
+
+
+<p>Clone a repository</p>
+
+
+<p>clone repository</p>
+
+
+<p>clone -p host:port -r remote</p>
+
+
+<p>Clone part of a repository</p>
+
+
+<p>(no equivalent)</p>
+
+
+<p>clone -p host:port -f fileSpecification<a href="#_ftn1" id="_ftnref3" name="_ftnref3" title="">[2]</a></p>
+
+
+<p>Commit your work</p>
+
+
+<p>commit</p>
+
+
+<p>submit</p>
+
+
+<p>Initialize a repository</p>
+
+
+<p>init</p>
+
+
+<p>init</p>
+
+
+<p>Merge work from a branch</p>
+
+
+<p>merge branchName</p>
+
+
+<p>merge --from streamName</p>
+
+
+<p>Get latest updates</p>
+
+
+<p>pull&#160;update<a href="#_ftn1" name="_ftnref1" title="" id="_ftnref1">[3]</a></p>
+
+
+<p>fetch -u -r remoteName -S streamName</p>
+
+
+<p>Push all local commits</p>
+
+
+<p>push</p>
+
+
+<p>push</p>
+
+
+<p>Rewrite history</p>
+
+
+<p>rebase</p>
+
+
+<p>unsubmit / resubmit<a href="#_ftn1" name="_ftnref1" title="" id="_ftnref1">[4]</a></p>
+
+
+<p>List all remotes</p>
+
+
+<p>paths</p>
+
+
+<p>remotes</p>
+
+
+<p>Create a new remote</p>
+
+
+<p>(no equivalent)<a href="#_ftn1" name="_ftnref1" title="" id="_ftnref1">[5]</a></p>
+
+
+<p>remote newRemoteName</p>
+
+
+<p>View your changes</p>
+
+
+<p>status</p>
+
+
+<p>status</p>
+
+<br clear="all"><p>As you can see, many of the commands are identical while others are a little different, but those provide what you need to get started. In fact, the above &#8220;cheat sheet&#8221; nicely serves the majority of day-to-day use cases. In conclusion, Hg users should feel right at home with Helix with very little effort, so why not try the industry&#8217;s first DVCS built with the enterprise in mind?</p>
+<p>&#160;</p>
+<p><a href="#_ftnref1" name="_ftn1" title="" id="_ftn1">[1]</a> For more information about remote specifications see: http://www.perforce.com/perforce/doc.current/manuals/dvcs/_create_a_remote.html</p>
+<p><a href="#_ftnref2" name="_ftn2" title="" id="_ftn2">[2]</a>&#160;The Helix clone command may be used in a way that Hg cannot: to clone only&#160;part&#160;of a given shared server, though this has the side effect of bringing it all down in a single branch.</p>
+<p><a href="#_ftnref3" name="_ftn3" title="" id="_ftn3">[3]</a>&#160;Hg separates the act of pulling new work from updating the local repository for philosophical reasons, so you have to execute its two commands compared to Helix&#8217; fetch command.</p>
+<p><a href="#_ftnref4" name="_ftn4" title="" id="_ftn4">[4]</a>&#160;For more information about changing local history see: http://www.perforce.com/blog/150401/neatness-counts-cleaning-history-sharing-work</p>
+<p><a href="#_ftnref5" name="_ftn5" title="" id="_ftn5">[5]</a>&#160;Hg users have to edit the .hg/.hgrc file manually and add a new entry to the &#8220;[paths]&#8221; section.</p>
+<p>All Perforce Version Management &amp; Collaboration Products Are Free for 20 Users.</p>
+<a href="http://info.perforce.com/free.html">TRY IT NOW</a><p>&#160;</p>
+</div></body></html>

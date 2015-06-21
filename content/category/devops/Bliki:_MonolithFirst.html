@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    Bliki: MonolithFirst</title></head><body><div> 
+
+ 
+
+ 
+
+<p class="tagLabel">tags:</p>
+
+<p class="clear"></p>
+
+<p>As I hear stories about teams using a <a href="/articles/microservices.html">microservices architecture</a>, I've
+    noticed a common pattern.</p>
+
+<ol>
+<li>Almost all the successful microservice stories have started with a
+      monolith that got too big and was broken up</li>
+
+<li>Almost all the cases where I've heard of a system that was built as a
+      microservice system from scratch, it has ended up in serious trouble.</li>
+</ol>
+
+<p>This pattern has led many of my colleagues to argue that <b>you
+    shouldn't start a new project with microservices, even if you're
+    sure your application will be big enough to make it worthwhile.
+    </b>.</p>
+<img src="images/microservice-verdict/path.png">
+<p>Microservices are a useful architecture, but even their advocates
+  say that using them incurs a significant
+  <a href="MicroservicePremium.html">MicroservicePremium</a>, which means they are only useful
+  with more complex systems. This premium, essentially the cost of
+  managing a suite of services, will slow down a team, favoring a
+  monolith for simpler applications. This leads to a powerful argument
+  for a monolith-first strategy, where you should build a new
+  application as a monolith initially, even if you think it's likely
+  that it will benefit from a microservices architecture later on.</p>
+
+<p>The first reason for this is classic <a href="Yagni.html">Yagni</a>. When you begin a new
+  application, how sure are you that it will be useful to your users?
+  It may be hard to scale a poorly designed but successful software
+  system, but that's still a better place to be than its inverse. As
+  we're now recognizing, often the best way to find out if a software
+  idea is useful is to build a simplistic version of it and see how
+  well it works out. During this first phase you need to prioritize
+  speed (and thus cycle time for feedback), so the premium of
+  microservices is a drag you should do without.</p>
+
+<p>The second issue with starting with microservices is that they
+  only work well if you come up with good, stable boundaries between
+  the services - which is essentially the task of drawing up the right
+  set of <a href="BoundedContext.html">BoundedContexts</a>. Any refactoring of functionality
+  between services is much harder than it is in a monolith. But even
+  experienced architects working in familiar domains have great
+  difficulty getting boundaries right at the beginning. By building a
+  monolith first, you can figure out what the right boundaries are,
+  before a microservices design brushes a layer of treacle over them.
+  It also gives you time to develop the
+  <a href="MicroservicePrerequisites.html">MicroservicePrerequisites</a> you need for finer-grained
+  services. </p>
+
+<p>I've heard different ways to execute a monolith-first strategy.
+  The logical way is to design a monolith carefully,
+  paying attention to modularity within the software, both at the API
+  boundaries and how the data is stored. Do this well, and it's a
+  relatively simple matter to make the shift to microservices. However
+  I'd feel much more comfortable with this approach if I'd heard a
+  decent number of stories where it worked out that way. <a href="#footnote-typical-monolith">[1]</a></p>
+
+<p>A more common approach is to start with a monolith and gradually
+  peel off microservices at the edges. Such an approach can leave a
+  substantial monolith at the heart of the microservices
+  architecture, but with most new development occurring in the
+  microservices while the monolith is relatively quiescent. </p>
+
+<p>Another common approach is to just replace the monolith entirely.
+  Few people look at this as an approach to be proud of, yet there are
+  advantages to building a monolith as a
+  <a href="SacrificialArchitecture.html">SacrificialArchitecture</a>. Don't be afraid of building a
+  monolith that you will discard, particularly if a monolith can get
+  you to market quickly.</p>
+
+<p>Another route I've run into is to start with just a couple of
+  coarse-grained services, larger than those you expect to end up
+  with. Use these coarse-grained services to get used to working with
+  multiple services, while enjoying the fact that such coarse granularity
+  reduces the amount of inter-service refactoring you have to do. Then
+  as boundaries stabilize, break down into finer-grained services. <a href="#footnote-duolith">[2]</a></p>
+
+<p>While the bulk of my contacts lean toward the monolith-first
+  approach, it is <a href="/articles/dont-start-monolith.html">by no
+  means unanimous</a>. The counter argument says that starting with
+  microservices allows you to get used to the rhythm of developing in
+  a microservice environment. It takes a lot, perhaps too much,
+  discipline to build a monolith in a sufficiently modular way that it
+  can be broken down into microservices easily. By starting with
+  microservices you get everyone used to developing in separate small
+  teams from the beginning, and having teams separated by service
+  boundaries makes it much easier to scale up the development effort
+  when you need to. This is especially viable for system replacements
+  where you have a better chance of coming up with stable-enough
+  boundaries early. Although the evidence is sparse, I feel that you
+  shouldn't start with microservices unless you have reasonable
+  experience of building a microservices system in the team.</p>
+
+<p>I don't feel I have enough anecdotes yet to get a firm handle on
+  how to decide whether to use a monolith-first strategy. These are
+  early days in microservices, and there are relatively few anecdotes
+  to learn from. So anybody's advice on these topics must be seen as
+  tentative, however confidently they argue.</p>
+
+<h2>Further Reading</h2>
+
+<p>Sam Newman <a href="http://samnewman.io/blog/2015/04/07/microservices-for-greenfield/">describes a case study</a> of a team considering using
+    microservices on a greenfield project.</p>
+<p class="acknowledgements">
+<h2>Acknowledgements</h2>
+
+    I stole much of this thinking from my coleagues: James Lewis, Sam
+    Newman, Thiyagu Palanisamy, and Evan Bottcher. Stefan Tilkov's
+    comments on an earlier draft played a pivotal role in clarifying
+    my thoughts. Chad Currie created the lovely glyphy
+    dragons. Steven Lowe, Patrick Kua, Jean Robert D'amore, Chelsea
+    Komlo, Ashok Subramanian, Dan Siwiec, Prasanna Pendse, Kief
+    Morris, Chris Ford, and Florian Sellmayr discussed drafts on our
+    internal mailing list.
+  </p>
+
+<p class="shares">Share: <a href="https://twitter.com/intent/tweet?url=http://martinfowler.com/bliki/MonolithFirst.html&amp;text=Bliki:%20MonolithFirst" title="Share on Twitter"><img src="/t_mini-a.png"></a><a href="https://facebook.com/sharer.php?u=http://martinfowler.com/bliki/MonolithFirst.html" title="Share on Facebook"><img src="/fb-icon-20.png"></a><a href="https://plus.google.com/share?url=http://martinfowler.com/bliki/MonolithFirst.html" title="Share on Google Plus"><img src="/gplus-16.png"></a></p>
+</div></body></html>

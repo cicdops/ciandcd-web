@@ -1,5 +1,6 @@
 import os
 import re
+from datetime import *
 import feedparser
 from newspaper import Article,Config
 
@@ -16,7 +17,6 @@ feeds = {
         'http://blog.devopsguys.com/feed/',
     ],
     'ciandcd': [
-        'http://feed.cnblogs.com/blog/u/50245/rss',
         'http://martinfowler.com/bliki/bliki.atom',
         'http://continuousdelivery.com/feed/',
         'http://developer-blog.cloudbees.com/feeds/posts/default',
@@ -30,7 +30,8 @@ feeds = {
 }
 
 outputDir = 'content'
-max_entries = 50
+max_entries = 20
+max_days = 3
 
 config = Config()
 config.memoize_articles = True
@@ -67,6 +68,11 @@ for category in feeds.keys():
         d = feedparser.parse(feed)
         for entry in d.entries[:max_entries]:
             print('entry:' + entry.title + ' ' + entry.link)
+            #today = datetime.today()
+            #days_ago = today - timedelta(days=max_days)
+            #d = datetime(entry.published_parsed)
+            #if(d < days_ago):
+            #    continue
             try:
                 a = Article(entry.link,config=config, keep_article_html=True)
                 a.download()

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Living la Vida Helix: Submitting Without Fear - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+<link href="./feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+<a href="https://github.com/ciandcd">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" />
+</a>
+<!-- Header -->
+<header><div class="container">
+<h1 class="page-header"><a href="./index.html">ciandcd</a>
+<h4>continuous integration and continuous delivery</h4></h1>
+</div></header>
+<!-- /Header -->
+
+<!-- Body -->
+<section id="body"><div class="container-fluid">
+
+<!-- Nav bar -->
+<div class="row"><div class="col-lg-12">
+<nav class="navbar navbar-default"><div class="collapse navbar-collapse">
+<ul class="nav navbar-nav">
+  <li><a href="./index.html">Home</a></li>
+
+
+
+</ul>
+</div></nav>
+</div></div>
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h1>
+    Living la Vida Helix: Submitting Without Fear</h1>
+
+<div><p>One of the common complaints I hear about centralized version control systems is that they are scary. With every commit being immediately visible there is a feeling that you may screw up everything for your co-workers. What&#8217;s worse is that you generally don&#8217;t have the power to clean up after yourself. How many of us have had to sheepishly go ask the admin to obliterate something?</p>
+<p><img alt="" src="/sites/default/files/viva-la-helix-fear-blog.jpg"></p>
+<p>With P4D (which we now call Helix Versioning Engine) becoming a proper DVCS, you now can manipulate history that has not yet been shared with other people. Than means you can commit to your heart&#8217;s content, and then sweep through later to keep just the interesting commits. It also means that if you accidentally submit something you can deal with it.</p>
+<p>Just recently while doing some cleanup work in the Workshop I had just one of these cases. I&#8217;d like to walk you through what happened so that you can see how unsubmit and resubmit will help you.</p>
+<h4>Setting the scene</h4>
+<p>A user had reported that a number of files that I had added the day before had all of their line endings mangled. The files were already in the shared server, so I didn&#8217;t want to run p4 unsubmit there, and anyway I feel it is important for my failures to remain on display for all to see.</p>
+<p>So I got to work updating the files.</p>
+<pre> p4 fetch</pre>
+<p>Everyting was up-to-date. Next to find the files with the bad line endings.</p>
+<pre>grep -lIUr --color <p>"^R"</p></pre>
+<p>I was lucky and it was just a handful of files. Thankfully turning Windows line endings into Unixones is a piece of cake with P4D.</p>
+<pre>p4 client -o | sed s/LineEnd: local/LineEnd: share | p4 client -i</pre>
+<p>Now to get the files synced with the correct line endings and submitted:</p>
+<pre>p4 sync -f </pre>
+<pre>p4 submit -d <p>"Fixing up some busted line endings that snuck in"</p></pre>
+<p>All was well and good until I realized that in my excitement I&#8217;d mangled some solution files which probably wanted those '\R&#8217;s. Thankfully I hadn&#8217;t pushed, so I could quickly clean up my mess.</p>
+<pre>p4 changes -m1</pre>
+<pre>p4 unsubmit @<p>12345</p></pre>
+<p>I identified my last change number, and then unsubmitted it. At this point I had all of my changed files in a shelf. In this case I had only one changelist, but I still decided to use p4 resubmit to apply the change. p4 resubmit makes it easy to reapply the changes in order.</p>
+<pre>p4 resubmit</pre>
+<p>This kicks me into interactive mode. Because there is a lot you can do with resubmit and I always forget the options, I hit '?' to see the list.</p>
+<pre>Specify next action ( l/m/e/c/r/R/s/d/b/v/V/a/q ) or ? <p class="s1">for </p>help: ?
+The following actions are available:
+c Modify the change description <p class="s1">for </p>this change
+m Merge this change, <p class="s1">then </p>submit <p class="s1">if </p>no conflicts
+e Merge this change, <p class="s1">then exit for </p>further editing
+r Interactively resolve this change, <p class="s1">then</p>
+submit <p class="s1">if </p>no conflicts
+a Add (squash) this change into the next unsubmitted
+change
+s Skip this change and move on to the next
+d Delete this change without submitting it
+b Begin again from the earliest remaining change
+l List the changes remaining to be processed
+v View the current change in short form
+V View the current change with full diffs
+R Display the status of resolved and unresolved merges
+q Quit the resubmit operation&lt;
+? Display this help.</pre>
+<p>In this case I wanted to resubmit all of the files except the solution files, so I selected e</p>
+<p>That merged my change back in, but then dropped me back to the command prompt so I could further mangle the files. A quick revert got rid of the changed solution files, and then I used p4 resubmit -Re to resume the resubmit process.</p>
+<pre>p4 revert ....sln
+p4 resubmit -Re</pre>
+<p>P4D submitted the change again, and cleaned up the shelf for me since I no longer needed it. With that tidied up I was ready to push and share my changes with the community.</p>
+<pre>p4 push</pre>
+<p>Sharing that broken change wouldn&#8217;t have been the end of the world, but I felt so much more in control being able to clean up those .sln files before pushing out my change. Ever wish you could undo a merge between branches? With p4 unsubmit you can. Helix Versioning Engine gives you a way to safely experiment, modifying history as need be to make sure the changes your coworkers see are the ones you want them to see.</p>
+<p>Interested in trying it yourself? You&#8217;re just a download of our Helix Versioning Engine and p4 init away from being able to try this all yourself. If you&#8217;d like to push to a shared server the Workshop has been running 2015.1 since beta, and Helix Cloud is also using it. As always we&#8217;re here to help, so if you have questions, just shout!</p>
+</div>
+
+<p class="info">
+Posted Sat 20 June 2015
+ by <a class="url fn" href="./author/itech001.html">itech001</a>
+in <a href="./category/scm.html">scm</a>
+</p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>Categories</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="./category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="./category/devops.html">devops</a></li>
+  <li class="active"><a href="./category/scm.html">scm</a></li>
+  <li ><a href="./category/zh.html">zh</a></li>
+</ul>
+
+<h2>Links</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://getpelican.com/">Pelican</a></li>
+  <li><a href="http://python.org/">Python.org</a></li>
+  <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+</ul>
+
+<h2>Social</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+
+  <li><a href="https://github.com/ciandcd">GITHUB</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="./theme/js/jquery.js"></script>
+<script src="./theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

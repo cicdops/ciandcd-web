@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Finding the ‘Needle in a Haystack’ with Helix Threat Detection - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+<link href="./feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+<a href="https://github.com/ciandcd">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" />
+</a>
+<!-- Header -->
+<header><div class="container">
+<h1 class="page-header"><a href="./index.html">ciandcd</a>
+<h4>continuous integration and continuous delivery</h4></h1>
+</div></header>
+<!-- /Header -->
+
+<!-- Body -->
+<section id="body"><div class="container-fluid">
+
+<!-- Nav bar -->
+<div class="row"><div class="col-lg-12">
+<nav class="navbar navbar-default"><div class="collapse navbar-collapse">
+<ul class="nav navbar-nav">
+  <li><a href="./index.html">Home</a></li>
+
+
+
+</ul>
+</div></nav>
+</div></div>
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h1>
+    Finding the ‘Needle in a Haystack’ with Helix Threat Detection</h1>
+
+<div><p>Software development projects in bigger companies typically involve large teams collaborating across multiple locations. A large corporation may employ tens of thousands of developers working on thousands of projects over a span of many years.&#160;</p>
+<p align="center"><img alt="" src="/sites/default/files/needle-in-haystack-blog.jpg"></p>
+<p>For many companies, developer access to older software projects and files may continue long after the project has been completed, sometimes because of lax processes and stagnant access control policies. Yet, these projects can represent valuable IP worth tens of millions of dollars. In light of the ramifications of a competitor getting ahold of these files, what can companies do to better protect their crown jewels from theft?</p>
+<p>The answer might be found in the source code management (SCM) or version control tools companies use to drive their development workflows. SCM tools typically track access to key projects and files via audit logs. However, the sheer volume of these logs can overwhelm security teams. A month of log data might yield millions of different interactions with files and projects, making it virtually impossibe to find important clues.</p>
+<p>Done the right way, however, this approach can bring the real threats to the surface. A recent Fortune article entitled&#160;<a href="http://www.forbes.com/sites/benkepes/2015/03/27/using-log-data-and-machine-learning-to-weed-out-the-bad-guys/">Using Log Data and Machine Learning to Weed out the Bad&#160;Guys</a>&#160;shares how a large company&#160;applied our Helix Threat Detection capabilities to quickly identify data theft. Likening this approach to &#8216;finding a needle in a haystack,&#8217; the article describes how effective it can be to apply&#160;behavioral analytics to the audit logs in our Helix Versioning Engine.&#160;</p>
+<h4>Leveraging Machine Learning to Establish a Baseline</h4>
+<p>Conventional security tools (e.g., SIEMs) are often rule-based and require time-consuming manual setting of thresholds and iterative tuning of multiple parameters in order to identify anomalous behavior. Yet manually setting alerts to trigger when developers access an arbitrary number of files may be problematic for large projects and can inundate security teams with too many false positives.</p>
+<p>A better approach is to use machine-learning algorithms and risk-based-behavior-analytics models to audit logs to first establish a baseline understanding of normal behavior. It&#8217;s possible to create cluster models that group similar users based on their past activities. Continuous self-learning more accurately identifies high-risk events, like someone accessing a project he or she doesn't normally work on, putting a spotlight on threats to an organization&#8217;s most sensitive assets.</p>
+<h4>Identifying High-Risk Behaviors</h4>
+<p>Once you've establised what's normal behavior, the next step is to apply advanced mathematical models that generate a behavioral risk score. This score represents multiple factors, including the importance of an asset or file, the method of access, the activity (e.g., volume or type), and the user. These behavioral analytics models can then be used to find anomalies by:</p>
+<ul><li>Comparing access patterns, data usage patterns and data movement patterns against historic behavior</li>
+<li>Determining similar user patterns across the environment and comparing behavioral patterns between users and groups of users</li>
+<li>Detecting dissimilar patterns among members of the same project group or job role</li>
+<li>Comparing individuals against the entire user group</li>
+</ul><p>To learn more about the behavioral analytics models used in Helix Threat Detection, download the white paper&#160;<a href="http://info.perforce.com/whitepaper-helix-threat-detection.html">Helix Threat Detection: IP Security and Risk Analytics.</a></p>
+<p>To learn more download our white paper:<br>A Unified Approach to Securing and Protecting IP.</p>
+<a href="http://info.perforce.com/whitepaper-secure-protect-ip-ty.html">READ NOW</a><p>&#160;</p>
+</div>
+
+<p class="info">
+Posted Sat 20 June 2015
+ by <a class="url fn" href="./author/itech001.html">itech001</a>
+in <a href="./category/scm.html">scm</a>
+</p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>Categories</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="./category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="./category/devops.html">devops</a></li>
+  <li class="active"><a href="./category/scm.html">scm</a></li>
+  <li ><a href="./category/zh.html">zh</a></li>
+</ul>
+
+<h2>Links</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://getpelican.com/">Pelican</a></li>
+  <li><a href="http://python.org/">Python.org</a></li>
+  <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+</ul>
+
+<h2>Social</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+
+  <li><a href="https://github.com/ciandcd">GITHUB</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="./theme/js/jquery.js"></script>
+<script src="./theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

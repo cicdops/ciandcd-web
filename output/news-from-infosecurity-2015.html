@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    News from InfoSecurity 2015 - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+<link href="./feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+<a href="https://github.com/ciandcd">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" />
+</a>
+<!-- Header -->
+<header><div class="container">
+<h1 class="page-header"><a href="./index.html">ciandcd</a>
+<h4>continuous integration and continuous delivery</h4></h1>
+</div></header>
+<!-- /Header -->
+
+<!-- Body -->
+<section id="body"><div class="container-fluid">
+
+<!-- Nav bar -->
+<div class="row"><div class="col-lg-12">
+<nav class="navbar navbar-default"><div class="collapse navbar-collapse">
+<ul class="nav navbar-nav">
+  <li><a href="./index.html">Home</a></li>
+
+
+
+</ul>
+</div></nav>
+</div></div>
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h1>
+    News from InfoSecurity 2015</h1>
+
+<div><p align="center"><img alt="" src="/sites/default/files/infoSec-blog-post.png"></p>
+<p>I've just returned from my first visit to <a href="http://www.infosecurityeurope.com/">InfoSecurity 2015 in London</a>. With the launch earlier this year of <a href="http://www.perforce.com/threat-detection">Perforce Helix Threat Detection</a> this was a great opportunity to review the state of the cyber-security world, hear about the key challenges facing governments, businesses and individuals and review some of the solutions being offered. This couldn't be more timely as, right when I'm writing this, it has been <a href="http://www.bbc.co.uk/news/world-us-canada-33017310">announced</a> that the U.S. government suffered a serious attack earlier this year which compromised the personal details of thousands of federal employees.</p>
+<p>My particular area of interest is the emerging role of security in DevOps. There are a few key aspects to consider:</p>
+<ul><li>
+		<p>As a developer what do you need to do and how does that fit with agile and development processes?</p>
+	</li>
+	<li>
+		<p>As a Release Manager/Operations Specialist/DevOps Engineer what do you need to know to roll out and manage secure applications?</p>
+	</li>
+	<li>
+		<p>As a Chief Information Security Officer or Risk Manager what is going on in the development and operations areas that I ought to be concerned about?</p>
+	</li>
+</ul><p>I haven't got space here to cover all of these topics, but here are a few highlights from the conversations I had at the conference.</p>
+<p>Development Managers and DevOps specialists are increasingly aware of the need for secure applications. They are concerned that as release cycle times reduce with the adoption of Continuous Delivery they don't reduce security nor slow down deliveries. Some companies are working out how to do this by involving security experts in the earliest stages of sprint planning and ensuring security stories are &#8220;groomed&#8221; to ensure they are properly positioned for priority in their backlogs. They're also adopting tools for automated code and application validation. It was interesting to see an increasing number of tools addressing the need for dynamic security testing. Although the term seems to have been around a few years already, there were a number of people talking about &#8220;<a href="https://vimeo.com/36342207">Rugged DevOps</a>&#8221; and I think this is an area that will continue to grow.</p>
+<p>Security experts, especially those involved in IT audits or risk assessments are busier than ever. Some are aware of the potential risks that may exist in their development organizations but I suspect the majority are not. This is the result of two issues.</p>
+<p>Firstly, they may not fully appreciate the value of the software being developed. They know that they need to protect customer and staff personal data, but they don't necessarily realize that the software is actually their company&#8217;s competitive differentiator and could be critical if leaked to a competitor.</p>
+<p>Secondly there is a lot of technology involved that they don't understand. They may be familiar with firewalls, VPNs, email, etc., but developers often bring tools into the business without their knowledge and these tools, such as Subversion or Git are inherently vulnerable. It's increasingly hard to keep track of business documents in a world full of email, cloud file sharing services and BYOD mobiles, but this technical software content is even harder to grasp.</p>
+<p>I saw a number of tools that try to address some of these problems by monitoring network traffic rather than trying to lock down each application. This generates another problem though &#8211; if you're monitoring hundreds or thousands of different file types and communications, it quickly becomes an impossible management challenge.</p>
+<p>A few tools are trying to address that problem by using analytics to analyze the basic data and infer what looks like suspicious behavior.&#160; This helps with the management issue but they still don't understand the context of the data being moved around the organization which makes them inefficient for DevOps.</p>
+<p>I didn't see anything that was close to <a href="http://www.perforce.com/threat-detection">Perforce Helix Threat Detection</a>, which focuses on protecting this valuable IP being created by design and development teams. Because it uses the rich data available from the <a href="http://www.perforce.com/helix">Helix Versioning Engine</a> it understands the context of the files being accessed. It can not only track that a user may be accessing more files than usual (and most tools can't work out what &#8220;normal&#8221; means), but it also understands whether those files are in projects they &#8220;normally&#8221; use or whether they're using the files in ways that are unusual for the user.</p>
+<p>I&#8217;m really looking forward to the <a href="http://info.perforce.com/webinar-overview-security-devops.html">webinar Perforce are hosting on June 16th</a> where the Forrester DevOps Analysts, Kirt Bittner, and Security Analyst, Rick Holland will talk about the issues raised above and the solutions to them.&#160;</p>
+</div>
+
+<p class="info">
+Posted Sat 20 June 2015
+ by <a class="url fn" href="./author/itech001.html">itech001</a>
+in <a href="./category/scm.html">scm</a>
+</p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>Categories</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="./category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="./category/devops.html">devops</a></li>
+  <li class="active"><a href="./category/scm.html">scm</a></li>
+  <li ><a href="./category/zh.html">zh</a></li>
+</ul>
+
+<h2>Links</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://getpelican.com/">Pelican</a></li>
+  <li><a href="http://python.org/">Python.org</a></li>
+  <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+</ul>
+
+<h2>Social</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+
+  <li><a href="https://github.com/ciandcd">GITHUB</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="./theme/js/jquery.js"></script>
+<script src="./theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    GitLab.com and Logjam</title></head><body><div><h1 class="title">GitLab.com and Logjam</h1>
+                     
+                    
+                  
+
+                  <p>We&#8217;ve previously announced <a href="https://about.gitlab.com/2015/05/21/security-advisory-for-logjam-vulnerability/">security advisory for Logjam vulnerability</a>. In that announcement we&#8217;ve mentioned that GitLab.com is using 1024-bit DH groups to retain compatibility with older Java-based clients.</p>
+
+<p>We&#8217;ve updated the default/recommended SSL ciphers for all GitLab installations and implemented new ciphers on GitLab.com.</p>
+
+ 
+
+
+<p>After some reasearch and testing we&#8217;ve decided to change the SSL cipher suite served by the web server/load balancer.</p>
+
+<p>This decision was made after weighing on the trade-offs between having the stronger DH params and denying access to Java 6 based clients.</p>
+
+<h4>Using 2048-bit DHE params</h4>
+
+<p>Generating the 2048-bit DHE params was advised to help against the Logjam vulnerability. While this is a way to go for most servers, with GitLab.com we have to keep in mind that we have users using older Java-based clients.
+Adopting the stronger params suites would prevent those users using GitLab.com completely.
+Although the number of these users is not high, denying them access does not seem like an option.</p>
+
+<h4>Removing DHE suites</h4>
+
+<p>DHE suites have a couple of issues:</p>
+
+<ul>
+<li><a href="https://community.qualys.com/blogs/securitylabs/2013/06/25/ssl-labs-deploying-forward-secrecy">DHE is slow</a></li>
+<li>Not all browsers support all the necessary suites</li>
+</ul>
+
+
+<p>One advantage of having DHE together with ECDHE suites is that this allows forward secrecy to all clients.</p>
+
+<p>We then turned to investigating how others are handling this issue and we found out that, for example, Google sites mostly <a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.google.com">do not have DHE suites in their configuration</a>.</p>
+
+<p>With this in mind we&#8217;ve tried removing the DHE suites and the result was as follows:</p>
+
+<ul>
+<li>All major browsers and clients retain forward secrecy using ECDHE</li>
+<li>SSL labs score went from B to A</li>
+<li>There is no forward secrecy for Android 2.3.7, Java 6 and OpenSSL 0.9.8</li>
+</ul>
+
+
+<p>After considering the trade-offs, we&#8217;ve decided to remove the DHE suites from our cipher suite on GitLab.com.</p>
+
+<p>Forward secrecy is now denied for Android 2.3.7, Java 6 and OpenSSL 0.9.8 but we suspect that number of users affected will be extremely low.</p>
+
+<p>We have also updated the recommended configurations for omnibus-gitlab packages and GitLab installation from source.</p>
+
+                  <a></a><p>Install GitLab on your own server in 2 minutes <a href="/downloads" id="dl-partial">Let's do it!</a> </p><a href="/downloads" class="btn btn-block btn-lg btn-purple visible-xs" id="dl-partial-sm">
+  Install GitLab on your own server in 2 minutes
+</a>
+
+
+                  
+                  <p>&#8594; <a href="/blog/archives.html">Browse all posts</a></p>
+
+                  <strong><a href="https://twitter.com/gitlab">@gitlab</a></strong>
+    on Twitter.
+
+    <a></a><p>For the latest and most detailed news followon Twitter. <a href="/atom.xml" class="rss-btn">
+      
+    </a> </p><p>Get every GitLab blog post and stay up to date.</p>
+     
+    <p id="mc_embed_signup" class="newsletter-form">
+       
+    </p>
+     
+
+  <p id="disqus_thread"></p>
+                   
+                  Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;
+                </div></body></html>

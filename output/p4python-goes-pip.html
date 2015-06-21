@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    P4Python goes pip - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+<link href="./feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+<a href="https://github.com/ciandcd">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" />
+</a>
+<!-- Header -->
+<header><div class="container">
+<h1 class="page-header"><a href="./index.html">ciandcd</a>
+<h4>continuous integration and continuous delivery</h4></h1>
+</div></header>
+<!-- /Header -->
+
+<!-- Body -->
+<section id="body"><div class="container-fluid">
+
+<!-- Nav bar -->
+<div class="row"><div class="col-lg-12">
+<nav class="navbar navbar-default"><div class="collapse navbar-collapse">
+<ul class="nav navbar-nav">
+  <li><a href="./index.html">Home</a></li>
+
+
+
+</ul>
+</div></nav>
+</div></div>
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h1>
+    P4Python goes pip</h1>
+
+<div><p><img alt="" src="/sites/default/files/title-tip-tricks9.png"></p>
+<p>In recent years Python has changed its package manager strategy, and the result is <strong>pip</strong>. Pip is a powerful package manager that simplifies the creation and consumption of Python packages, turning the <a href="http://pypi.python.org">Python Package Index</a> into a hub of an ever-growing number of useful packages.</p>
+<p>P4Python always had to stay away from the package index because it requires binary builds for some platforms. With the advent of the <a href="http://pythonwheels.com/">wheel</a> format, this has changed. Wheels are Python packages that can contain binary builds on Windows and OSX, allowing package creators to precompile their packages.</p>
+<p>P4Python 2015.1 has been uploaded to the Python Package Index. For you this means installing the latest release of P4Python becomes a simple:</p>
+<pre>    pip install p4python</pre><p>Easier, isn&#8217;t it?</p>
+<p>However, there are a few preparations you need to make before you can run this command the first time successfully:</p>
+<ol><li>You need to have the right version of Python installed: 2.7, 3.3 or 3.4. Python 2.6 is supported but we have not uploaded binaries for it.</li>
+<li>You need to install pip. It comes with Python 3.4 and 2.7.9 automatically; everyone else will need to install it, for example from <a href="https://bootstrap.pypa.io/get-pip.py">here</a>, and make sure the pip executable is in your PATH.</li>
+<li>There is currently no binary wheel format available for Linux, so pip will download the source code of P4Python and attempt to build it. This requires &#8216;python-dev&#8217; and &#8216;build-essential&#8217; installed on Debian-based distributions (using apt) and the equivalent on RPM-based (using yum).</li>
+</ol><p>In order to build P4Python automatically from Pip, setup.py has also gained some new tricks.</p>
+<p>First of all, it now uses setuptools and not distutils, so you need to have setuptools installed if you want to build it on, say, Python 2.6.</p>
+<p>If you run setup.py without the &#8211;apidir option, setup will now go off and attempt to download the correct P4API binaries from <a href="ftp://ftp.perforce.com">the Perforce FTP site</a> for your platform. The API will be downloaded and unpacked into the temp directory and used automatically by the build process.</p>
+<p>You can still download the source or the packages, of course, and install P4Python the traditional way if you prefer.</p>
+<p>I found pip amazingly simple to use, and I hope it will make your life a lot easier when installing P4Python. As usual, if you have any issues or requests, let us know in <a href="http://www.perforce.com/support-services">Perforce Support</a> or ping me on my Twitter handle <a href="https://twitter.com/p4sven">@p4sven</a>.</p>
+<p>Happy hacking.</p>
+</div>
+
+<p class="info">
+Posted Sat 20 June 2015
+ by <a class="url fn" href="./author/itech001.html">itech001</a>
+in <a href="./category/scm.html">scm</a>
+</p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>Categories</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="./category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="./category/devops.html">devops</a></li>
+  <li class="active"><a href="./category/scm.html">scm</a></li>
+  <li ><a href="./category/zh.html">zh</a></li>
+</ul>
+
+<h2>Links</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://getpelican.com/">Pelican</a></li>
+  <li><a href="http://python.org/">Python.org</a></li>
+  <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+</ul>
+
+<h2>Social</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+
+  <li><a href="https://github.com/ciandcd">GITHUB</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="./theme/js/jquery.js"></script>
+<script src="./theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    Tor for Technologists</title></head><body><div><p><a href="https://torproject.org">Tor</a> is a technology that is cropping up in
+    news articles quite often nowadays. However, there exists a lot of
+    misunderstanding about it. Even many technologists don't see past its
+    use for negative purposes, but Tor is much more than that. It is an
+    important tool for democracy and freedom of speech - but it's also
+    something that is very useful in the day-to-day life of a
+    technologist. Tor is also an interesting case study in how to design a
+    system that has very specific security requirements.</p>
+
+<p>The Internet is currently a quite hostile place. There are threats
+    of all kinds, ranging from <a href="http://www.catb.org/jargon/html/S/script-kiddies.html">script
+    kiddies</a> and drive-by <a href="https://www.owasp.org/index.php/Phishing">phishing</a>
+    attacks to pervasive <a href="https://www.eff.org/nsa-spying">dragnet
+    surveillance</a> by many of the major intelligence services in the
+    world. The extent of these problems have only recently become clear to
+    us. In this context, a tool like Tor fills a very important niche. You
+    could argue that it's a sign of the times that even a company like
+    Facebook encourages <a href="https://www.facebook.com/notes/protect-the-graph/making-connections-to-facebook-more-secure/1526085754298237">the use of Tor</a>
+    to access their services. The time is right to add Tor to your tool
+    belt.</p>
+
+
+<h2>How does Tor work?</h2>
+
+<p>The goal of Tor is to enable anonymous network traffic. The word
+      Tor originally stood for The Onion Router (although Tor should not be
+      capitalized like an acronym). Onion routing is the method that Tor
+      uses to hide the IP address of the client. This also has the added
+      benefit of making it extremely hard for anyone in between to see who
+      is asking for what information on the Internet. In practice, this
+      means that if someone is intercepting your traffic close to your
+      computer, Tor will hide what servers you are talking to. If someone is
+      intercepting traffic close to the server, they will not be able to see
+      who is visiting that server.</p>
+
+<p>Tor works by having thousands of volunteers hosting something
+      called Tor Relays. These are fundamentally servers that spend all
+      their time forwarding traffic. So when you want to access a service,
+      the Tor client program that is running on your computer will choose
+      three different relays. It will then take the packets of information
+      and wrap them in encryption using public key cryptography. It will
+      encrypt the packet three times over, to each one of the public keys of
+      the relays that were chosen for this communication session. It will
+      then send the triple-encrypted package to the first relay on the list.
+      That relay will unwrap the encryption meant for itself - and what is
+      left is a packet with two layers of encryption. The first relay will
+      send the packet to the second relay, which will unwrap another layer
+      of encryption. It sends this to the final relay which will unwrap the
+      last piece of encryption. Since there is no encryption left, the final
+      relay knows the real destination of the packet - so it contacts the
+      original service requested. It then receives the answer and sends the
+      information back, using the same process in reverse.</p>
+
+<p class="figureImage"><a name="sketch.png"></a><img alt="Figure 1" src="tor-for-technologists/sketch.png"></p>
+<p>The final relay is usually called an exit relay. The first relay
+      is usually called an entry relay. The way this works only the entry
+      relay knows the real IP address of your machine - and only the exit
+      relay knows which service you actually wanted to contact. And the
+      service will only see the IP address of the exit relay. All of these
+      things come together to protect the anonymity of the client quite
+      well.</p>
+
+<p>One important point is that you don't have to trust all the Tor
+      relays in order to be able to trust the Tor network. Since anyone can
+      set up their own relay, there is nothing that stops bad actors from
+      setting up relays. Thus, Tor is designed to not be compromised even
+      if this happens.</p>
+
+<p>Tor is explicitly designed to be a <a href="https://en.wikipedia.org/wiki/Low_latency">low-latency network</a> - that means it
+      is possible to use it for things like Instant Messaging, audio
+      conferencing or even video conferencing under good circumstances.</p>
+
+<h3>The Tor client</h3>
+
+<p>If you want to use Tor, there are two options: the
+        first one is to run the client program, and the second is to
+        download and run something called the <a href="https://www.torproject.org/projects/torbrowser.html.en">Tor Browser
+        Bundle</a>. If you want to use Tor for other kinds of traffic
+        than web, it's useful to run the Tor client software
+        directly. Installing it is usually done through the regular package
+        management systems for your operating system - and once installed
+        it should be running on your machine in the background, without you
+        having to do anything at all. Since Tor works as a proxy, you don't
+        interact with Tor directly. Instead you ask your regular programs
+        to tunnel traffic through Tor.</p>
+
+<p>The Tor client program by default will listen to port 9050 using
+        a protocol called <a href="https://www.ietf.org/rfc/rfc1928.txt">SOCKS</a> - this is a
+        standard proxy protocol that many applications can be configured to
+        use. For example, I use a program called <a href="http://gajim.org/">Gajim</a> for instant messaging. In this program I
+        have configured all my accounts to connect over Tor by specifying
+        the correct SOCKS proxy settings.</p>
+
+<p>If you are using command line tools, it is usually possible to
+        use a program called <i>usewithtor</i> or <i>torsocks</i> in order to
+        transparently make the program use Tor. There are other ways of
+        using Tor as well - <a href="https://www.mozilla.org/en-US/thunderbird/">Thunderbird</a> can
+        be configured to run all its traffic over Tor if you want to make
+        your email harder to track and intercept - however, there are some
+        risks associated with the manual configuration of Tor in
+        Thunderbird. There are many possible types of information leakage, such as DNS
+        lookups, geo-location information in headers and even IP addresses
+        in mail headers in some cases. Fortunately, there exists a plugin called <a href="https://addons.mozilla.org/En-us/thunderbird/addon/torbirdy/">TorBirdy</a> that automates many of the steps
+        and tries to stop such unsafe information leakage from happening. </p>
+<h3>The Tor Browser Bundle</h3>
+
+<p>By far the easiest way of using Tor is to download the Tor Browser
+        Bundle which doesn't even have to be installed - it can be run directly after download
+        (and you can have it on a USB stick or a DVD and run it from there as
+        well). The Tor Browser Bundle is basically the Tor client software
+        combined with a very customized browser. Since browsers have many ways
+        they can leak your anonymity, and there are many other things that can
+        threaten your security, the Tor Browser Bundle is much safer than just
+        configuring your regular browser to use Tor.</p>
+
+<p>The Tor Browser Bundle comes with several plugins that will improve
+        your privacy, and it has also been configured to not leak information
+        through side channels such as font configuration, Flash plugins and
+        other features.</p>
+<h3>Hidden Services</h3>
+
+<p>Tor also has another interesting feature that has gotten a lot of
+        attention lately. Tor hidden services give a service the ability to
+        hide its IP address, just as the regular Tor operation allows a client
+        to hide its IP address. It works by using something called a
+        rendezvous protocol, which is a bit complicated. Basically, you can
+        imagine that both the client and the server establishes their own full
+        circuits of three relays. They then meet in the middle, somewhere in
+        the Tor network - and from that point they can establish a connection.
+        In general, a hidden service is found and contacted using a
+        .onion-URL, which consists of 16 alphanumeric characters followed by
+        .onion. The 16 characters is a representation of the public key of the
+        hidden service, which means that routing of the connection is
+        self-verifying. No-one can fake being a hidden service without
+        stealing their private key.</p>
+
+<h3>Facebook and Hidden Services</h3>
+
+<p>There are several aspects of Facebook <a href="https://www.facebook.com/notes/protect-the-graph/making-connections-to-facebook-more-secure/1526085754298237">setting up a hidden service</a>
+          that are interesting. It is definitely not the standard usage to set
+          up a hidden service for something like Facebook where the real
+          location of the service is already well known. And since Facebook
+          requires logins and they have a real name policy that also makes it
+          harder to put it together. However, there are several reasons why
+          Facebook decided to set up a hidden service - the first is that it
+          makes it easy for them to block Tor exit relays to their regular sites
+          without stopping access for valid users. The second reason is that a
+          hidden service still ensures that Facebook doesn&#8217;t see the clients IP
+          address, and enforces end-to-end encryption. So overall, the Facebook
+          hidden service doesn&#8217;t fill all the same functions as hidden services
+          usually do, but it&#8217;s still a valuable thing to have. </p>
+<p>Hidden services are extremely powerful for several reasons. First,
+        they allow the service provider to be anonymous. This has of course
+        been used for a lot of good and bad reasons. Secondly, if you only
+        expose a service as a hidden service, you can force your clients to
+        use Tor - which makes it much harder for them to accidentally expose
+        their information. Third, hidden services are implemented in such a
+        way that the traffic will never leave the Tor network. There are no
+        exit relays for hidden services. What this means is that communication
+        to a hidden service will always be encrypted all the way to the
+        service. This isn't necessarily true for regular Tor connections.
+        Finally, you can expose a hidden service without having a publicly
+        routable IP address. A very practical example of how to use this is to
+        expose SSH as a hidden service. This allows you to SSH to your own
+        server wherever it may be, without having to open firewalls or having
+        a public IP. I run several servers at home that are not publicly
+        reachable, and being able to SSH into them and manage them anyway is
+        extremely powerful.</p>
+
+<p>Facebook recently made a splash by exposing their servers as
+        a hidden service. This is a great step forward. So you might ask
+        whether this is something you should do for the projects you
+        work on. In general, I would say yes - although it does require
+        some extra work and testing. Making this available to your users
+        is something that in general is good for everyone.</p>
+<h3>Bridges and obfuscated protocols</h3>
+
+<p>In some regions there is enough censorship going on that using Tor
+        in the regular manner doesn't work. Most of the time this is because
+        they simply block traffic to all the Tor relays. And since the Tor
+        relays have to be public, it's easy for a censor to simple download
+        the list of IPs to be blocked.</p>
+
+<p>Because of this situation, the Tor software supports something
+        called bridges. These are entry relays that are not publicly known -
+        if you need one you can request one on the fly. The other solution
+        that is sometimes necessary is to use obfuscated protocols. Since the
+        most advanced censors use deep packet inspection it's important that
+        Tor traffic can masquerade as other kinds of traffic. There are
+        several different plugins implemented in Tor right now for solving
+        this problem - but it's an ongoing arms race to beat censorship.</p>
+
+<h2>Anonymity is hard - what doesn't Tor protect against?</h2>
+
+<p>Tor is a tool, and just like any tool it has things it does well,
+      and things it doesn't do so well. It is important to know that Tor
+      can't protect against every threat out there. Even when you use Tor
+      correctly, there are things to keep in mind.</p>
+
+<p>The biggest day-to-day problem when it comes to anonymity and
+      security with Tor is that if the traffic you are sending to a server
+      isn't encrypted, then Tor will not help with that. Specifically, the
+      traffic between you and the first two relays will be encrypted and
+      hard to attack. However, the exit relay will be able to see all
+      traffic that passes through. The way to protect against this is to
+      either use a protocol that encrypt your information all the way to
+      the endpoint (such as HTTPS or SMTP with <a href="https://en.wikipedia.org/wiki/STARTTLS/">STARTTLS</a>). The other way is to use services
+      that expose a hidden service - which ensures you get end-to-end
+      encryption of all traffic.</p>
+
+<h2>Browser fingerprinting</h2>
+
+<p>There are many different ways a user can be identified outside
+        of looking at their IP address. Browser fingerprinting is a
+        surprisingly effective way to uniquely identify people. It uses
+        several aspects, such as what plugins are available, what fonts are
+        installed and many other features that are available to the
+        server. The EFF have a test service called <a href="https://panopticlick.eff.org/">Panopticlick</a> which shows how easy it is
+        to uniquely identify someone through their browser. </p>
+<p>Tor is usually classified as a low-latency network. This has a
+      consequence for anonymity. Basically, Tor is designed in such a way
+      that if an attacker can observe a large percentage of the network
+      traffic between relays, it is possible for them to de-anonymize much
+      of that traffic. The reason is that since Tor traffic is supposed to
+      go out and come back in realtime, it can be possible to do
+      correlation of packet times. This could lead to a privacy
+      break. However, this is the way Tor was designed. Current research
+      seems to imply that it is basically impossible to get total anonymity
+      if you want something that is close to real time traffic. If you are
+      fine with waiting a few hours for each packet to arrive, there are
+      <a href="https://en.wikipedia.org/wiki/Mix_network">other kinds of techniques</a> that can be
+      used, but Tor is not designed for those use cases.</p>
+
+<p>Tor can also not protect you if you make a mistake and expose your
+      IP address in any way. A typical example of something that is a bad
+      idea is to use Tor for peer-to-peer file sharing - not only does it
+      destroy the Tor network - it also doesn't work to hide your address,
+      since most file-sharing protocols expose your real IP address. If you
+      want to be sure to not expose your IP address you also need to avoid
+      running plugins that can expose it. This is one of the reasons why the
+      Tor Browser Bundle doesn't ship with a Flash plugin - it is just too
+      dangerous from a privacy-standpoint.</p>
+
+<p>The same caveat is true if you expose your server as a hidden
+      service. If you really want to keep it hidden you need to make sure
+      that none of your server components expose your IP address in any way.
+      This can be easier said than done, as the next section will talk
+      about.</p>
+
+<h2>Is Tor broken?</h2>
+
+<p>When I talk to technologists about Tor, one of the more common
+      questions I will get is whether I think Tor is broken or whether we
+      really can trust it, whether the government has put a backdoor in it,
+      etc. There are many rumors and theories about Tor out there, and in
+      general they are just that - rumors and theories. That said, Tor
+      doesn't protect against everything, as I mentioned above. However, I
+      would be extremely surprised if Tor contains a backdoor. The code is
+      open source and many, many experts have looked at it over the years.
+      The protocol is also open and has been implemented more than once in
+      other open source projects. It is of course not impossible that there
+      exists a backdoor that no-one has noticed, but personally I wouldn't
+      bet on it. I do recommend any technologist that is worried about this
+      eventuality to spend a few hours and go through the source code. The
+      project can always do with more eyeballs. </p>
+
+<h3>Research</h3>
+
+<p>All that said, Tor has been broken many times. The main reason for
+        this is that anonymity is extremely hard, and Tor is pushing the
+        boundaries of what's been done before. Thus, Tor is a favorite subject
+        for researchers to poke at and see if they can figure out ways of
+        getting it to do unexpected things. It's also the main way we have of
+        getting an idea of where the hard limits of anonymity lie. That Tor is
+        the subject of lots of research is ultimately good for the community,
+        since every time a new paper comes out that talks about a weakness in
+        Tor, the Tor developers fix it. Nothing is perfect at the start, so
+        this way of iterating and fixing is how we get to a state where we can
+        trust a tool. </p>
+<h3>Events in 2014</h3>
+
+<p>One reason that people are worried about the degree of security of
+        Tor, is because there has been a string of suspicious events over the
+        last few years. Specifically, both users of Tor and people that have
+        used hidden services have been arrested under various circumstances.
+        However, we have at this point no indication that any of these take
+        downs were actually because of flaws in the Tor software or protocol.
+        In the cases we know of, it seems that the reasons can be chalked down
+        to mistakes of various kinds. In one case, there was a bug in the
+        Firefox version that the Tor Browser Bundle was based on, so after the
+        police took over a server, they could attack this browser and
+        de-anonymize the users in question (but only those that visited that
+        specific hidden service). In the case of the first Silk Road, it seems
+        clear that investigators managed to hack in to the administrator
+        interface and convinced it to send back its real IP address.</p>
+
+<p>And then we have <a href="https://en.wikipedia.org/wiki/Operation_Onymous">Operation
+        Onymous</a>. This operation was a collaboration between several
+        different law enforcement agencies with the aim to take down a
+        large number of illegal online marketplaces.  What is interesting
+        about this operation is all the propaganda that surrounds
+        it. Initially they were claiming to have taken down over 400 hidden
+        services. But after the dust settled it seems only 27 sites were
+        taken down, and only 17 arrests were made. You can still argue that
+        this is a lot, since they were supposed to have been protected by
+        Tor and hidden services. But the truth is that apparently the
+        person hosting Silk Road 2 had his name written down somewhere -
+        the law enforcement agencies took him in and started questioning
+        him.  Apparently he named 16 other people that were promptly
+        arrested and had their computers seized. So no Tor break was
+        involved in this - even though one UK law enforcement agency
+        actually tweeted a taunt about Tor being broken. It was all
+        propaganda. More info can be found in <a href="https://www.youtube.com/watch?v=pRrFWwA-47U">this video</a>.</p>
+
+<p>Further, looking at the <a href="http://www.theguardian.com/world/interactive/2013/oct/04/tor-stinks-nsa-presentation-document">documents</a>
+        leaked by Edward Snowden, it is still clear that the strongest
+        attackers out there don't seem to have a good way of breaking
+        Tor. I find this to be very encouraging.</p>
+
+<h2>Everyday usage of Tor</h2>
+
+<p>Now that you have a better idea of what Tor is, it is time for us
+      to quickly talk about how you can use Tor in your day-to-day job. As
+      you can probably guess from the information above, Tor can be used for
+      a lot of different purposes. But for the kind of work a developer is
+      doing, the first and easiest thing you can do using Tor is to test
+      your system in different ways. In many cases it's hard to see what a
+      system looks like without cookies and personalization. Tor makes it
+      very easy.</p>
+
+<p>The other kind of testing you can do is to make it possible to very
+      easily try a system in such a way that it looks like it comes from
+      many different countries. It is possible to control which relays Tor
+      will use in such a way that you can control which country your traffic
+      will come out from.</p>
+
+<p>As I mentioned before, putting SSH behind a Tor hidden service is a
+      very useful way of getting access to your systems from anywhere on the
+      planet, in a way that puts at least two layers of encryption on your
+      connection. However, even for a setup like this, it's important to
+      have good passwords (or only use public-key logins for SSH) and to
+      make it impossible to login to the root account remotely.</p>
+
+<h2>Tails</h2>
+
+<p>If you happen to be in the kind of situation where Tor is
+      absolutely necessary for you and you expect to be attacked by strong
+      adversaries, you are in a tricky situation. Just installing Tor on
+      your regular machine isn't necessarily going to be enough. Thus,
+      there is a project called <a href="https://tails.boum.org/">Tails</a>, which is a
+      Linux distribution that runs from a CD/DVD or USB drive. It is
+      preconfigured to <i>only</i> send network traffic over Tor and also
+      has many other privacy and anonymity features. It comes bundled with
+      several different tools that will allow you to easily communicate
+      privately, send encrypted email and also working with documents in a
+      safe way.</p>
+
+<p>The interesting thing with Tails is that it's completely amnesiac -
+      it doesn't leave a trace on your computer after you have run it. It is
+      possible to have it save a small amount of data, but by default no
+      traces will be left.</p>
+
+<p>Tails is not something you will need in your regular day-job, but
+      there are certain cases where something like Tails can be extremely
+      powerful. Every journalist should know how to use it - and so should
+      every lawyer. It's a powerful tool and it's a good idea to be prepared
+      to use it before it becomes necessary. </p>
+
+<h2>Conclusion</h2>
+
+<p>Tor is a fantastic tool that can do a lot of amazing things. It is
+      one of the strongest examples of useful cryptography deployed in a
+      safe way we have right now. As we have seen though, no tool is
+      perfect. And in order to use Tor correctly, it's a good idea to know
+      how it works. As a next step I would recommend you to download Tor and
+      try it out. One of the interesting things about anonymity is that it
+      loves company - even if you don't need the anonymity you are
+      protecting others who do need it by using Tor. One day you might go
+      forward and run your own Tor relay as well - something that improves
+      the Tor network for everyone.</p>
+
+
+<p class="shares">Share: <a href="https://twitter.com/intent/tweet?url=http://martinfowler.com/articles/tor-for-technologists.html&amp;text=Tor%20for%20Technologists" title="Share on Twitter"><img src="/t_mini-a.png"></a><a href="https://facebook.com/sharer.php?u=http://martinfowler.com/articles/tor-for-technologists.html" title="Share on Facebook"><img src="/fb-icon-20.png"></a><a href="https://plus.google.com/share?url=http://martinfowler.com/articles/tor-for-technologists.html" title="Share on Google Plus"><img src="/gplus-16.png"></a></p>
+
+<h2>For articles on similar topics&#8230;</h2>
+
+<p>&#8230;take a look at the tag: </p>
+</div></body></html>

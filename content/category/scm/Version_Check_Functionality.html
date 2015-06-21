@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    Version Check Functionality</title></head><body><div><h1 class="title">Version Check Functionality</h1>
+                     
+                    
+                  
+
+                  <p>We&#8217;re working on a version check function for GitLab to reduce the problem of outdated servers.
+These servers are a security problem, provide a bad user experience and
+lead to issues being created with problems that have already been solved.
+By making outdated installations visible to its users we hope that people will upgrade sooner.</p>
+
+ 
+
+
+<h2>How it&#8217;ll work</h2>
+
+<p>The version check will work in the following way. The <code>/help</code> page of GitLab will
+load an image from version.gitlab.com. This image will show green for an
+up to date version, yellow for an out of date version and red for a missing security update.</p>
+
+<p><img src="/images/version_check/green.png" alt="No update necessary">
+<img src="/images/version_check/orange.png" alt="New version out!">
+<img src="/images/version_check/red.png" alt="Update ASAP"></p>
+
+<p>The image requests parameters requests will contain the GitLab version and the server hostname.
+We&#8217;ll store each request with a timestamp, the GitLab version and the server hostname.
+We will not store the user ip-address.</p>
+
+<p>We will send the server hostname to have more information about where and how GitLab is used.
+Loading external images is similar to how the gravatar images of users are used.</p>
+
+<h3>Opt-out</h3>
+
+<p>Just like the gravatar images you will be able to to turn off the functionality
+if you don&#8217;t want your GitLab server to connect outside the firewall.
+The version check functionality can be disabled in the application settings.</p>
+
+<h2>Trade-off</h2>
+
+<p>Providing the new package server and the version check server requires
+constant maintenance and operational capacity.
+Getting better insight into where and how GitLab is used
+will help us improve GitLab for everyone.</p>
+
+<p>We realize that it sending the server
+hostname by default is not a trivial action and not everyone will be happy about this.
+We think that ensuring the sustainability of GitLab package server and
+version check services makes it a good trade-off.
+There will always be an option to turn this behavior off.</p>
+
+<p>Please let us know what you think about the above plan in the comments.</p>
+
+<h2>Update</h2>
+
+<p>We decided against sending the hostname in the url of the picture request.
+But the https picture request itself will have a HTTP referer header.
+We can use that to see where and how GitLab is used.
+We will still not store the ip-address of the requests.</p>
+
+                  <a></a><p>Install GitLab on your own server in 2 minutes <a href="/downloads" id="dl-partial">Let's do it!</a> </p><a href="/downloads" class="btn btn-block btn-lg btn-purple visible-xs" id="dl-partial-sm">
+  Install GitLab on your own server in 2 minutes
+</a>
+
+
+                  
+                  <p>&#8594; <a href="/blog/archives.html">Browse all posts</a></p>
+
+                  <strong><a href="https://twitter.com/gitlab">@gitlab</a></strong>
+    on Twitter.
+
+    <a></a><p>For the latest and most detailed news followon Twitter. <a href="/atom.xml" class="rss-btn">
+      
+    </a> </p><p>Get every GitLab blog post and stay up to date.</p>
+     
+    <p id="mc_embed_signup" class="newsletter-form">
+       
+    </p>
+     
+
+  <p id="disqus_thread"></p>
+                   
+                  Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;
+                </div></body></html>
