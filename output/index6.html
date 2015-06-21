@@ -10,7 +10,7 @@
   <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
 <link href="http://www.ciandcd.com/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
 
-          
+         
 
 
   <!--[if lt IE 9]>
@@ -22,9 +22,7 @@
 bootstrap-itech - a Pelican theme using Bootstrap
 -->
 <body>
-<a href="https://github.com/ciandcd">
-<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" />
-</a>
+
 <!-- Header -->
 <header><div class="container">
 <h1 class="page-header"><a href="http://www.ciandcd.com/index.html">ciandcd</a>
@@ -55,230 +53,171 @@ bootstrap-itech - a Pelican theme using Bootstrap
 <div class="col-lg-9">
 
       <article>
-      <h1><a href="http://www.ciandcd.com/4ge-ke-yi-fa-song-wan-zheng-dian-zi-you-jian-de-ming-ling-xing-gong-ju-itech.html" rel="bookmark">
-    4个可以发送完整电子邮件的命令行工具 - iTech</a></h1>
+      <h1><a href="http://www.ciandcd.com/filter-pull-requests-by-status.html" rel="bookmark">
+    Filter Pull Requests by Status</a></h1>
+
       
-      <div><p>&#20170;&#22825;&#30340;&#25991;&#31456;&#37324;&#25105;&#20204;&#20250;&#35762;&#21040;&#19968;&#20123;&#20351;&#29992;<a href="http://www.linuxeye.com/" target="_blank">Linux</a>&#21629;&#20196;&#34892;&#24037;&#20855;&#26469;&#21457;&#36865;&#24102;&#38468;&#20214;&#30340;&#30005;&#23376;&#37038;&#20214;&#30340;&#26041;&#27861;&#12290;&#23427;&#26377;&#24456;&#22810;&#29992;&#22788;&#65292;&#27604;&#22914;&#22312;&#24212;&#29992;&#31243;&#24207;&#25152;&#22312;&#26381;&#21153;&#22120;&#19978;&#65292;&#20351;&#29992;&#30005;&#23376;&#37038;&#20214;&#21457;&#36865; &#19968;&#20010;&#25991;&#20214;&#36807;&#26469;&#65292;&#25110;&#32773;&#20320;&#21487;&#20197;&#22312;&#33050;&#26412;&#20013;&#20351;&#29992;&#36825;&#20123;&#21629;&#20196;&#26469;&#20570;&#19968;&#20123;&#33258;&#21160;&#21270;&#25805;&#20316;&#12290;&#22312;&#26412;&#25991;&#30340;&#20363;&#23376;&#20013;&#65292;&#25105;&#20204;&#20250;&#20351;&#29992;foo.tar.gz&#25991;&#20214;&#20316;&#20026;&#38468;&#20214;&#12290;</p>&#13;
-<p>&#160;</p>&#13;
-<p>&#26377;&#19981;&#21516;&#30340;&#21629;&#20196;&#34892;&#24037;&#20855;&#21487;&#20197;&#21457;&#36865;&#37038;&#20214;&#65292;&#36825;&#37324;&#25105;&#20998;&#20139;&#20960;&#20010;&#22810;&#25968;&#29992;&#25143;&#20250;&#20351;&#29992;&#30340;&#24037;&#20855;&#65292;&#22914;<code>mailx</code>&#12289;<code>mutt</code>&#21644;<code>swaks</code>&#12290;</p>&#13;
-<p>&#25105;&#20204;&#21363;&#23558;&#21576;&#29616;&#30340;&#36825;&#20123;&#24037;&#20855;&#37117;&#26159;&#38750;&#24120;&#26377;&#21517;&#30340;&#65292;&#24182;&#19988;&#23384;&#22312;&#20110;&#22810;&#25968;Linux&#21457;&#34892;&#29256;&#40664;&#35748;&#30340;&#36719;&#20214;&#20179;&#24211;&#20013;&#65292;&#20320;&#21487;&#20197;&#20351;&#29992;&#22914;&#19979;&#21629;&#20196;&#23433;&#35013;&#65306;</p>&#13;
-<p>&#22312;&#160;<strong>Debian / Ubuntu</strong>&#160;&#31995;&#32479;</p>&#13;
-<pre class="prettyprint prettyprinted"><p class="pln">apt<p class="pun">-<p class="kwd">get<p class="pln"> install mutt&#13;
-apt<p class="pun">-<p class="kwd">get<p class="pln"> install swaks&#13;
-apt<p class="pun">-<p class="kwd">get<p class="pln"> install mailx&#13;
-apt<p class="pun">-<p class="kwd">get<p class="pln"> install sharutils</p></p></p></p></p></p></p></p></p></p></p></p></p></pre>&#13;
-<p>&#22312;&#22522;&#20110;Red Hat&#30340;&#31995;&#32479;&#65292;&#22914;&#160;<strong><a href="http://www.linuxeye.com/tags.php?/CentOS/" target="_blank">CentOS</a></strong>&#160;&#25110;&#32773;&#160;<strong>Fedora</strong></p>&#13;
-<pre class="prettyprint prettyprinted"><p class="pln">yum install mutt&#13;
-yum install swaks&#13;
-yum install mailx&#13;
-yum install sharutils</p></pre>&#13;
-<h3 id="toc_1">1) &#20351;&#29992; mail / mailx</h3>&#13;
-<p><code>mailx</code>&#24037;&#20855;&#22312;&#22810;&#25968;Linux&#21457;&#34892;&#29256;&#20013;&#26159;&#40664;&#35748;&#30340;&#37038;&#20214;&#31243;&#24207;&#65292;&#29616;&#22312;&#24050;&#32463;&#25903;&#25345;&#21457;&#36865;&#38468;&#20214;&#20102;&#12290;&#22914;&#26524;&#23427;&#19981;&#22312;&#20320;&#30340;&#31995;&#32479;&#20013;&#65292;&#20320;&#21487;&#20197;&#20351;&#29992;&#19978;&#36793;&#30340;&#21629;&#20196;&#23433;&#35013;&#12290;&#26377;&#19968;&#28857;&#38656;&#35201;&#27880;&#24847;&#65292;&#32769;&#29256;&#26412;&#30340;mailx&#21487;&#33021;&#19981;&#25903;&#25345;&#21457;&#36865;&#38468;&#20214;&#65292;&#36816;&#34892;&#22914;&#19979;&#21629;&#20196;&#26597;&#30475;&#26159;&#21542;&#25903;&#25345;&#12290;</p>&#13;
-<pre class="prettyprint prettyprinted"><p class="pln">$ man mail ...</p></pre></div>
-      
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/4ge-ke-yi-fa-song-wan-zheng-dian-zi-you-jian-de-ming-ling-xing-gong-ju-itech.html">Read more</a></p>
-      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/filter-pull-requests-by-status.html">Read more</a></p>
+
       <p class="info">
 Posted Sun 21 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/zh.html">zh</a>
+in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
       </p>
-      
+
       </article>
-      
-      
+
+
       <article>
-      <h1><a href="http://www.ciandcd.com/ke-yi-ti-dai-puttyde-sshke-hu-duan-itech.html" rel="bookmark">
-    可以替代putty的ssh客户端 - iTech</a></h1>
+      <h1><a href="http://www.ciandcd.com/atom-at-codeconf-2015.html" rel="bookmark">
+    Atom at CodeConf 2015</a></h1>
+
       
-      <div><p>&#160;</p>&#13;
-<p>1.&#160;Bitvise SSH Client</p>&#13;
-<p>http://www.putty.org/</p>&#13;
-<p>Bitvise SSH Client is an SSH and SFTP client for Windows. It is developed and supported professionally by Bitvise. The SSH Client is robust, easy to install, easy to use, and supports all features supported by PuTTY, as well as the following ...</p></div>
-      
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/ke-yi-ti-dai-puttyde-sshke-hu-duan-itech.html">Read more</a></p>
-      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/atom-at-codeconf-2015.html">Read more</a></p>
+
       <p class="info">
 Posted Sun 21 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/zh.html">zh</a>
+in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
       </p>
-      
+
       </article>
-      
-      
+
+
       <article>
-      <h1><a href="http://www.ciandcd.com/linuxmu-lu-de-quan-xian-itech.html" rel="bookmark">
-    linux目录的权限 - iTech</a></h1>
+      <h1><a href="http://www.ciandcd.com/announcing-github-japan.html" rel="bookmark">
+    Announcing GitHub Japan</a></h1>
+
       
-      <div><p><strong>Answer:</strong></p>&#13;
-<p>When applying permissions to directories on Linux, the permission bits have different meanings than on regular files.</p>&#13;
-<ul>&#13;
-<li>The write bit allows the affected user to create, rename, or delete files within the directory, and modify the directory&#8217;s attributes</li>&#13;
-<li>The read bit allows the affected user to list the ...</li></ul></div>
-      
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/linuxmu-lu-de-quan-xian-itech.html">Read more</a></p>
-      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/announcing-github-japan.html">Read more</a></p>
+
       <p class="info">
 Posted Sun 21 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/zh.html">zh</a>
+in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
       </p>
-      
+
       </article>
-      
-      
+
+
       <article>
-      <h1><a href="http://www.ciandcd.com/nohuphe-disown-itech.html" rel="bookmark">
-    nohup和disown - iTech</a></h1>
+      <h1><a href="http://www.ciandcd.com/how-to-undo-almost-anything-with-git.html" rel="bookmark">
+    How to undo (almost) anything with Git</a></h1>
+
       
-      <div><p>Many system administrators make a practice of using GNU Screen or tmux to manage jobs running in the terminal. If you have a long-running job that you want to "detach" from the terminal, you can simply use your terminal multiplexer to do it. But what if you don't use ...</p></div>
-      
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/nohuphe-disown-itech.html">Read more</a></p>
-      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/how-to-undo-almost-anything-with-git.html">Read more</a></p>
+
       <p class="info">
 Posted Sun 21 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/zh.html">zh</a>
+in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
       </p>
-      
+
       </article>
-      
-      
+
+
       <article>
-      <h1><a href="http://www.ciandcd.com/on-antifragility-in-systems-and-organizational-architecture.html" rel="bookmark">
-    On Antifragility in Systems and Organizational Architecture</a></h1>
+      <h1><a href="http://www.ciandcd.com/improved-organization-permissions.html" rel="bookmark">
+    Improved organization permissions</a></h1>
+
       
-      <div><p class="post-headline"><h1>On Antifragility in Systems and Organizational Architecture</h1></p><p>In his new book, <a href="http://www.amazon.com/dp/1400067820?tag=contindelive-20">Antifragile</a>, Nassim Taleb discusses the behaviour of complex systems and distinguishes three kinds: those that are fragile, those that are robust or resilient, and those that are antifragile. These types of systems differ in how they respond to volatility ...</p></div>
-      
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/on-antifragility-in-systems-and-organizational-architecture.html">Read more</a></p>
-      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/improved-organization-permissions.html">Read more</a></p>
+
       <p class="info">
 Posted Sun 21 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
       </p>
-      
+
       </article>
-      
-      
+
+
       <article>
-      <h1><a href="http://www.ciandcd.com/book-review-the-phoenix-project.html" rel="bookmark">
-    Book Review: The Phoenix Project</a></h1>
+      <h1><a href="http://www.ciandcd.com/an-updated-header-just-for-you.html" rel="bookmark">
+    An updated header, just for you</a></h1>
+
       
-      <div><p class="post-headline"><h1>Book Review: The Phoenix Project</h1></p><p>I am not going to do a ton of book reviews on this blog (I have one more planned for next month). I&#8217;ll only bother posting reviews of books that I believe are both excellent and relevant to <a href="http://continuousdelivery.com/">Continuous Delivery</a>. This book easily satisfies ...</p></div>
-      
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/book-review-the-phoenix-project.html">Read more</a></p>
-      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/an-updated-header-just-for-you.html">Read more</a></p>
+
       <p class="info">
 Posted Sun 21 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
       </p>
-      
+
       </article>
-      
-      
+
+
       <article>
-      <h1><a href="http://www.ciandcd.com/announcing-flowcon.html" rel="bookmark">
-    Announcing FlowCon</a></h1>
+      <h1><a href="http://www.ciandcd.com/read-only-deploy-keys.html" rel="bookmark">
+    Read-only deploy keys</a></h1>
+
       
-      <div><p class="post-headline"><h1>Announcing FlowCon</h1></p><p>I spend quite a lot of time at conferences, and it consistently bothers me that they are so often focused on one particular function: development, testing, UX, systems administration. The point of continuous delivery is to accelerate the rate at which we can learn from each other &#8211; and ...</p></div>
-      
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/announcing-flowcon.html">Read more</a></p>
-      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/read-only-deploy-keys.html">Read more</a></p>
+
       <p class="info">
 Posted Sun 21 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
       </p>
-      
+
       </article>
-      
-      
+
+
       <article>
-      <h1><a href="http://www.ciandcd.com/videos-from-the-continuous-delivery-track-at-qcon-sf-2012.html" rel="bookmark">
-    Videos from the Continuous Delivery track at QCon SF 2012</a></h1>
+      <h1><a href="http://www.ciandcd.com/a-closer-look-at-europe.html" rel="bookmark">
+    A closer look at Europe</a></h1>
+
       
-      <div><p class="post-headline"><h1>Videos from the Continuous Delivery track at QCon SF 2012</h1></p><p>At last year&#8217;s QCon San Francisco I got to curate a track on continuous delivery. One of the goals of the <a href="http://www.qconferences.com/">QCon conferences</a> is &#8220;information Robin Hood&#8221; &#8211; finding ways to get out into public the secret sauce of high ...</p></div>
-      
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/videos-from-the-continuous-delivery-track-at-qcon-sf-2012.html">Read more</a></p>
-      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/a-closer-look-at-europe.html">Read more</a></p>
+
       <p class="info">
 Posted Sun 21 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
       </p>
-      
+
       </article>
-      
-      
+
+
       <article>
-      <h1><a href="http://www.ciandcd.com/risk-management-theatre-on-show-at-an-organization-near-you.html" rel="bookmark">
-    Risk Management Theatre: On Show At An Organization Near You</a></h1>
+      <h1><a href="http://www.ciandcd.com/codeconf-updates-meet-greet-and-workshop-tickets.html" rel="bookmark">
+    CodeConf Updates: Meet & Greet and Workshop Tickets</a></h1>
+
       
-      <div>&#13;
-&#13;
-				 &#13;
-		 &#13;
-		 &#13;
-		&#13;
-				&#13;
-&#13;
-		 &#13;
-		&#13;
-&#13;
-		&#13;
-		&#13;
-				<a href="http://continuousdelivery.com/2013/09/how-we-got-40-female-speakers-at-flowcon/" rel="next">How To Create A More Diverse Tech Conference</a> &#160;<a href="http://continuousdelivery.com/2013/05/videos-from-the-continuous-delivery-track-at-qcon-sf-2012/" rel="prev">Videos from the Continuous Delivery track at QCon SF 2012</a> &#187;<p class="post-headline"><h1>Risk Management Theatre: On Show At An Organization Near You</h1></p>				<p><strong>Translations:</strong> <a href="http://cdkr.egloos.com/1908527">&#54620;&#44397;&#47568;</a></p>
-<p>One of the concepts that will feature in the <a href="http://www.amazon.com/dp/1449368425?tag=contindelive-20">new book I am working on</a> is &#8220;risk management theatre&#8221;. This is ...</p></div>
-      
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/risk-management-theatre-on-show-at-an-organization-near-you.html">Read more</a></p>
-      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/codeconf-updates-meet-greet-and-workshop-tickets.html">Read more</a></p>
+
       <p class="info">
 Posted Sun 21 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
       </p>
-      
+
       </article>
-      
-      
-      <article>
-      <h1><a href="http://www.ciandcd.com/how-to-create-a-more-diverse-tech-conference.html" rel="bookmark">
-    How To Create A More Diverse Tech Conference</a></h1>
-      
-      <div><p class="post-headline"><h1>How To Create A More Diverse Tech Conference</h1></p><p>I have been advised by people I trust that it&#8217;s not a good idea to talk about how you got serious female representation at your conference until after it&#8217;s over. However the shameful RubyConf <a href="https://twitter.com/shanley/status/380179040545406976">&#8220;binders full of men&#8221;</a> debacle and ...</p></div>
-      
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/how-to-create-a-more-diverse-tech-conference.html">Read more</a></p>
-      
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
-      </p>
-      
-      </article>
-      
+
         <nav class="pagination">
-<ul>
+<ul class="pagination">
       <li><a href="http://www.ciandcd.com/index5.html">&laquo;</a></li>
-  
+
         <li><a href="http://www.ciandcd.com/index.html">1</a></li>
         <li><a href="http://www.ciandcd.com/index2.html">2</a></li>
         <li><a href="http://www.ciandcd.com/index3.html">3</a></li>
         <li><a href="http://www.ciandcd.com/index4.html">4</a></li>
         <li><a href="http://www.ciandcd.com/index5.html">5</a></li>
       <li class="active"><span>6</span></li>
-        <li><a href="http://www.ciandcd.com/index7.html">7</a></li>
-        <li><a href="http://www.ciandcd.com/index8.html">8</a></li>
-        <li><a href="http://www.ciandcd.com/index9.html">9</a></li>
-        <li><a href="http://www.ciandcd.com/index10.html">10</a></li>
-        <li><a href="http://www.ciandcd.com/index11.html">11</a></li>
-  
-    <li><a href="http://www.ciandcd.com/index7.html">&raquo;</a></li>
+
+    <li class="disabled"><span>&raquo;</span></li>
 </ul>        </nav>
-      
+
 
 </div>
 <!-- /Content -->
@@ -296,9 +235,7 @@ in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
 
 <h2>Links</h2>
 <ul class="nav nav-pills nav-stacked">
-  <li><a href="http://getpelican.com/">Pelican</a></li>
-  <li><a href="http://python.org/">Python.org</a></li>
-  <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
 </ul>
 
 <h2>Social</h2>
