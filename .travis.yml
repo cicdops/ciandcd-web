@@ -1,14 +1,20 @@
 language: python
 python:
-  - 2.7
+  - 3.4
 install:
   - sudo apt-get install git
-  - pip install -r requirements.txt
-  - pip install pelican
-  - pip install Markdown
-  - pip install typogrify
-  - pip install ghp-import
+  - sudo apt-get install python3-dev
+  - sudo apt-get install libxml2-dev libxslt-dev
+  - sudo apt-get install libjpeg-dev zlib1g-dev libpng12-dev
+  - pip3 install newspaper3k
+  - pip3 install feedparser
+  - pip3 install -r requirements.txt
+  - pip3 install pelican
+  - pip3 install Markdown
+  - pip3 install typogrify
+  - pip3 install ghp-import
 script:
+  - python build_content.py
   - make publish
   - ghp-import -n output -m "update by travis-ci"
   - git push -qf https://${TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
