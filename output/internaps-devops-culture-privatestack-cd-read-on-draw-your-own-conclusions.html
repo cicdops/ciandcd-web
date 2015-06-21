@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Internap’s DevOps Culture: PrivateStack + CD = ? [Read On & Draw Your Own Conclusions] - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+<link href="./feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+<a href="https://github.com/ciandcd">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" />
+</a>
+<!-- Header -->
+<header><div class="container">
+<h1 class="page-header"><a href="./index.html">ciandcd</a>
+<h4>continuous integration and continuous delivery</h4></h1>
+</div></header>
+<!-- /Header -->
+
+<!-- Body -->
+<section id="body"><div class="container-fluid">
+
+<!-- Nav bar -->
+<div class="row"><div class="col-lg-12">
+<nav class="navbar navbar-default"><div class="collapse navbar-collapse">
+<ul class="nav navbar-nav">
+  <li><a href="./index.html">Home</a></li>
+
+
+
+</ul>
+</div></nav>
+</div></div>
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h1>
+    Internap’s DevOps Culture: PrivateStack + CD = ? [Read On & Draw Your Own Conclusions]</h1>
+
+<div><p>Engineers at <a href="http://www.internap.com/" target="_blank">Internap</a>, a hosting company and public cloud vendor designed a new OpenStack-based cloud platform and development environment. DevOps.com tells the story of Internap&#8217;s DevOps cultural evolution, which grew virally, interwoven with the company&#8217;s development of PrivateStack.</p>
+<p>Challenges in Internap&#8217;s Common Development Environment</p>
+<p>Challenges that slowed Internap&#8217;s cloud development process triggered a hunger for change and for a new / altered development scheme. &#8220;The Internap public cloud product is essentially composed of micro services that make cloud resources available to our customers,&#8221; says Mathieu Mitchell, Senior Software Developer, Internap. Internap engineering teams tested their cloud services simultaneously with each affecting the other and transferring adverse effects to production or pre-production. Internap needed to let the billing team test their services, integrated with a duplicate of the production software and environment, without affecting the virtualization team.</p>
+<p>These challenges were rooted in a commonly shared development environment for all the engineering teams and team members, which introduced tedium for engineers as they worked to build and deploy stable code.</p>
+<p>When sharing a common development environment, each engineer&#8217;s tests depended on environment consistency and reliability. When engineers / developers tested two changes at the same time, there was no way to tell which change introduced a regression. The most reasonable way to address this prior to PrivateStack was to push all changes into the environment and dedicate specific engineers to identify and fix the issues that occurred.</p>
+<p>The challenge with dedicating specific engineers to troubleshoot these regressions was that they had a diminished context to work with when compared to the original developer&#8217;s understanding. The team that introduced a change needed feedback from the environment and to shoulder responsibility for fixing the issue. This would result in a stable codebase and the ability to write more thorough, automated tests.</p>
+<p>&#8220;This is why we created PrivateStack&#8211;to allow us to independently test a single change, integrated with other services, in an environment that is the equivalent of a private production setup,&#8221; says Mitchell. PrivateStack enables development teams to innovate while ensuring that changes behave correctly in production. This in turn enables CD and speeds development.</p>
+<p>DevOps Culture Leads Teams to Success</p>
+<p>As Internap developed PrivateStack, engineering observed a DevOps belief system spreading across the project and the teams. &#8220;At first, it was only a minority among us, mostly people with an Agile background, who advocated the Continuous Delivery approach while we worked on this project. We really believe in delivering value to our customers as quickly as possible. To achieve Continuous Delivery, we needed people to understand that automating everything was the way to go,&#8221; says Mitchell.</p>
+<p>As more engineers realized that they were the solution, they became increasingly motivated to enhance processes, create the new development environment, and use CD to develop the Internap public cloud product.</p>
+<p>Results with PrivateStack</p>
+<p>PrivateStack enables Internap teams to share the same code and system configurations while individual developers have each their own private production environment to test their software without affecting others. &#8220;We heavily leverage virtualization to be able to recreate our environments, since buying racks and racks of hardware to make this available to all of our developers would be cost prohibitive,&#8221; says Mitchell.</p>
+<p>With PrivateStack, Internap isolates production issues during development, keeping R&amp;D efficient and slashing pre-production troubleshooting time. &#8220;PrivateStack also improves our time-to-market, is much less costly, and most importantly, reduces the chance of any issues reaching the customer,&#8221; says Mitchell.</p>
+<p>DevOps Culture Wrap Up</p>
+<p>To finish the PrivateStack project and foster a DevOps culture at the same time, Internap&#8217;s internal core of CD true believers lead by example. Mitchell and his colleagues adhered to consistent principles while hearing out other team members on their concerns. This helped them to encourage the larger engineering department including billing and virtualization teams to adopt a DevOps and CD frame of mind.</p>
+<p>&#8220;We dedicated two people to drive this initiative, along with a few others who believed in the Continuous Delivery approach but were not involved directly,&#8221; says Mitchell. That was enough to get the job done. Now the vast majority of the engineering department is targeting CD.</p>
+<p>&#8220;We are eager to share our PrivateStack platform with the open source community to enable other developers to run production-like environments for development in their day-to-day operations,&#8221; says Mitchell.</p>
+</div>
+
+<p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="./author/itech001.html">itech001</a>
+in <a href="./category/devops.html">devops</a>
+</p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>Categories</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="./category/ciandcd.html">ciandcd</a></li>
+  <li class="active"><a href="./category/devops.html">devops</a></li>
+  <li ><a href="./category/scm.html">scm</a></li>
+  <li ><a href="./category/zh.html">zh</a></li>
+</ul>
+
+<h2>Links</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://getpelican.com/">Pelican</a></li>
+  <li><a href="http://python.org/">Python.org</a></li>
+  <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+</ul>
+
+<h2>Social</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+
+  <li><a href="https://github.com/ciandcd">GITHUB</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="./theme/js/jquery.js"></script>
+<script src="./theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

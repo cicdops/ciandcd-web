@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Implementing .gitlab-ci.yml - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+<link href="./feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+<a href="https://github.com/ciandcd">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" />
+</a>
+<!-- Header -->
+<header><div class="container">
+<h1 class="page-header"><a href="./index.html">ciandcd</a>
+<h4>continuous integration and continuous delivery</h4></h1>
+</div></header>
+<!-- /Header -->
+
+<!-- Body -->
+<section id="body"><div class="container-fluid">
+
+<!-- Nav bar -->
+<div class="row"><div class="col-lg-12">
+<nav class="navbar navbar-default"><div class="collapse navbar-collapse">
+<ul class="nav navbar-nav">
+  <li><a href="./index.html">Home</a></li>
+
+
+
+</ul>
+</div></nav>
+</div></div>
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h1>
+    Implementing .gitlab-ci.yml</h1>
+
+<div><h1 class="title">Implementing .gitlab-ci.yml</h1>
+                     
+                    
+                  
+
+                  <p>We <a href="https://about.gitlab.com/2015/05/06/why-were-replacing-gitlab-ci-jobs-with-gitlab-ci-dot-yml/">wrote</a> about why we&#8217;re replacing GitLab CI jobs with a <code>.gitlab-ci.yml</code> file.
+As we&#8217;ve started on implementing this large change, we wanted to share the details
+of that process with you and would love to hear what you think.</p>
+
+ 
+
+
+<p>To recap the <a href="https://about.gitlab.com/2015/05/06/why-were-replacing-gitlab-ci-jobs-with-gitlab-ci-dot-yml/">previous article</a>:
+currently you are required to write out your CI jobs in GitLab CI&#8217;s interface.
+We&#8217;re replacing this with a single file <code>.gitlab-ci.yml</code>, that you place in the root
+of your repository.</p>
+
+<h2>Schema change</h2>
+
+<p>Currently, on a push to GitLab, GitLab sends a web-hook to the CI Coordinator.
+The coordinator creates a build based on the jobs that are defined in its UI,
+which can then be executed by the connected Runners.</p>
+
+<p>In the new schema, GitLab sends the web-hook and the <code>.gitlab-ci.yml</code> contents
+to the CI Coordinator, which creates builds based on the yml file. In turn,
+these builds are executed by the Runners as before.</p>
+
+<h2>Migrating to new style</h2>
+
+<p>Keeping two different ways of doing things would be a strain on development and
+support, not to mention confusing. So we&#8217;re not just deprecating the old style
+of defining jobs, we&#8217;re removing it entirely and will migrate existing jobs.</p>
+
+<p>Upon upgrading your existing jobs defined in the GitLab CI Coordinator will be
+converted into a YAML file with the new syntax. You can download this file at any
+time from the project settings.</p>
+
+<p>When the GitLab webhook triggers and doesn&#8217;t transmit the content from <code>.gitlab-ci.yml</code>,
+the coordinator will use the converted YAML file instead.</p>
+
+<p>This makes migrating to the new style very easy. You can start by simply copy-pasting
+the contents of the converted YAML file to the root of your repository. Existing projects
+will continue to build successfully, yet new projects do not have the option to
+use anything else.</p>
+
+<h2>An example <code>.gitlab-ci.yml</code></h2>
+
+<p>To get an idea of how the <code>.gitlab-ci.yml</code> will look, we&#8217;ve prepared an example
+for a Ruby on Rails project (such as GitLab itself). Of course, this is due to
+change as we&#8217;re still working on this.</p>
+
+<pre class="line-numbers"><p class="line-number">1</p>
+<p class="line-number">2</p>
+<p class="line-number">3</p>
+<p class="line-number">4</p>
+<p class="line-number">5</p>
+<p class="line-number">6</p>
+<p class="line-number">7</p>
+<p class="line-number">8</p>
+<p class="line-number">9</p>
+<p class="line-number">10</p>
+<p class="line-number">11</p>
+<p class="line-number">12</p>
+<p class="line-number">13</p>
+<p class="line-number">14</p>
+<p class="line-number">15</p>
+<p class="line-number">16</p>
+<p class="line-number">17</p>
+<p class="line-number">18</p>
+<p class="line-number">19</p>
+<p class="line-number">20</p>
+<p class="line-number">21</p>
+<p class="line-number">22</p>
+<p class="line-number">23</p>
+<p class="line-number">24</p>
+<p class="line-number">25</p>
+<p class="line-number">26</p>
+<p class="line-number">27</p>
+<p class="line-number">28</p>
+<p class="line-number">29</p>
+<p class="line-number">30</p>
+<p class="line-number">31</p>
+<p class="line-number">32</p>
+<p class="line-number">33</p>
+<p class="line-number">34</p>
+</pre><pre><code class=""><p class="line"># Refs to skip
+</p><p class="line">skip_refs: &#8220;deploy*&#8221;
+</p><p class="line">
+</p><p class="line"># Run before each script
+</p><p class="line">
+</p><p class="line"># Refs to skip
+</p><p class="line">skip_refs: &#8220;deploy*&#8221;
+</p><p class="line">
+</p><p class="line"># Run before each script
+</p><p class="line">before_script:
+</p><p class="line">  - export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin
+</p><p class="line">  - gem install bundler
+</p><p class="line">  - cp config/database.yml.mysql config/database.yml
+</p><p class="line">  - cp config/gitlab.yml.example config/gitlab.yml
+</p><p class="line">  - touch log/application.log
+</p><p class="line">  - touch log/test.log
+</p><p class="line">  - bundle install --without postgres production --jobs $(nproc)
+</p><p class="line">  - &#8220;bundle exec rake db:create RAILS_ENV=test&#8221;
+</p><p class="line">
+</p><p class="line"># Parallel jobs, each line is a parallel build
+</p><p class="line">jobs:
+</p><p class="line">  - script: &#8220;rake spec&#8221;
+</p><p class="line">    runner: &#8220;ruby,postgres&#8221;
+</p><p class="line">    name: &#8220;Rspec&#8221;
+</p><p class="line">  - script: &#8220;rake spinach&#8221;
+</p><p class="line">    runner: &#8220;ruby,mysql&#8221;
+</p><p class="line">    name: &#8220;Spinach&#8221;
+</p><p class="line">    tags: true
+</p><p class="line">    branches: false
+</p><p class="line">
+</p><p class="line"># Parallel deploy jobs
+</p><p class="line">on_success:
+</p><p class="line">  - &#8220;cap deploy production&#8221;
+</p><p class="line">  - &#8220;cap deploy staging&#8221;</p></code></pre>
+
+
+<p></p>
+
+<h2>UPDATE</h2>
+
+<p>Dmitriy and Sytse spend some time thinking about file syntax.
+Scripting should be simple and memorable. Thats why we come with better proposal:</p>
+
+<pre class="line-numbers"><p class="line-number">1</p>
+<p class="line-number">2</p>
+<p class="line-number">3</p>
+<p class="line-number">4</p>
+<p class="line-number">5</p>
+<p class="line-number">6</p>
+<p class="line-number">7</p>
+<p class="line-number">8</p>
+<p class="line-number">9</p>
+<p class="line-number">10</p>
+<p class="line-number">11</p>
+<p class="line-number">12</p>
+<p class="line-number">13</p>
+<p class="line-number">14</p>
+<p class="line-number">15</p>
+<p class="line-number">16</p>
+<p class="line-number">17</p>
+<p class="line-number">18</p>
+<p class="line-number">19</p>
+<p class="line-number">20</p>
+<p class="line-number">21</p>
+<p class="line-number">22</p>
+<p class="line-number">23</p>
+<p class="line-number">24</p>
+<p class="line-number">25</p>
+<p class="line-number">26</p>
+<p class="line-number">27</p>
+<p class="line-number">28</p>
+<p class="line-number">29</p>
+<p class="line-number">30</p>
+<p class="line-number">31</p>
+<p class="line-number">32</p>
+<p class="line-number">33</p>
+<p class="line-number">34</p>
+<p class="line-number">35</p>
+<p class="line-number">36</p>
+<p class="line-number">37</p>
+<p class="line-number">38</p>
+<p class="line-number">39</p>
+</pre><pre><code class=""><p class="line">before_script:
+</p><p class="line">  - gem install bundler
+</p><p class="line">  - bundle install
+</p><p class="line">  - bundle exec rake db:create
+</p><p class="line">
+</p><p class="line">rspec:
+</p><p class="line">  test: "rake spec"
+</p><p class="line">  tags:
+</p><p class="line">    - ruby
+</p><p class="line">    - postgres
+</p><p class="line">  only:
+</p><p class="line">    - branches
+</p><p class="line">
+</p><p class="line">spinach:
+</p><p class="line">  test: "rake spinach"
+</p><p class="line">  tags:
+</p><p class="line">    - ruby
+</p><p class="line">    - mysql
+</p><p class="line">  except:
+</p><p class="line">    - tags
+</p><p class="line">
+</p><p class="line">staging:
+</p><p class="line">  deploy: "cap deploy stating"
+</p><p class="line">  tags:
+</p><p class="line">    - capistrano
+</p><p class="line">    - debian
+</p><p class="line">  except:
+</p><p class="line">    - stable
+</p><p class="line">
+</p><p class="line">production:
+</p><p class="line">  deploy:
+</p><p class="line">    - cap deploy production
+</p><p class="line">    - cap notify
+</p><p class="line">  tags:
+</p><p class="line">    - capistrano
+</p><p class="line">    - debian
+</p><p class="line">  only:
+</p><p class="line">    - master
+</p><p class="line">    - /^deploy-.*$/</p></code></pre>
+
+
+<h2>Contribute</h2>
+
+<p>GitLab is nothing without its community.
+Contribute or follow the development in the <a href="https://gitlab.com/gitlab-org/gitlab-ci/commit/c2c9236cde807e98ff9571f8d23ac4def75eb9ba">GitLab CI repository</a>.</p>
+
+                  <a></a><p>Install GitLab on your own server in 2 minutes <a href="/downloads" id="dl-partial">Let's do it!</a> </p><a href="/downloads" class="btn btn-block btn-lg btn-purple visible-xs" id="dl-partial-sm">
+  Install GitLab on your own server in 2 minutes
+</a>
+
+
+                  
+                  <p>&#8594; <a href="/blog/archives.html">Browse all posts</a></p>
+
+                  <strong><a href="https://twitter.com/gitlab">@gitlab</a></strong>
+    on Twitter.
+
+    <a></a><p>For the latest and most detailed news followon Twitter. <a href="/atom.xml" class="rss-btn">
+      
+    </a> </p><p>Get every GitLab blog post and stay up to date.</p>
+     
+    <p id="mc_embed_signup" class="newsletter-form">
+       
+    </p>
+     
+
+  <p id="disqus_thread"></p>
+                   
+                  Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;
+                </div>
+
+<p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="./author/itech001.html">itech001</a>
+in <a href="./category/scm.html">scm</a>
+</p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>Categories</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="./category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="./category/devops.html">devops</a></li>
+  <li class="active"><a href="./category/scm.html">scm</a></li>
+  <li ><a href="./category/zh.html">zh</a></li>
+</ul>
+
+<h2>Links</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://getpelican.com/">Pelican</a></li>
+  <li><a href="http://python.org/">Python.org</a></li>
+  <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+</ul>
+
+<h2>Social</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+
+  <li><a href="https://github.com/ciandcd">GITHUB</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="./theme/js/jquery.js"></script>
+<script src="./theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

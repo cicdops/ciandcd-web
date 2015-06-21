@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    GitLab.com and Logjam - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+<link href="./feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+<a href="https://github.com/ciandcd">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" />
+</a>
+<!-- Header -->
+<header><div class="container">
+<h1 class="page-header"><a href="./index.html">ciandcd</a>
+<h4>continuous integration and continuous delivery</h4></h1>
+</div></header>
+<!-- /Header -->
+
+<!-- Body -->
+<section id="body"><div class="container-fluid">
+
+<!-- Nav bar -->
+<div class="row"><div class="col-lg-12">
+<nav class="navbar navbar-default"><div class="collapse navbar-collapse">
+<ul class="nav navbar-nav">
+  <li><a href="./index.html">Home</a></li>
+
+
+
+</ul>
+</div></nav>
+</div></div>
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h1>
+    GitLab.com and Logjam</h1>
+
+<div><h1 class="title">GitLab.com and Logjam</h1>
+                     
+                    
+                  
+
+                  <p>We&#8217;ve previously announced <a href="https://about.gitlab.com/2015/05/21/security-advisory-for-logjam-vulnerability/">security advisory for Logjam vulnerability</a>. In that announcement we&#8217;ve mentioned that GitLab.com is using 1024-bit DH groups to retain compatibility with older Java-based clients.</p>
+
+<p>We&#8217;ve updated the default/recommended SSL ciphers for all GitLab installations and implemented new ciphers on GitLab.com.</p>
+
+ 
+
+
+<p>After some reasearch and testing we&#8217;ve decided to change the SSL cipher suite served by the web server/load balancer.</p>
+
+<p>This decision was made after weighing on the trade-offs between having the stronger DH params and denying access to Java 6 based clients.</p>
+
+<h4>Using 2048-bit DHE params</h4>
+
+<p>Generating the 2048-bit DHE params was advised to help against the Logjam vulnerability. While this is a way to go for most servers, with GitLab.com we have to keep in mind that we have users using older Java-based clients.
+Adopting the stronger params suites would prevent those users using GitLab.com completely.
+Although the number of these users is not high, denying them access does not seem like an option.</p>
+
+<h4>Removing DHE suites</h4>
+
+<p>DHE suites have a couple of issues:</p>
+
+<ul>
+<li><a href="https://community.qualys.com/blogs/securitylabs/2013/06/25/ssl-labs-deploying-forward-secrecy">DHE is slow</a></li>
+<li>Not all browsers support all the necessary suites</li>
+</ul>
+
+
+<p>One advantage of having DHE together with ECDHE suites is that this allows forward secrecy to all clients.</p>
+
+<p>We then turned to investigating how others are handling this issue and we found out that, for example, Google sites mostly <a href="https://www.ssllabs.com/ssltest/analyze.html?d=www.google.com">do not have DHE suites in their configuration</a>.</p>
+
+<p>With this in mind we&#8217;ve tried removing the DHE suites and the result was as follows:</p>
+
+<ul>
+<li>All major browsers and clients retain forward secrecy using ECDHE</li>
+<li>SSL labs score went from B to A</li>
+<li>There is no forward secrecy for Android 2.3.7, Java 6 and OpenSSL 0.9.8</li>
+</ul>
+
+
+<p>After considering the trade-offs, we&#8217;ve decided to remove the DHE suites from our cipher suite on GitLab.com.</p>
+
+<p>Forward secrecy is now denied for Android 2.3.7, Java 6 and OpenSSL 0.9.8 but we suspect that number of users affected will be extremely low.</p>
+
+<p>We have also updated the recommended configurations for omnibus-gitlab packages and GitLab installation from source.</p>
+
+                  <a></a><p>Install GitLab on your own server in 2 minutes <a href="/downloads" id="dl-partial">Let's do it!</a> </p><a href="/downloads" class="btn btn-block btn-lg btn-purple visible-xs" id="dl-partial-sm">
+  Install GitLab on your own server in 2 minutes
+</a>
+
+
+                  
+                  <p>&#8594; <a href="/blog/archives.html">Browse all posts</a></p>
+
+                  <strong><a href="https://twitter.com/gitlab">@gitlab</a></strong>
+    on Twitter.
+
+    <a></a><p>For the latest and most detailed news followon Twitter. <a href="/atom.xml" class="rss-btn">
+      
+    </a> </p><p>Get every GitLab blog post and stay up to date.</p>
+     
+    <p id="mc_embed_signup" class="newsletter-form">
+       
+    </p>
+     
+
+  <p id="disqus_thread"></p>
+                   
+                  Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;
+                </div>
+
+<p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="./author/itech001.html">itech001</a>
+in <a href="./category/scm.html">scm</a>
+</p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>Categories</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="./category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="./category/devops.html">devops</a></li>
+  <li class="active"><a href="./category/scm.html">scm</a></li>
+  <li ><a href="./category/zh.html">zh</a></li>
+</ul>
+
+<h2>Links</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://getpelican.com/">Pelican</a></li>
+  <li><a href="http://python.org/">Python.org</a></li>
+  <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+</ul>
+
+<h2>Social</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+
+  <li><a href="https://github.com/ciandcd">GITHUB</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="./theme/js/jquery.js"></script>
+<script src="./theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

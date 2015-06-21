@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Atom.io for Markdown Editing - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+<link href="./feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+<a href="https://github.com/ciandcd">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" />
+</a>
+<!-- Header -->
+<header><div class="container">
+<h1 class="page-header"><a href="./index.html">ciandcd</a>
+<h4>continuous integration and continuous delivery</h4></h1>
+</div></header>
+<!-- /Header -->
+
+<!-- Body -->
+<section id="body"><div class="container-fluid">
+
+<!-- Nav bar -->
+<div class="row"><div class="col-lg-12">
+<nav class="navbar navbar-default"><div class="collapse navbar-collapse">
+<ul class="nav navbar-nav">
+  <li><a href="./index.html">Home</a></li>
+
+
+
+</ul>
+</div></nav>
+</div></div>
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h1>
+    Atom.io for Markdown Editing</h1>
+
+<div><p class="print-link"></p><p>A while back, <a target="_blank" href="https://atom.io/">Atom.io</a> replaced <a target="_blank" href="http://www.sublimetext.com/">Sublime Text</a> as my go-to editor of choice for most things (I still use Visual Studio for .NET, but I work at Microsoft so that's expected I guess.) Since I work on the documentation team, a lot of what I use Atom for is Markdown authoring. Some folks on my team have asked about my recommendations on using Atom for Markdown editing, so I thought this might be interesting for those outside the documentation team also.</p>
+<h2>Markdown support</h2>
+
+<p>Out of the box, Atom has pretty good support for Markdown. It has syntax highlighting and rendered preview functionality right out of the box, along with support for things like GitHub flavored Markdown. However, if you are coming from a dedicated Markdown editor such as <a target="_blank" href="http://www.markdownpad.com/,">Markdown Pad</a> you may miss features like a preview that scrolls in sync with the Markdown view.</p>
+
+<p>Fortunately, Atom has a variety of community generated packages that can be installed to provide additional functionality. Here are the ones I recommend:</p>
+
+<ul>
+	<li>
+<p><a target="_blank" href="https://atom.io/packages/markdown-writer">Markdown-Writer</a>: Adds a bunch of keyboard commands for things like text formatting and creating links &amp; images, along with support for popular static site blogging platforms.</p>
+</li>
+	<li>
+<p><a target="_blank" href="https://atom.io/packages/markdown-scroll-sync">Markdown-Scorll-Sync</a>: Makes the rendered preview scroll in sync with the Markdown view.</p>
+</li>
+	<li>
+<p><a target="_blank" href="https://atom.io/packages/markdown-format">Markdown-Format</a>: Makes your Markdown pretty when you save. Things like renumbering lists so they are actually in order (vs. the 1, 2, 3, 5, 5, 5, 8, 9 I always seem to end up with,) and padding cells in GitHub Flavored Markdown tables so they are more readable.</p>
+</li>
+</ul>
+<p>There's more than this, so I'll leave it to you to explore the other Markdown related packages.</p>
+<h2>Installing packages</h2>
+
+<p>Once you've installed <a target="_blank" href="https://atom.io">Atom.io</a>, to install these or any other packages, perform the following steps:</p>
+
+<ol>
+	<li>
+<p>From the <strong>File</strong> menu, select <strong>Settings</strong>, then <strong>Install</strong>. Enter the name of the package you wish to install (or part of the name, such as <strong>Markdown</strong> to see all packages that contain that word.)</p>
+</li>
+	<li>
+<p>Click the <strong>Install</strong> button beside the package. If you want to read more about the package before installing, click the title of the package and it will open your browser and display more information.</p>
+</li>
+</ol><h2>Configuration</h2>
+
+<p>Once installed, you can use the <strong>Packages</strong> tab from <strong>Settings</strong> to disable, enable, or configure packages.</p>
+
+<p>While some packages have their own configuration, you will also want to look at <strong>File</strong>, <strong>Settings</strong>, <strong>Settings</strong> to configure the following settings for Markdown authoring:</p>
+
+<ul>
+	<li>
+<p><strong>Tab length</strong>: If <strong>Soft tabs</strong> is enabled, then you should set this to 4 since Markdown expects either a single tab or 4 spaces when indenting.</p>
+</li>
+	<li>
+<p><strong>Soft wrap</strong>, <strong>Soft wrap and preferred line length</strong>, and <strong>Preferred line length</strong>: This causes the editor to wrap lines at the specified line length. Otherwise, paragraphs will scroll off the editor to the right. Makes things much more readable, especially when the preview window is open.</p>
+</li>
+</ul>
+<p>This last one is a matter of preference. Markdown-Writer does its own special thing with the tab key for indention. In the current version, on Windows, it only seems to indent in a list, while I want it to indent everywhere when I hit the tab key. You can override the current Markdown-Writer functionality by doing the following:</p>
+
+<ol>
+	<li>
+<p><strong>File</strong>, <strong>Settings</strong>, <strong>Keybindings</strong>, then click the link to <strong>your keymap file</strong> at the top of the page.</p>
+</li>
+	<li>
+<p>Add the following new lines to the end of the <strong>keymap.cson</strong> file:</p>
+'atom-text-editor[data-grammar~=\'gfm\']':
+'tab':&#160;'editor:indent'
+
+<p>This restores normal tab functionality for Markdown editing. <strong>NOTE</strong>: If you're using something like Markdown-Format, it may convert 4 spaces to tabs automatically when you save.</p>
+</li>
+</ol><h2>Tips</h2>
+
+<ul>
+	<li>
+<p>To toggle the Markdown preview, use ctrl-shift-m.</p>
+</li>
+	<li>
+<p>If you've opend Atom to a specific folder, and it's showing the tree view side bar, you can dismiss it with ctrl-.</p>
+</li>
+	<li>
+<p>Atom.io checks for package updates automatically. If you see a blue box in the lower right-hand corner, that means some packages have been updated. Click on the blue box to install them.</p>
+</li>
+	<li>
+<p>If you're working in a folder that contains a lot of Markdown files, don't even try using the tree view. It's 100x easier to use ctrl-t and then start typing the file name you want to open. This will search through the directory structure for files that match the text you've entered, and you can then click the one you want.</p>
+</li>
+	<li>
+<p>If you need to change the indentation for a section of text (for example, a section of source code,) just select it and hit ctrl-[ or ] to change the indent level.</p>
+</li>
+</ul><h2>So what about Visual Studio Code?</h2>
+
+<p>Yes, Visual Studio Code is nice, and it has some basic Markdown support. But it's brand new and the extensibility story hasn't materialized yet. So while it can be used for Markdown right now, it doesn't have all the things I need/want from a Markdown editor.</p>
+
+<p>Long term, it may kick Atom off my system once the community can start extending it. I'll evaluate it and do a blog on it once we get to that point.</p>
+<h2>Summary</h2>
+
+<p>Atom.io is a great Markdown authoring tool for people who need a generic, extensible Markdown editor. While it may not have all the bells and whistles, or speed of a dedicated Markdown tool, it has enough functionality and extensibility to get the job done. Since it also handles code authoring, it's also a nice way to reduce the number of specialized tools loaded on your workstation.</p>	
+	<p></p>
+
+    </div>
+
+<p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="./author/itech001.html">itech001</a>
+in <a href="./category/devops.html">devops</a>
+</p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>Categories</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="./category/ciandcd.html">ciandcd</a></li>
+  <li class="active"><a href="./category/devops.html">devops</a></li>
+  <li ><a href="./category/scm.html">scm</a></li>
+  <li ><a href="./category/zh.html">zh</a></li>
+</ul>
+
+<h2>Links</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://getpelican.com/">Pelican</a></li>
+  <li><a href="http://python.org/">Python.org</a></li>
+  <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+</ul>
+
+<h2>Social</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+
+  <li><a href="https://github.com/ciandcd">GITHUB</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="./theme/js/jquery.js"></script>
+<script src="./theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

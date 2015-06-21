@@ -17,7 +17,6 @@ feeds = {
         'http://blog.devopsguys.com/feed/',
     ],
     'ciandcd': [
-        'http://martinfowler.com/bliki/bliki.atom',
         'http://continuousdelivery.com/feed/',
         'http://developer-blog.cloudbees.com/feeds/posts/default',
     ],

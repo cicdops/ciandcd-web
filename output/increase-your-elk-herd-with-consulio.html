@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Increase your ELK herd with Consul.io - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+<link href="./feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+<a href="https://github.com/ciandcd">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" />
+</a>
+<!-- Header -->
+<header><div class="container">
+<h1 class="page-header"><a href="./index.html">ciandcd</a>
+<h4>continuous integration and continuous delivery</h4></h1>
+</div></header>
+<!-- /Header -->
+
+<!-- Body -->
+<section id="body"><div class="container-fluid">
+
+<!-- Nav bar -->
+<div class="row"><div class="col-lg-12">
+<nav class="navbar navbar-default"><div class="collapse navbar-collapse">
+<ul class="nav navbar-nav">
+  <li><a href="./index.html">Home</a></li>
+
+
+
+</ul>
+</div></nav>
+</div></div>
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h1>
+    Increase your ELK herd with Consul.io</h1>
+
+<div><p class="reblog-from"><img alt="" src="http://0.gravatar.com/avatar/91f3566a38a35d6b2ed4c7b4b0d5e3d2?s=48&amp;d=identicon&amp;r=G" class="avatar avatar-48" height="48" width="48">Originally posted on <a href="http://doics.co/2015/05/18/increase-your-elk-herd-with-consul-io">DevOps Is Common Sense...</a>:</p><p>At work, I recently had a need to put in place a scalable logging solution based around the ELK stack.</p>
+
+<p><a href="http://elasticsearch-users.115913.n3.nabble.com/Java-client-unable-to-connect-ClusterBlockException-td4019825.html" title="Elasticsearch Users Mailing List">Issues</a><a href="https://community.rackspace.com/products/f/18/t/4055" title="Rackspace Community Forums">with</a><a href="http://jontai.me/blog/2013/03/elasticsearch-ec2-discovery/" title="How to get Elasticsearch configured in AWS">Multicast</a><a href="http://elasticsearch-users.115913.n3.nabble.com/discovery-multicast-vs-unicast-td3689223.html" title="Elasticsearch Users &amp;quot;Should I use Multicast or Unicast?&amp;quot;">networking</a> aside, &#160;Elasticsearch scales pretty well on its own without the need for any additional overheads, however&#160;discovering whether a node is online or not and connecting only to available nodes can be tricky.</p>
+
+<p>Scaling Logstash can be tricky, but it basically involves <a href="http://serverfault.com/questions/459303/scaling-logstash-with-redis-elasticsearch" title="Advice on scaling Logstash from Stack Overflow">adding more Logstash servers</a> to the mix and pointing them at your Elasticsearch cluster by <a href="http://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-host" title="Logstash Documentation on adding multiple hosts">defining multiple hosts</a> in your Logstash configuration.</p>
+
+<p>Kibana (like most web applications) can <a href="http://www.elastic.co/guide/en/kibana/current/_setting_kibana_server_properties.html" title="Kibana Documentation">only have one Elasticsearch host defined</a> in the config, so scaling out Kibana is more difficult.</p>
+
+<p>The above raises the question &#8211; how do I know&#160;which Elasticsearch node to point my configuration at if I don&#8217;t know whether they are there or not.</p>
+
+<p>The answer came in the form of <a href="http://consul.io/" title="Consul.io&#x27;s Home Page">consul.io</a>. &#160;If you&#8217;ve not looked at&#8230;</p>
+</div>
+
+<p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="./author/itech001.html">itech001</a>
+in <a href="./category/devops.html">devops</a>
+</p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>Categories</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="./category/ciandcd.html">ciandcd</a></li>
+  <li class="active"><a href="./category/devops.html">devops</a></li>
+  <li ><a href="./category/scm.html">scm</a></li>
+  <li ><a href="./category/zh.html">zh</a></li>
+</ul>
+
+<h2>Links</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://getpelican.com/">Pelican</a></li>
+  <li><a href="http://python.org/">Python.org</a></li>
+  <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+</ul>
+
+<h2>Social</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+
+  <li><a href="https://github.com/ciandcd">GITHUB</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="./theme/js/jquery.js"></script>
+<script src="./theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

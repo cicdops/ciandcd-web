@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Did You Install GitLab From Source? Check Your Git Version - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+<link href="./feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+<a href="https://github.com/ciandcd">
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" />
+</a>
+<!-- Header -->
+<header><div class="container">
+<h1 class="page-header"><a href="./index.html">ciandcd</a>
+<h4>continuous integration and continuous delivery</h4></h1>
+</div></header>
+<!-- /Header -->
+
+<!-- Body -->
+<section id="body"><div class="container-fluid">
+
+<!-- Nav bar -->
+<div class="row"><div class="col-lg-12">
+<nav class="navbar navbar-default"><div class="collapse navbar-collapse">
+<ul class="nav navbar-nav">
+  <li><a href="./index.html">Home</a></li>
+
+
+
+</ul>
+</div></nav>
+</div></div>
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h1>
+    Did You Install GitLab From Source? Check Your Git Version</h1>
+
+<div><h1 class="title">Did you install GitLab from source? Check your Git version</h1>
+                     
+                    
+                  
+
+                  <p>Although the preferred way to install GitLab is to use our <a href="/downloads">omnibus
+packages</a>, you can also install GitLab Community Edition or
+Enterprise Edition &#8216;from source&#8217;. If you used this installation method, and if
+you compiled Git from source in the process then please check whether your Git
+version defends against Git vulnerability CVE-2014-9390. This issue does not
+apply to our Omnibus packages (DEB or RPM).</p>
+
+ 
+
+
+<p>Although <a href="/2014/12/19/gitlab-not-affected-by-CVE-2014-9390-git-vulnerability/">GitLab itself is not affected by
+CVE-2014-9390</a>,
+a GitLab server may be used to deliver &#8216;poisoned&#8217; Git repositories to users on
+vulnerable systems. Upgrading Git on your GitLab server stops users from
+pushing poisoned repositories to your GitLab server.</p>
+
+<p>Due to an oversight, the <a href="https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md">guide for installing GitLab from
+source</a>
+still contained instructions telling administrators to install Git 2.1.2 if the
+version of Git provided by their Linux distribution was too old. Git 2.1.2 does
+not defend against CVE-2014-9390.</p>
+
+<p>If your GitLab server uses <code>/usr/local/bin/git</code> please check your Git version
+using the instructions in this <a href="https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/update/7.11-to-7.12.md#0-double-check-your-git-version">upgrade
+guide</a>.</p>
+
+                  <a></a><p>Install GitLab on your own server in 2 minutes <a href="/downloads" id="dl-partial">Let's do it!</a> </p><a href="/downloads" class="btn btn-block btn-lg btn-purple visible-xs" id="dl-partial-sm">
+  Install GitLab on your own server in 2 minutes
+</a>
+
+
+                  
+                  <p>&#8594; <a href="/blog/archives.html">Browse all posts</a></p>
+
+                  <strong><a href="https://twitter.com/gitlab">@gitlab</a></strong>
+    on Twitter.
+
+    <a></a><p>For the latest and most detailed news followon Twitter. <a href="/atom.xml" class="rss-btn">
+      
+    </a> </p><p>Get every GitLab blog post and stay up to date.</p>
+     
+    <p id="mc_embed_signup" class="newsletter-form">
+       
+    </p>
+     
+
+  <p id="disqus_thread"></p>
+                   
+                  Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;
+                </div>
+
+<p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="./author/itech001.html">itech001</a>
+in <a href="./category/scm.html">scm</a>
+</p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>Categories</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="./category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="./category/devops.html">devops</a></li>
+  <li class="active"><a href="./category/scm.html">scm</a></li>
+  <li ><a href="./category/zh.html">zh</a></li>
+</ul>
+
+<h2>Links</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://getpelican.com/">Pelican</a></li>
+  <li><a href="http://python.org/">Python.org</a></li>
+  <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+</ul>
+
+<h2>Social</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+
+  <li><a href="https://github.com/ciandcd">GITHUB</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="./theme/js/jquery.js"></script>
+<script src="./theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>
