@@ -10,7 +10,7 @@
   <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
 <link href="http://www.ciandcd.com/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
 
-       <link href="http://www.ciandcd.com/devopsguys-at-redgate.html" rel="bookmark"/>
+       <link href="http://www.ciandcd.com/on-antifragility-in-systems-and-organizational-architecture.html" rel="bookmark"/>
                    
 
 
@@ -25,26 +25,54 @@ bootstrap-itech - a Pelican theme using Bootstrap
 <body>
 
 <!-- Header -->
-<header><div class="container">
-<h1 class="page-header"><a href="http://www.ciandcd.com/index.html">ciandcd</a>
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://www.ciandcd.com/index.html">ciandcd </a>
 <h4>continuous integration and continuous delivery</h4></h1>
-</div></header>
+</div>
+</header>
 <!-- /Header -->
 
-<!-- Body -->
-<section id="body"><div class="container-fluid">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.ciandcd.com/index.html"></a>
+    </div>
 
-<!-- Nav bar -->
-<div class="row"><div class="col-lg-12">
-<nav class="navbar navbar-default"><div class="collapse navbar-collapse">
-<ul class="nav navbar-nav">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
   <li><a href="http://www.ciandcd.com/index.html">Home</a></li>
 
 
 
-</ul>
-</div></nav>
-</div></div>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
 <!-- /Nav bar -->
 
 <!-- Main block -->
@@ -56,22 +84,326 @@ bootstrap-itech - a Pelican theme using Bootstrap
 
 
       <article>
+      <h1><a href="http://www.ciandcd.com/on-antifragility-in-systems-and-organizational-architecture.html" rel="bookmark">
+    On Antifragility in Systems and Organizational Architecture</a></h1>
+
+      <div><p class="post-headline"><h1>On Antifragility in Systems and Organizational Architecture</h1></p><p>In his new book, <a href="http://www.amazon.com/dp/1400067820?tag=contindelive-20">Antifragile</a>, Nassim Taleb discusses the behaviour of complex systems and distinguishes three kinds: those that are fragile, those that are robust or resilient, and those that are antifragile. These types of systems differ in how they respond to volatility: &#8220;The fragile wants tranquility, the antifragile grows from disorder, and the robust doesn&#8217;t care too much.&#8221; (p20) Taleb argues that we want to create systems that are antifragile &#8211; that are designed to take advantage of volatility. I think this concept is incredibly powerful when applied to systems and organizational architecture.</p>
+<p></p>
+<h3>Why Continuous Delivery Works</h3>
+<p>Taleb shows why the traditional approach of operations &#8211; making change hard, since change is risky &#8211; is flawed: &#8220;the problem with artificially suppressed volatility is not just that the system tends to become extremely fragile; it is that, at the same time, it exhibits no visible risks&#8230; These artificially constrained systems become prone to Black Swans. Such environments eventually experience massive blowups&#8230; catching everyone off guard and undoing years of stability or, in almost all cases, ending up far worse than they were in their initial volatile state&#8221; (p105)<a href="#1">1</a>.</p>
+<p>This a great explanation of how many attempts to manage risk actually result in <a href="http://continuousdelivery.com/2013/08/risk-management-theatre/">risk management theatre</a> &#8211; giving the appearance of effective risk management while actually making the system (and the organization) extremely fragile to unexpected events. It also explains why <a href="http://www.amazon.com/dp/0321601912?tag=contindelive-20">continuous delivery</a> works. The most important heuristic we describe in the book is &#8220;if it hurts, do it more often, and bring the pain forward.&#8221; The effect of following this principle is to exert a constant stress on your delivery and deployment process to reduce its fragility so that releasing becomes a boring, low-risk activity.</p>
+<h3>Antifragile Systems</h3>
+<p>Another of Taleb&#8217;s key claims is that it is impossible to predict &#8220;Black Swan&#8221; events: &#8220;you cannot say with any reliability that a certain remote event or shock is more likely than another&#8230; but you can state with a lot more confidence that an object or a structure is more fragile than another should a certain event happen.&#8221; (p8). Thus we need &#8220;to switch the blame from the inability to see an event coming&#8230; to the failure to understand (anti)fragility, namely, &#8216;why did we build something so fragile to these types of events?&#8217;&#8221; (p136).</p>
+<p>Unlike risk, fragility is actually measurable. How do we measure the fragility of the systems we build? We try to break them, using techniques such as <a href="http://queue.acm.org/detail.cfm?id=2371297">game days</a> and systems like <a href="http://techblog.netflix.com/2012/07/chaos-monkey-released-into-wild.html">chaos monkey</a>. The systematic application of stress to your systems is essential &#8211; not just to ensure your systems are antifragile, but to develop the muscles of the people who create and maintain them through constant practice. After all, it&#8217;s the combination of the system and the people who build and run it that has the quality of antifragility.</p>
+<p>In this context, an important quality of legacy systems is their fragility. Legacy systems that aren&#8217;t touched for a long time will turn into fragile &#8220;works of art&#8221;: changing them is considered risky, the number of people who understand the system decreases with time, and their knowledge atrophies from lack of exercise.</p>
+<p>How do we create antifragile systems? Apply stress to them continuously so we are forced to simplify, homogenise, and automate. </p>
+<h3>Antifragile Organizations</h3>
+<p>We can measure the fragility of an organization by how long it takes before it liquidates its assets. Deloitte&#8217;s Shift Index shows that the average life expectancy of a Fortune 500 company has declined from around 75 years half a century ago to less than 15 years today.</p>
+<p>Start-ups are notoriously fragile. But the ones that survive and grow turn into something potentially more dangerous &#8211; robust organizations. The problem with robust organizations is that they resist change. They aren&#8217;t quickly killed by changes to their environment, but they don&#8217;t adapt to them either &#8211; they die slowly. We see this effect all the time &#8211; changing the culture of an established organization is incredibly hard.</p>
+<p>Antifragile organizations are those that have a culture that enables them to learn fast from their environment and adapt to it so they can take advantage of volatility. Here are some characteristics of antifragile organizations:</p>
+<ul>
+<li><strong>Systems thinking.</strong> Everybody in the organization knows the goals of the organization and makes sure their work is directly contributing towards these goals.</li>
+<li><strong>Theory Y Management.</strong> Management needs to assume employees are self-motivated and will be able to learn how to solve problems themselves. Organizations need to make sure they hire antifragile people who will thrive in this environment. As Daniel Pink&#8217;s <a href="http://www.amazon.com/dp/1594484805?tag=contindelive-20">Drive</a> points out, giving your employees autonomy, purpose, and the opportunity to learn and master new skills is what stops them from quitting, thus increasing the antifragility of your organization.</li>
+<li><strong>Continuous experimentation.</strong> As described in <a href="http://www.amazon.com/dp/0071635238?tag=contindelive-20">Toyota Kata</a>, good management knows that the best solutions come from the workers. They create an environment in which practitioners are able to run experiments to learn as rapidly as possible. The feedback loops in command and control organizations are too slow for them to adapt effectively.</li>
+<li><strong>Disruptive product development.</strong> Antifragile organizations aren&#8217;t content with stress generated by their environment. Like humans exercising, they also try and disrupt themselves (the organizational equivalent of a game day). For example, <a href="http://blogs.hbr.org/ideacast/2013/01/jeff-bezos-on-leading-for-the.html">Amazon cannibalized its own business</a>, creating the Amazon Marketplace and the Kindle. Apple is <a href="http://blogs.hbr.org/cs/2011/10/steve_jobs_solved_the_innovato.html">cannibalizing its Mac business</a> with the iPad. Fragile organizations resist disrupting their own product lines, as <a href="http://spectrum.ieee.org/semiconductors/processors/25-microchips-that-shook-the-world/5">Toshiba did at first with flash memory</a>. If you do a good job at this you never need to worry about the competition &#8211; you&#8217;ll always beat them to it.</li>
+</ul>
+<h3>Fragility and Agility</h3>
+<p>As Taleb points out, &#8220;antifragility is desirable in general, but not always, as there are cases in which antifragility will be costly, extremely so. Further, it is hard to consider robustness as always desirable&#8212;to quote Nietzsche, one can die from being immortal.&#8221; (p22) Of course working out where on the spectrum you want your systems and your organization to lie is an art, and the great artists are those that know how to build systems, organizations, and products simply, quickly and cheaply so that they are antifragile with respect to our biggest enemy: time. How do they do that? Using the same heuristics described in &#8220;antifragile organizations&#8221;, above, which closely mirror the <a href="http://itrevolution.com/the-three-ways-principles-underpinning-devops/">Three Ways of Devops</a>.</p>
+<p>As I read <a href="http://www.amazon.com/dp/1400067820?tag=contindelive-20">Antifragile</a>, it reminded me of something I read a number of years ago: Kent Beck and Cynthia Andres&#8217; <a href="http://www.amazon.com/dp/0321278658?tag=contindelive-20">Extreme Programming Explained</a>. The subtitle? Embrace Change. It strikes me that the concept of antifragile is what we were aiming for with agile the whole time: building systems (including human systems &#8211; organizations) that benefit from volatility.</p>
+
+<h4>Endnotes</h4>
+<p>Thanks to <a href="https://twitter.com/badrij">Badrinath Janakiraman</a> for feedback on an earlier draft of this post.</p>
+<p><a name="1">1</a> He is talking about financial markets, which are rather less fragile than IT systems, hence his rather generous &#8220;years of stability&#8221;</p>
+</div>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/book-review-the-phoenix-project.html" rel="bookmark">
+    Book Review: The Phoenix Project</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/book-review-the-phoenix-project.html">Read more</a></p>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/announcing-flowcon.html" rel="bookmark">
+    Announcing FlowCon</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/announcing-flowcon.html">Read more</a></p>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/videos-from-the-continuous-delivery-track-at-qcon-sf-2012.html" rel="bookmark">
+    Videos from the Continuous Delivery track at QCon SF 2012</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/videos-from-the-continuous-delivery-track-at-qcon-sf-2012.html">Read more</a></p>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/risk-management-theatre-on-show-at-an-organization-near-you.html" rel="bookmark">
+    Risk Management Theatre: On Show At An Organization Near You</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/risk-management-theatre-on-show-at-an-organization-near-you.html">Read more</a></p>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/how-to-create-a-more-diverse-tech-conference.html" rel="bookmark">
+    How To Create A More Diverse Tech Conference</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/how-to-create-a-more-diverse-tech-conference.html">Read more</a></p>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/flowcon-2013-wrap-up-with-some-hard-data-on-gender-diversity-in-tech-conferences.html" rel="bookmark">
+    FlowCon 2013 Wrap-Up, With Some Hard Data on Gender Diversity in Tech Conferences.</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/flowcon-2013-wrap-up-with-some-hard-data-on-gender-diversity-in-tech-conferences.html">Read more</a></p>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/the-science-behind-the-2013-puppet-labs-devops-survey-of-practice.html" rel="bookmark">
+    The Science Behind the 2013 Puppet Labs DevOps Survey Of Practice</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/the-science-behind-the-2013-puppet-labs-devops-survey-of-practice.html">Read more</a></p>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/visualizations-of-continuous-delivery.html" rel="bookmark">
+    Visualizations of Continuous Delivery</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/visualizations-of-continuous-delivery.html">Read more</a></p>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/the-2014-state-of-devops-report-is-here.html" rel="bookmark">
+    The 2014 State of DevOps Report Is Here!</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/the-2014-state-of-devops-report-is-here.html">Read more</a></p>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/perl-du-xie-wen-jian-itech.html" rel="bookmark">
+    perl 读写文件 - iTech</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/perl-du-xie-wen-jian-itech.html">Read more</a></p>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
+      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/jian-dan-de-proxyzhi-tinyhttpproxypy-itech.html" rel="bookmark">
+    简单的proxy之TinyHTTPProxy.py - iTech</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/jian-dan-de-proxyzhi-tinyhttpproxypy-itech.html">Read more</a></p>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
+      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/20ge-you-yong-de-linuxming-ling-xing-ji-qiao-itech.html" rel="bookmark">
+    20个有用的linux命令行技巧 - iTech</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/20ge-you-yong-de-linuxming-ling-xing-ji-qiao-itech.html">Read more</a></p>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
+      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/4ge-ke-yi-fa-song-wan-zheng-dian-zi-you-jian-de-ming-ling-xing-gong-ju-itech.html" rel="bookmark">
+    4个可以发送完整电子邮件的命令行工具 - iTech</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/4ge-ke-yi-fa-song-wan-zheng-dian-zi-you-jian-de-ming-ling-xing-gong-ju-itech.html">Read more</a></p>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
+      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/ke-yi-ti-dai-puttyde-sshke-hu-duan-itech.html" rel="bookmark">
+    可以替代putty的ssh客户端 - iTech</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/ke-yi-ti-dai-puttyde-sshke-hu-duan-itech.html">Read more</a></p>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
+      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/linuxmu-lu-de-quan-xian-itech.html" rel="bookmark">
+    linux目录的权限 - iTech</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/linuxmu-lu-de-quan-xian-itech.html">Read more</a></p>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
+      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/nohuphe-disown-itech.html" rel="bookmark">
+    nohup和disown - iTech</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/nohuphe-disown-itech.html">Read more</a></p>
+
+      <p class="info">
+Posted Sun 21 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
+      </p>
+
+      </article>
+
+
+      <article>
       <h1><a href="http://www.ciandcd.com/devopsguys-at-redgate.html" rel="bookmark">
     DevOpsGuys at RedGate</a></h1>
 
-      <div><p><a href="https://devopsguys.files.wordpress.com/2015/02/red-gate-e1424089521549.png"><img class="aligncenter size-full wp-image-777" src="https://devopsguys.files.wordpress.com/2015/02/red-gate-e1424089521549.png?w=474" alt="red-gate"></a></p>
-<p>The DevOpsGuys headed off on a road trip this week to meet with the RedGate team at their amazing offices in Cambridge.</p>
-<p>As well as working on some workshop training opportunities and guest blog articles (stay tuned to the DevOpsGuys Blog for some RedGate articles coming soon) the teams got together to brainstorm ideas and share skills.</p>
-<p>We were able to look at some of their newest tools and we&#8217;re excited to announce that we will be delivering workshops on RedGate DLM tools at various sessions across the country this summer.</p>
-<p>We&#8217;ve already implemented these tools for a many of our&#160;customers and we&#8217;re delighted to be able to introduce their qualities, in detail, to a wide range of industry professionals as part of an effective, independent DevOps adoption process.</p>
-<p><strong>The workshops will be running on:</strong></p>
-<p>May 20 &#8211; Automated Database Deployment, London</p>
-<p>June 26 &#8211;&#160;Automated Database Deployment, Belfast</p>
-<p>July 8 &#8211; Database Source Control, London</p>
-<p>July 24 &#8211;&#160;Database Source Control, Manchester</p>
-<p>August 20 &#8211; Database Continuous Integration, Cardiff</p>
-<p>Spaces are limited, so <a href="http://www.red-gate.com/training/">register now to take part in a workshop or request a workshop near you.</a></p>
-</div>
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/devopsguys-at-redgate.html">Read more</a></p>
 
       <p class="info">
 Posted Sun 21 June 2015
@@ -115,295 +447,6 @@ in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
 
       </article>
 
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/sponsored-dog-walk.html" rel="bookmark">
-    Sponsored DOG Walk</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/sponsored-dog-walk.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/devopsguys-announce-redgate-partnership.html" rel="bookmark">
-    DevOpsGuys announce RedGate partnership</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/devopsguys-announce-redgate-partnership.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/increase-your-elk-herd-with-consulio.html" rel="bookmark">
-    Increase your ELK herd with Consul.io</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/increase-your-elk-herd-with-consulio.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/steve-thairs-qcon-talk-now-available-online.html" rel="bookmark">
-    Steve Thair’s QCon Talk – now available online</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/steve-thairs-qcon-talk-now-available-online.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/the-ops-mgr-at-qcon-2015.html" rel="bookmark">
-    The Ops Mgr at QCon 2015</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/the-ops-mgr-at-qcon-2015.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/dogwalking-in-brecon.html" rel="bookmark">
-    DOGWalking in Brecon</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/dogwalking-in-brecon.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/dogs-at-digital-2015.html" rel="bookmark">
-    DOGs at Digital 2015</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/dogs-at-digital-2015.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/an-example-of-preparatory-refactoring.html" rel="bookmark">
-    An example of preparatory refactoring</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/an-example-of-preparatory-refactoring.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/bliki-diversitymediocrityillusion.html" rel="bookmark">
-    Bliki: DiversityMediocrityIllusion</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/bliki-diversitymediocrityillusion.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/using-oauth-for-a-simple-command-line-script-to-access-googles-data.html" rel="bookmark">
-    Using oauth for a simple command line script to access              Google's data</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/using-oauth-for-a-simple-command-line-script-to-access-googles-data.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/bliki-datalake.html" rel="bookmark">
-    Bliki: DataLake</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/bliki-datalake.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/refactoring-code-that-accesses-external-services.html" rel="bookmark">
-    Refactoring code that accesses external services</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/refactoring-code-that-accesses-external-services.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/retreaded-conversationalstories.html" rel="bookmark">
-    Retreaded: ConversationalStories</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/retreaded-conversationalstories.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/bliki-beckdesignrules.html" rel="bookmark">
-    Bliki: BeckDesignRules</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/bliki-beckdesignrules.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/retreaded-codeasdocumentation.html" rel="bookmark">
-    Retreaded: CodeAsDocumentation</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/retreaded-codeasdocumentation.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/bliki-microservicepremium.html" rel="bookmark">
-    Bliki: MicroservicePremium</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/bliki-microservicepremium.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/bliki-yagni.html" rel="bookmark">
-    Bliki: Yagni</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/bliki-yagni.html">Read more</a></p>
-
-      <p class="info">
-Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-      </p>
-
-      </article>
-
         <nav class="pagination">
 <ul class="pagination">
     <li class="disabled"><span>&laquo;</span></li>
@@ -431,7 +474,7 @@ in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
   <li ><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
   <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
   <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
-  <li ><a href="http://www.ciandcd.com/category/zh.html">zh</a></li>
+  <li ><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
 </ul>
 
 <h2>Links</h2>

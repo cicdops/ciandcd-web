@@ -5,7 +5,7 @@ import feedparser
 from newspaper import Article,Config
 
 feeds = {
-    'zh':[
+    '中文':[
         'http://feed.cnblogs.com/blog/u/50245/rss',
     ],
     'devops': [
@@ -91,7 +91,3 @@ for category in feeds.keys():
                     print('Error:cannot find content')
             except:
                 continue
-
-
-
-

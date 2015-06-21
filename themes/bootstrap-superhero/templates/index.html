@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% if articles %}
+  {% for article in articles_page.object_list %} {# TODO: find more efficient way to do this #}
+    {% if loop.first and not articles_page.has_previous() %}
+      <link href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"/>
+    {% endif %}
+  {% endfor %}
+{# TODO: add link header for pages if no articles specified #}
+{% endif %}
+
+{% include 'block_disqus_count_header.html' %}
+
+{% endblock head %}
+
+{% block content %}
+{% if articles %}
+
+  {% for article in articles_page.object_list %}
+    {% if loop.first and not articles_page.has_previous() %}
+      <article>
+      <h1><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark">{{ article.title }}</a></h1>
+
+      {{ article.content }}
+
+      <p class="info">
+      {% include 'block_article_info.html' %}
+      </p>
+
+      {% if DISQUS_SITENAME %}
+        <aside id="comment-count"><p>
+        {% include 'block_disqus_count.html' %}
+        </p></aside>
+      {% endif %}
+      </article>
+
+      {% if DEFAULT_PAGINATION and loop.length == 1 and articles_page.has_next() %}
+        <nav >
+          {% include 'block_pagination.html' %}
+        </nav>
+      {% endif %}
+
+    {% else %}
+      <article>
+      <h1><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark">{{ article.title }}</a></h1>
+
+      {{ article.summary }}
+
+      {% if article.content|length > article.summary|length %}
+        <p><a class="btn btn-mini btn-primary" href="{{ SITEURL }}/{{ article.url }}">Read more</a></p>
+      {% endif %}
+
+      <p class="info">
+      {% include 'block_article_info.html' %}
+      </p>
+
+      {% if DISQUS_SITENAME %}
+        <aside id="comment-count"><p>
+        {% include 'block_disqus_count.html' %}
+        </p></aside>
+      {% endif %}
+      </article>
+
+      {% if DEFAULT_PAGINATION and loop.last and (articles_page.has_previous() or articles_page.has_next()) %}
+        <nav class="pagination">
+          {% include 'block_pagination.html' %}
+        </nav>
+      {% endif %}
+
+    {% endif %}
+  {% endfor %}
+
+{% else %}
+
+  {% for page_num in range(1, PAGES|length + 1) %} {# TODO: improve wasteful inner loop #}
+    {% for page_iter in PAGES if page_iter.order and page_iter.order|int > 0 %}
+      {% if page_iter.order|int == page_num %}
+        <h2><a href="{{ SITEURL }}/{{ page_iter.url }}">{{ page_iter.title }}</a></h2>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+
+  {% for page_iter in PAGES if not page_iter.order %}
+    <h2><a href="{{ SITEURL }}/{{ page_iter.url }}">{{ page_iter.title }}</a></h2>
+  {% endfor %}
+
+{% endif %}
+{% endblock content %}
