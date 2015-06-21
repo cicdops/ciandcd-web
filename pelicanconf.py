@@ -33,7 +33,7 @@ EXTRA_PATH_METADATA = {
 
 #theme
 #https://github.com/getpelican/pelican-themes/tree/master/gum
-THEME = "themes/bootstrap-superhero"
+THEME = "themes/bootstrap-spacelab"
 
 #disqus
 DISQUS_SITENAME = ''

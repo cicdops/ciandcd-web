@@ -5,11 +5,11 @@
   <title>
     Git Simple Feature Branch Workflow - ciandcd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="http://www.ciandcd.com/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-  <link href="http://www.ciandcd.com/theme/css/main.css" rel="stylesheet" type="text/css"/>
-  <link href="http://www.ciandcd.com/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="./theme/css/pygment.css" rel="stylesheet" type="text/css"/>
   <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
-<link href="http://www.ciandcd.com/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+<link href="./feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
 
 
   <!--[if lt IE 9]>
@@ -25,7 +25,7 @@ bootstrap-itech - a Pelican theme using Bootstrap
 <!-- Header -->
 <header>
 <div class="container-fluid">
-<h1 class="page-header"><a href="http://www.ciandcd.com/index.html">ciandcd </a>
+<h1 class="page-header"><a href="./index.html">ciandcd </a>
 <h4>continuous integration and continuous delivery</h4></h1>
 </div>
 </header>
@@ -41,13 +41,13 @@ bootstrap-itech - a Pelican theme using Bootstrap
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://www.ciandcd.com/index.html"></a>
+      <a class="navbar-brand" href="./index.html"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-  <li><a href="http://www.ciandcd.com/index.html">Home</a></li>
+  <li><a href="./index.html">Home</a></li>
 
 
 
@@ -56,7 +56,7 @@ bootstrap-itech - a Pelican theme using Bootstrap
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-mini btn-primary">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="http://www.cnblogs.com/itech">itech</a></li>
@@ -79,8 +79,6 @@ bootstrap-itech - a Pelican theme using Bootstrap
 <!-- Content -->
 <div class="col-lg-9">
 <article>
-<h1>
-    Git Simple Feature Branch Workflow</h1>
 
 <div><p class="print-link"></p><p>In my&#160;<a href="http://madhukaudantha.blogspot.com/2015/06/workflows-for-git.html" target="_blank">previous post</a>, I wrote about git work flows. Now I will going to try out simple '<a href="http://madhukaudantha.blogspot.com/2015/06/workflows-for-git.html" target="_blank">Feature Branch Workflow</a>'.<br></p>1. I pull down the latest changes from mastergit checkout mastergit pull origin master2. I make branch to make changes&#160;git checkout -b new-feature3. Now I am working on the feature4. I keep my feature branch fresh and up to date with the latest changes in master, using 'rebase'Every once in a while during the development update the feature branch with the latest changes in master.git fetch origingit rebase origin/masterIn the case where other devs are also working on the same shared remote feature branch, also rebase changes coming from it:git rebase origin/new-featureResolving conflicts during the rebase allows me to have always clean merges at the end of the feature development.5. When I am ready I commit my changesgit add -pgit commit -m "my changes"6. rebasing keeps my code working, merging easy, and history clean.git fetch origingit rebase origin/new-featuregit rebase origin/masterBelow two points are optional6.1 push my branch for discussion (pull-request)git push origin new-feature6.2 feel free to rebase within my feature branch, my team can handle it!git rebase -i origin/master<br><i><b>Few point that can be happen in developing phase.</b></i><br>Another new feature is needed and it need some commits from my new branch 'new-feature' that new feature need new branch and few commits need to push to it and clean from my branch.<br><br>7.1 Creating x-new-feature branch on top of 'new-feature'<br>git checkout -b&#160;x-new-feature&#160;new-feature<br><br>7.2 Cleaning commits<br>//revert a commit<br>git revert --no-commit&#160;<br>//reverting few steps a back from current HEAD<br>git reset --hard HEAD~2<br><br>7.3 Updating the git<br>//Clean new-feature branch<br>git push origin HEAD --force	
 	<p></p>
@@ -88,10 +86,11 @@ bootstrap-itech - a Pelican theme using Bootstrap
     <p>1. I pull down the latest changes from mastergit checkout mastergit pull origin master2. I make branch to make changes git checkout -b new-feature3. Now I am working on the feature4. I keep my feature branch fresh and up to date with the latest changes in master, using 'rebase'Every once in a while during the development update the feature branch with the latest changes in master.git fetch origingit rebase origin/masterIn the case where other devs are also working on the same shared remote feature branch, also rebase changes coming from it:git rebase origin/new-featureResolving conflicts during the rebase allows me to have always clean merges at the end of the feature development.5. When I am ready I commit my changesgit add -pgit commit -m "my changes"6. rebasing keeps my code working, merging easy, and history clean.git fetch origingit rebase origin/new-featuregit rebase origin/masterBelow two points are optional6.1 push my branch for discussion (pull-request)git push origin new-feature6.2 feel free to rebase within my feature branch, my team can handle it!git rebase -i origin/masterAnother new feature is needed and it need some commits from my new branch 'new-feature' that new feature need new branch and few commits need to push to it and clean from my branch.7.1 Creating x-new-feature branch on top of 'new-feature'git checkout -b x-new-feature new-feature7.2 Cleaning commits//revert a commitgit revert --no-commit//reverting few steps a back from current HEADgit reset --hard HEAD~27.3 Updating the git//Clean new-feature branchgit push origin HEAD --force</p></div>
 
 <p class="info">
+<h4>
 Posted Sun 21 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
-</p>
+ by <a class="url fn" href="./author/itech001.html">itech001</a>
+in <a href="./category/devops.html">devops</a>
+</h4></p>
 
 </article>
 </div>
@@ -102,10 +101,10 @@ in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
 
 <h2>Categories</h2>
 <ul class="nav nav-pills nav-stacked">
-  <li ><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
-  <li class="active"><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
-  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
-  <li ><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+  <li ><a href="./category/ciandcd.html">ciandcd</a></li>
+  <li class="active"><a href="./category/devops.html">devops</a></li>
+  <li ><a href="./category/scm.html">scm</a></li>
+  <li ><a href="./category/zhong-wen.html">中文</a></li>
 </ul>
 
 <h2>Links</h2>
@@ -138,8 +137,8 @@ Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
 </div></section>
 <!-- /Body -->
 
-<script src="http://www.ciandcd.com/theme/js/jquery.js"></script>
-<script src="http://www.ciandcd.com/theme/js/bootstrap.js"></script>
+<script src="./theme/js/jquery.js"></script>
+<script src="./theme/js/bootstrap.js"></script>
 
 
 </body>
