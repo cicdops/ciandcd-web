@@ -13,7 +13,6 @@ feeds = {
         'http://dzone.com/mz/devops/rss',
         'http://www.planetdevops.net/?feed=rss2',
         'http://devops.linuxjournal.com/rss.xml',
-        'http://martinfowler.com/bliki/bliki.atom',
         'http://blog.devopsguys.com/feed/',
     ],
     'ciandcd': [
