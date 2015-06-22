@@ -69,10 +69,14 @@ bootstrap-itech - a Pelican theme using Bootstrap
   {% endfor %}
 {% endif %}
 
+{% for cat, null in categories %}
+  <li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+{% endfor %}
+
 {% for title, link in MENUITEMS %}
   <li><a href="{{ link }}">{{ title }}</a></li>
 {% endfor %}
-      </ul>
+    </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
@@ -132,7 +136,6 @@ bootstrap-itech - a Pelican theme using Bootstrap
   {% if FEED_RSS %}
   <li><a href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate">Site Feed{% if FEED_ATOM or not FEED_DOMAIN %} (RSS){% endif %}</a></li>
   {% endif %}
-
   {% for name, link in SOCIAL %}
   <li><a href="{{ link }}">{{ name }}</a></li>
   {% endfor %}
