@@ -66,7 +66,7 @@ def writeHtml(outPath,content,title,link,date):
         date = date.strftime('%Y-%m-%d %H:%M')
     html = html + '<meta name="date" content="' + date + '"/>'
     html = html + title + '</title></head><body>'
-    html = html + 'from:' + link + '<br>'
+    html = html + 'From:<a href=' + link + '>' + link + '</a><br><br>'
     html = html + content + '</body></html>'
     writeFile(outPath,html)
     print("save to:" + outPath)

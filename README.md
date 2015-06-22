@@ -13,7 +13,7 @@
 ###edit or add
 1. add new blog entities or pages in content/.
 1. build by make clean && make html
-1. preview by make devserver.
+1. preview by make devserver, or 'cd output && python -m http.server 8000'.
 
 ###push and deploy
 1. submit by 'git commit and git push'
