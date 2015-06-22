@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="date" content="Sun, 21 Jun 2015 01:00:00 -0400"/>Continuous Integration and Delivery with Docker</title></head><body>from:http://java.dzone.com/articles/continuous-integration-and-0<br><div><p class="print-link"></p>
+              <p align="center"><i>Written by&#160;<a href="http://blog.codeship.com/author/jaroslavholub/" title="Posts by Jaroslav Holub" rel="author">Jaroslav Holub</a> for <a href="http://blog.codeship.com/" target="">The Codeship Blog</a>.</i><br></p><p>Continuous delivery is all about reducing risk and delivering value faster by producing reliable software in short iterations. <a href="http://martinfowler.com/bliki/ContinuousDelivery.html">As Martin Fowler says</a>, you actually do continuous delivery if:</p>
+<ul>
+<li>Your software is deployable throughout its lifecycle.</li>
+<li>Your team prioritizes keeping the software deployable over working on new features.</li>
+<li>Anybody can get fast, automated feedback on the production readiness of their systems any time somebody makes a change to them.</li>
+<li>You can perform push-button deployments of any version of the software to any environment on demand.</li>
+</ul>
+<p>Containerization of software allows us to further improve on this process. The biggest improvements are in speed and in the level of abstraction used as a cornerstone for further innovations in this field.</p>
+<p>In this post, I&#8217;ll show you how to set up a continuous delivery pipeline using Docker. We&#8217;ll see how using this tool for Linux containers as part of the continuous delivery pipeline lets us nicely encapsulate the build process of a service. It also lets us deploy any revision with a few simple steps.</p>
+<p>
+</p><p class="tm-tweet-clear"></p>
+<p>I&#8217;ll mainly use the term continuous delivery in this article, because it stands for the full circle of steps leading to our ultimate goal. However, continuous integration is the most substantial part of continuous delivery.</p>
+<h2>Continuous Integration with Docker</h2>
+<p>Let&#8217;s take a Hello World web server written in <a href="https://golang.org/">Go</a> as an example service. You can find all the code used in this example here: <a href="https://github.com/ContainerSolutions/cd-with-docker-tutorial">https://github.com/ContainerSolutions/cd-with-docker-tutorial</a></p>
+<p>The continuous integration setup consists of:</p>
+<ul>
+<li>running unit tests</li>
+<li>building the Docker image that we use to build our service</li>
+<li>running the build container and compiling our service</li>
+<li>building the Docker image that we run and deploy</li>
+<li>pushing the final image to a Docker registry</li>
+</ul>
+<h3>Automated testing</h3>
+<p>Running tests in this example is as trivial as it should be:</p>
+<pre class="brush:shell">go test</pre>
+<h3>Building Docker image</h3>
+<p>The core of a single service integration is making the end artifact &#8212; Docker image in our case.</p>
+<p>Because I&#8217;ve deliberately chosen the compiled language Go in this example, we need to build an executable file as part of our integration process. We&#8217;ll eventually place the executable file inside this Docker image.</p>
+<p>Now one might think that we would build our web server executable file using build tools installed on the host dedicated to continuous integration and then somehow copy the binary to the Docker image. But this is a no-no in the containerized world. Let&#8217;s do it all in containers. That way, we won&#8217;t rely on any build tools installed on hosts, and it&#8217;ll make the whole setup easily reproducible and encapsulated.</p>
+<p>Building an executable file can be part of a single Docker image build process together with runtime environment setup. Or we can separate the two. Having everything in a single build process, we would end up with extra content (build process leftovers) in our Docker image filesystem, <a href="http://docs.docker.com/introduction/understanding-docker/#how-does-a-docker-image-work">even if we clean it afterwards</a> in separate RUN commands within the Dockerfile.</p>
+<p>Some people use tricks to create, manipulate, and remove unwanted stuff in a single <strong>RUN</strong> command. Although it&#8217;s sometimes handy, I can&#8217;t generally recommend it; in my opinion this adds to Dockerfile complexity. Of course, there are situations where you might want to retain your sources and all in the end artifact.</p>
+<p>The approach I recommend, however, is to create separate &#8220;build&#8221; and &#8220;distribution&#8221; Dockerfiles. Use <strong>Dockerfile.build</strong> to do the heavy lifting during building the software, and use <strong>Dockerfile.dist</strong> to create the distributable Docker image, as light and clean as possible.</p>
+<p>The following is <strong>Dockerfile.build</strong>. As you can see, once we run the build file, we create the container from a golang image, compile our example service, and output the binary.</p>
+<pre class="brush:shell">FROM golang:1.4
+
+RUN mkdir -p /tmp/build 
+ADD hello-world.go /tmp/build/ 
+WORKDIR /tmp/build 
+RUN go build hello-world.go 
+CMD tar -czf - hello-world</pre>
+<p>In <strong>Dockerfile.dist</strong>, we only use this binary and run it on runtime:</p>
+<pre class="brush:shell">FROM debian:jessie
+
+RUN mkdir /app 
+ADD build.tar.gz /app/ 
+ENTRYPOINT /app/hello-world</pre>
+<p>Our <strong>build.sh</strong> script &#8212; the essential part of our continuous integration pipeline &#8212; then looks like this:</p>
+<pre class="brush:shell"># !/bin/sh
+docker build -t hello-world-build -f Dockerfile.build . 
+docker run hello-world-build &gt; build.tar.gz 
+docker build -t hello-world -f Dockerfile.dist .</pre>
+<p>As you can see, these three simple Docker commands get us a clean, small <strong>Hello-World</strong> Docker image that&#8217;s ready to be deployed and run on demand. Once both images used in the <strong>FROM</strong> clauses are pulled and cached locally, our build process will be a matter of milliseconds or at most a few seconds, with a very small resources footprint.</p>
+<p><a href="https://codeship.com/?utm_source=CodeshipBlog&amp;utm_medium=blogbanner&amp;utm_campaign=Docker" target="_blank"></a></p>
+<h3>Storing Docker images</h3>
+<p>Once our build process artifact is created, we want to push it to Docker Registry, where it will be available for deployments.</p>
+<p>Please note that tagging images properly is very important. <a href="http://container-solutions.com/2015/01/docker-latest-confusion/">Docker ecosystems suffer</a> from the usage of &#8220;latest&#8221; tag. If you use a unique tag for every new image, then all your image versions will be easily accessible for deployment in the future.</p>
+<p>We can choose whether we want to use our own <a href="http://blog.codeship.com/running-secured-docker-registry-2-0/">Docker Registry</a> or rely on <a href="https://hub.docker.com/">Docker Hub</a>. On Docker Hub, you can store public or private repositories of images. It&#8217;s also the first place people would look for your images (if you want anyone to look for them).</p>
+<p>Your own Docker Registry on the other hand gives you full control over your images storage, performance, and security. More advanced setups might combine both approaches.</p>
+<p>This way you can tag the new image with an appropriate tag and push it to a public hub (replace <strong>your_username</strong> and <strong>your_tag</strong> with actual values):</p>
+<pre class="brush:shell"># !/bin/sh
+docker tag hello-world:latest your_username/hello-world:your_tag 
+docker push your_username/hello-world:your_tag</pre>
+<h2>Continuously Delivered Containers</h2>
+<p>Once we have our Docker images building pipeline working and images nicely stashed in a repository, we definitely want to get our service deployed.</p>
+<p>How you deploy your applications depends on your infrastructure or cloud provider. A few cloud providers support Docker images in their APIs these days (e.g., <a href="http://aws.amazon.com/documentation/ecs/">Amazon EC2 Container Service</a>, <a href="https://www.digitalocean.com/features/one-click-apps/docker/">Digital Ocean</a>, or <a href="http://docs.giantswarm.io/">Giant Swarm</a>). You can further leverage the power of containerized applications with resource abstraction tools like <a href="http://mesos.apache.org/">Apache Mesos</a> (read more about <a href="http://container-solutions.com/2015/04/how-to-set-up-mesos-on-google-cloud-with-terraform/">running containers on Mesos</a>) or <a href="http://kubernetes.io/">Google Kubernetes</a> that let you deploy and manage containers in their own ways.</p>
+<p>In case of our <strong>Hello World</strong> example, deploying remotely means running the following command remotely on a target machine with Docker installed on it:</p>
+<pre class="brush:shell"># !/bin/sh
+docker stop hello-production 
+docker run --rm -p 8000:80 --name hello-production hello-world</pre>
+<h2>Beyond Continuous Delivery with Docker</h2>
+<p>Using containerized software does not inherently mean one is implementing microservices. However, containers enable this architectural pattern because they encourage developers to split their monoliths based on separation of concerns.</p>
+<p>Microservices also promote communication between containerized components over a plain network using standardized and easily replaceable tubes. To learn more about microservices and why they might be a good architectural pattern for your software project, I recommend <a href="http://shop.oreilly.com/product/0636920033158.do">Building Microservices</a> by Sam Newman.</p>
+<p>A continuous delivery pipeline with containerized software also allows you to set up a new kind of testing environment; subsets of (micro)services are deployed in small clusters that represent the system under test running with some parts intentionally disabled or disconnected.</p>
+<p>Creation of such a matrix of deployments and programming against it has little to no additional costs in terms of a continuous integration time. It does have a dramatic impact on the stability and resilience of software in production. Such a testing system allows teams to get ready to deal with any kind of <a href="https://github.com/Netflix/SimianArmy/wiki/Chaos-Monkey">Chaos Monkey</a>.</p>
+	
+	<p></p>
+
+    </div></body></html>

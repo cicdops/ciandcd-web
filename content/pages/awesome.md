@@ -5,7 +5,7 @@ Title: Awesome
 
 Written by [ciandcd.com](http://www.ciandcd.com)  
 
-A curated list of awesome tools for:   
+A curated list of awesome tools for:
 continuous integration  
 continuous delivery  
 software integration  
@@ -77,7 +77,7 @@ Online build release system
 * [buildbox](https://buildbox.io)  Simple self-hosted Continuous Integration  
 * [drone](https://drone.io) Open source continuous integration platform built on Docker  
 * [appveyor](http://www.appveyor.com)  Continuous Integration and Deployment service for busy Windows  
-* [snap-ci](https://snap-ci.com) Easy builds, deployed when you want   
+* [snap-ci](https://snap-ci.com) Easy builds, deployed when you want
 * [codeship](https://codeship.com)  Continuous Integration and Delivery made simple  
 * [solanolabs](https://www.solanolabs.com)  Hosted continuous integration and deployment  
 * [githost](https://githost.io)  Painless GitLab CE & CI Hosting  
@@ -86,7 +86,7 @@ Online build release system
 * [wercker](http://wercker.com)  Test and deploy your applications with ease  
 * [coveralls](https://coveralls.io)  Track your project's code coverage over time, changes to files, and badge your GitHub repo  
 * [ship.io](https://ship.io/)  Simple, powerful CI for iOS and Android. Re-build, Re-test, Re-deploy.  
-* [GitLab CI](https://www.gitlab.com/gitlab-ci/) - Based off of ruby. They also provide GitLab, which manages git repositories. 
+* [GitLab CI](https://www.gitlab.com/gitlab-ci/) - Based off of ruby. They also provide GitLab, which manages git repositories.
 * [IBM DevOps Services](https://hub.jazz.net) - Develop, track, plan, and deploy software onto the IBM Bluemix cloud platform.  
 
 ## Infrastructure
@@ -197,10 +197,10 @@ The tools for software delivery
 * [nexus](http://www.sonatype.com/nexus)  The use of repository managers (also known as component managers) is helping software development teams achieve simple gains in speed, efficiency, and quality of their operations  
 * [chocolatey](https://chocolatey.org/) Chocolatey NuGet is a Machine Package Manager, somewhat like apt-get, but built with Windows in mind  
 * [pulp](http://www.pulpproject.org/)  Pulp is a platform for managing repositories of content, such as software packages, and pushing that content out to large numbers of consumers.  
-* [herd](https://github.com/russss/Herd) A single-command bittorrent distribution system, based on Twitter's Murder   
+* [herd](https://github.com/russss/Herd) A single-command bittorrent distribution system, based on Twitter's Murder
 * [murder](https://github.com/lg/murder)  Large scale server deploys using BitTorrent and the BitTornado library from twitter.com  
 
-## Provisioning Tools 
+## Provisioning Tools
 Provision tools  
 * [Puppet]() Build, destroy and rebuild servers on any public or private cloud  
 * [Chef](http://www.opscode.com/chef)  Fast, scalable and flexible software for data center automation  
@@ -258,5 +258,3 @@ To add new items about continuous integration and continuous delivery:
 2) add issue;  
 3) send me by email itech001@126.com;  
 4) qq group 172758282;  
-
-

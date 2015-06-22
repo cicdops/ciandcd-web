@@ -11,7 +11,7 @@
 1. install pelican : pip install pelican Markdown typogrify
 
 ###edit or add
-1. add new blog entities or pages in content/, the content format can be markdown,reStructuredText,or html.
+1. add new blog entities or pages in content/.
 1. build by make clean && make html
 1. preview by make devserver.
 

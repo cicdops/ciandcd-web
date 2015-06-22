@@ -18,6 +18,14 @@ feeds = {
     'ciandcd': [
         'http://continuousdelivery.com/feed/',
         'http://developer-blog.cloudbees.com/feeds/posts/default',
+        'https://jazzweb1.torolab.ibm.com/blog/index.php/feed',
+        'https://jazzweb1.torolab.ibm.com/pub/planet/feed.rss',
+        'http://www.go.cd/feed/rss.xml',
+        'http://openbuildservice.org/blog/',
+        'http://feeds.feedburner.com/AtlassianChina',
+        'http://blog.jetbrains.com/feed/',
+        'http://www.pmease.com/rss/hotnews',
+        'https://www.finalbuilder.com/DesktopModules/LiveBlog/Handlers/Syndication.ashx?mid=632&PortalId=0&tid=181&ItemCount=20',
     ],
     'scm':[
         'https://github.com/blog.atom',
@@ -27,12 +35,12 @@ feeds = {
     ],
 }
 
-outputDir = 'content'
+outputDir = 'content' + os.sep + 'category'
 max_entries = 20
-max_days = 3
+max_days = 10
 
 config = Config()
-config.memoize_articles = True
+config.memoize_articles = False
 config.fetch_images = False
 config.request_timeout = 60
 config.number_threads = 20
@@ -47,16 +55,59 @@ def writeFile(outPath,content):
     else:
         print ("Error Opening File " + outPath)
 
-def writeHtml(outPath,content,title):
+def writeHtml(outPath,content,title,link,date):
     html = '''<!DOCTYPE html>
     <html lang="zh-cn">
     <head>
     <meta charset="utf-8"/>
     <title>
     '''
+    if(isinstance(date,datetime)):
+        date = date.strftime('%Y-%m-%d %H:%M')
+    html = html + '<meta name="date" content="' + date + '"/>'
     html = html + title + '</title></head><body>'
+    html = html + 'from:' + link + '<br>'
     html = html + content + '</body></html>'
     writeFile(outPath,html)
+    print("save to:" + outPath)
+
+def download_file(link,title,config,outputDir,category,date):
+    try:
+        a = Article(link,config=config, keep_article_html=True)
+        a.download()
+        a.parse()
+
+        title2 = re.sub(' ','_',title)
+        outFileDir = outputDir + os.sep + category + os.sep
+        if not os.path.exists(outFileDir):
+            os.makedirs(outFileDir)
+        outPath = outFileDir + title2 + '.html'
+
+        content = a.text
+        content_html = a.article_html
+
+        date2 = ''
+        try:
+            date2 = a.publish_date
+        except Exception as e:
+            print(e)
+        if(date2):
+            date = date2
+
+        if(content_html):
+            writeHtml(outPath,content_html,title,link,date)
+        elif(content):
+            writeHtml(outPath,content,title,link,date)
+        else:
+            print('Error:cannot find content')
+    except Exception as e:
+        print('Exception:' + link)
+        print(e)
+        return 0
+    return 1
+
+#download_file('http://www.cnblogs.com/itech/p/4572275.html','SSH反向连接及Autossh',config,outputDir,'中文')
+#exit();
 
 for category in feeds.keys():
     print('category:' + category)
@@ -71,22 +122,9 @@ for category in feeds.keys():
             #d = datetime(entry.published_parsed)
             #if(d < days_ago):
             #    continue
+            date = ''
             try:
-                a = Article(entry.link,config=config, keep_article_html=True)
-                a.download()
-                a.parse()
-                title = re.sub(' ','_',entry.title)
-                outFileDir = outputDir + os.sep + 'category' + os.sep + category + os.sep
-                if not os.path.exists(outFileDir):
-                    os.makedirs(outFileDir)
-                outPath = outFileDir + title + '.html'
-                content = a.text
-                content_html = a.article_html
-                if(content_html):
-                    writeHtml(outPath,content_html,entry.title)
-                elif(content):
-                    writeHtml(outPath,content,entry.title)
-                else:
-                    print('Error:cannot find content')
-            except:
-                continue
+                date = entry.published
+            except Exception as e:
+                print(e)
+            download_file(entry.link,entry.title,config,outputDir,category,date)

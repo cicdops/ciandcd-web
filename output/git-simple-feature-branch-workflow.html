@@ -26,7 +26,7 @@ bootstrap-itech - a Pelican theme using Bootstrap
 <header>
 <div class="container-fluid">
 <h1 class="page-header"><a href="http://www.ciandcd.com/index.html">ciandcd </a>
-<h4>软件持续集成和持续发布</h4></h1>
+<h4>软件持续集成和持续发布 qq群：172758282，437085002</h4></h1>
 </div>
 </header>
 <!-- /Header -->
@@ -49,7 +49,9 @@ bootstrap-itech - a Pelican theme using Bootstrap
       <ul class="nav navbar-nav">
   <li><a href="http://www.ciandcd.com/index.html">首页</a></li>
 
-
+  
+    <li ><a href="http://www.ciandcd.com/pages/guan-yu.html">关于</a></li>
+    <li ><a href="http://www.ciandcd.com/pages/awesome.html">Awesome</a></li>
 
       </ul>
       <form class="navbar-form navbar-left" role="search">
@@ -80,14 +82,14 @@ bootstrap-itech - a Pelican theme using Bootstrap
 <div class="col-lg-9">
 <article>
 
-<div><p class="print-link"></p><p>In my&#160;<a href="http://madhukaudantha.blogspot.com/2015/06/workflows-for-git.html" target="_blank">previous post</a>, I wrote about git work flows. Now I will going to try out simple '<a href="http://madhukaudantha.blogspot.com/2015/06/workflows-for-git.html" target="_blank">Feature Branch Workflow</a>'.<br></p>1. I pull down the latest changes from mastergit checkout mastergit pull origin master2. I make branch to make changes&#160;git checkout -b new-feature3. Now I am working on the feature4. I keep my feature branch fresh and up to date with the latest changes in master, using 'rebase'Every once in a while during the development update the feature branch with the latest changes in master.git fetch origingit rebase origin/masterIn the case where other devs are also working on the same shared remote feature branch, also rebase changes coming from it:git rebase origin/new-featureResolving conflicts during the rebase allows me to have always clean merges at the end of the feature development.5. When I am ready I commit my changesgit add -pgit commit -m "my changes"6. rebasing keeps my code working, merging easy, and history clean.git fetch origingit rebase origin/new-featuregit rebase origin/masterBelow two points are optional6.1 push my branch for discussion (pull-request)git push origin new-feature6.2 feel free to rebase within my feature branch, my team can handle it!git rebase -i origin/master<br><i><b>Few point that can be happen in developing phase.</b></i><br>Another new feature is needed and it need some commits from my new branch 'new-feature' that new feature need new branch and few commits need to push to it and clean from my branch.<br><br>7.1 Creating x-new-feature branch on top of 'new-feature'<br>git checkout -b&#160;x-new-feature&#160;new-feature<br><br>7.2 Cleaning commits<br>//revert a commit<br>git revert --no-commit&#160;<br>//reverting few steps a back from current HEAD<br>git reset --hard HEAD~2<br><br>7.3 Updating the git<br>//Clean new-feature branch<br>git push origin HEAD --force	
+from:http://java.dzone.com/articles/git-simple-feature-branch<br><div><p class="print-link"></p><p>In my&#160;<a href="http://madhukaudantha.blogspot.com/2015/06/workflows-for-git.html" target="_blank">previous post</a>, I wrote about git work flows. Now I will going to try out simple '<a href="http://madhukaudantha.blogspot.com/2015/06/workflows-for-git.html" target="_blank">Feature Branch Workflow</a>'.<br></p>1. I pull down the latest changes from mastergit checkout mastergit pull origin master2. I make branch to make changes&#160;git checkout -b new-feature3. Now I am working on the feature4. I keep my feature branch fresh and up to date with the latest changes in master, using 'rebase'Every once in a while during the development update the feature branch with the latest changes in master.git fetch origingit rebase origin/masterIn the case where other devs are also working on the same shared remote feature branch, also rebase changes coming from it:git rebase origin/new-featureResolving conflicts during the rebase allows me to have always clean merges at the end of the feature development.5. When I am ready I commit my changesgit add -pgit commit -m "my changes"6. rebasing keeps my code working, merging easy, and history clean.git fetch origingit rebase origin/new-featuregit rebase origin/masterBelow two points are optional6.1 push my branch for discussion (pull-request)git push origin new-feature6.2 feel free to rebase within my feature branch, my team can handle it!git rebase -i origin/master<br><i><b>Few point that can be happen in developing phase.</b></i><br>Another new feature is needed and it need some commits from my new branch 'new-feature' that new feature need new branch and few commits need to push to it and clean from my branch.<br><br>7.1 Creating x-new-feature branch on top of 'new-feature'<br>git checkout -b&#160;x-new-feature&#160;new-feature<br><br>7.2 Cleaning commits<br>//revert a commit<br>git revert --no-commit&#160;<br>//reverting few steps a back from current HEAD<br>git reset --hard HEAD~2<br><br>7.3 Updating the git<br>//Clean new-feature branch<br>git push origin HEAD --force	
 	<p></p>
 
     <p>1. I pull down the latest changes from mastergit checkout mastergit pull origin master2. I make branch to make changes git checkout -b new-feature3. Now I am working on the feature4. I keep my feature branch fresh and up to date with the latest changes in master, using 'rebase'Every once in a while during the development update the feature branch with the latest changes in master.git fetch origingit rebase origin/masterIn the case where other devs are also working on the same shared remote feature branch, also rebase changes coming from it:git rebase origin/new-featureResolving conflicts during the rebase allows me to have always clean merges at the end of the feature development.5. When I am ready I commit my changesgit add -pgit commit -m "my changes"6. rebasing keeps my code working, merging easy, and history clean.git fetch origingit rebase origin/new-featuregit rebase origin/masterBelow two points are optional6.1 push my branch for discussion (pull-request)git push origin new-feature6.2 feel free to rebase within my feature branch, my team can handle it!git rebase -i origin/masterAnother new feature is needed and it need some commits from my new branch 'new-feature' that new feature need new branch and few commits need to push to it and clean from my branch.7.1 Creating x-new-feature branch on top of 'new-feature'git checkout -b x-new-feature new-feature7.2 Cleaning commits//revert a commitgit revert --no-commit//reverting few steps a back from current HEADgit reset --hard HEAD~27.3 Updating the git//Clean new-feature branchgit push origin HEAD --force</p></div>
 
 <p class="info">
 <h4>
-Posted Sun 21 June 2015
+Posted Tue 16 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
 in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
 </h4></p>
@@ -107,7 +109,7 @@ in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
   <li ><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
 </ul>
 
-<h2>连接</h2>
+<h2>链接</h2>
 <ul class="nav nav-pills nav-stacked">
   <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
 </ul>

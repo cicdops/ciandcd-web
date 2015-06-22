@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="date" content="Sun, 21 Jun 2015 04:00:00 -0400"/>Get Back Up and Try Again: Retrying in Python</title></head><body>from:http://python.dzone.com/articles/get-back-and-try-again<br><div><p class="print-link"></p><p>I don't often write about tools I use when for my daily software development
+tasks. I recently realized that I really should start to share more often my
+workflows and weapons of choice.</p>
+<p>One thing that I have a hard time enduring while doing Python code reviews, is
+people writing utility code that is not directly tied to the core of their
+business. This looks to me as wasted time maintaining code that should be
+reused from elsewhere.</p>
+<p>So today I'd like to start with
+<a href="https://pypi.python.org/pypi/retrying">retrying</a>, a Python package that you
+can use to&#8230; retry anything.</p>
+<h2>It's OK to fail</h2>
+
+
+<p>Often in computing, you have to deal with external resources. That means
+accessing resources you don't control. Resources that can fail, become
+flapping, unreachable or unavailable.</p>
+<p>Most applications don't deal with that at all, and explode in flight, leaving a
+skeptical user in front of the computer. A lot of software engineers refuse to
+deal with failure, and don't bother handling this kind of scenario in their
+code.</p>
+<p>In the best case, applications usually handle simply the case where the
+external reached system is out of order. They log something, and inform the
+user that it should try again later.</p>
+<p>In this cloud computing area, we tend to design software components with
+<a href="https://en.wikipedia.org/wiki/Service-oriented_architecture">service-oriented architecture</a>
+in mind. That means having a lot of different services talking to each others
+over the network. And we all know that networks tend to fail, and distributed
+systems too. Writing software with failing being part of normal operation is a
+terrific idea.</p>
+<h2>Retrying</h2>
+
+
+<p>In order to help applications with the handling of these potential failures,
+you need a plan. Leaving to the user the burden to "try again later" is rarely
+a good choice. Therefore, most of the time you want your application to
+retry.</p>
+<p>Retrying an action is a full strategy on its own, with a lot of options. You
+can retry only on certain condition, and with the number of tries based on time
+(e.g. every second), based on a number of tentative (e.g. retry 3 times and
+abort), based on the problem encountered, or even on all of those.</p>
+<p>For all of that, I use the <a href="https://github.com/rholder/retrying">retrying</a>
+library that you can retrieve easily on
+<a href="https://pypi.python.org/pypi/retrying">PyPI</a>.</p>
+<p>retrying provides a decorator called <code>retry</code> that you can use on top of any
+function or method in Python to make it retry in case of failure. By default,
+<code>retry</code> calls your function endlessly until it returns rather than raising an
+error.</p>
+<pre class="brush:python">import random<br>from retrying import retry<br>&#160;<br>@retry<br>def pick_one():<br>    if random.randint(0, 10) != 1:<br>        raise Exception("1 was not picked")</pre>
+
+<p>
+
+This will execute the function <code>pick_one</code> until <code>1</code> is returned by
+<code>random.randint</code>.</p>
+<p><code>retry</code> accepts a few arguments, such as the minimum and maximum delays to use,
+which also can be randomized. Randomizing delay is a good strategy to avoid
+detectable pattern or congestion. But more over, it supports exponential delay,
+which can be used to implement
+<a href="https://en.wikipedia.org/wiki/Exponential_backoff">exponential backoff</a>, a
+good solution for retrying tasks while really avoiding congestion. It's
+especially handy for background tasks.</p>
+<pre class="brush:python">@retry(wait_exponential_multiplier=1000, wait_exponential_max=10000)<br>def wait_exponential_1000():<br>    print "Wait 2^x * 1000 milliseconds between each retry, up to 10 seconds, then 10 seconds afterwards"<br>    raise Exception("Retry!")</pre>
+
+<p>
+
+You can mix that with a maximum delay, which can give you a good strategy to
+retry for a while, and then fail anyway:</p>
+<pre class="brush:python"># Stop retrying after 30 seconds anyway<br>&gt;&gt;&gt; @retry(wait_exponential_multiplier=1000, wait_exponential_max=10000, stop_max_delay=30000)<br>... def wait_exponential_1000():<br>...     print "Wait 2^x * 1000 milliseconds between each retry, up to 10 seconds, then 10 seconds afterwards"<br>...     raise Exception("Retry!")<br>...<br>&gt;&gt;&gt; wait_exponential_1000()<br>Wait 2^x * 1000 milliseconds between each retry, up to 10 seconds, then 10 seconds afterwards<br>Wait 2^x * 1000 milliseconds between each retry, up to 10 seconds, then 10 seconds afterwards<br>Wait 2^x * 1000 milliseconds between each retry, up to 10 seconds, then 10 seconds afterwards<br>Wait 2^x * 1000 milliseconds between each retry, up to 10 seconds, then 10 seconds afterwards<br>Wait 2^x * 1000 milliseconds between each retry, up to 10 seconds, then 10 seconds afterwards<br>Wait 2^x * 1000 milliseconds between each retry, up to 10 seconds, then 10 seconds afterwards<br>Traceback (most recent call last):<br>  File "&lt;stdin&gt;", line 1, in &lt;module&gt;<br>  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 49, in wrapped_f<br>    return Retrying(*dargs, **dkw).call(f, *args, **kw)<br>  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 212, in call<br>    raise attempt.get()<br>  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 247, in get<br>    six.reraise(self.value[0], self.value[1], self.value[2])<br>  File "/usr/local/lib/python2.7/site-packages/retrying.py", line 200, in call<br>    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)<br>  File "&lt;stdin&gt;", line 4, in wait_exponential_1000<br>  Exception: Retry!
+</pre>
+
+<p>
+
+A pattern I use very often, is the ability to retry only based on some
+exception type. You can specify a function to filter out exception you want to
+ignore or the one you want to use to retry.</p>
+<pre class="brush:python">def retry_on_ioerror(exc):<br>    return isinstance(exc, IOError)<br>&#160;<br>@retry(retry_on_exception=retry_on_ioerror)<br>def read_file():<br>    with open("myfile", "r") as f:<br>        return f.read()</pre>
+
+<p>
+
+<code>retry</code> will call the function passed as <code>retry_on_exception</code> with the
+exception raised as first argument. It's up to the function to then return a
+boolean indicating if a retry should be performed or not. In the example above,
+this will only retry to read the file if an <code>IOError</code> occurs; if any other
+exception type is raised, no retry will be performed.</p>
+<p>The same pattern can be implemented using the keyword argument
+<code>retry_on_result</code>, where you can provide a function that analyses the result
+and retry based on it.</p>
+<pre class="brush:python">def retry_if_file_empty(result):<br>    return len(result) &lt;= 0<br>&#160;<br>@retry(retry_on_result=retry_if_file_empty)<br>def read_file():<br>    with open("myfile", "r") as f:<br>        return f.read()</pre>
+
+<p>
+
+This example will read the file until it stops being empty. If the file does
+not exist, an <code>IOError</code> is raised, and the default behavior which triggers
+retry on all exceptions kicks-in &#8211; the retry is therefore performed.</p>
+<p>That's it! <code>retry</code> is really a good and small library that you should leverage
+rather than implementing your own half-baked solution!</p>	
+	<p></p>
+
+    </div></body></html>
