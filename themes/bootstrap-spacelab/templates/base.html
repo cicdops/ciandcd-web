@@ -10,6 +10,7 @@
   <link href="{{ SITEURL }}/theme/css/{{ CSS_FILE }}" rel="stylesheet" type="text/css"/>
   <link href="{{ SITEURL }}/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
   <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/tipuesearch/tipuesearch.css" media="screen">
   {% if FEED_RSS %}<link href="{{ SITEURL }}/{{ FEED_RSS }}" rel="alternate" type="application/atom+xml" title="{{ SITENAME }} RSS" />
   {% endif %}
 
@@ -81,9 +82,9 @@ bootstrap-itech - a Pelican theme using Bootstrap
 {% endfor %}
 
 </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+      <form class="navbar-form navbar-left navbar-search" role="search" action="{{ SITEURL }}/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input">
         </div>
       </form>
 
@@ -121,6 +122,12 @@ bootstrap-itech - a Pelican theme using Bootstrap
 {% for cat, null in categories %}
   <li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
 {% endfor %}
+</ul>
+
+<ul class="tagcloud">
+    {% for tag in tag_cloud %}
+        <li class="tag-{{ tag.1 }}"><a href="{{ SITEURL }}/{{ tag.0.url }}">{{ tag.0 }}</a></li>
+    {% endfor %}
 </ul>
 
 {% if LINKS %}

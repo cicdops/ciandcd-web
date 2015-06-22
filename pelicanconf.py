@@ -7,7 +7,7 @@ AUTHORS = u'itech001'
 SITENAME = u'ciandcd'
 SITEURL = 'http://www.ciandcd.com'
 #SITESUBTITLE = 'continuous integration and continuous delivery'
-SITESUBTITLE = '软件持续集成和持续发布 qq群：172758282，437085002'
+SITESUBTITLE = '软件持续集成和持续发布 QQ群：172758282，437085002'
 
 PATH = 'content'
 TIMEZONE = 'Asia/Shanghai'
@@ -69,3 +69,12 @@ RELATIVE_URLS = True
 GOOGLE_ANALYTICS_ID = ''
 GOOGLE_ANALYTICS_SITENAME = ''
 GOOGLE_ANALYTICS_UNIVERSAL = ''
+
+
+PLUGIN_PATH = ["plugins"]
+PLUGINS = ["tag_cloud", "tipue_search"]
+
+#tag_cloud
+TAG_CLOUD_STEPS = 4
+TAG_CLOUD_MAX_ITEMS = 100
+TAG_CLOUD_SORTING = 'random'

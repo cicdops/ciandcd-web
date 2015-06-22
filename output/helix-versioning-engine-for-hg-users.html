@@ -9,6 +9,7 @@
   <link href="http://www.ciandcd.com/theme/css/main.css" rel="stylesheet" type="text/css"/>
   <link href="http://www.ciandcd.com/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
   <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="http://www.ciandcd.com/theme/tipuesearch/tipuesearch.css" media="screen">
 <link href="http://www.ciandcd.com/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
 
 
@@ -26,7 +27,7 @@ bootstrap-itech - a Pelican theme using Bootstrap
 <header>
 <div class="container-fluid">
 <h1 class="page-header"><a href="http://www.ciandcd.com/index.html">ciandcd </a>
-<h4>软件持续集成和持续发布 qq群：172758282，437085002</h4></h1>
+<h4>软件持续集成和持续发布 QQ群：172758282，437085002</h4></h1>
 </div>
 </header>
 <!-- /Header -->
@@ -61,9 +62,9 @@ bootstrap-itech - a Pelican theme using Bootstrap
 
 
 </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://www.ciandcd.com/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input">
         </div>
       </form>
 
@@ -295,6 +296,9 @@ in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
   <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
   <li class="active"><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
   <li ><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+</ul>
+
+<ul class="tagcloud">
 </ul>
 
 <h2>链接</h2>
