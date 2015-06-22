@@ -6,7 +6,8 @@ AUTHOR = u'itech001'
 AUTHORS = u'itech001'
 SITENAME = u'ciandcd'
 SITEURL = 'http://www.ciandcd.com'
-SITESUBTITLE = 'continuous integration and continuous delivery'
+#SITESUBTITLE = 'continuous integration and continuous delivery'
+SITESUBTITLE = '软件持续集成和持续发布 qq群：172758282，437085002'
 
 PATH = 'content'
 TIMEZONE = 'Asia/Shanghai'
@@ -54,7 +55,7 @@ LINKS = (('itech', 'http://www.cnblogs.com/itech/'),
          )
 
 # Social widget
-SOCIAL = (('GITHUB', 'https://github.com/ciandcd'),
+SOCIAL = (('Github', 'https://github.com/ciandcd'),
           )
 #GITHUB_URL = 'https://github.com/ciandcd'
 TWITTER_URL = ''
