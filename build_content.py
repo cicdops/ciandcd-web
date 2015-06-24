@@ -25,6 +25,7 @@ feeds = {
         'http://feeds.feedburner.com/AtlassianChina',
         'http://blog.jetbrains.com/feed/',
         'http://www.pmease.com/rss/hotnews',
+        'https://jazz.net/blog/index.php/feed/',
         'https://www.finalbuilder.com/DesktopModules/LiveBlog/Handlers/Syndication.ashx?mid=632&PortalId=0&tid=181&ItemCount=20',
     ],
     'scm':[
