@@ -72,6 +72,19 @@ def writeHtml(outPath,content,title,link,date):
     writeFile(outPath,html)
     print("save to:" + outPath)
 
+def getDomain(url):
+  m = re.search('http[s]://(.*?)/',url)
+  if m:
+     return m.group()
+  else:
+     return '' 
+
+print(getDomain('http://dockone.io/article/468'))
+exit()
+
+def fixLinks(html,link):
+  pass
+
 def download_file(link,title,config,outputDir,category,date):
     try:
         a = Article(link,config=config, keep_article_html=True)
