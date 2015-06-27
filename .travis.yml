@@ -16,7 +16,7 @@ install:
   - pip3 install typogrify
   - pip3 install ghp-import
 script:
-  - python build_content.py
+  - python htmlExtractor/download.py
   - make publish
   - ghp-import -n output -m "update by travis-ci"
   - git push -qf https://${TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
