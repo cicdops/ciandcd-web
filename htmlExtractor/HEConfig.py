@@ -6,6 +6,7 @@ urls = {
         'http://feed.cnblogs.com/blog/u/50245/rss,feed',
         'http://dockone.io/article/468,article',
         'http://dockone.io/article/470,article',
+        'http://www.cnblogs.com/itech/category/245402.html,articles,http://www.cnblogs.com/itech/(?:archive).*?'
     ],
     'devops': [
         'http://devops.com/feed/,feed',

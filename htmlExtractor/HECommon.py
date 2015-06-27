@@ -4,6 +4,7 @@ from datetime import *
 import feedparser
 from newspaper import Article,Config
 import newspaper
+import urllib.request
 
 def writeFile(outPath,content):
     file = open(outPath, 'w')
@@ -47,12 +48,27 @@ def fixLinks(html,link):
   new = reobj.sub(f,html)
   return new
 
-def downloadFile(link,config,outputDir,category,date):
+def getLinks(url,regex):
+    website = urllib.request.urlopen(url)
+    html = website.read().decode('utf-8')
+    regex_new = '"(' + regex + ')"'
+    print('regex:' + regex_new)
+    links = re.findall(regex_new, html)
+
+    return list(set(links))
+
+def downloadFile(link,category,config,outputDir,date):
     print('download article from:' + link)
     try:
-        a = Article(link,config=config, keep_article_html=True)
-        a.download()
-        a.parse()
+        try:
+            a = Article(link,config=config, keep_article_html=True)
+            a.download()
+            a.parse()
+        except Exception as e:
+            print("Error for download and parser:" + link)
+            print(e)
+            return 0
+
         if not a.title:
            print("cannot find title for " + link)
         print('title:' + a.title)
@@ -89,11 +105,11 @@ def downloadFile(link,config,outputDir,category,date):
         return 0
     return 1
 
-def downloadArticles(url,category,config,outputDir,max_number):
+def downloadArticles(url,category,config,outputDir,max_number,regex_for_links):
     print('download from articles:' + url)
-    all = newspaper.build(url)
-    for article in all.articles[:max_number]:
-        downloadFile(article.url,config,outputDir,category,'')
+    all = getLinks(url,regex_for_links)
+    for article in all[:max_number]:
+        downloadFile(article,category,config,outputDir,'')
 
 def downloadFeed(feed,category,config,outputDir,max_number):
             print('download from feed:' + feed)
@@ -110,7 +126,7 @@ def downloadFeed(feed,category,config,outputDir,max_number):
                     date = entry.published
                 except Exception as e:
                     print(e)
-                downloadFile(entry.link,config,outputDir,category,date)
+                downloadFile(entry.link,category,config,outputDir,date)
 
 def downloadByConfig(urls,config,outputDir,max_number):
   print('download from config')
@@ -122,6 +138,7 @@ def downloadByConfig(urls,config,outputDir,max_number):
         if(type == 'feed'):
             downloadFeed(u2,category,config,outputDir,max_number)
         elif(type == 'articles'):
-            downloadArticles(u2,config,outputDir,category,max_number)
+            u2,type,regex_for_links = u.split(',')
+            downloadArticles(u2,config,outputDir,category,max_number,regex_for_links)
         else: #article
-            downloadFile(u2,config,outputDir,category,'')
+            downloadFile(u2,category,config,outputDir,'')
