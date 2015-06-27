@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />GitLab 7.12 released with SAML support, Merge Request Approvers and .gitlab-ci.yml</title></head><body>From:<a href=https://www.gitlab.com/2015/06/22/gitlab-7-12-released/>https://www.gitlab.com/2015/06/22/gitlab-7-12-released/</a><br><br><div><p>A new season is in, and so is GitLab 7.12! This month&#8217;s release brings some big
+additions and changes to Community Edition (CE), Enterprise Edition (EE) and Continuous Integration (CI).
+In both CE and EE, GitLab now supports authentication using
+SAML! This was requested by many and we&#8217;re very happy that CERN
+was so kind to contribute this. In GitLab Enterprise Edition you can now require multiple
+people to approve a merge request before it can be merged. In GitLab CI, we&#8217;re
+introducing the <code>.gitlab-ci.yml</code> file, making job scripts much easier to manage.</p>
+
+<p>This month&#8217;s MVP was an easy choice. Alexandre Lossent from <a href="http://home.web.cern.ch/">CERN</a>
+(where the web was born) contributed the SAML code they
+wrote for their own usage. We&#8217;re very happy with this contribution and are sure
+many of you will make use of this.
+Thanks Alexandre!</p>
+
+ 
+
+
+<h2>SAML Support</h2>
+
+<p>With Alexandre&#8217;s contribution, GitLab can now be configured to act as
+a SAML 2.0 Service Provider. This allows GitLab to consume assertions from a SAML 2.0
+Identity Provider (IdP) such as Microsoft Active Directory Federation Services to authenticate users.</p>
+
+<p>See our <a href="http://doc.gitlab.com/ce/integration/saml.html">documentation on how to setup SAML integration</a>.</p>
+
+<h2>Web Hook for Comments</h2>
+
+<p>There is a new web hook available that will trigger on all comments.
+You could use this to add additional automations and integrations to GitLab.
+For instance when someone comments on a merge request, you can have it
+trigger internal systems or, depending on the comment contents,
+run a certain build.</p>
+
+<h2>Better performance for the Web Editor</h2>
+
+<p>Every new release of GitLab is faster than the last, but in this release
+we did something special. Instead of performing code changes via the web
+interface by cloning the bare repository to a temporary location, committing
+there, and then pushing the changes back to the bare repository, we now commit
+your changes directly into the bare repository. This has significantly
+improved the performance of the web editor.</p>
+
+<h2>UI Update</h2>
+
+<p>Every month we experiment and tune our UI to be better, prettier and more intuitive
+and this month is no different.</p>
+
+<p>We&#8217;ve moved your profile link to the bottom left and updated the looks of
+various parts of the UI.</p>
+
+<p><img src="/images/7_12/profile.png" alt="Profile bottom left"></p>
+
+<h2>Merge Request Approvers (EE only)</h2>
+
+<p>If you want to make sure that merge requests on your favorite project are
+reviewed by more than one person before they are merged, you can now configure a minimum number of Merge Request approvals for it.</p>
+
+<p>You simply set the amount of approvals that a merge request needs before allowing
+it to be merged and GitLab will restrict anyone from merging until the set amount
+of approvals has been met.</p>
+
+<p><img src="/images/7_12/approvals_settings.png" alt="Setting up merge request approvers">
+<img src="/images/7_12/approvals_mr.png" alt="Using merge request approvers"></p>
+
+<p>We&#8217;d love to hear how you are using this feature in your organization.</p>
+
+<h2>Git hook to check Maximum File Size (EE only)</h2>
+
+<p>We&#8217;ve added a new Git Hook that allows you to restrict the incoming commits
+with large files. You can simply set the threshold
+and GitLab will block all future Git pushes containing files that are too big.
+This can be used to prevent people from committing build artifacts, or to motivate them to use git-annex or some other form of large file storage when that&#8217;s more appropriate.</p>
+
+<h2>LDAP Group Sync improvements (EE only)</h2>
+
+<p>We&#8217;ve made several improvements to LDAP Group sync in GitLab EE.
+It now checks for several more attributes when syncing and
+prevents the sync from removing the last owner in a group.</p>
+
+<h2><code>.gitlab-ci.yml</code> file replaces jobs (CI)</h2>
+
+<p>As <a href="https://about.gitlab.com/2015/05/06/why-were-replacing-gitlab-ci-jobs-with-gitlab-ci-dot-yml/">announced on May 6</a>
+we&#8217;re replacing GitLab CI jobs with a <code>.gitlab-ci.yml</code> file stored in the code repository.
+The advantages are listed in the announcement but the main ones are:</p>
+
+<ol>
+<li>Since the build script is version controlled, more people can see it and propose changes</li>
+<li>Older and newer branches build correctly since they can contain a different build file</li>
+<li>Forks automatically get a proper build script that gets updated when they merge upstream in</li>
+<li>You can experiment with CI build settings in your branch without breaking other branches</li>
+</ol>
+
+
+<p>The above things are not possible with Jenkins-like scripts that are the same for the whole project.</p>
+
+<h3>How it works</h3>
+
+<p>GitLab sends the web-hook and the <code>.gitlab-ci.yml</code> contents
+to the CI Coordinator, which creates builds based on the YAML file. In turn,
+these builds are executed by the Runners as it was before.</p>
+
+<p>Here is an example of YAML file:</p>
+
+<pre class="line-numbers"><p class="line-number">1</p>
+<p class="line-number">2</p>
+<p class="line-number">3</p>
+<p class="line-number">4</p>
+<p class="line-number">5</p>
+<p class="line-number">6</p>
+<p class="line-number">7</p>
+<p class="line-number">8</p>
+<p class="line-number">9</p>
+<p class="line-number">10</p>
+<p class="line-number">11</p>
+<p class="line-number">12</p>
+<p class="line-number">13</p>
+<p class="line-number">14</p>
+<p class="line-number">15</p>
+<p class="line-number">16</p>
+<p class="line-number">17</p>
+<p class="line-number">18</p>
+<p class="line-number">19</p>
+<p class="line-number">20</p>
+<p class="line-number">21</p>
+<p class="line-number">22</p>
+<p class="line-number">23</p>
+<p class="line-number">24</p>
+<p class="line-number">25</p>
+<p class="line-number">26</p>
+<p class="line-number">27</p>
+<p class="line-number">28</p>
+<p class="line-number">29</p>
+<p class="line-number">30</p>
+<p class="line-number">31</p>
+<p class="line-number">32</p>
+<p class="line-number">33</p>
+<p class="line-number">34</p>
+<p class="line-number">35</p>
+<p class="line-number">36</p>
+<p class="line-number">37</p>
+<p class="line-number">38</p>
+<p class="line-number">39</p>
+<p class="line-number">40</p>
+<p class="line-number">41</p>
+</pre><pre><code class=""><p class="line">before_script:
+</p><p class="line">  - gem install bundler
+</p><p class="line">  - bundle install
+</p><p class="line">  - bundle exec rake db:create
+</p><p class="line">
+</p><p class="line">rspec:
+</p><p class="line">  script: "rake spec"
+</p><p class="line">  tags:
+</p><p class="line">    - ruby
+</p><p class="line">    - postgres
+</p><p class="line">  only:
+</p><p class="line">    - branches
+</p><p class="line">
+</p><p class="line">spinach:
+</p><p class="line">  script: "rake spinach"
+</p><p class="line">  tags:
+</p><p class="line">    - ruby
+</p><p class="line">    - mysql
+</p><p class="line">  except:
+</p><p class="line">    - tags
+</p><p class="line">
+</p><p class="line">staging:
+</p><p class="line">  script: "cap deploy staging"
+</p><p class="line">  type: deploy
+</p><p class="line">  tags:
+</p><p class="line">    - capistrano
+</p><p class="line">    - debian
+</p><p class="line">  except:
+</p><p class="line">    - stable
+</p><p class="line">
+</p><p class="line">production:
+</p><p class="line">  script:
+</p><p class="line">    - cap deploy production
+</p><p class="line">    - cap notify
+</p><p class="line">  type: deploy
+</p><p class="line">  tags:
+</p><p class="line">    - capistrano
+</p><p class="line">    - debian
+</p><p class="line">  only:
+</p><p class="line">    - master
+</p><p class="line">    - /^deploy-.*$/</p></code></pre>
+
+
+<p>We include a Lint tool to check your syntax. It is available in every GitLab CI instance by the short url <code>/lint</code>.
+If something goes wrong with your <code>.gitlab-ci.yml</code> after push your code you will be able to see errors in the commit page.</p>
+
+<p>The <code>before_script</code> section will be performed before each job.
+You can define a deploy job by adding <code>type: deploy</code>.
+Every job contains parameters such as <code>script</code> (shell script), <code>tags</code>
+(only runner with this tag/tags can pick this build) and <code>only</code> or <code>except</code> parameter
+that defines branch names allowed to run build on.
+The <code>only</code> section takes precedence over the &#8220;except&#8221;.
+You can read more information about new syntax in the
+<a href="http://doc.gitlab.com/ci/builds_configuration/README.html">Configuration of your builds with .gitlab-ci.yml</a></p>
+
+<p>The new format is inspired by the work of Travis CI and Circle CI who are already using YAML files.
+Initially we considered using the open source modules of Travis CI,
+but we ended up writing our own so we could offer:</p>
+
+<ol>
+<li>Customizable deploy jobs</li>
+<li>Ability to run jobs on metal, VM&#8217;s and docker images</li>
+<li>Ability to run on the same machine each time (for example for performance testing)</li>
+<li>Ability to run on special architectures (for example a Raspberry Pi 2)</li>
+<li>Ability to run on machines in a special place or with certain credentials</li>
+<li>A simple and shallow syntax for the YAML file</li>
+<li>Named jobs, so they are easily recognizable</li>
+</ol>
+
+
+<p>Because of this, the &#8220;one image per architecture and that&#8217;s it&#8221; -approach was not an option.
+As you are able to tag runners and jobs, this gives you a lot of freedom in
+assigning a job to a certain runner.
+We hope the new format combines the freedom of Jenkins
+with the user friendliness of Travis CI.</p>
+
+<h3>Migrating</h3>
+
+<p>Upon upgrading to GitLab 7.12, your CI job scripts will be converted automatically
+into an example <code>.gitlab-ci.yml</code> file, which you can view and download in the
+project page in GitLab CI.</p>
+
+<p>On a push that triggers a build, GitLab sends along the <code>.gitlab-ci.yml</code> file
+from the root of the repository. If this is not present, GitLab CI will make use
+of the generated example script. This means your projects that are not updated
+should work fine. However, we do recommend that you add the <code>.gitlab-ci.yml</code>
+file to the root of your repository as soon as possible.</p>
+
+<p>You should add <code>.gitlab-ci.yml</code> files to all branches in your projects that receive
+ongoing Git pushes.</p>
+
+<h2>BETA: Secret Variables for runner (CI)</h2>
+
+<p>We&#8217;ve added a new function to GitLab CI that allows you to set secret variables
+for runners. Secret variables will be set to the environment by the runner
+and will be hidden from the build log.
+Use them for passwords, secret keys or anything else.
+Make sure you have runner version 0.4 or greater (released today).</p>
+
+<p>This feature is currently in beta.
+Secrets added to GitLab CI 7.12 will be stored in its SQL database WITHOUT encryption.
+We will add encryption in 7.13.</p>
+
+<p><img src="/images/7_12/secrets.png" alt="Secret Variables"></p>
+
+<h2>Other changes</h2>
+
+<p>This release has more improvements, including security fixes, please check out <a href="https://gitlab.com/gitlab-org/gitlab-ce/blob/master/CHANGELOG">the Changelog</a> to see the all named changes.</p>
+
+
+
+<h2>Upgrade barometer</h2>
+
+<p>This release only adds minor migrations.
+If you are on GitLab 7.11 CE or EE you can upgrade to 7.12 while staying online.</p>
+
+<h4>Changed behavior for &#8216;secret_token&#8217; settings when using Omnibus packages</h4>
+
+<p>If you set a custom value for <code>gitlab_rails['secret_token']</code>, <code>gitlab_shell['secret_token']</code> or <code>gitlab_ci['secret_token']</code> in <code>/etc/gitlab/gitlab.rb</code> then please double-check that the value in <code>gitlab.rb</code> matches the value in <code>/etc/gitlab/gitlab-secrets.json</code>.
+If some of the values do not match, copy the values from <code>gitlab-secrets.json</code> to <code>gitlab.rb</code> prior to upgrading to GitLab 7.12.</p>
+
+<p>Prior to 7.12, any <code>secret_token</code> values you had in <code>gitlab.rb</code> were actually being ignored in favor of whatever is in <code>gitlab-secrets.json</code>.
+This was an unexpected behaviour as it was expected that specifying a setting in gitlab.rb always takes precedence.</p>
+
+<p>On most GitLab omnibus installations the &#8216;secret_token&#8217; values are set only in <code>gitlab-secrets.json</code>, and no action is required.</p>
+
+<p>This change only applies to GitLab omnibus packages.
+Installations from source are not affected.</p>
+
+<h4>Changed detection of the operating system init</h4>
+
+<p>When running <code>gitlab-ctl reconfigure</code> omnibus-gitlab needs to decide if the system
+is using SysV init, Upstart or Systemd so it can install the <code>gitlab-runsvdir</code> service.</p>
+
+<p>Prior to this version, this decision was being done by looking at the platform and version of the OS and what the default init for that system was.</p>
+
+<p>This was unreliable and with omnibus-gitlab being installable on more OS' code that handles this became complicated and error prone.</p>
+
+<p>From this release onwards, this has been replaced and detection is done by querying the OS init system. Based on this response <code>gitlab-runsvdir</code> service is installed.</p>
+
+<p>If you encounter an issue as described in <a href="https://gitlab.com/gitlab-org/omnibus-gitlab/tree/master#reconfigure-freezes-at-ruby_blocksupervise_redis_sleep-action-run">omnibus-gitlab README</a> try applying the workaround and raise an issue on the omnibus-gitlab issue tracker.</p>
+
+<h4>Updated recommended SSL cipher suites</h4>
+
+<p>Following the <a https://www.gitlab.com//2015/05/21/security-advisory-for-logjam-vulnerability/>Logjam vulnerability</a> we changed the recommended SSL cipher suites in omnibus-packages and installations from source. More details can be found in <a https://www.gitlab.com//2015/06/17/gitlab-com-and-logjam/>this blogpost</a>.</p>
+
+
+
+<h2>Installation</h2>
+
+<p>If you are setting up a new GitLab installation please see the
+<a href="https://www.gitlab.com/downloads/">download GitLab page</a>.</p>
+
+<h2>Updating</h2>
+
+<p>Check out our <a href="https://about.gitlab.com/update/">update page</a>.</p>
+
+<h2>Enterprise Edition</h2>
+
+<p>The mentioned EE only features and things like LDAP group support can be found in GitLab Enterprise Edition.
+For a complete overview please have a look at the <a href="http://www.gitlab.com/gitlab-ee/">feature list of GitLab EE</a>.</p>
+
+<p>Access to GitLab Enterprise Edition is included with a <a href="http://www.gitlab.com/pricing/">subscription</a>.
+No time to upgrade GitLab yourself?
+A subscription also entitles you to our upgrade and installation services.</p>
+
+                  <a></a><p>Install GitLab on your own server in 2 minutes <a https://www.gitlab.com//downloads id="dl-partial">Let's do it!</a> </p><a https://www.gitlab.com//downloads class="btn btn-block btn-lg btn-purple visible-xs" id="dl-partial-sm">
+  Install GitLab on your own server in 2 minutes
+</a>
+
+
+                  
+                  <p>&#8594; <a https://www.gitlab.com//blog/archives.html>Browse all posts</a></p>
+
+                  <strong><a href="https://twitter.com/gitlab">@gitlab</a></strong>
+    on Twitter.
+
+    <a></a><p>For the latest and most detailed news followon Twitter. <a https://www.gitlab.com//atom.xml class="rss-btn">
+      
+    </a> </p><p>Get every GitLab blog post and stay up to date.</p>
+     
+    <p id="mc_embed_signup" class="newsletter-form">
+       
+    </p>
+     
+
+  <p id="disqus_thread"></p>
+                   
+                  Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;
+                </div></body></html>

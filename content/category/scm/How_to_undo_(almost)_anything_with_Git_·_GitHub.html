@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />How to undo (almost) anything with Git · GitHub</title></head><body>From:<a href=https://github.com/blog/2019-how-to-undo-almost-anything-with-git>https://github.com/blog/2019-how-to-undo-almost-anything-with-git</a><br><br><div><p>One of the most useful features of any version control system is the ability to "undo" your mistakes. In Git, "undo" can mean many slightly different things.</p>
+
+<p>When you make a new commit, Git stores a snapshot of your repository at that specific moment in time; later, you can use Git to go back to an earlier version of your project.</p>
+
+<p>In this post, I'm going to take a look at some common scenarios where you might want to "undo" a change you've made and the best way to do it using Git.</p>
+
+<h2>
+<a id="undo-a-public-change" class="anchor" href="#undo-a-public-change"><p class="octicon octicon-link"></p></a>Undo a "public" change</h2>
+
+<p><strong>Scenario:</strong> You just ran <code>git push</code>, sending your changes to GitHub, now you realize there's a problem with one of those commits. You'd like to undo that commit.</p>
+
+<p><strong>Undo with:</strong> <code>git revert &lt;SHA&gt;</code></p>
+
+<p><strong>What's happening:</strong> <code>git revert</code> will create a new commit that's the opposite (or inverse) of the given SHA. If the old commit is "matter", the new commit is "anti-matter"&#8212;anything removed in the old commit will be added in the new commit and anything added in the old commit will be removed in the new commit. </p>
+
+<p>This is Git's safest, most basic "undo" scenario, because it doesn't alter history&#8212;so you can now <code>git push</code> the new "inverse" commit to undo your mistaken commit.</p>
+
+<h2>
+<a id="fix-the-last-commit-message" class="anchor" href="#fix-the-last-commit-message"><p class="octicon octicon-link"></p></a>Fix the last commit message</h2>
+
+<p><strong>Scenario:</strong> You just typo'd the last commit message, you did <code>git commit -m "Fxies bug #42"</code> but before <code>git push</code> you realized that really should say "Fixes bug #42".</p>
+
+<p><strong>Undo with:</strong> <code>git commit --amend</code> or <code>git commit --amend -m "Fixes bug #42"</code></p>
+
+<p><strong>What's happening:</strong> <code>git commit --amend</code> will update and replace the most recent commit with a new commit that combines any staged changes with the contents of the previous commit. With nothing currently staged, this just rewrites the previous commit message.</p>
+
+<h2>
+<a id="undo-local-changes" class="anchor" href="#undo-local-changes"><p class="octicon octicon-link"></p></a>Undo "local" changes</h2>
+
+<p><strong>Scenario:</strong> The cat walked across the keyboard and somehow saved the changes, then crashed the editor. You haven't committed those changes, though. You want to undo everything in that file&#8212;just go back to the way it looked in the last commit.</p>
+
+<p><strong>Undo with:</strong> <code>git checkout -- &lt;bad filename&gt;</code></p>
+
+<p><strong>What's happening:</strong> <code>git checkout</code> alters files in the working directory to a state previously known to Git. You could provide a branch name or specific SHA you want to go back to or, by default, Git will assume you want to checkout <code>HEAD</code>, the last commit on the currently-checked-out branch.</p>
+
+<p>Keep in mind: any changes you "undo" this way are really gone. They were never committed, so Git can't help us recover them later. Be sure you know what you're throwing away here! (Maybe use <code>git diff</code> to confirm.)</p>
+
+<h2>
+<a id="reset-local-changes" class="anchor" href="#reset-local-changes"><p class="octicon octicon-link"></p></a>Reset "local" changes</h2>
+
+<p><strong>Scenario:</strong> You've made some commits locally (not yet pushed), but everything is terrible, you want to undo the last three commits&#8212;like they never happened.</p>
+
+<p><strong>Undo with:</strong> <code>git reset &lt;last good SHA&gt;</code> or <code>git reset --hard &lt;last good SHA&gt;</code></p>
+
+<p><strong>What's happening:</strong> <code>git reset</code> rewinds your repository's history all the way back to the specified SHA. It's as if those commits never happened. By default, <code>git reset</code> preserves the working directory. The commits are gone, but the contents are still on disk. This is the safest option, but often, you'll want to "undo" the commits and the changes in one move&#8212;that's what <code>--hard</code> does.</p>
+
+<h2>
+<a id="redo-after-undo-local" class="anchor" href="#redo-after-undo-local"><p class="octicon octicon-link"></p></a>Redo after undo "local"</h2>
+
+<p><strong>Scenario:</strong> You made some commits, did a <code>git reset --hard</code> to "undo" those changes (see above), and then realized: you want those changes back!</p>
+
+<p><strong>Undo with:</strong> <code>git reflog</code> and <code>git reset</code> or <code>git checkout</code></p>
+
+<p><strong>What's happening:</strong> <code>git reflog</code> is an amazing resource for recovering project history. You can recover almost anything&#8212;anything you've committed&#8212;via the reflog.</p>
+
+<p>You're probably familiar with the <code>git log</code> command, which shows a list of commits. <code>git reflog</code> is similar, but instead shows a list of times when <code>HEAD</code> changed.</p>
+
+<p>Some caveats:</p>
+
+<ul>
+<li>
+<code>HEAD</code> changes only.<code>HEAD</code> changes when you switch branches, make commits with <code>git commit</code> and un-make commits with <code>git reset</code>, but <code>HEAD</code> does not change when you <code>git checkout -- &lt;bad filename&gt;</code> (from an earlier scenario&#8212;as mentioned before, those changes were never committed, so the reflog can't help us recover those.</li>
+<li>
+<code>git reflog</code> doesn't last forever. Git will periodically clean up objects which are "unreachable." Don't expect to find months-old commits lying around in the reflog forever.</li>
+<li>Your <code>reflog</code> is yours and yours alone. You can't use <code>git reflog</code> to restore another developer's un-pushed commits.</li>
+</ul>
+
+<p><a href="https://cloud.githubusercontent.com/assets/2077/6953866/f6b9f054-d891-11e4-8c53-838eff9f40ae.png" target="_blank"><img src="https://cloud.githubusercontent.com/assets/2077/6953866/f6b9f054-d891-11e4-8c53-838eff9f40ae.png" alt="reflog"></a></p>
+
+<p>So... how do you use the reflog to "redo" a previously "undone" commit or commits? It depends on what exactly you want to accomplish:</p>
+
+<ul>
+<li>If you want to restore the project's history as it was at that moment in time use <code>git reset --hard &lt;SHA&gt;</code>
+</li>
+<li>If you want to recreate one or more files in your working directory as they were at that moment in time, without altering history use <code>git checkout &lt;SHA&gt; -- &lt;filename&gt;</code>
+</li>
+<li>If you want to replay exactly one of those commits into your repository use <code>git cherry-pick &lt;SHA&gt;</code>
+</li>
+</ul>
+
+<h2>
+<a id="once-more-with-branching" class="anchor" href="#once-more-with-branching"><p class="octicon octicon-link"></p></a>Once more, with branching</h2>
+
+<p><strong>Scenario:</strong> You made some commits, then realized you were checked out on <code>master</code>. You wish you could make those commits on a feature branch instead.</p>
+
+<p><strong>Undo with:</strong> <code>git branch feature</code>, <code>git reset --hard origin/master</code>, and <code>git checkout feature</code></p>
+
+<p><strong>What's happening:</strong> You may be used to creating new branches with <code>git checkout -b &lt;name&gt;</code>&#8212;it's a popular short-cut for creating a new branch and checking it out right away&#8212;but you don't want to switch branches just yet. Here, <code>git branch feature</code> creates a new branch called <code>feature</code> pointing at your most recent commit, but leaves you checked out to <code>master</code>.</p>
+
+<p>Next, <code>git reset --hard</code> rewinds <code>master</code> back to <code>origin/master</code>, before any of your new commits. Don't worry, though, they are still available on <code>feature</code>.</p>
+
+<p>Finally, <code>git checkout</code> switches to the new <code>feature</code> branch, with all of your recent work intact.</p>
+
+<h2>
+<a id="branch-in-time-saves-nine" class="anchor" href="#branch-in-time-saves-nine"><p class="octicon octicon-link"></p></a>Branch in time saves nine</h2>
+
+<p><strong>Scenario:</strong> You started a new branch <code>feature</code> based on <code>master</code>, but <code>master</code> was pretty far behind <code>origin/master</code>. Now that <code>master</code> branch is in sync with <code>origin/master</code>, you wish commits on <code>feature</code> were starting now, instead of being so far behind.</p>
+
+<p><strong>Undo with:</strong> <code>git checkout feature</code> and <code>git rebase master</code></p>
+
+<p><strong>What's happening:</strong> You could have done this with <code>git reset</code> (no <code>--hard</code>, intentionally preserving changes on disk) then <code>git checkout -b &lt;new branch name&gt;</code> and then re-commit the changes, but that way, you'd lose the commit history. There's a better way.</p>
+
+<p><code>git rebase master</code> does a couple of things:</p>
+
+<ul>
+<li>First it locates the common ancestor between your currently-checked-out branch and <code>master</code>.</li>
+<li>Then it resets the currently-checked-out branch to that ancestor, holding all later commits in a temporary holding area.</li>
+<li>Then it advances the currently-checked-out-branch to the end of <code>master</code> and replays the commits from the holding area after <code>master</code>'s last commit.</li>
+</ul>
+
+<h2>
+<a id="mass-undoredo" class="anchor" href="#mass-undoredo"><p class="octicon octicon-link"></p></a>Mass undo/redo</h2>
+
+<p><strong>Scenario:</strong> You started this feature in one direction, but mid-way through, you realized another solution was better. You've got a dozen or so commits, but you only want some of them. You'd like the others to just disappear.</p>
+
+<p><strong>Undo with:</strong> <code>git rebase -i &lt;earlier SHA&gt;</code></p>
+
+<p><strong>What's happening:</strong> <code>-i</code> puts <code>rebase</code> in "interactive mode". It starts off like the rebase discussed above, but before replaying any commits, it pauses and allows you to gently modify each commit as it's replayed. </p>
+
+<p><code>rebase -i</code> will open in your default text editor, with a list of commits being applied, like this:</p>
+
+<p><a href="https://cloud.githubusercontent.com/assets/2077/6953863/f6b1ab88-d891-11e4-97c1-e0630ac74e74.png" target="_blank"><img src="https://cloud.githubusercontent.com/assets/2077/6953863/f6b1ab88-d891-11e4-97c1-e0630ac74e74.png" alt="rebase-interactive1"></a></p>
+
+<p>The first two columns are key: the first is the selected command for the commit identified by the SHA in the second column. By default, <code>rebase -i</code> assumes each commit is being applied, via the <code>pick</code> command.</p>
+
+<p>To drop a commit, just delete that line in your editor. If you no longer want the bad commits in your project, you can delete lines 1 and 3-4 above. </p>
+
+<p>If you want to preserve the contents of the commit but edit the commit message, you use the <code>reword</code> command. Just replace the word <code>pick</code> in the first column with the word <code>reword</code> (or just <code>r</code>). It can be tempting to rewrite the commit message right now, but that won't work&#8212;<code>rebase -i</code> ignores everything after the SHA column. The text after that is really just to help us remember what <code>0835fe2</code> is all about. When you've finished with <code>rebase -i</code>, you'll be prompted for any new commit messages you need to write.</p>
+
+<p>If you want to combine two commits together, you can use the <code>squash</code> or <code>fixup</code> commands, like this:</p>
+
+<p><a href="https://cloud.githubusercontent.com/assets/2077/6953865/f6b605ca-d891-11e4-98cf-d567ca9f4edc.png" target="_blank"><img src="https://cloud.githubusercontent.com/assets/2077/6953865/f6b605ca-d891-11e4-98cf-d567ca9f4edc.png" alt="rebase-interactive2"></a></p>
+
+<p><code>squash</code> and <code>fixup</code> combine "up"&#8212;the commit with the "combine" command will be merged into the commit immediately before it. In this scenario, <code>0835fe2</code> and <code>6943e85</code> will be combined into one commit, then <code>38f5e4e</code> and <code>af67f82</code> will be combined together into another. </p>
+
+<p>When you select <code>squash</code>, Git will prompt us to give the new, combined commit a new commit message; <code>fixup</code> will give the new commit the message from the first commit in the list. Here, you know that <code>af67f82</code> is an "ooops" commit, so you'll just use the commit message from <code>38f5e4e</code> as is, but you'll write a new message for the new commit you get from combining <code>0835fe2</code> and <code>6943e85</code>.</p>
+
+<p>When you save and exit your editor, Git will apply your commits in order from top to bottom. You can alter the order commits apply by changing the order of commits before saving. If you'd wanted, you could have combined <code>af67f82</code> with <code>0835fe2</code> by arranging things like this:</p>
+
+<p><a href="https://cloud.githubusercontent.com/assets/2077/6953864/f6b4a9d2-d891-11e4-9ac9-10039c031d06.png" target="_blank"><img src="https://cloud.githubusercontent.com/assets/2077/6953864/f6b4a9d2-d891-11e4-9ac9-10039c031d06.png" alt="rebase-interactive3"></a></p>
+
+<h2>
+<a id="fix-an-earlier-commit" class="anchor" href="#fix-an-earlier-commit"><p class="octicon octicon-link"></p></a>Fix an earlier commit</h2>
+
+<p><strong>Scenario:</strong> You failed to include a file in an earlier commit, it'd be great if that earlier commit could somehow include the stuff you left out. You haven't pushed, yet, but it wasn't the most recent commit, so you can't use <code>commit --amend</code>.</p>
+
+<p><strong>Undo with:</strong> <code>git commit --squash &lt;SHA of the earlier commit&gt;</code> and <code>git rebase --autosquash -i &lt;even earlier SHA&gt;</code></p>
+
+<p><strong>What's happening:</strong> <code>git commit --squash</code> will create a new commit with a commit message like <code>squash! Earlier commit</code>. (You could manually create a commit with a message like that, but <code>commit --squash</code> saves you some typing.)</p>
+
+<p>You can also use <code>git commit --fixup</code> if you don't want to be prompted to write a new commit message for the combined commit. In this scenario, you'd probably use <code>commit --fixup</code>, since you just want to use the earlier commit's commit message during <code>rebase</code>.</p>
+
+<p><code>rebase --autosquash -i</code> will launch an interactive <code>rebase</code> editor, but the editor will open with any <code>squash!</code> and <code>fixup!</code> commits already paired to the commit target in the list of commits, like so:</p>
+
+<p><a href="https://cloud.githubusercontent.com/assets/2077/6953862/f6a7a1d8-d891-11e4-8784-c32262ff54da.png" target="_blank"><img src="https://cloud.githubusercontent.com/assets/2077/6953862/f6a7a1d8-d891-11e4-8784-c32262ff54da.png" alt="rebase-autosquash"></a></p>
+
+<p>When using <code>--squash</code> and <code>--fixup</code>, you might not remember the SHA of the commit you want to fix&#8212;only that it was one or five commits ago. You might find using Git's <code>^</code> and <code>~</code> operators especially handy. <code>HEAD^</code> is one commit before <code>HEAD</code>. <code>HEAD~4</code> is four commits before <code>HEAD</code> - or, altogether, five commits back. </p>
+
+<h2>
+<a id="stop-tracking-a-tracked-file" class="anchor" href="#stop-tracking-a-tracked-file"><p class="octicon octicon-link"></p></a>Stop tracking a tracked file</h2>
+
+<p><strong>Scenario:</strong> You accidentally added <code>application.log</code> to the repository, now every time you run the application, Git reports there are unstaged changes in <code>application.log</code>. You put <code>*.log</code> in the <code>.gitignore</code> file, but it's still there&#8212;how do you tell git to to "undo" tracking changes in this file?</p>
+
+<p><strong>Undo with:</strong> <code>git rm --cached application.log</code></p>
+
+<p><strong>What's happening:</strong> While <code>.gitignore</code> prevents Git from tracking changes to files or even noticing the existence of files it's never tracked before, once a file has been added and committed, Git will continue noticing changes in that file. Similarly, if you've used <code>git add -f</code> to "force", or override, <code>.gitignore</code>, Git will keep tracking changes. You won't have to use <code>-f</code> to add it in the future.</p>
+
+<p>If you want to remove that should-be-ignored file from Git's tracking, <code>git rm --cached</code> will remove it from tracking but leave the file untouched on disk. Since it's now being ignored, you won't see that file in <code>git status</code> or accidentally commit changes from that file again.</p>
+
+
+
+<p>That's how to undo anything with Git. To learn more about any of the Git commands used here, check out the relevant documentation:</p>
+
+ 
+  </div></body></html>

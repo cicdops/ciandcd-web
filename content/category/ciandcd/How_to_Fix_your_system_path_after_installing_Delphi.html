@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />How to Fix your system path after installing Delphi</title></head><body>From:<a href=https://www.finalbuilder.com/resources/blogs/postid/722/how-to-fix-your-system-path-after-installing-delphi>https://www.finalbuilder.com/resources/blogs/postid/722/how-to-fix-your-system-path-after-installing-delphi</a><br><br><div><p><strong><p>Update : Still the same situation with XE8.&#160;</p></strong><br>
+<br>
+The Windows Path environment variable has a limit of <p>1023</p>&#160;*&#160;<p><strong>2,048</strong>&#160;</p>characters, a stupidly short limit in this day and age, and when this limit is exceeded the path is truncated. Why this limit still exists on windows I have no idea.. for that matter why it ever existed... anyway, we're stuck with it (along with it's best buddy, MAX_PATH).&#160;</p><br>
+<br>
+Each version of Delphi adds over 200 characters to your system path. Worst still, they add those 200+ characters to the front of the path, not the end. What happens, is that eventually, important entries get truncated off end of the path, and <strong>strange things happen</strong>. You will find programs will not run, the task bar displays the wrong icons for programs, even getting to the control panel can be problematic.&#160;<br>
+<br>
+If you look at the entries that XE7 added to the start of your path you will see something like this :<br>
+<br>
+C:\Program Files (x86)\Embarcadero\Studio\15.0\bin;<br>
+<p>C:\Program Files (x86)\Embarcadero\Studio\15.0\bin64;<br>
+</p>C:\Users\Public\Documents\Embarcadero\Studio\15.0\Bpl;<br>
+C:\Users\Public\Documents\Embarcadero\Studio\15.0\Bpl\Win64;<br>
+<br>
+Fortunately this can be shortened by the use of junction points. Sadly, this will polute your C: drive with new folders but it's better than the alternative.<br>
+<br>
+The trick is to create links for the most common paths, so on mine I created these<br>
+For XE5 and earlier :<br>
+mklink /j RS C:\Program Files (x86)\Embarcadero\RAD Studio<br>
+mklink /j rspub&#160;C:\Users\Public\Documents\RAD Studio<br>
+<br>
+XE6 and above&#160;<br>
+<br>
+mklink /j Studio&#160;C:\Program Files (x86)\Embarcadero\Studio<br>
+<p>mklink /j spub&#160;</p><p>C:\Users\Public\Documents\Embarcadero\Studio</p><br>
+<br>
+Once you have those junction points, you can then edit your path and replace the long paths, for example (for XE7) :<br>
+<br>
+<p>C:\Program Files (x86)\Embarcadero\Studio\15.0\bin -&gt;&#160;</p><p>C:\Studio\15.0\bin<br>
+</p><p>C:\Program Files (x86)\Embarcadero\Studio\15.0\bin64 -&gt;&#160;C:\Studio\15.0\bin64</p><br>
+<p>C:\Users\Public\Documents\Embarcadero\Studio\15.0\Bpl&#160;-&gt;&#160;C:\spub\15.0\Bpl</p><br>
+<p>C:\Users\Public\Documents\Embarcadero\Studio\15.0\Bpl\Win64 - &gt; c:\spub\15.0\Bpl\Win64<br>
+</p><br>
+So for XE7, that cuts it down from 218 to 80 characters, if like me you also have multiple versions of Rad Studio installed, this can be a big saving.<br>
+<br>
+As for Rad Studio, it's extremely rude to add things to the start of the path, the truncation it causes can ruin a machine.. I wasted several hours again today after installing XE7. Embarcadero were told about this issue many times over several releases.. according to the <a></a><strong>PLEASE ADD IT TO THE END!!</strong> and save us all a bunch of time.&#160;<br>
+<br>
+*&#160;Correction, max path length is 2048 - very difficult to find a difinitive source of this information on the microsoft site - the max size of an env variable is 2048, however I have seen the path variable truncated at 1024 many times.&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    <p>Each version of Delphi adds over 200 characters to your system path. Worst still, they add those 200+ characters to the front of the path, not the end. What happens, is that eventually, important entries get truncated off end of the path, and. You will find programs will not run, the task bar displays the wrong icons for programs, even getting to the control panel can be problematic.If you look at the entries that XE7 added to the start of your path you will see something like this :C:\Program Files (x86)\Embarcadero\Studio\15.0\bin;C:\Users\Public\Documents\Embarcadero\Studio\15.0\Bpl;C:\Users\Public\Documents\Embarcadero\Studio\15.0\Bpl\Win64;Fortunately this can be shortened by the use of junction points. Sadly, this will polute your C: drive with new folders but it's better than the alternative.The trick is to create links for the most common paths, so on mine I created theseFor XE5 and earlier :mklink /j RS C:\Program Files (x86)\Embarcadero\RAD Studiomklink /j rspub C:\Users\Public\Documents\RAD StudioXE6 and abovemklink /j Studio C:\Program Files (x86)\Embarcadero\StudioOnce you have those junction points, you can then edit your path and replace the long paths, for example (for XE7) :So for XE7, that cuts it down from 218 to 80 characters, if like me you also have multiple versions of Rad Studio installed, this can be a big saving.As for Rad Studio, it's extremely rude to add things to the start of the path, the truncation it causes can ruin a machine.. I wasted several hours again today after installing XE7. Embarcadero were told about this issue many times over several releases.. according to the <a href="http://docwiki.embarcadero.com/RADStudio/XE7/en/Installation_Path_Length_Problem">doco</a> , XE7 will popup a message about this.. I didn't see it so not sure when that is supposed to appear, but in any event, if your installer or progam needs to add something to the path environment variable,and save us all a bunch of time.Correction, max path length is 2048 - very difficult to find a difinitive source of this information on the microsoft site - the max size of an env variable is 2048, however I have seen the path variable truncated at 1024 many times.</p></div></body></html>

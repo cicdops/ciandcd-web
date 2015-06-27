@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />Deployment with Continua CI 1.5 and Octopus Deploy</title></head><body>From:<a href=https://www.finalbuilder.com/resources/blogs/postid/712/deployment-with-continua-ci-and-octopus-deploy>https://www.finalbuilder.com/resources/blogs/postid/712/deployment-with-continua-ci-and-octopus-deploy</a><br><br><div><h2></h2>
+<h2></h2>
+So you've got your Continua CI server set up to automatically build, run unit tests and produce reports for your awesome new web application. Now you're ready to try out your project in its natural environment and then eventually release it to the wild for well-deserved public applause.<br>
+<br>
+Up until now, your options were either to use a Copy action to push the files up to test server and a PowerShell action to set up web services, or preferably run a FinalBuilder script utilising the plethora of actions available for transferring files and interacting with web servers.<br>
+<br>
+As of version 1.5, Continua CI can also work together with <a></a><br>
+<br>
+This post will walk through the steps required to push a .Net web application built in Continua to Octopus Deploy and trigger a deployment process to effortlessly get your application running on your test and production servers.<br>
+<br>
+<h3>Preparing your solution</h3>
+<br>
+Octopus Deploy requires that you provide your applications as <a></a><a></a><br>
+<br>
+Lets go with the recommended OctoPack option. First prepare your Visual Studio solution - use the NuGet package manager to install the OctoPack package into the projects you want to deploy. This will include web application projects, console application projects and Windows service projects but not class libraries and unit test projects.<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/octopack.png">
+<br>
+<br>
+You can now optionally add a <a></a><br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/nuspec.png">
+<br>
+<br>
+<h3>Setting up the deployment process</h3>
+<br>
+Next head over to your Octopus server and set up a deployment project. This should include a &#8220;Deploy a NuGet package&#8221; process step as below.
+<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/DeploymentStep.png">
+<br>
+<br>
+We will set this to retrieve the application package from the built-in NuGet feed. Note that the NuGet package id should match the id element in your .nuspec file - this will default to the name of your assembly.<br>
+<br>
+We added a few more steps:<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/DeploymentProcess.png">
+<br>
+<br>
+And some variables:<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/DeploymentVariables.png">
+<br>
+<br>
+<h3>Setting up the build process</h3>
+<br>
+You can now get back to Continua and set up a configuration for building your project. Once you have entered the configuration details and linked up the repository containing your project, move on over to the Stages page:<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/BuildStage.png">
+<br>
+<br>
+For this simple example you'll need two actions: a NuGet Restore action to ensure that the OctoPack package is available for the build and an MSBuild action to build and push the application to your Octopus Deploy server.<br>
+Just enter the path to your solution for the NuGet Restore action (the other fields can be left as is) and complete the main tab of the MSBuild action as required for your project.<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/MSBuildAction.png">
+<br>
+<br>
+You then need to enter some additional properties to tell MSBuild to run OctoPack and tell it where to send your package.<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/MSBuildProperties.png">
+<br>
+<br>
+Set the RunOctoPack property to true and the OctoPackPublishPackageToHttp property to the URL for the NuGet feed on the Octopus Deploy server e.g. <a></a><br>
+<br>
+You will also need to provide an OctoPackPublishAPIKey property &#8211; you can generate an API key on your profile page on the Octopus Deploy server. <br>
+<br>
+<p>Optionally, y</p>ou can &#160;use the OctoPackPackageVersion to specify up the package version. Here we use Continua expressions to set this based on the build version. If you leave this out then OctoPack will get this value from the AssemblyVersion property&#160;in your AssemblyInfo.cs file.<br>
+<br>
+Once the actions are set up and saved, run a build and check that your package gets uploaded to the Octopus Deploy server. Then create a release for your deployment project and test that it deploys ok. Now we are ready to look into how to run this process automatically from Continua CI.<br>
+<br>
+<h3>Build event handler</h3>
+<br>
+On the Continua CI configuration wizard after Stages, we have a new area titled Events. Here you can add <a></a><br>
+<br>
+Create a new build event handler, give it a name and select the Octopus Deploy as the Type.<br>
+<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/NewEventHandler.png">
+<br>
+<br>
+You can now provide general project details under the Octopus Deploy tab.
+<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/OctopusDeployDetails.png">
+<br>
+<br>
+The Octopus Deploy URL should end with '/api' e.g.  http://octopusserver/api. Enter the API key generated under your Octopus Deploy profile and the name of your deployment project.<br>
+&#160;&#160;<br>
+You can then choose one or more actions to run. The available options are <strong>Create</strong>, <strong>Deploy</strong> and <strong>Promote</strong> and are used to create a new deployment release, deploy a release to an environment and promote a release from one environment to another. As you select each action, new tabs open so you can provide further details and hook the action to a build event.
+<br>
+<br>
+<h3>Creating a release</h3>
+<br>
+Before you can deploy an application you need to create a Octopus Deploy release<br>
+<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/CreateRelease.png">
+<br>
+<br>
+When creating a release you can specify the Release Version or leave this blank to automatically create a number based on the highest package version. You must provide either a Default Package Version or Step Package Versions for each step which requires one e.g.<br>
+<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/StepPackageVersions.png">
+<br>
+<br>
+Flip over to the Create Options tab to tell Continua when to create the release.<br>
+<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/CreateOptions.png">
+<br>
+<br>
+There are six <a></a><br>
+<br>
+<ul>
+    <li> On Before Stage Start</li>
+    <li>    On Sending Stage To Agent</li>
+    <li>    On Stage Completed</li>
+    <li>    On Build Pending Promotion</li>
+    <li>    On After Build Continued</li>
+    <li>    On Build Completed</li>
+</ul>
+<br>
+Generally we want to create the release at the start of the build before the first stage starts.<br>
+<br>
+<h3>    Deploying to an environment</h3>
+<br>
+Now on to the crux of this whole process - deploying your application. We generally deploy to a Test environment first and then, once we are happy with the outcome, promote to a User Acceptance environment or directly to Production. Continua CI allows you to deploy a release previously created by a Create action in the same build event handler, the highest release version in the project or a specific release version. It's up to you to ensure that the release version exists before the deploy action is run. An environment can consist of multiple machines - you can specify which machines you want to deploy to. If no machines are specified then the release will be deployed to all machines in the environment.<br>
+<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/DeployRelease.png">
+<br>
+<br>
+<br>
+When selecting the Build Event for deployment, ensure that it is triggerred after the package has been built and pushed to the Octopus Deploy server. Here we have set this to be run once the Build stage has completed successfully.
+<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/DeployOptions.png">
+<br>
+<br>
+<h3>Promoting a release</h3>
+<br>
+You can promote the latest release from one environment to another. Ideally this would be linked to the promotion of a stage e.g. a testing stage, so that the application can be promoted from a test environment to production environment.
+<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/PromoteRelease.png">
+<br>
+<br>
+We have set our test stage to require manual promotion;
+<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/StagePromoteOptions.png">
+<br>
+<br>
+<br>
+and set our promote action to run when a build is continued after waiting for promotion.
+<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/PromoteOptions.png">
+<br>
+<br>
+<h3></h3>
+<h3>Variables</h3>
+<br>
+You can also pass variables from Continua CI to your deployment, these will be sent to the Octopus Deploy server before each action is run, updating the variables for the deployment project. We have used expressions is this example to send the build versions number and branch name. These variables can then be used to update project files with details for display or configure services differently depending on the source of the project.
+<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/Variables.png">
+<br>
+<br>
+<h3>Running the configuration</h3>
+<br>
+Once your build event handler dialog has been completed and saved, its time to start running the configuration. As the build processes Continua CI will display status information mirroring the process running on Octopus Deploy.
+<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/Status.png">
+<br>
+<br>
+You can also see full details of the deployment process in the build log.
+<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/BuildLog.png">
+<br>
+<br>
+And all going well you will now see a successful deployment on your Octopus Deploy server!
+<br>
+<br>
+<img alt="" src="/portals/0/articleimages/blogimages/dave/Success.png">
+<br>
+<br>&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    <p>So you've got your Continua CI server set up to automatically build, run unit tests and produce reports for your awesome new web application. Now you're ready to try out your project in its natural environment and then eventually release it to the wild for well-deserved public applause.Up until now, your options were either to use a Copy action to push the files up to test server and a PowerShell action to set up web services, or preferably run a FinalBuilder script utilising the plethora of actions available for transferring files and interacting with web servers.As of version 1.5, Continua CI can also work together with <a href="https://octopusdeploy.com">Octopus Deploy</a> server to provide an end-to-end continuous delivery mechanism. Using the new build event handlers feature, Continua CI builds can now be set up to create Octopus Deploy releases and initiate deployment to test and production environments, at key points in the build process.This post will walk through the steps required to push a .Net web application built in Continua to Octopus Deploy and trigger a deployment process to effortlessly get your application running on your test and production servers.Octopus Deploy requires that you provide your applications as <a href="https://www.nuget.org">NuGet packages</a> . You can create and push the package to the Octopus Deploy server using Nuget Pack and Push actions, or create and push an <a href="http://docs.octopusdeploy.com/display/OD/Using+OctoPack">OctoPack</a> from MSBuild or VisualStudio build runner actions.Lets go with the recommended OctoPack option. First prepare your Visual Studio solution - use the NuGet package manager to install the OctoPack package into the projects you want to deploy. This will include web application projects, console application projects and Windows service projects but not class libraries and unit test projects.You can now optionally add a <a href="http://docs.nuget.org/docs/reference/nuspec-reference">.nuspec file</a> to the root folder of your project to describe the contents of your package. If you don't provide a .nuspec file, OctoPack will automatically create one based on your project settings.Next head over to your Octopus server and set up a deployment project. This should include a &#8220;Deploy a NuGet package&#8221; process step as below.We will set this to retrieve the application package from the built-in NuGet feed. Note that the NuGet package id should match the id element in your .nuspec file - this will default to the name of your assembly.We added a few more steps:And some variables:You can now get back to Continua and set up a configuration for building your project. Once you have entered the configuration details and linked up the repository containing your project, move on over to the Stages page:For this simple example you'll need two actions: a NuGet Restore action to ensure that the OctoPack package is available for the build and an MSBuild action to build and push the application to your Octopus Deploy server.Just enter the path to your solution for the NuGet Restore action (the other fields can be left as is) and complete the main tab of the MSBuild action as required for your project.You then need to enter some additional properties to tell MSBuild to run OctoPack and tell it where to send your package.Set the RunOctoPack property to true and the OctoPackPublishPackageToHttp property to the URL for the NuGet feed on the Octopus Deploy server e.g. <a href="http://octopusserver/nuget/packages">http://octopusserver/nuget/packages</a> You will also need to provide an OctoPackPublishAPIKey property &#8211; you can generate an API key on your profile page on the Octopus Deploy server.ou can use the OctoPackPackageVersion to specify up the package version. Here we use Continua expressions to set this based on the build version. If you leave this out then OctoPack will get this value from the AssemblyVersion property in your AssemblyInfo.cs file.Once the actions are set up and saved, run a build and check that your package gets uploaded to the Octopus Deploy server. Then create a release for your deployment project and test that it deploys ok. Now we are ready to look into how to run this process automatically from Continua CI.On the Continua CI configuration wizard after Stages, we have a new area titled Events. Here you can add <a href="http://wiki.finalbuilder.com/x/BgB4">Build Event Handlers</a> for tagging repository changesets, updating the GitHub status and interacting with Octopus Deploy.Create a new build event handler, give it a name and select the Octopus Deploy as the Type.You can now provide general project details under the Octopus Deploy tab.The Octopus Deploy URL should end with '/api' e.g. http://octopusserver/api. Enter the API key generated under your Octopus Deploy profile and the name of your deployment project.You can then choose one or more actions to run. The available options areandand are used to create a new deployment release, deploy a release to an environment and promote a release from one environment to another. As you select each action, new tabs open so you can provide further details and hook the action to a build event.Before you can deploy an application you need to create a Octopus Deploy releaseWhen creating a release you can specify the Release Version or leave this blank to automatically create a number based on the highest package version. You must provide either a Default Package Version or Step Package Versions for each step which requires one e.g.Flip over to the Create Options tab to tell Continua when to create the release.There are six <a href="http://wiki.finalbuilder.com/x/GQB4">Build Events</a> available to choose from. Some allow you to select a Stage and some allow you to select a successful or failed Build StatusGenerally we want to create the release at the start of the build before the first stage starts.Now on to the crux of this whole process - deploying your application. We generally deploy to a Test environment first and then, once we are happy with the outcome, promote to a User Acceptance environment or directly to Production. Continua CI allows you to deploy a release previously created by a Create action in the same build event handler, the highest release version in the project or a specific release version. It's up to you to ensure that the release version exists before the deploy action is run. An environment can consist of multiple machines - you can specify which machines you want to deploy to. If no machines are specified then the release will be deployed to all machines in the environment.When selecting the Build Event for deployment, ensure that it is triggerred after the package has been built and pushed to the Octopus Deploy server. Here we have set this to be run once the Build stage has completed successfully.You can promote the latest release from one environment to another. Ideally this would be linked to the promotion of a stage e.g. a testing stage, so that the application can be promoted from a test environment to production environment.We have set our test stage to require manual promotion;and set our promote action to run when a build is continued after waiting for promotion.You can also pass variables from Continua CI to your deployment, these will be sent to the Octopus Deploy server before each action is run, updating the variables for the deployment project. We have used expressions is this example to send the build versions number and branch name. These variables can then be used to update project files with details for display or configure services differently depending on the source of the project.Once your build event handler dialog has been completed and saved, its time to start running the configuration. As the build processes Continua CI will display status information mirroring the process running on Octopus Deploy.You can also see full details of the deployment process in the build log.And all going well you will now see a successful deployment on your Octopus Deploy server!</p></div></body></html>

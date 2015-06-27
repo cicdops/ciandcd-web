@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />Introducing VSoft.CommandLineParser for Delphi</title></head><body>From:<a href=https://www.finalbuilder.com/resources/blogs/postid/719/introducing-vsoftcommandline-for-delphi>https://www.finalbuilder.com/resources/blogs/postid/719/introducing-vsoftcommandline-for-delphi</a><br><br><div><h2>Command line parsing</h2>
+<p>Pretty much every delphi console application I have ever written or worked on had command line options, and every one of the projects tried different ways for defining and parsing the supplied options.
+Whilst working on DUnitX recently, I needed to add some command line options, and wanted to find a nice way to add them and make it easy to add more in the future. The result is <a href="https://github.com/VSoftTechnologies/VSoft.CommandLineParser" target="_blank">VSoft.CommandLineParser</a>
+(copies of which are included with the latest DUnitX).</p>
+<h3>Defining Options</h3>
+<p>One of the things I really wanted, was to have the parsing totally decoupled from definition and the storage of the options values. Options are defined by registering them with the TOptionsRegistry, via
+TOptionsRegistry.RegisterOption&lt;T&gt; - whilst it makes use of generics, only certain types can be used, the types are checked at runtime, as generic constraints are not flexible enough to specify
+which types we allow at compile time. Valid types are string, integer, boolean, enums &amp; sets and floating point numbers. </p>
+<p>Calling RegisterOption will return a definition object which implements IOptionDefinition. This definition object allows you to set various settings (such as Required).
+When registering the option, you specify the long option name, the short option name, help text (will be used when showing the usage) and a TProc&lt;T&gt; anonymous method that will take the parsed value as a parameter.</p>
+<pre class="brush:delphi; toolbar:true;">procedure ConfigureOptions;
+var
+  option : IOptionDefintion;
+begin
+  option := TOptionsRegistry.RegisterOption&lt;string&gt;('inputfile','i','The file to be processed',
+    procedure(value : string)
+    begin
+        TSampleOptions.InputFile := value;
+    end);
+  option.Required := true;
+
+  option := TOptionsRegistry.RegisterOption&lt;string&gt;('outputfile','o','The processed output file',
+    procedure(value : string)
+    begin
+        TSampleOptions.OutputFile := value;
+    end);
+  option.Required := true;
+
+  option := TOptionsRegistry.RegisterOption&lt;boolean&gt;('mangle','m','Mangle the file!',
+    procedure(value : boolean)
+    begin
+        TSampleOptions.MangleFile := value;
+    end);
+  option.HasValue := False;
+
+  option := TOptionsRegistry.RegisterOption&lt;boolean&gt;('options','','Options file',nil);
+  option.IsOptionFile := true;
+end;
+</pre>
+<p>For options that are boolean in nature, ie they have do not value part, the value passed to the anonymous method will be true if the option was specified, otherwise the anonymous method will not be called. The 'mangle' option in the above example shows this scenario. </p>
+<p>You can also specify that an option is a File, by setting the IsOptionFile property on the option definition. This tells the parser the value will be a file, which contains other options to be parsed (in the same format as the command line). This is useful for working around windows command line length limitations.</p>
+<p>Currently the parser will accept<br>
+-option:value<br>
+--option:value<br>
+/option:value
+</p>
+<p>Note the : delimiter between the option and the value.</p>
+<p>Unnamed parameters are registered via the TOptionsRegistry.RegisterUnNamedOption&lt;T&gt; method. Unlike named options, unnamed options are positional, but only when more than one is registered, as they will
+be passed to the anonymous methods in the order they are registered.</p>
+<h3>Parsing the options.</h3>
+<p>Parsing the options is as simple as calling TOptionsRegistry.Parse, which returns a ICommandLineParseResult object. Check the HasErrors property to see if the options were valid, the ErrorText property has the parser error messages.</p>
+<h3>Printing Usage</h3>
+<p>If the parser reports errors, then typically you would show the user what the valid options are and exit the application, e.g:</p>
+<pre class="brush:delphi; toolbar:true;">    parseresult := TOptionsRegistry.Parse;
+    if parseresult.HasErrors then
+    begin
+      Writeln(parseresult.ErrorText);
+      Writeln('Usage :');
+      TOptionsRegistry.PrintUsage(
+        procedure(value : string)
+        begin
+          Writeln(value);
+        end);
+    end
+    else
+        ..start normal execution here
+</pre>
+<p>The TOptionsRegistry.PrintUsage makes it easy to print the usage to the command line.</p>
+<p>When I started working on this library, I found some really complex libraries (mostly .net) out there with a lot of options, but I decided to keep mine as simple as possible and only cover off the scenarios I need right now. So it's entirely possible this doesn't do everything people might need, but it's pretty easy to extend. The <a href="https://github.com/VSoftTechnologies/VSoft.CommandLineParser" target="_blank">VSoft.CommandLineParser</a> library (just three units) is open source and available on Github, with a sample application and unit tests (DUnitX) included.</p>&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    </div></body></html>

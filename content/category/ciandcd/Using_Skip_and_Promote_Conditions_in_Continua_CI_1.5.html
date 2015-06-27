@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />Using Skip and Promote Conditions in Continua CI 1.5</title></head><body>From:<a href=https://www.finalbuilder.com/resources/blogs/postid/713/using-skip-and-promote-conditions-in-continua-ci-15>https://www.finalbuilder.com/resources/blogs/postid/713/using-skip-and-promote-conditions-in-continua-ci-15</a><br><br><div><br>
+<h2>Skip Conditions</h2>
+Skip Conditions allow you to controll whether a Stage is skipped or run based on expressions. All the expressions must evaluate to true for the stage to run (if there are no expressions then the stage will not be skipped).&#160;<br>
+<br>
+<img src="/blogimages/vincent/Continua-skip-conditions/skipconditions.png" alt="Skip Conditions"><br>
+<br>
+In the above example, we have a Stage called Obfuscate, and we want it to be skipped if you turn off obfuscation (by setting a variable) or if we are not deploying a build (again, controlled by a variable). You can also disable a stage completely so it is always skipped.<br>
+<h2>Promote Conditions</h2>
+In Continua CI 1.0, you can chose if the next Stage is automatically run, or the builds stops and requires a manual promotion to continue to the next Stage. In Continua CI 1.5, Promote Conditions allow you control whether to automatically promote or not, based on expressions. <p>&#160;All the expressions must evaluate to true for the build to continue to the next stage (if there are no expressions then the build will stop with a status of waiting for promotion).&#160;</p><br>
+<br>
+<img src="/blogimages/vincent/Continua-skip-conditions/promoteconditions.png" alt="Skip Conditions"><br>
+<br>
+In the above example, our build will continue on to the next Stage if the Deploy variable is set to true.&#160;<br>
+<br>
+Continua CI 1.5 is currently in Beta - you can get it here :<br>
+<a https://www.finalbuilder.com//downloads/continuaci/continuaci-beta-version-history title="Get the Continua CI 1.5 Beta">http://www.finalbuilder.com/downloads/continuaci/continuaci-beta-version-history</a>&#160;<br>&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    <p>One of the most asked for features in Continua CI 1.0 was the ability to control which stages run, ie the ability to skip stages dynamically, based on what happened earlier in the build, and to be able to control whether the build should continue on to the next stage or wait for user intervention. In Continua CI 1.5, we made this possible with Skip and Promote Conditions.Skip Conditions allow you to controll whether a Stage is skipped or run based on expressions. All the expressions must evaluate to true for the stage to run (if there are no expressions then the stage will not be skipped).In the above example, we have a Stage called Obfuscate, and we want it to be skipped if you turn off obfuscation (by setting a variable) or if we are not deploying a build (again, controlled by a variable). You can also disable a stage completely so it is always skipped.In Continua CI 1.0, you can chose if the next Stage is automatically run, or the builds stops and requires a manual promotion to continue to the next Stage. In Continua CI 1.5, Promote Conditions allow you control whether to automatically promote or not, based on expressions.In the above example, our build will continue on to the next Stage if the Deploy variable is set to true.Continua CI 1.5 is currently in Beta - you can get it here :</p></div></body></html>

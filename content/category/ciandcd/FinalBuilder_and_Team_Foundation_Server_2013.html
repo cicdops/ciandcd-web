@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />FinalBuilder and Team Foundation Server 2013</title></head><body>From:<a href=https://www.finalbuilder.com/resources/blogs/postid/705/finalbuilder-and-team-foundation-server-2013>https://www.finalbuilder.com/resources/blogs/postid/705/finalbuilder-and-team-foundation-server-2013</a><br><br><div><p>FinalBuilder offers you tight integration into TFS with an easy to understand IDE. In this post I will go into how to integrate FinalBuilder into your TFS build process. The post will cover;</p>
+ 
+<br>
+<p>To make sure this post doesn't rival "war and peace" in size, I will assume a few things during the post. Namely that you have used TFS in some fashion, and/or have gotten a solution building under TFS with the default TFS template. For more information on getting up and running with TFS and common issues with TFS I suggest taking a look at the TFS ranger <a href="http://blogs.msdn.com/b/willy-peter_schaub/archive/2013/05/16/visual-studio-alm-ranger-solutions-catalog.aspx" class="vt-p">books</a> and <a href="http://vsarbuildguide.codeplex.com/" class="vt-p">blog</a>.</p>
+<h4>
+Prerequisites</h4>
+<p>To follow along with this post you will need the following installed:</p>
+<ul>
+    <li>Team Foundation Server 2013, with build agent (12.0.21005.1 or later)</li>
+    <li>FinalBuilder 7 (7.0.0.2745 or later)</li>
+    <li>Required Visual Studio or MSBuild version available on agent</li>
+    <li><a href="http://www.microsoft.com/en-us/download/confirmation.aspx?id=40750" class="vt-p">Agents for Microsoft Visual Studio 2013</a></li>
+    <li><a href="http://www.visualstudio.com/downloads/download-visual-studio-vs" class="vt-p">Team Explorer 2013</a></li>
+</ul>
+<br>
+<p>The Team Foundation Server can be of any configuration as long as it has at least one agent and a reporting service. FinalBuilder 7 is required on the agent machine, and could also be installed on the developer&#8217;s machine for editing of scripts. Agents for Microsoft Visual Studio 2013 will provide access to VSTest.Console which we require for testing on the build agent. Lastly, Team Explorer is required for interaction with source control from FinalBuilder&#8217;s IDE. Without this installed source control will need to be done manually.</p>
+ 
+<p>To start I have a solution under source control on a TFS 2013 collection. The solution I will be using is under a team project called VSoftSFTPLibrary &#160;under the collection &#8220;TFS2013\DefaultCollection&#8221;. &#160;The layouts of the team project looks like the following:</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/SourceControlExplorerLayout.png" alt="Define Report"></p>
+<p>I have a directory for the SFTP projects source, library files and its tests. The layout of your source control may vary from mine, however the main point to note here is that separating out directories isn&#8217;t an issue. With the solution, all related files, and binaries under source control I now add a build definition to the team project.</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/DefaultBuildName.png" alt="Build Name"></p>
+<p>Next the folders to be used in the FinalBuilder script need to be mapped from the server to an agent location. It&#8217;s important to map all folders which contain files required for the build process. At this stage we only really know of the Source directory we are going to be build and the Library folder which the source relies on. Note that if your solution relies on a certain structure of folders this structure should be the same when it arrives on the agent. In the example the source and library paths are at the same folder depth, therefore this is reflected on the agent side.</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/DefaultBuildSourceSettings.png" alt="Define Report"></p>
+<p>When the build is finished usually we want them &#8220;dropped&#8221; somewhere on the network. A FinalBuilder script can use this drop location, which we will go into later on in the artcile. For now I set this to a server location accessible by the build agent service user.</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/DefaultBuildDropFolder.png" alt="Drop Folder"></p>
+ 
+<p>By default the build process is set to the default build process which comes with TFS2013. The template is called &#8220;TfvcTemplate.12.xaml&#8221;. When used the default template will enable the building, testing, impact testing, and deployment of a solution and its projects. Our aim is to perform all the same build activities with the additon of a FinalBuilder project.&#160;</p>
+<p>To this end, the build process template needs to be changed over to one of the two supplied with FinalBuilder. In the [%ProgramFiles(x86)%\FinalBuilder &#160;7\TFS Templates\2013] folder there are two TFS 2013 build workflow templates. &#8220;FinalBuilderTFS2013Build.xaml&#8221; performs all the same steps as the default build workflow and adds a FinalBuilder step just after the MSBuild activity and just before the optional &#8220;after MSBuild script&#8221;. This script is typically used by those looking to convert current default script builds to FinalBuilder in a simple and piece-meal fashion.&#160;</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/FinalBuilderTFS2013Templates.png" alt="Define Report"></p>
+<p>The &#8220;FinalBuilderOnlyTFS2013Build.xaml&#8221; template is used when the FinalBuilder script is to take over the entire build process. For the moment I will use the &#8220;FinalBuilderTFS2013Build.xaml&#8221; script. Add these two scripts to the team project, typically under a BuildTemplates folder to separate them from the source and library code.&#160;</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/DefaultBuildAddFBTemplates.png" alt="Add FB Template"></p>
+<p>Copy these templates into the local mapped location for this team project, and check them into source control. Now the &#8220;FinalBuilderTFS2013Build.xaml&#8221; template can be selected as the build process template. To do this add a new new build in the process section of the build definition. Navigate to the source control location where the template is stored and select it.</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/DefaultBuildNewTemplateForBuild.png" alt="New Template For Build"></p>
+ 
+<p>The next step is to fill in the parameters for the build process. The majority of these are the exact same as the default TFS 2013 template with the addition of some FinalBuilder specific settings. The FinalBuilder section of settings allow for the specification of the project file, and custom arguments for the FinalBuilder project.&#160;Note that the &#8220;2. Build | Projects&#8221;, and the &#8220;6. FinalBuilder | Project File&#8221; are both required by the build template. These are used to determine what should be built and what FinalBuilder project should be run.&#160;</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/DefaultBuildTemplateArguments.png" alt="Define Report"></p>
+<p>To run a FinalBuilder project we need to create one. Therefore create a FinalBuilder project with just an [Action Group] action for the moment. Save this project to the team projects FinalBuilderScripts folder and check it into source control.</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/DefaultBuildInitialFBProjectAddToSourceControl.png" alt="Project Added To Source Control"></p>
+<p>Once the FinalBuilder project is in source control select it in the build process using the file selector provided through the ellipse selector. You should end up with something reading like this &#8220;$/VSoftSFTPLibrary/FinalBuilderScripts/BuildVSoftSFTPLibrary.fbp7&#8221;</p>
+<p>Now that we have included the FinalBuilder project into our build process we need to make sure its folder is mapped to the agent. Open the source settings section, and add a mapping for the folder in which the FinalBuilder project resides. Something like the following should be what results.&#160;</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/DefaultBuildSourceSettingsWithFinalBuilderFolderMapped.png" alt="Define Report"></p>
+<p>
+</p>
+<p>Queue the build and the log should read like the following excerpt. The [Action Group] line is the action group you added in the FinalBuilder project.&#160;</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/DefaultBuildFinalBuilderRunSuccessfullyJustActionGroup.png" alt="Successful Run With Just an Action Group"></p>
+<p>So now we have a TFS build process which is able to call a FinalBuilder script. In the next section we will delve more into how to extract information from TFS about the build inside our FinalBuilder script.&#160;</p>
+<h4>Retrieving information from TFS in a FinalBuilder Script</h4>
+<p>For the FinalBuilder script to be of use in the TFS build process, it requires information about the TFS build currently running. To provide this we offer a number of actions that can extract this information during the TFS build run.&#160;To get you started, there is an example project in &lt;FinalBuilderInstallDir&gt;\TFS Templates called TFSExample.fbp7. This sample project contains examples of the actions to use during a TFS build process. &#160;</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/FinalBuilderTFSExampleProject.png" alt="Define Report"></p>
+<p>The [Get Team Foundataion Build Parameters] action is a special action that is only useful when a project is launched from TFS. It assigns TFS data to the specified project variables.&#160;</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/FinalBuilderGetTeamFoundationBuildParams.png" alt="Foundation Build Params"></p>
+<p>Each of the variables in the [Get Team Foundation Build Parameters] action are as follows:</p>
+<ul>
+    <li>Team Server URL: This is the URL of the team foundation server that queued the build.</li>
+    <li>Team Project: Is the name of the team project the build belongs to.</li>
+    <li>Build Id: Is the unique number allocated to this build.</li>
+    <li>Platform/Flavor: These are the build parameters for the compilation of the solution to be built.</li>
+    <li>Default Solution File: The solution file listed as the primary for the team project.</li>
+    <li>Solution File List: The list of solutions to be built by the build process.</li>
+    <li>Deployment Folder: The drop folder configured for the build process. It is blank if it is not set.</li>
+    <li>Source Root: The first listed solutions root folder.</li>
+    <li>Working Directory: A working directory on the agent for the current build definition. Typically space which is shared between builds made on the same agent.</li>
+</ul>
+<br>
+<p>On the Custom Arguments tab is a list of ten variables which can be passed from the TFS build process to FinalBuilder. These are passed as plain text and converted to the variable types used to read them in the FinalBuilder script.</p>
+<p>For my script I only wanted to get the Team Foundation Build Parameters, and the variables that it used. So first I checked out the &#8220;BuildVSoftSFTPLibrary.fbp7&#8221; project using the built in source control features of FinalBuilder.</p>
+<p>First I need to make sure that it is indeed added to source control. If it hasn&#8217;t detected that it is part of the TFS source control at this stage I add it to source control. I make sure to select the &#8220;Microsoft Team Foundation Server MSSCCI provider&#8221; which will use the Team Explorer 2013 installed on the machine. I select the TFS 2013 server and collection I am working with, also making sure the team project is correct. Once this is done I am then able to use the file menu to check the project out ready for editing.&#160;</p>
+<p>Next I copy all the variables I want from the TFSExample project, and paste them into my BuildVSoftSFTPLibrary.fbp7 project. To paste the variables I open the Variables Editor, right click and select paste.</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/FinalBuilderCopyVariables.png" alt="Define Report"></p>
+<p>Last I copy over the [Get Team Foundation Build Parameters] and [Trigger Files Iterator] actions. These use the variables we just copied over and will hook themselves up as they appeared in the example project.&#160;</p>
+<p><img alt="" src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/FinalBuilderProjectWithGetTFSBuildParamsAndIterateTiggerFiles.png"></p>
+<p>Now we can check in these changes and queue the build.&#160;</p>
+<p>In the log for the build you will see the following:</p>
+<p><img alt="" src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/FinalBuilderGetTeamFoundationBuildParamsAndLog.png"></p>
+<p>By default the [Get Team Foundation Build Parameters] action will write what it has retrieved from TFS to the build log. Something to keep in mind when debugging a FinalBuilder script in TFS.</p>
+ 
+<p>So now we want to make the FinalBuilder process take over the build completely. The first thing to do here is to stop the TFS build process from building, testing, and publishing results of the build. This requires changing the build workflow to remove the activities which do this (otherwise we would be doing things twice), and updating the FinalBuilder script to perform these tasks.&#160;</p>
+<p>Instead of working out which activities to remove from the build template we provide a build template with all the build and testing activities removed. The &#8220;FinalBuilderOnlyTFS2013Build.xaml&#8221; template which was copied into the BuildTemplates folder is this template.&#160;</p>
+<p>In the process section of the build definition, create a new build process using the &#8220;FinalBuilderOnlyTFS2013Build.xaml&#8221; file. You will notice that nearly everything in the build parameters is the same except now the before and after script events have been removed. Also the testing section is no longer present. All of this will be handled by the FinalBuilder script.</p>
+<p>Once again open your FinalBuilder project for this build and check it out. Also open up the TFSExample.fbp7 project and take a look at the [Build VS.Net Solution] action. Copy this action to the project used to build your solution.&#160;</p>
+<p>The [Build VS.NET Solution] action builds a Visual Studio.NET solution. On the [Solution] tab you will see that the Solution File is set to &#8220;%SourceRoot%\&lt;YourSolution&gt;.sln&#8221;. Replace &lt;YourSolution&gt; with the name of the solution that you wish to build. Note that &#8220;%SourceRoot%&#8221; will be the directory of only the first solution in the list of projects to build. In my project I ended up with a Solution File value of &#8220;%SourceRoot%\VSoftSFTPLibrary.sln&#8221; for the [Build VS.NET Solution] action.</p>
+<p><img alt="" src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/FinalBuilderBuildVSSolution.png"></p>
+<p>On the [Paths] tab you will see that the Output Directory is set to %SourceRoot%\Binaries. You may change this if you wish, but it's it not necessary. Note because the drop location may be on a different server to the build agent, it is important that VSTest runs on files located on the build agent machine. Unless you explicitly set up the trust relationship, .NET will not allow executing of assemblies on remote machines. This is why we build and test in a directory under %SourcesRoot% and then move the files to the drop location after testing. This will be covered more in the next section.&#160;</p>
+<p>On the agent the TFS agent the FinalBuilder options for Visual Studio will need to be set. If not and DEVENV.COM is required, the build will fail about the build tool location being unknown. </p>
+<p>Now are right to run the build with using just FinalBuilder. Queue the build again and now the project will build, not from a template activity but from the FinalBuilder script it is running.&#160;
+</p>
+ 
+<p>To perform testing we need to add a [Run VSTest.Console] action to the FinalBuilder project. The [Run VSTest.Console] uses VSTest.Console to run your test assemblies. On the [Settings] tab add the name of your test assembly to the list. You should end up with something along the lines of &#8220;%SourceRoot%\Binaries\&lt;YourTestAssembly&gt;.dll&#8221;. On the [Publish Results] tab the action should be set to automatically publish the results to the TFS server. This means that after the tests are run they will automatically be stored with the build on the TFS Server.</p>
+<p><img alt="" src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/FinalBuilderVSTestConsoleSettings.png"></p>
+<p>Note that the [Ignore Failure] option, located on the [Options] tab, is important. If any unit tests fail, the [Run VSTest.Console] action will fail, and setting [Ignore Failure] allows the FinalBuilder and TFS builds to continue. Un-check [Ignore Failure] if you would prefer the build to stop on failed tests. In either case, test failures will appear in the TFS build log and in TFS reports.</p>
+<p>On the agent the TFS agent the FinalBuilder options for VSTest.Console will need to be set. If not, the build will fail with an error about the VSTest.Console location being unknown. </p>
+ 
+<p>The last step to complete the process is to move all the files from the agent to your drop location. The simplest way to achieve this is by a [Move File(s)] action. We already have the drop folder location stored in the %DropShare% variable. It is this value which we then use in the [Move File(s)] action. </p>
+<p><img alt="" src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/jason/FinalBuilderAndTeamFoundationServer2013/FinalBuilderMoveFilesToDropFolder.png"></p>
+<p>Once this is run we will have a built solution, with tests run, and the binaries copied into the specified drop folder.&#160;</p>&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    </div></body></html>

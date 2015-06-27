@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />Building GitHub Pull Requests with Continua CI</title></head><body>From:<a href=https://www.finalbuilder.com/resources/blogs/postid/700/building-github-pull-requests-with-continua-ci>https://www.finalbuilder.com/resources/blogs/postid/700/building-github-pull-requests-with-continua-ci</a><br><br><div><p>GitHub makes it relatively simple to contribute to open source projects, just fork the repository, make your changes, submit a pull request. Couldn't be simpler.&#160;</p>
+<p>Accepting those Pull requests, is dead simple too, most of the time. But what if you want to build and test the pull request first, before accepting the request. Fortunately the nature of GitHub Pull requests (or more to the point, Git itself) makes this possible.&#160;</p>
+<h4>Git References<br>
+<br>
+</h4>
+<p>Git References are a complex topic all on it's own, but lets take a quick look at a typical cloned repository. In the .git folder, open config file in notepad and take a look at the [remote "origin"] section, here's what mine looks like :</p>
+<pre class="brush:plain">[remote "origin"]
+url = https://github.com/VSoftTechnologies/playground.git
+fetch = +refs/heads/*:refs/remotes/origin/*
+</pre>
+<p>The key entry here is the fetch. Quoting from the <a href="http://git-scm.com/book/ch9-5.html" title="Git Internals - The Refspec">git documentation</a>&#160;:</p>
+<p>"The format of the refspec is an optional&#160;<code>+</code>, followed by&#160;<code>&lt;src&gt;:&lt;dst&gt;</code>, where&#160;<code>&lt;src&gt;</code>&#160;is the pattern for references on the remote side and&#160;<code>&lt;dst&gt;</code>&#160;is where those references will be written locally. The&#160;<code>+</code>&#160;tells Git to update the reference even if it isn&#8217;t a fast-forward."<br>
+<br>
+The default fetch refspec will pull any branches from the original repository to our clone. But where are our pull requests?</p>
+<h4>Anatomy of a pull request<br>
+<br>
+</h4>
+<p>When a pull request is submitted,&#160;GitHub &#160;make use of Git References to essentially "attach" your pull request to the original repository. But in my local clone, I won't see them because the default fetch refspec doesn't include them. You can see the pull requests by using the git ls-remote command on the origin :</p>
+<pre class="brush:bash">$ git ls-remote origin
+$ git ls-remote origin
+27dfaaf83f60ac26a6fe465042f2ddb515667ff1        HEAD
+654b98d6eb862e247e5c043460e9f9a64b2f0972        refs/heads/Test
+27dfaaf83f60ac26a6fe465042f2ddb515667ff1        refs/heads/master
+b333438310a56823f1938071af8c697b202bf855        refs/pull/1/head
+95cb80af1330e73188ea32659d7744dcfe37ab43        refs/pull/2/head
+90ba13b8edaab04505396dbcb1853f6f9bdaed64        refs/pull/2/merge
+</pre>
+<br>
+<p>Notice something odd there. There are two pull requests, but pull request 2 has two entries in the list, whilst pull request 1 has only 1 entry. &#160;refs/pull/2/head is a reference to the head commit of your pull request, whilst refs/pull/2/merge is a reference to the result of the automatic merge that GitHub does. On pull request 1, there was a merge conflict, so the the /merge reference was not created, on pull request 2, the merge succeeded. On the pull request page, you would typically see something like this if the merge succeeded :&#160;</p>
+<img alt="" src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/GitHubPull/MergeResult.png"><h4>Getting Continua CI to see the Pull Requests<br>
+<br>
+</h4>
+<p>The main reason for building pull requests on your CI server is to see if they build, and to run your unit tests against that build. You can chose to build the original pull request, or the result of the automatic merge, or both. In reality, if the automatic merge failed, then the person who submitted the pull request has some more work to do, so there's really no point building/testing the original pull request. What you really want to know, is "if I accept this request, will it build and the tests pass", so it's generally best to only build the automatic merge version of the pull request. Continua CI makes this quite simple. On the Git Repository settings, check the "Fetch other Remote Refs" option. This will show the Other Refs text area, which already has a default RefSpec that will fetch the pull requests (the merged versions), and create local (to Continua CI) branches with the name pr/#number - so pull request 1 becomes branch pr/1.&#160;</p>
+<img alt="" src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/GitHubPull/GitRepository.png"><p>You can modify this to taste, for example if you are fetching both the merge and the head versions of the &#160;pull requests, you might use a refespec like this :</p>
+<pre class="brush:plain">+refs/pull/*/merge:refs/remotes/origin/pr-merge/*
++refs/pull/*/merge:refs/remotes/origin/pr-head/*
+</pre>
+<br>
+<p>Building the pull Requests</p>
+<p>Now we have gotten this far (which is to say, you enabled one option and clicked on save!) we can build the pull requests (it may take a few minutes to fetch the pull requests). If you manually start a build, you can select the pull request from the branch field for the github repository using the intellsense, just start typing pr/ and you will see a list :</p>
+<p>&#160;</p>
+<p><img alt="" src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/GitHubPull/SelectPR.png"></p>
+<p>Now we can add a trigger to build pull requests (we are talking continuous integration after all). Using the Pattern Matched Branch feature on <a href="http://wiki.finalbuilder.com/display/continua/Repository+Trigger" title="Pattern Matched Branch">Continua CI Triggers</a>&#160;you can make your trigger start builds when a pull request changeset is fetched from Github. The pattern is a regular expression, so ^pr/.* would match our pull request branches (assuming you we use the default refspec)</p>
+<p><img alt="" src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/GitHubPull/PRTrigger.png"></p>
+<p>
+Adding a trigger specific to the pull requests allows you to set variables differently from other branches, and you will then be able to tailor your stages according to whether you are building a pull request or not. For example, you probably don't want to run your deploy stage when building a pull request).</p>
+<h4>Updating GitHup Pull Request Status</h4>
+<br>
+<p>One last thing you might like to add, is to update the <a href="https://github.com/blog/1227-commit-status-api">Pull Request Status</a>. This can be done using the Update GitHub Status Action in Continua CI (In a future update this will done via build event handlers, a new feature currently in development). This is what the pull request might look like after the status is updated by Continua CI :</p>
+<p><img alt="" src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/GitHubPull/PRStatus.png"></p>&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    </div></body></html>

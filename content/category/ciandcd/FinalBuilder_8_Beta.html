@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />FinalBuilder 8 Beta</title></head><body>From:<a href=https://www.finalbuilder.com/resources/blogs/postid/729/finalbuilder-8-beta>https://www.finalbuilder.com/resources/blogs/postid/729/finalbuilder-8-beta</a><br><br><div><a></a><br>
+<h2>What's new in FinalBuilder 8</h2>
+<h3>IDE Themes</h3>
+<p>It's almost 5 years since FinalBuilder 7 was released. Since it's release we have shipped <a href="https://www.finalbuilder.com/downloads/finalBuilder/finalbuilder-7-version-history">44 official updates</a> , nearly every update including new features or improvements. This program of continuous improvement has worked well, with customers not having to wait for major new versions to arrive to get support for new versions of Visual Studio or Delphi etc, but it has limited our ability to make major changes. So it's time for a new major version of FinalBuilder.</p><p>The IDE has two new themes, Dark and Light (yes, imaginatively named!). The IDE defaults to Dark on first run, however you can change the theme in the options quite easily. The themes are still a work in progress, we are waiting on an update from a third party control vendor to resolve some issues. </p>
+
+    
+        
+            
+            <img alt="IDE Light theme" height="276" width="400" src="/blogImages/vincent/fb8-beta/fb8-ide-light-small.png">
+            
+            
+            <img alt="IDE Light theme" height="276" width="400" src="/blogImages/vincent/fb8-beta/fb8-ide-dark-small.png">
+            
+        
+    
+
+<p>&#160;</p>
+<h3>Debugger</h3>
+<p>One of the most asked for features now available in FinalBuilder 8, <strong>stepping into included projects</strong>. In FinalBuilder 7 and earlier, you could only step over included projects, and wait for them to return. In FinalBuilder 8, you can step into the included project, if it is not already opened the IDE will open the project and switch to it automatically. To make this possible, there are now "Step Into" and "Step Over" functions. The Step into/over now also applies to targets (see below).<br>
+<br>
+Debugger breakpoints now have conditions :
+</p>
+<p>
+<img alt="IDE Light theme" height="276" width="400" src="/blogImages/vincent/fb8-beta/fb8-breakpoint-props.png">
+</p>
+<h3>Actionlists renamed to Targets</h3>
+<p>ActionLists have been renamed to Targets. Targets can now also define dependencies, so you can for example define Clean, Build, Test, and have Test depend on Build. If you execute the Test target, and Build has not already been executed, it will be executed first before Test. Targets can be specified on the command line.</p>
+<p><img alt="IDE Light theme" height="276" width="400" src="/blogImages/vincent/fb8-beta/fb8-target-depend.png"></p>
+<br>
+<p>In FinalBuilder 7 and earlier, projects had a Main and an OnFailure (global error handler) actionlist. In FinalBuilder 8, projects just have a Default Target. Older projects will be imported such that the Main and OnFailure Targets are called from the Default Target inside a try/catch block.</p>
+<h3>Run Target Action</h3>
+<p>You can now return values from Targets (ie out parameters) .</p>
+<p><img alt="IDE Light theme" height="276" width="400" src="/blogImages/vincent/fb8-beta/fb8-target-outparams.png"></p>
+<h3>New Help System</h3>
+<p>The help has moved online in the form of a wiki. This enables us to do inline help updates without needing to ship new builds. The new help is still being worked on, lots of screenshots are missing etc..&#160;</p>
+<h2>Non Visible Changes</h2>
+<h3>Stepping Engine</h3>
+<p>The stepping engine was rewritten to enable stepping into included projects, and to enable target dependencies. This, work, together with the new variables architecture is where the bulk of effort/time was spent in the FinalBuilder 8 development cycle.</p>
+<h3>Variables Architecture</h3>
+<p>The variables architecture and the expression evaluator were rewritten to resolve several corner case issues that we were not able to resolve in FinalBuilder 7. The expression evaulator has a new parser that will allow us to more easily extend the syntax in the future. The User variable namespace was removed, it caused too many problems with projects not running under other users, not running on the build server etc. Use Project variables instead. </p>
+<h3>Core Messaging</h3>
+<p>Changes to the messaging has allowed us to improve the performance of the stepping engine and logging, with much less thread switching. This also improved the IDE performance.</p>
+<h3>CLR Hosting</h3>
+<p>The minimum CLR version is now .NET 4.0 (ie FinalBuilder requires .net 4.0 to be installed).</p>
+<h3>Code Changes</h3>
+<p>In addition to the architectural changes, we also spent a lot of time refactoring the code, running static analysis tools over the source, looking for memory leaks, potential bugs etc. One of the results of this is reduced memory usage during a build compared to FB7. The FB8 IDE does use slightly more memory than the FB7 IDE at startup (mostly due to the heavy use of delphi generics), however the runtime memory usage is much lower.A large &#160;part of the refactoring involved unit testing (we created a new&#160;<a href="https://github.com/VSoftTechnologies/DUnitX" target="_blank">unit test framework</a> to suite our needs!) and creating a suite of integration tests.&#160;</p>
+<h3>FBCmd</h3>
+<p>The command line parameters have changed to be more consistent and easier to specify. You can also specify one or more targets to execute (when not specified, the default target is executed).
+</p>
+<h3>New Project File Formats</h3>
+<p>FinalBuilder has used an xml file format since version 1, however a common complaint over the years, has been that it is difficult to diff file versions. FinalBuilder 8 has tackled this in two ways.</p>
+<p>A new DSL style project file format (.fbp8) is now the default format, it is very easy to diff.</p>
+<pre class="brush:delphi; toolbar:true;">project
+begin
+    projectid = {04710B72-066E-46E7-84C7-C04A0D8BFE18}
+    target
+    begin
+        name = Default
+        targetid = {E6DE94D6-5484-45E9-965A-DB69885AA5E2}
+        rootaction
+        begin
+            action.group
+            begin
+                id = {D860420B-DE46-4806-959F-8A92A0C86429}
+            end
+        end
+    end
+end
+</pre>
+<p>A new xml format (.fbx8), much less verbose than the old format. </p>
+<pre class="brush:xml; toolbar:true;">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;finalbuilder&gt;
+    &lt;project&gt;
+        &lt;projectid&gt;{6A717C24-D00F-4983-9FD0-148B2C609634}&lt;/projectid&gt;
+        &lt;target&gt;
+            &lt;name&gt;Default&lt;/name&gt;
+            &lt;targetid&gt;{E6DE94D6-5484-45E9-965A-DB69885AA5E2}&lt;/targetid&gt;
+            &lt;rootaction&gt;
+                &lt;action.group&gt;
+                    &lt;id&gt;{D860420B-DE46-4806-959F-8A92A0C86429}&lt;/id&gt;
+                &lt;/action.group&gt;
+            &lt;/rootaction&gt;
+        &lt;/target&gt;
+    &lt;/project&gt;
+&lt;/finalbuilder&gt;
+</pre>
+<p>Compressed project files (.fbz8) use the dsl format internally (compressed projects are just a zip file with a project.fbp8 inside it).</p>
+<p>The default project file encoding is now UTF-8, which is more version control friendly (some version control systems treat utf-16 as binaries).</p>
+<h3>New Actions</h3>
+<p>There are no new actions at the moment, although several are in development, they will be added to the beta builds as they are completed.&#160;</p>
+<h3>How do I get the Beta?</h3>
+Links to the beta downloads will be published to the <a></a><br>
+<br>
+<h3>What if I find a bug?</h3>
+We have created a <a></a><br>
+<br>
+We are particularly keen for people to load up their existing projects from older (ie 7 or earlier) versions of FinalBuilder, save them in FB8 format, and load them again and confirm that everything loaded ok.&#160;<br>
+<br>
+<h3>When will it be released?</h3>
+<h3>
+</h3>
+When it's ready ;)&#13;
+                        <br>&#13;
+                        <br>&#13;
+                         &#13;
+                    <p>Links to the beta downloads will be published to the <a href="https://www.finalbuilder.com/downloads/finalbuilder">FinalBuilder Downloads</a> page.We have created a <a href="https://www.finalbuilder.com/support/forums/aff/66">Beta forum</a> on our forums, or you can email support (please added Beta to the subject). When reporting an issue, be sure to include the beta build number and details about your environment. Please test with the latest beta build before reporting bugs.We are particularly keen for people to load up their existing projects from older (ie 7 or earlier) versions of FinalBuilder, save them in FB8 format, and load them again and confirm that everything loaded ok.When it's ready ;)</p></div></body></html>

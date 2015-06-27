@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />GitLab 7.11 released with Two-factor Authentication and a publicly viewable Enterprise Edition</title></head><body>From:<a href=https://www.gitlab.com/2015/05/22/gitlab-7-11-released/>https://www.gitlab.com/2015/05/22/gitlab-7-11-released/</a><br><br><div><p>It&#8217;s the 22nd of the month, so we have a new GitLab release ready!
+GitLab 7.11 brings more improvements to the look and feel of GitLab,
+two-factor authentication, a version check and more!</p>
+
+<p>Of course we&#8217;re also releasing GitLab CI 7.11, with a new backup and restore
+utility, improvements in the UI and other new features.</p>
+
+<p>This month&#8217;s MVP is <a href="http://jamesnewton.com/">James Newton</a> (newton on IRC)!
+James is very active on our <code>#gitlab</code> IRC channel, often helping people out
+with issues or helping people getting started with GitLab. We&#8217;re very
+happy to have James supporting the community and believe that is deserving
+of a MVP award!
+Thanks James!</p>
+
+ 
+
+
+<h2>Better looking sidebar</h2>
+
+<p>We changed the look of the sidebar to reflect its function better and make it look
+more pretty:</p>
+
+<p><img src="/images/7_11/sidebar.png" alt="The new sidebar in GitLab 7.11"></p>
+
+<h2>Clean project dashboard</h2>
+
+<p>The project dashboard was a good example of design by committee, one GitLab
+contributor noted. We broomed through it and cleaned it up:</p>
+
+<p><img src="/images/7_11/project.png" alt="Project Dashboard in GitLab 7.11"></p>
+
+<h2>Two-factor authentication</h2>
+
+<p>Keep your code more secure and start using two-factor authentication (2FA)!
+GitLab has built-in 2FA in both CE and EE now and makes use of the convenient
+Google Authenticator.</p>
+
+<p>All you have to do is go to your Profile &gt; Account and scan the QR code using
+Google&#8217;s app.</p>
+
+<p><img src="/images/7_11/2fa.png" alt="two-factor authentication"></p>
+
+<p>From now on, on login you&#8217;ll be required to provide the code the app gives you
+for GitLab. Two-factor authentication only works with the web-UI for now.</p>
+
+<h2>User roles in comments</h2>
+
+<p>Now you know who&#8217;s who in your favorite project. On comments you will see
+the role of the person in that project:</p>
+
+<p><img src="/images/7_11/roles.png" alt="not an actual conversation"></p>
+
+<h2>Task lists everywhere</h2>
+
+<p>Want a task list in the comments? Now you can!</p>
+
+<p><img src="/images/7_11/task.png" alt="Task list in comments"></p>
+
+<h2>Version Check</h2>
+
+<p>GitLab releases a new version every single month on the 22nd, so we understand
+that people are not always up to date. We wanted to give you some help with
+this, so from now on you can quickly see which version of GitLab you have running
+by visiting the Help or Admin page. It will show if you are up to date and
+if there is a security release you should have installed.</p>
+
+<p>Read more about the version check in our <a href="https://about.gitlab.com/2015/05/07/version-check/">blog post about it.</a></p>
+
+<p>You can turn off the version check under Admin &gt; Settings.</p>
+
+<h2>License keys for Enterprise Edition</h2>
+
+<p>GitLab Enterprise Edition used to live in a private repository, which was fine up
+until now. However, with the addition of our package server, we want
+to make it easier to start using GitLab Enterprise Edition.</p>
+
+<p>Rather than locking up the package repository of GitLab EE, we decided to
+open up all the code and <a href="https://packages.gitlab.com/gitlab/gitlab-ee">packages</a> and start using license keys. The code
+is still proprietary, but now is <a href="https://gitlab.com/gitlab-org/gitlab-ee/">publicly viewable</a>.</p>
+
+<p>This has several advantages. The installation of GitLab EE becomes as easy as
+installing GitLab CE. You no longer needs access to specific repositories,
+rather you can download it using the same methods as CE (including AWS/Azure templates, Docker images, etc).</p>
+
+<p>In addition, the code for Enterprise Edition is now becoming open to inspect
+for everyone. This will make it easier to send enhancements and makes it easier
+to do a trial of Enterprise Edition.</p>
+
+<p>Getting organizations to purchase a subscription after their trial expires or
+at renewal time sometimes took a substantial effort from us.
+We don&#8217;t want to raise prices for customers that renew without prompting because
+we need to invest more time in unresponsive customers.
+Therefore we decided to introduce license keys that prompt customers automatically.
+We regret the inconvenience that license keys introduce
+but we think it is the best solution to keep prices low.</p>
+
+<h2>True-up model for subscriptions</h2>
+
+<p>The worst thing about license keys is that they can be very inflexible.
+Most GitLab installations quickly grow in popularity within the organization.
+Having to purchase a new license key every time this happens is very inefficient.
+Also, we noticed that the majority of our customers didn&#8217;t have a compliant subscription, for us this indicates that having to renew the subscription multiple times a year is very inconvenient.</p>
+
+<p>Therefore we will switch to a true-up model that allows you to grow now and pay later.
+When you get a new license you should get it for your current number of active users.
+For users that are added during the year you pay half price when you renew.</p>
+
+<p>So if you have 100 active users today you get a 100 user subscription.
+Suppose that when you renew a year from now you have 300 active users.
+You pay for a 300 user subscription and pay half a year for the 200 users that you added during the year.</p>
+
+<h3>Getting the license key</h3>
+
+<p>If you are currently a GitLab customer, you should have received your license
+key already at the email you registered with your payment. You can also email
+<code>sales at gitlab dot com</code> to request it at any time.</p>
+
+<p>New subscribers will receive their license key automatically.</p>
+
+<h3>Installing the license key</h3>
+
+<p>To install the license, vist <code>/admin/license</code> in your GitLab instance as an
+admin. Here you can upload your <code>.gitlab-license</code> file, which will instantly
+unlock GitLab Enterprise Edition.</p>
+
+<p><img src="/images/7_11/license.png" alt="Installing your license"></p>
+
+<p>You can also download and review your current license here.</p>
+
+<p>Please note that we will release GitLab 7.10.5 soon, that will allow you to
+upload the license key to your GitLab instance before upgrading, to avoid
+unnecessary downtime.</p>
+
+<h2>Two-Factor Authentication for LDAP / Active Directory (EE-only)</h2>
+
+<p>Want to use two-factor authentication together with your LDAP or Active Directory
+integration? With GitLab Enterprise Edition you can.</p>
+
+<h2>New GitLab CI Features</h2>
+
+<p>With the release of GitLab 7.11, we also updated GitLab CI to 7.11.
+Some changes worth mentioning are an improved runners page,
+public accessible build and commit pages for public projects
+, a new backup/restore utility that will backup your CI database and
+HipChat notifications!</p>
+
+<h2>Other awesome changes in GitLab CE</h2>
+
+<p>We can never cover all the new stuff in each GitLab release, but these
+are worth to have a quick look at as well:</p>
+
+<p><strong>Quick quote-reply</strong> You can now reply with a quotation by simply selecting text in an issue
+or merge request and pressing <code>r</code>. It will set the focus to the editing window
+and have the quoted text already in it!</p>
+
+<p><strong>Atom feeds for all!</strong> There is now an atom feed for each project!</p>
+
+<p><strong>Settings in admin UI</strong> We moved default project and snippet visibility settings
+to the admin web interface.</p>
+
+<p><strong>Improved UI for mobile</strong> GitLab is now better viewable on mobile!</p>
+
+<p><strong>WIP your MRs!</strong> If you add <code>WIP</code> or <code>[WIP]</code> (work in progress) to the start of the title of a merge request,
+it will be protected from merging now.</p>
+
+<p><img src="/images/7_11/wip.png" alt="WIP blocking the merge request of this blog post!"></p>
+
+<p>This release has more improvements, including security fixes, please check out <a href="https://gitlab.com/gitlab-org/gitlab-ce/blob/master/CHANGELOG">the Changelog</a> to see the all named changes.</p>
+
+<h2>Upgrade barometer</h2>
+
+<p>Coming from 7.10, the migrations in 7.11 are pretty fast (under 1 minute), but one of them is tricky:
+we rename any existing users with names ending in a period (&#8216;.&#8217;).
+This migration updates both the database and the filesystem and previous versions
+of this migration have proven to be fragile.</p>
+
+<p>If you have no user namespaces with paths ending in &#8216;.&#8217; in your database and if you trust your users not to
+create any until after you upgrade to GitLab 7.11 you can perform this upgrade online.
+If not, we recommend to take downtime (this is what we did for gitlab.com).
+You can find the current number of affected database records with the following command:</p>
+
+<pre class="line-numbers"><p class="line-number">1</p>
+</pre><pre><code class=""><p class="line"> sudo gitlab-rails runner "puts Namespace.where(type: nil).where(%q{path LIKE '%.'}).count"</p></code></pre>
+
+
+
+
+<h2>Installation</h2>
+
+<p>If you are setting up a new GitLab installation please see the <a href="https://www.gitlab.com/installation/">installing GitLab page</a>.</p>
+
+<h2>Updating</h2>
+
+<p>Check out our <a href="https://about.gitlab.com/update/">update page</a>.</p>
+
+<p>Please note that cookbook-omnibus-gitlab, our Chef cookbook that installs/manages GitLab omnibus packages,
+does not yet support packages.gitlab.com. See <a href="https://gitlab.com/gitlab-org/cookbook-omnibus-gitlab/issues/8">this issue</a>.</p>
+
+<h2>Enterprise Edition</h2>
+
+<p>The mentioned EE-only features and things like LDAP group support can be found in GitLab Enterprise Edition.
+For a complete overview please have a look at the <a href="http://www.gitlab.com/gitlab-ee/">feature list of GitLab EE</a>.</p>
+
+<p>Access to GitLab Enterprise Edition is included with a <a href="http://www.gitlab.com/pricing/">subscription</a>.
+No time to upgrade GitLab yourself?
+A subscription also entitles you to our upgrade and installation services.</p>
+
+
+
+                  <a></a><p>Install GitLab on your own server in 2 minutes <a https://www.gitlab.com//downloads id="dl-partial">Let's do it!</a> </p><a https://www.gitlab.com//downloads class="btn btn-block btn-lg btn-purple visible-xs" id="dl-partial-sm">
+  Install GitLab on your own server in 2 minutes
+</a>
+
+
+                  
+                  <p>&#8594; <a https://www.gitlab.com//blog/archives.html>Browse all posts</a></p>
+
+                  <strong><a href="https://twitter.com/gitlab">@gitlab</a></strong>
+    on Twitter.
+
+    <a></a><p>For the latest and most detailed news followon Twitter. <a https://www.gitlab.com//atom.xml class="rss-btn">
+      
+    </a> </p><p>Get every GitLab blog post and stay up to date.</p>
+     
+    <p id="mc_embed_signup" class="newsletter-form">
+       
+    </p>
+     
+
+  <p id="disqus_thread"></p>
+                   
+                  Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;
+                </div></body></html>

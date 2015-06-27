@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />Mocking Multiple Interfaces</title></head><body>From:<a href=https://www.finalbuilder.com/resources/blogs/postid/716/mocking-multiple-interfaces-delphi-mocks>https://www.finalbuilder.com/resources/blogs/postid/716/mocking-multiple-interfaces-delphi-mocks</a><br><br><div><p>Today we updated Delphi Mocks to enable the Mocking of multiple interfaces. This is useful when the interface you wish to Mock is cast to another interface during testing.
+For example you could have the following system you wish to test.</p>
+<pre class="brush:delphi; toolbar:true;">type
+  {$M+}
+  IVisitor = interface;
+
+  IElement = interface
+    ['{A2F4744E-7ED3-4DE3-B1E4-5D6C256ACBF0}']
+    procedure Accept(const AVisitor : IVisitor);
+  end;
+
+  IVisitor = interface
+    ['{0D150F9C-909A-413E-B29E-4B869C6BC309}']
+    procedure Visit(const AElement : IElement);
+  end;
+
+  IProject = interface
+    ['{807AF964-E937-4A8A-A3D2-34074EF66EE8}']
+    procedure Save;
+    function IsDirty : boolean;
+  end;
+
+  TProject = class(TInterfacedObject, IProject, IElement)
+  protected
+    function IsDirty : boolean;
+    procedure Accept(const AVisitor : IVisitor);
+  public
+    procedure Save;
+  end;
+
+  TProjectSaveCheck = class(TInterfacedObject, IVisitor)
+  public
+    procedure Visit(const AElement : IElement);
+  end;
+  {$M-}
+
+implementation
+
+  { TProjectSaveCheck }
+
+  procedure TProjectSaveCheck.Visit(const AElement: IElement);
+  var
+    project : IProject;
+  begin
+    if not Supports(AElement, IProject, project) then
+      raise Exception.Create('Element passed to Visit was not an IProject.');
+
+    if project.IsDirty then
+      project.Save;
+  end;
+
+</pre>
+<p>The trouble previously was that when testing TProjectSaveCheck a TMock&lt;IElement&gt; would be required, as well as a TMock&lt;IProject&gt;. This is brought about by the Visit procedure requiring the IElement its passed to be an IProject for the work its going to perform.</p>
+<p>This is now very simple with the Implement&lt;I&gt; method available off TMock&lt;T&gt;. For example to test that Save is called when IsDirty returns true, the following test could be written;</p>
+<pre class="brush:delphi; toolbar:true;">procedure TExample_InterfaceImplementTests.Implement_Multiple_Interfaces;
+var
+  visitorSUT : IVisitor;
+  mockElement : TMock&lt;IElement&gt;;
+begin
+  //Test that when we visit a project, and its dirty, we save.
+
+  //CREATE - The visitor system under test.
+  visitorSUT := TProjectSaveCheck.Create;
+
+  //CREATE - Element mock we require.
+  mockElement := TMock&lt;IElement&gt;.Create;
+
+  //SETUP - Add the IProject interface as an implementation for the mock
+  mockElement.Implement&lt;IProject&gt;;
+
+  //SETUP - Mock project will show as dirty and will expect to be saved.
+  mockElement.Setup&lt;IProject&gt;.WillReturn(true).When.IsDirty;
+  mockElement.Setup&lt;IProject&gt;.Expect.Once.When.Save;
+
+  //TEST - Visit the mock element to see if our test works.
+  visitorSUT.Visit(mockElement);
+
+  //VERIFY - Make sure that save was indeed called.
+  mockElement.VerifyAll;
+end;
+</pre>
+<br>
+<p>The Mock mockElement  "implements" two interfaces IElement, and IProject. IElement is done via the constructor, and IProject is added through the Implement&lt;I&gt; call. The Implement&lt;I&gt; call adds another sub proxy to the mock object. This sub proxy then allows all the mocking functionality to be performed with the IProject interface.</p>
+<p>To access the Setup, and Expects behaviour there are overloaded generic calls on TMock. These return the correct proxy to interact with, and generic type ISetup&lt;I&gt; and IExpect&lt;I&gt;. This is seen in the call to mockElement.Setup&lt;IProject&gt;. This returns a ISetup&lt;IProject&gt; which allows definition of what should occur when IProject is used from the Mock.</p>
+<p>This feature is really useful when there is a great deal of casting of interfaces done in the system you wish to test. It can save having to mock base classes directly where multiple interfaces are implemented.</p>
+<p>The way this works under the hood is fairly straight forward. TVirtualInterfaces are used when an interface is required to be mocked. This allows the capturing of method calls, and the creation of the interface instance when its required.</p>
+<p>The Implement&lt;I&gt; functionality simply extends this so that when a TProxyVirtualInterface (inherited from TVirtualInterface) has QueryInterface called it also looks to its owning Proxy. If any other Proxies implement the requested interface its that TProxyVirtualInterface which is returned.</p>
+<p>In essence this allows us to fake the Mock implementing multiple interfaces, when in fact there are a list of TVirtualInterface's all implementing a single interface.</p>&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    </div></body></html>

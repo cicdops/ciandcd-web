@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />Filter Pull Requests by Status · GitHub</title></head><body>From:<a href=https://github.com/blog/2014-filter-pull-requests-by-status>https://github.com/blog/2014-filter-pull-requests-by-status</a><br><br><div><p>When we shipped <a href="https://github.com/blog/1866-the-new-github-issues">the new GitHub Issues</a>, we made it easy to <a href="https://help.github.com/articles/searching-issues/">scope lists of Issues and Pull Requests</a> with filters like author, date, mentions, and team mentions. With the new <code>status:</code> filter you can now filter the Pull Requests in your repositories by <a href="https://developer.github.com/v3/repos/statuses/#get-the-combined-status-for-a-specific-ref">combined status</a>.</p>
+
+<p><a href="https://cloud.githubusercontent.com/assets/483/7819956/1422929e-039a-11e5-98d5-f273b9fe4472.gif" target="_blank"><img src="https://cloud.githubusercontent.com/assets/483/7819956/1422929e-039a-11e5-98d5-f273b9fe4472.gif" alt="example gif of filtering by status"></a></p>
+
+<p>If you're taking advantage of the <a href="https://developer.github.com/v3/repos/statuses/">Status API</a>, or using an integration that does, try out the new filters:</p>
+
+<ul>
+<li>
+<code>status:success</code> Only pull requests with all successful statuses</li>
+<li>
+<code>status:failure</code> Only pull requests that have statuses in the <code>failure</code> or <code>error</code> state</li>
+<li>
+<code>status:pending</code> Only pull requests with no statuses or at least one status in the <code>pending</code> state</li>
+</ul>
+  </div></body></html>

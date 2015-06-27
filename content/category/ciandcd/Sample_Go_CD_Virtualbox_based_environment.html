@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />Sample Go CD Virtualbox based environment</title></head><body>From:<a href=http://www.go.cd/2014/09/09/Go-Sample-Virtualbox.html>http://www.go.cd/2014/09/09/Go-Sample-Virtualbox.html</a><br><br><div><p>If you're interested in checking out Go but don't want to spend the time automating your
+own system, this might be a great option for you.</p>
+
+<p><strong>Edit on 11 November, 2014</strong> - This box has been updated to Go version 14.3. For information about
+what's new in this release please see <a href="http://www.go.cd/releases/">http://www.go.cd/releases/</a></p>
+
+<p>We've created an environment using Vagrant and Virtualbox. Once it's up, you'll have a full
+Go installation including several example pipleines. </p>
+
+<h3>System Requirements</h3>
+
+<p><strong>In order to run this you'll need <a href="https://www.virtualbox.org/">Virtualbox</a> 
+and <a href="https://www.vagrantup.com/">Vagrant</a>.</strong> Both of these are available for most operating 
+systems.</p>
+
+<h3>Using the box</h3>
+
+<p>To get started, open a command prompt in an empty directory and type...</p>
+
+<blockquote>
+vagrant init gocd/gocd-demo
+</blockquote>
+
+<p>This will create a file called Vagrantfile in your current directory. </p>
+
+<p>Next, type...</p>
+
+<blockquote>
+vagrant up
+</blockquote>
+
+<p>Completion of this (especially the first time) will take quite a while, depending on your
+bandwidth. Vagrant will be downloading the full box image (almost 1.4GB) from Vagrantcloud 
+while you wait.</p>
+
+<p><strong>Note:</strong> If you have an existing Go installation on the same machine as this virtual machine
+you may get a port conflict. Vagrant will automatically map to a new port which will be 
+shown in the startup messages. </p>
+
+<p>After a few minutes, you should be able to navigate to http://localhost:8153/ on your local
+machine and see the following...</p>
+
+<p><img src="/images/blog/sample-virtualbox/pipelines.png" alt=""></p>
+
+<p>These pipelines are all related, as shown in the following value stream map screenshot...</p>
+
+<p><img src="/images/blog/sample-virtualbox/vsm.png" alt=""></p>
+
+<p>Feel free to play around with the installation and see how everything works. You can always
+reset the box to it's orginal state if you need to!</p>
+
+<h3>What's on the machine?</h3>
+
+<p>The box will be updated as new things come out, but as of this writing...</p>
+
+<ul>
+<li>Go 14.3 Server</li>
+<li>Go 14.3 Agent</li>
+<li>3 very small PHP applications</li>
+<li>Basic Capistrano deployment scripts</li>
+<li>Local Git repo using Gitolite to manage permissions</li>
+<li>A couple simple phpunit tests</li>
+<li>A couple simple watir scripts</li>
+</ul>
+
+<p>All of the code is on the Virtualbox machine at /home/vagrant/projects. The easiest way
+to access this is to type 'vagrant ssh' at the command prompt in the same place you 
+started the machine.</p>
+
+<p>The hope is that using this box you can see how real applications (even if they are small)
+are built, tested and deployed with Go. </p>
+
+<p>As always, Go questions can be asked at <a href="https://groups.google.com/forum/#!forum/go-cd">https://groups.google.com/forum/#!forum/go-cd</a></p>
+
+</div></body></html>

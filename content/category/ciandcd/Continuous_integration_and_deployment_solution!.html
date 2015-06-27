@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    Continuous integration and deployment solution!</title></head><body>From:<a href=http://www.pmease.com/hotnews?id=1>http://www.pmease.com/hotnews?id=1</a><br><br><div>
+	
+		
+			<h3>QuickBuild 6.0 is now available</h3><br><br>
+
+Feature highlights in this release:<br>
+
+<ul class="square">
+<li>Find repository/step/variable overrides and usages for configuration refactoring.</li>
+<li>Optionally trust authenticated user in specified http header to support single sign-on.</li>
+<li>Permission set definition to facilitate assigning same set of permissions repeatedly.</li>
+<li> Administrator can select to run as arbitrary user to facilitate checking user profile.</li>
+<li>Aggregate SCM changes to display change summary and statistics in high level configuration.</li>
+<li>Gerrit integration to verify open changes and score specified Gerrit label accordingly.</li>
+<li>JFrog Artifactory integration to publish and use artifacts during build.</li>
+<li>Persist unprocessed build requests after server shutdown and resume processing after startup.</li>
+<li>Accurev proof build to test active changes on QuickBuild before getting them promoted.</li>
+<li>Optionally run scripts after deletion of configuration and build.</li>
+<li>Able to view live log by step, and view log of finished steps before build finishes.</li>
+<li>Step to record SCM changes without checking out the repository.</li>
+<li>Able to display custom banner in QuickBuild page.</li>
+</ul>
+
+For detailed explanation of all features added in this release, please visit <a></a><br><p>We are proud to annouce QuickBuild 6.0.Feature highlights in this release:For detailed explanation of all features added in this release, please visit <a href="http://www.pmease.com/features/whats-new/">http://www.pmease.com/features/whats-new</a> </p>
+	
+		
+			<h3>QuickBuild 5.1 is now available</h3><br><br>
+
+Feature highlights in this release:<br>
+
+<ul class="square">
+<li>Verify GitHub pull requests and update pull request status based on build result.</li>
+<li>GitHub issue tracker integration to parse issues in commit messages.</li>
+<li>Leverage perforce shelve/unshelve feature to run pre-commit builds without using user agent.</li>
+<li>Retrieve changes of Subversion externals for source view and diff.</li>
+<li>Custom columns to display custom build and request info.</li>
+<li>Display reasons for waiting builds and steps.</li>
+<li>Define environment variables in composite steps for inheritance and overriding.</li>
+<li>Detect broken communication links to agents to fail build fast.</li>
+<li>Drag&amp;drop to organize favorite dashboards.</li>
+<li>Dashboard list to display all dasbhoards in system.</li>
+<li>Resource access information to know about resource usage status.</li>
+<li>Coverity report rendering</li>
+</ul>
+
+For detailed explanation of all features added in this release, please visit <a></a><br><p>We are proud to annouce the formal release of QuickBuild 5.1Feature highlights in this release:For detailed explanation of all features added in this release, please visit <a href="http://www.pmease.com/features/whats-new/">http://www.pmease.com/features/whats-new</a> </p>
+	
+		
+			<h3>QuickBuild 5.0 is now available</h3><br><br>
+
+Feature highlights in this release:<br>
+
+<ul class="square">
+<li>Launch build agent on demand in cloud environment including Amazon EC2.</li>
+<li>Build pipeline to visualize commits life cycle across different build and deployment stages.</li>
+<li>Optionally store artifacts of configuration sub tree to specified build agents to reduce server load.</li>
+<li>Grid and server metrics collecting and trending.</li>
+<li>Alert definition and notification for key performance indicators.</li>
+<li>Enhanced tray monitor and refined message window.</li>
+<li>Toggle node and step information in build log.</li>
+<li>Share dashboards with specified users besides groups.</li>
+<li>Headless plugin build.</li>
+<li>New dashboard gadgets to display build pipeline, grid performance measurements and system alerts.</li>
+</ul>
+
+For detailed explanation of all features added in this release, please visit <a></a><br><p>We are proud to annouce the formal release of QuickBuild 5.Feature highlights in this release:For detailed explanation of all features added in this release, please visit <a href="http://www.pmease.com/features/whats-new/">http://www.pmease.com/features/whats-new</a> </p>
+	
+		
+			<h3>QuickBuild 4.0 formal release is now available</h3><br><br>
+
+Feature highlights in this release:<br>
+
+<ul class="square">
+<li>Customizable dashboard for users and groups to organize build information via gadgets.</li>
+<li>Report aggregation to provide build metrics summary of descendant configurations.</li>
+<li>Resource management for better control of build distribution and agent load.</li>
+<li>Grid partition to divide grid nodes between different configuration trees.</li>
+<li>User activity audit to track and review every modification to the system.</li>
+<li>CollabNet TeamForge integration for user authentication, file uploading, release creation, issue linking. and issue updating.</li>
+<li>Redmine integration to link QuickBuild builds with Redmine issues.</li>
+<li>Google Repo integration to detect changes, check out source, and create tags against Repo.</li>
+<li>Boost test integration to render test reports and display test trends.</li>
+<li>Redesigned report system for improved user experience and performance.</li>
+<li>RESTful API for changes, issues, and various reports.</li>
+<li>Plugin API for third party issue tracker and unit test framework integration.</li>
+<li>Searchable users and groups.</li>
+</ul>
+
+For detailed explanation of all features added in this release, please visit <a></a><br><p>We are proud to annouce the formal release of QuickBuild 4.Feature highlights in this release:For detailed explanation of all features added in this release, please visit <a href="http://www.pmease.com/features/whats-new/">http://www.pmease.com/features/whats-new</a> </p>
+	
+		
+			<h3>QuickBuild 3.1 - distributed version control system integration and enhanced .NET support</h3><p>QuickBuild 3.1 is released to integrate with Git, Mercurial, Bazaar and Team Foundation Server. This integration makes possible below actions in a continuous integration or release management environment when dealing with these SCMs:</p>
+<ul class="square"><li>Retrieve source code for build and test from tip or specified revision.</li>
+<li>Create tags for retrieved source code if necessary.</li>
+<li>Detect source changes between builds and notify committers under specified condition.</li>
+<li>Promote SCM revisions to higher stage, for example from qa to release.</li>
+</ul>
+<p>
+Git, Mercurial and Bazaar integration also includes the gated push feature, with which you can submit ready-for-push commits to QuickBuild for build/test, and have QuickBuild to push them to the official repository automatically after building/testing successfully.</p>
+
+<p>This release also supports to build .NET projects through MSBuild and Visual Studio solution builder.</p>
+
+<p>Refer to <a href="http://www.pmease.com/features/whats-new/">http://www.pmease.com/features/whats-new/</a> for details.</p>
+	
+		
+			<h3>QuickBuild 3.1 beta1 released to support Git, Mercurial, TFS and Bazaar</h3><br><br>
+You may visit <a></a><p>Git, Mercurial, Team Foundation Server and Bazaar support is now in beta. In this beta, QuickBuild can checkout code, create tags, detect changes, view/diff source files from these version control systems. Proof build support is not yet included but will be delivered in future betas.You may visit <a href="http://www.pmease.com/downloads/eap/">this link</a> to download the beta. Any feedbacks or suggestions are very welcomed!</p>
+	
+		
+			<h3>The formal release of QuickBuild 3 is now available</h3><br><br>
+
+This release works tightly with issue tracking systems to provide an integrated view of issues, builds and SCM changes. No longer worry about which issues are fixed in a particular build, or which build a particular issue is fixed in. QuickBuild tracks these information for you automatically! The release management functionality is improved considerably with the ability to use next unreleased version in issue tracker as next build version, and push built versions into issue tracker as released versions. Currently JIRA, Trac and Bugzilla are supported.<br><br>
+
+Other feature highlights in this release:<br><br>
+
+<ul class="square">
+<li>Step can be repeated for different set of parameters, either parallelly, or sequentially. For example, you may create a singe test step to have it execute for each combination of possible databases and OS platforms, or have it run on all applicable build agents. This can greatly reduce number of steps needed in a complex build workflow.</li>
+<li>QuickBuild can now terminate spawned build processes immediately and reliably when a build is canceled or timed out. You no longer need to manually kill relevant processes to release workspace mutexes. This works on Windows, Linux and Unix platforms.</li>
+<li>A non-admin account can now be authorized to administer a configuration subtree.</li>
+<li>Multiple promote actions can be defined with the ability to customize the condition of each action. For example, you may define a release action and have it appear only when build is recommended and current user belongs to release manager group.</li>
+<li>Inherited settings such as steps, repositories and variables will be displayed directly in descendant configurations. This makes examination and modification of inherited settings much easier.</li>
+<li>Build workflow can now be created/rearranged by dragging and dropping steps.</li>
+<li>Trends of duration and success rate of each executed steps are now available in statistics tab of a configuration. You can even compare these trends between different steps to find out which step fails the most and which step costs the most time.</li>
+<li>SCM changes screen is reworked to support text search in changes between two arbitrary builds.</li>
+<li>The same step can now be reused in different composition steps.</li>
+<li>Add the option of auto-detecting user time zone from browser to display local date/time.</li>
+</ul>
+
+For detailed explanation of all features added in this release, please visit <a></a><br><br><p>We are pround to annouce the formal release of QuickBuild 3.This release works tightly with issue tracking systems to provide an integrated view of issues, builds and SCM changes. No longer worry about which issues are fixed in a particular build, or which build a particular issue is fixed in. QuickBuild tracks these information for you automatically! The release management functionality is improved considerably with the ability to use next unreleased version in issue tracker as next build version, and push built versions into issue tracker as released versions. Currently JIRA, Trac and Bugzilla are supported.Other feature highlights in this release:For detailed explanation of all features added in this release, please visit <a href="http://www.pmease.com/features/whats-new/">http://www.pmease.com/features/whats-new</a> </p>
+	
+		
+			<h3>QuickBuild 3.0 beta1 is now available</h3><a></a><p>The first beta of QuickBuild 3.0 is now available. This release integrates tightly with JIRA, Trac and Bugzilla to streamline the development process. Other improvements include reusable and repeatable steps, inheritance visibility, process tree killing, build engine optimization, UI polishments. Refer to <a href="http://wiki.pmease.com/display/qb30/3.0.0-beta1">release notes</a> for details.</p>
+	
+		
+			<h3>QuickBuild 2.1 is available now</h3><a></a><p>QuickBuild 2.1 is just released with plugin and RESTful API, a cross-platform tray monitor, FxCop, NCover and CPD support, custom statistics, Oracle and SSL support, and much more. Refer to <a href="http://www.pmease.com/features/whats-new/">what's new</a> for a complete list of new features added to this release.</p>
+	
+		
+			<h3>The brand new QuickBuild 2.0 is released</h3><br>
+Please refer to <a></a><p>After years of development and test, QuickBuild 2.0 is finally released to embrace latest innovations in continuous integration and build management area. Most important features introduced in this version are pre-commit test, advanced build grid, versatile build reports, graphical build workflow design, visual build promotion, source code view/diff, and build comparison. QuickBuild 2.0 also includes enormous improvments such as intuitive user interface, fine-grained permission control, real time build progress and log monitoring, variable prompting.Please refer to <a http://www.pmease.com//features>the feature page</a> for the complete list of achievements in this version.</p>
+	
+</div>
+</body></html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    How to Debug Your Maven Build with Eclipse</title></head><body>From:<a href=http://java.dzone.com/articles/how-debug-your-maven-build>http://java.dzone.com/articles/how-debug-your-maven-build</a><br><br><div><p class="print-link"></p><p>When running a Maven build with many plugins (e.g. the&#160;<a href="http://blog.jooq.org/2014/06/25/flyway-and-jooq-for-unbeatable-sql-development-productivity/">jOOQ or Flyway plugins</a>), you may want to have a closer look under the hood to see what&#8217;s going on internally in those plugins, or in your extensions of those plugins. This may not appear obvious when you&#8217;re running Maven from the command line, e.g. via:</p>
+
+
+<pre class="shell">C:\Users\jOOQ\workspace&gt;mvn clean install
+</pre>
+
+<p>Luckily, it is rather easy to debug Maven. In order to do so, just create the following batch file on Windows:</p>
+
+
+<pre class="shell">@ECHO OFF
+
+IF "%1" == "off" (
+    SET MAVEN_OPTS=
+) ELSE (
+    SET MAVEN_OPTS=-Xdebug -Xnoagent -Djava.compile=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
+)
+</pre>
+
+<p>Of course, you can do the same also on a MacOS X or Linux box, by using<code>export</code>&#160;intead of&#160;<code>SET</code>.</p>
+
+<p>Now, run the above batch file and proceed again with building:</p>
+
+
+<pre class="shell">C:\Users\jOOQ\workspace&gt;mvn_debug
+
+C:\Users\jOOQ\workspace&gt;mvn clean install
+Listening for transport dt_socket at address: 5005
+</pre>
+
+<p>Your Maven build will now wait for a debugger client to connect to your JVM on port 5005 (change to any other suitable port). We&#8217;ll do that now with Eclipse. Just add a new Remote Java Application that connects on a socket, and hit &#8220;Debug&#8221;:</p>
+
+<p><a href="https://lukaseder.files.wordpress.com/2015/06/port-5005.png"><img src="https://lukaseder.files.wordpress.com/2015/06/port-5005.png?w=479" alt="port-5005" class="alignright size-full wp-image-5501"></a></p>
+
+<p>That&#8217;s it. We can now set breakpoints and debug through our Maven process like through any other similar kind of server process. Of course, things work exactly the same way with IntelliJ or NetBeans.</p>
+
+<p>Once you&#8217;re done debugging your Maven process, simply call the batch again with parameter&#160;<code>off</code>:</p>
+
+
+<pre class="shell">C:\Users\jOOQ\workspace&gt;mvn_debug off
+
+C:\Users\jOOQ\workspace&gt;mvn clean install
+</pre>
+
+<p>And your Maven builds will no longer be debugged.</p>
+
+<p>Happy debugging!</p>	
+	<p></p>
+
+    </div></body></html>

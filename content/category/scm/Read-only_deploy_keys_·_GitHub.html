@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />Read-only deploy keys · GitHub</title></head><body>From:<a href=https://github.com/blog/2024-read-only-deploy-keys>https://github.com/blog/2024-read-only-deploy-keys</a><br><br><div><p>You can now create deploy keys with read-only access. A deploy key is an SSH key that is stored on your server and grants access to a single GitHub repository. They are often used to clone repositories during deploys or continuous integration runs. Deploys sometimes involve merging branches and pushing code, so deploy keys have always allowed both read and write access. Because write access is undesirable in many cases, you now have the ability to create deploy keys with read-only access.</p>
+
+<p><a href="https://cloud.githubusercontent.com/assets/1144197/8164374/e76a0e24-1345-11e5-93b0-fd04b6a3446c.png" target="_blank"><img src="https://cloud.githubusercontent.com/assets/1144197/8164374/e76a0e24-1345-11e5-93b0-fd04b6a3446c.png" alt="viewing and adding deploy keys"></a></p>
+
+<p>New deploy keys created through GitHub.com will be read-only by default and can be given write access by selecting "Allow write access" during creation. Access level can be specified when <a href="https://developer.github.com/v3/repos/keys/">creating deploy keys from the API</a> as well.</p>
+  </div></body></html>

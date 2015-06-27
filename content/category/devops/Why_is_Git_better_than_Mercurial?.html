@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    Why is Git better than Mercurial?</title></head><body>From:<a href=http://java.dzone.com/articles/why-git-better-mercurial>http://java.dzone.com/articles/why-git-better-mercurial</a><br><br><div><p class="print-link"></p><p>&#160;</p><p>Which of the two main distributed version control systems (DVCS),
+ Mecurial and GIT, is better and why? This is an old argument, with 
+forum posts galore about which is better; with users of both arguing 
+their case, however this argument never seems to be resolved. This is 
+because the feature sets are so similar, and after researching the 
+various strengths and weaknesses it became clear that they both have 
+clear advantages for certain situations, &#8211; different use cases. Below we
+ have listed both pros and cons for both Git and Mercurial in order for 
+our readers to be able to make their own decision as to what is best for
+ them, after all user requirements and team requirements differ; there 
+is no one size fits all.</p>
+<h2>Commonly found comments about Git</h2>
+<p>GIT is overly complex in every sense of the word, in particular the 
+information model and the command line syntax as well as the help 
+documentation, none of it is easy to understand. The statement &#8220;if you 
+don&#8217;t understand the functionality don&#8217;t use it, just use it like 
+subversion&#8221; just doesn&#8217;t fit for the simple reason that most commands 
+lead to further commands, where simple actions can require complex 
+actions to undo or refine.</p>
+<p>The decision as to whether to use Git on a development project or 
+not, is primarily a question of how knowledgeable of Git the individuals
+ are within the team, a single weak link can bring down the entire team.
+ The obvious example of this is seen in the version control of Git. It 
+is simply put, &#8211; unsafe, &#8211; prone to accidental alteration by users 
+(potentially affecting the entire team), therefore a high minimum 
+knowledge requirement is necessary. Consider a Git test, what should the
+ pass rate be? 70%, 80% or 90%?</p>
+<p>Continuing on the overly complex nature of Git&#8217;s design, the obvious 
+point is that it puts control firmly in the project managers hands or 
+whoever is maintaining the codebase, you might wonder why that is bad? 
+The problem is that the majority of Git users are coders (contributors) 
+and what they need most of all is a clean interface which is where Git 
+fails to deliver, putting functionality over usability, favoring the 
+maintainer over the contributor.</p>
+<p><a href="http://intland.com/wp-content/uploads/2015/01/git_mercurial_pros_cons-intland-software.png"><img class="alignright size-medium wp-image-14944" src="http://intland.com/wp-content/uploads/2015/01/git_mercurial_pros_cons-intland-software-336x850.png" alt="Pors and Cons of Git and Mercurial" width="336" height="850"></a></p>
+<h2>Git is different but not necessarily better than Mercurial</h2>
+<p>It is often said that working with Git is much better then Mercurial.
+ The two clearly have pros and cons but one is not necessarily better 
+than the other is. It is all depends on your knowledge and expectations.</p>
+<ul><li>The method by which both Git and Mercurial handle history, is 
+essentially just a directed acyclic graph. However, Mercurial provides 
+you with a simple linear history that can cause confusion due to the 
+lack of information, whereas Git enables you to follow the history 
+backwards but this is complicated and hard to follow, therefore this can
+ cause confusion.</li><li>It is often an argument that Git handles branches better than 
+Mercurial without any particular reason. As a Mercurial user, you might 
+see two branches (named branches and repository clones) and all your 
+changes will belong to a named branch. The confusion starts if you have 
+many with the same name. Branches structure in Git enables you to avoid 
+putting code where you did not want.</li></ul>
+<ul><li>Git enforces technical excellence; &#8211; if you do not know everything 
+about Git then you should not be using Git else you are a danger to 
+others work. Simply put, a Git team is an expert team.</li></ul>
+<ul><li>Git is more powerful for larger projects, one good example is the functionality provided by &#8220;partial checkouts&#8221;.</li></ul>
+<ul><li>Last, but not least, the biggest non-technical different between 
+Mercurial and Git is the marketing. Git seems to be better marketed 
+these days and that clearly makes many people use Git.</li></ul>	
+	<p></p>
+
+    </div></body></html>

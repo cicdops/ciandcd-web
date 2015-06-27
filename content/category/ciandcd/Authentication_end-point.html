@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />Authentication end-point</title></head><body>From:<a href=http://www.go.cd/2015/06/18/authentication-end-point.html>http://www.go.cd/2015/06/18/authentication-end-point.html</a><br><br><div><p>Starting 15.2.0 Go Server will expose authentication end-point. What this means is Go users can add "custom" authentication schemes through plugins. With <a href="http://www.go.cd/documentation/developer/writing_go_plugins/plugin_settings/plugin_settings_overview.html">plugin settings</a> &amp; <a href="http://www.go.cd/documentation/developer/writing_go_plugins/handling_web_requests.html">web request handling ability</a> plugin developers get enough flexibility to write any authentication plugin they intend to write.</p>
+
+<p>Examples of integrations possible:</p>
+
+<ul>
+<li>OAuth Login - <a href="https://github.com/srinivasupadhya/gocd-oauth-login">GitHub</a>, <a href="https://github.com/srinivasupadhya/gocd-oauth-login">Google</a>, Hotmail, Yahoo! etc.</li>
+<li>Single Sign-on (SSO) - LDAP, Okta etc.</li>
+<li>2-factor authentication - SMS verification etc.</li>
+<li>Custom <code>username</code> &amp; <code>password</code> authentication</li>
+</ul>
+
+<h3>How does it work?</h3>
+
+<p>Below is an explanation of how <a href="https://github.com/srinivasupadhya/gocd-oauth-login">GitHub OAuth Login plugin</a> works.</p>
+
+<ul>
+<li>Generate OAuth token on GitHub.</li>
+</ul>
+
+
+  <img src="/images/blog/authentication-plugins/generate-oauth-token.png" class="has_border full_size" alt="Figure 1: GitHub - Generate Oauth Token" id="mature_ci_cd_setup" title="GoCD - Generate Oauth Token">
+  Figure 1: Generate oauth token <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+<ul>
+<li>On plugin listing page users will see a gear icon (similar to one on the pipeline dashboard).</li>
+</ul>
+
+
+  <img src="/images/blog/authentication-plugins/list-plugin.png" class="has_border full_size" alt="Figure 1: GoCD - Plugin Listing" id="mature_ci_cd_setup" title="GoCD - Plugin Listing">
+  Figure 1: Plugin listing with gear icon <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+<ul>
+<li>Clicking on the gear icon opens a pop-up that renders "Plugin Settings".</li>
+</ul>
+
+
+  <img src="/images/blog/authentication-plugins/configure-plugin.png" class="has_border full_size" alt="Figure 2: GoCD - Configure Plugin" id="mature_ci_cd_setup" title="GoCD - Configure Plugin">
+  Figure 2: Configure plugin pop-up <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+<ul>
+<li>Login Page</li>
+</ul>
+
+
+  <img src="/images/blog/authentication-plugins/login-page.png" class="has_border full_size" alt="Figure 2: GoCD - Login Page" id="mature_ci_cd_setup" title="GoCD - Login Page">
+  Figure 3: Login Page with GitHub icon <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+<ul>
+<li>Click on GitHub icon</li>
+</ul>
+
+
+  <img src="/images/blog/authentication-plugins/github-login.png" class="has_border full_size" alt="Figure 2: GoCD - Authorize Go Server on GitHub" id="mature_ci_cd_setup" title="GoCD - Authorize Go Server on GitHub">
+  Figure 3: Authorize Go Server to access GitHub <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+<ul>
+<li>Successful login</li>
+</ul>
+
+
+  <img src="/images/blog/authentication-plugins/successful-login.png" class="has_border full_size" alt="Figure 2: GoCD - On Successful Login" id="mature_ci_cd_setup" title="GoCD - On Successful Login">
+  Figure 3: On successful login <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+<ul>
+<li>Ability to Search &amp; Add users</li>
+</ul>
+
+
+  <img src="/images/blog/authentication-plugins/search-user.png" class="has_border full_size" alt="Figure 2: GoCD - Search User" id="mature_ci_cd_setup" title="GoCD - Search User">
+  Figure 3: Search User <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+<p>We hope plugin developers are able to use this feature to support their organizations authentication mechanism.</p>
+
+<h4>References:</h4>
+
+ 
+
+ 
+
+ 
+
+
+
+<p>As always, Go questions can be asked on the <a href="https://groups.google.com/forum/#!forum/go-cd">mailing list</a>.</p>
+
+</div></body></html>

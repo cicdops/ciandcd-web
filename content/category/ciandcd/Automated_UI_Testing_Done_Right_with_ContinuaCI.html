@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />Automated UI Testing Done Right with ContinuaCI</title></head><body>From:<a href=https://www.finalbuilder.com/resources/blogs/postid/709/automated-ui-testing-done-right-with-continuaci>https://www.finalbuilder.com/resources/blogs/postid/709/automated-ui-testing-done-right-with-continuaci</a><br><br><div><br>
+<br>
+<br>
+<h1>
+Automated UI Testing Done Right with ContinuaCI</h1>
+You have just completed an awesomely complex change to your shinny new webapp! &#160;After
+running all your unit tests things are in the green and looking clean.<br>
+<br>
+Very satisfied at the quality of your work you fire up the application to verify
+that everything is still working as advertised. &#160;Below is what greets you on
+the root path of your app:&#160;<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/404-notfound-ie5.gif" alt="Funny error"><br>
+<br>
+We have all been here at some time or another! &#160;What happened! &#160;Perhaps
+it was not your code that broke it! &#160;Maybe the issue originated from another
+part of your organisation, or maybe it came from somewhere on the "inter-webs".
+&#160;<br>
+<br>
+Its time to look at the underlying problem however ..... &#160;testing web user
+interfaces is hard! &#160;Its time consuming and difficult to get right. &#160;Manual
+clicks, much typing, cross referencing client specifications etc, surely there must
+be an easier way. &#160;At the end of the day we DO need to test our user interfaces
+<img alt="" src="/Providers/HtmlEditorProviders/Telerik/images/Emoticons/wink_smile.gif" title="wink_smile"><br>
+<br>
+<h4>
+Automated Web UI Testing</h4>
+<br>
+Thankfully UI testing today can be Automated, running real browsers in real end
+to end functional tests, to ensure our results meet (and continue to meet) expectations.
+&#160; &#160;&#160;<br>
+<p>You have just completed an awesomely complex change to your shinny new webapp! After running all your unit tests things are in the green and looking clean.Very satisfied at the quality of your work you fire up the application to verify that everything is still working as advertised. Below is what greets you on the root path of your app:We have all been here at some time or another! What happened! Perhaps it was not your code that broke it! Maybe the issue originated from another part of your organisation, or maybe it came from somewhere on the "inter-webs".Its time to look at the underlying problem however ..... testing web user interfaces is hard! Its time consuming and difficult to get right. Manual clicks, much typing, cross referencing client specifications etc, surely there must be an easier way. At the end of the day we DO need to test our user interfacesThankfully UI testing today can be Automated, running real browsers in real end to end functional tests, to ensure our results meet (and continue to meet) expectations.</p><p>
+For the sake of brevity and clarity in this demonstration we will focus on testing
+an existing endpoint. &#160;It is considered common place to find functional tests
+included as part of a wider build pipeline, which may consist of such steps as:&#160;</p>
+<ul>
+    <li>Build</li>
+    <li>Unit Test</li>
+    <li>Deploy to Test Environment</li>
+    <li>Perform Functional Tests</li>
+    <li>Deploy to Production</li>
+</ul>
+<br>
+In this article we will be focusing on the functional testing component of this
+pipeline. &#160;We will proceed on the assumption that your code has already been,
+built unit tested and deployed to a Functional Test environment.  Today we
+will;<br>
+<br>
+<p>Add Automated UI testing to an existing endpoint google.com</p><br>
+<p>Configure ContinuaCI to automatically build our project, and perform the tests</p>
+<br>
+<br>
+<h4>
+Software Requirements:&#160;</h4>
+<br>
+<ul>
+    <li>Visual Studio 2010 Express Edition SP1 or greater (<a href="http://visualstudio.com/">visualstudio.com</a>)</li>
+    <li>Microsoft Dot Net Framework version 4 or greater</li>
+    <li>Java JRE (<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>)</li>
+    <li>Mercurial (<a href="http://mercurial.selenic.com/">mercurial.selenic.com</a>)</li>
+    <li>Mozilla Firefox (<a href="http://getfirefox.com/">getfirefox.com</a>)</li>
+    <li>Nuget (<a href="http://docs.nuget.org/docs/start-here/installing-nuget">docs.nuget.org/docs/start-here/installing-nuget</a>)</li>
+</ul>
+<h2>
+Step1: Prepare a Selenium endpoint</h2>
+Firstly we will prepare for our UI tests by setting up a Selenium server. &#160;<span><a></a><span><a href="http://docs.seleniumhq.org/">Selenium</a> is a browser automation framework which will be used to 'remote control' a real browser.</span></span><br>
+<br>
+Log into the machine you have chosen for the Selenium server with administrator
+privileges<br>
+Download and install Mozilla Firefox (getfirefox.com), this will be the browser
+that we target as part of this example, however Selenium can target lots of other
+browsers. &#160;For a full breakdown please <a></a><br>
+Download Selenium Server (<a></a><br>
+<br>
+Place it into a permanent
+location of you choosing, in our example ("C:\Program Files (x86)\SeleniumServer")
+&#160; &#160;&#160;<br>
+Download NSSM (<a></a><br>
+<br>
+Ensure that port 4444 is set to allow traffic (this is the default communications&#160;port
+for Selenium)&#160;<br>
+<br>
+Open a console and run the following commands:&#160;<br>
+<p>"C:\Program Files (x86)\nssm-2.22\win64\nssm.exe"
+install Selenium-Server "java" "-jar \"C:\Program Files (x86)\SeleniumServer\selenium-server-standalone-2.41.0.jar\""<br>
+net start Selenium-Server</p><br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/install-sel-1.png" alt="name project">
+<br>
+&#160;<br>
+In order to uninstall the Selenium server service, the following commands can be
+run:&#160;<br>
+<p>net stop Selenium-Server<br>
+"C:\Program Files (x86)\nssm-2.22\win64\nssm.exe" remove Selenium-Server </p>
+<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/install-sel-2.png" alt="name project">
+<br>
+<h2>
+Step2: Create a test class and add it to source control</h2>
+Create a new class library project in Visual Studio, &#160;lets call it 'tests'<br>
+Open the Nuget Package Manager Console window (tools menu-&gt; library package manager
+-&gt; package manager console), select the test project as the default project and
+run the following script:&#160;<br>
+<br>
+Install-Package Selenium.Automation.Framework<br>
+Install-Package Selenium.WebDriver<br>
+Install-Package Selenium.Support<br>
+Install-Package NUnit<br>
+Install-Package NUnit.Runners<br>
+<br>
+Create a new class called within the tests project (lets call it tests) and place
+the below code (Note: line 23 should be changed with location to the Selenium-Server
+we setup in the previous step):<br>
+<br>
+<pre class="brush: c#; toolbar:true">using System;
+using System.Text;
+using NUnit.Framework;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.UI;
+
+namespace SeleniumTests
+{
+    [TestFixture]
+    public class test
+    {
+        private RemoteWebDriver driver;
+       
+
+        [SetUp]
+        public void SetupTest()
+        {
+
+            // Look for an environment variable
+            string server = null;
+            server = System.Environment.GetEnvironmentVariable("SELENIUM_SERVER");
+            if (server == null)
+            {
+                server = "http:// *** PUT THE NAME OF YOUR SERVER HERE ***:4444/wd/hub";
+            }
+            
+            // Remote testing
+            driver = new RemoteWebDriver(new Uri(server), DesiredCapabilities.Firefox());
+        }
+
+        [TearDown]
+        public void TeardownTest()
+        {
+            try
+            {
+                driver.Quit();
+            }
+            catch (Exception)
+            {
+                // Ignore errors if unable to close the browser
+            }
+        }
+
+        [Test]
+        public void FirstSeleniumTest()
+        {
+            driver.Navigate().GoToUrl("http://www.google.com/");
+            IWebElement query = driver.FindElement(By.Name("q"));
+            query.SendKeys("a test");
+            Assert.AreEqual(driver.Title, "Google"); 
+        }
+       
+    }
+}
+</pre>
+<h2>Step3: Test the test!</h2>
+Build the solution&#160;<br>
+Open NUnit build runner (by default this is located at ~\packages\NUnit.Runners.2.6.3\tools\nunit.exe)
+, Select file -&gt; Open Project, and locate the tests dll that you have build in
+the previous step<br>
+click the run button<br>
+~ 15 seconds or so you should have one green test!<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-17.png" alt="name project">
+<br>
+<br>
+So what just happened? &#160;Behind the scenes an instance of firefox was opened
+(on the Selenium Server), perform a simple google search query and undertook a simple
+Nunit assertion has verified the name of the window was equal to "Google", very
+cool!. &#160;<br>
+<br>
+Now lets make the test fail, go ahead and change line 78, lets say "zzGoogle", build,
+and rerun the test. &#160;We now have a failing test. &#160;Go ahead and change
+it back so that we have a single passing test.<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-18.png" alt="name project">
+<br>
+<br>
+<h4>Create a source control repository</h4>
+<p>In this article we will be focusing on the functional testing component of this pipeline. We will proceed on the assumption that your code has already been, built unit tested and deployed to a Functional Test environment. Today we will;Firstly we will prepare for our UI tests by setting up a Selenium server.This machine will be designated for performing the UI tests against, preferably this will be a machine separate from your ContinuaCI server.Log into the machine you have chosen for the Selenium server with administrator privilegesDownload and install Mozilla Firefox (getfirefox.com), this will be the browser that we target as part of this example, however Selenium can target lots of other browsers. For a full breakdown please <a href="http://docs.seleniumhq.org/about/platforms.jsp">
+see the docs page</a> : .Download Selenium Server ( <a href="http://docs.seleniumhq.org/download">docs.seleniumhq.org/download</a> ), at the time of writing the latest version is 2.41.0.Place it into a permanent location of you choosing, in our example ("C:\Program Files (x86)\SeleniumServer")Download NSSM ( <a href="http://nssm.cc/download">nssm.cc/download</a> ), unzip it and place into a permanent location of you choosing "C:\Program Files (x86)\nssm-2.22\"Ensure that port 4444 is set to allow traffic (this is the default communications port for Selenium)Open a console and run the following commands:In order to uninstall the Selenium server service, the following commands can be run:Create a new class library project in Visual Studio, lets call it 'tests'Open the Nuget Package Manager Console window (tools menu-&gt; library package manager -&gt; package manager console), select the test project as the default project and run the following script:Install-Package Selenium.Automation.FrameworkInstall-Package Selenium.WebDriverInstall-Package Selenium.SupportInstall-Package NUnitInstall-Package NUnit.RunnersCreate a new class called within the tests project (lets call it tests) and place the below code (Note: line 23 should be changed with location to the Selenium-Server we setup in the previous step):Build the solutionOpen NUnit build runner (by default this is located at ~\packages\NUnit.Runners.2.6.3\tools\nunit.exe) , Select file -&gt; Open Project, and locate the tests dll that you have build in the previous stepclick the run button~ 15 seconds or so you should have one green test!So what just happened? Behind the scenes an instance of firefox was opened (on the Selenium Server), perform a simple google search query and undertook a simple Nunit assertion has verified the name of the window was equal to "Google", very cool!.Now lets make the test fail, go ahead and change line 78, lets say "zzGoogle", build, and rerun the test. We now have a failing test. Go ahead and change it back so that we have a single passing test.</p><p>In this example, we're using mercurial</p>
+<p>open a command prompt at ~\</p><br>
+<p>type "hg init"</p><br>
+<p>add a .hgignore file into the directory. &#160;For&#160;convenience&#160;we have
+prepared one for you&#160;</p><a https://www.finalbuilder.com//Portals/0/ArticleImages/BlogImages/peter/.hgignore.txt>here</a>&#160;<br>
+<p>type "hg add"</p><br>
+<p>type "hg commit -m "initial commit""</p>
+<br>
+<h2>Step 4: Setting up Automated UI testing in ContinuaCI</h2>
+Navigate to the ContinuaCI web interface
+<br>
+<br>
+<h4>
+Create a project</h4>
+<br>
+Open ContinuaCI<br>
+Select "Create Project" from the top tasks dropdown menu<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-1.png" alt="create project"><br>
+<br>
+Name the project something memerable; &#160;In our case: "pete sel test 1"<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-3.png" alt="name project"><br>
+Click the "Save &amp; Complete Wizard" button<br>
+<br>
+<h4>
+Create a configuration for this project</h4>
+<br>
+Click "Create a Configuration"<br>
+Name the config something memorable; in our case "sel-testconfig-1"<br>
+Click save &amp; Continue<br>
+Click the 'Enable now' link at the bottom of the page to enable this configuration<br>
+<br>
+<h4>
+Point to our Repository</h4>
+<br>
+under the section "Configuration Repositories", select the "Create" link<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-4.png" alt="name project"><br>
+<br>
+Name the repository "test_repo"<br>
+Select "Mercurial" from the "type" dropdown list<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-6.png" alt="name project"><br>
+<br>
+Select the Mercurial" tab from the top of the dialogue box<br>
+Enter the repository location under "source path" &#160;in our case '\\machinename\c$\sel-blog-final'<br>
+Click validate to ensure all is well<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-8.png" alt="name project"><br>
+<br>
+Click save, your repository is now ready to go!<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-9.png" alt="name project"><br>
+<h4>
+Add actions to our build</h4>
+<br>
+Click on the Stages tab<br>
+We will add a nuget restore action, click on the "Nuget" section from the categories
+on the left<br>
+Drag and drop the action "Nuget Restore" onto the design surface<br>
+Enter the location of the solution file: "$Source.test_repo$\tests.sln"<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-11.png" alt="name project"><br>
+<br>
+Click Save<br>
+&#160;<br>
+<h4>
+Build our tests</h4>
+<br>
+Click on the "Build runners" category from the categories on the left hand menu<br>
+Drag and drop a Visual Studio action onto the design surface (note that the same
+outcome can be achieved here with an MSBuild action).<br>
+<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-19.png" alt="name project"><br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-13.png" alt="name project"><br>
+<br>
+Enter the name of the solution file: "$Source.test_repo$\tests.sln"<br>
+Specify that this should be a 'Release' build under the configuration option<br>
+Click save<br>
+<br>
+<h4>
+Setup ContinuaCI to run our Nunit tests</h4>
+<br>
+Select the 'unit testing' category from the left hand menu<br>
+Drag and drop an NUnit action onto the design surface<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-20.png" alt="name project"><br>
+<br>
+Name our action 'run UI tests'<br>
+Within the files: option, specify the name of the tests project '$Source.test_repo$\tests\tests.csproj'<br>
+Within the Project Configuration section specify 'Release'<br>
+Specify which version of NUnit<br>
+In order to provide greater configuration flexibility &#160;we can pass in the location
+of our Selenium server to the tests at runtime.&#160; This is done within the 'Environments'
+tab. &#160;In our case the location of the Selenium server is<p>&#160;</p><p>http://SELSERVER:4444/wd/hub</p><p>.</p><br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-24.png" alt="environment tab"><br>
+<br>
+Click Save<br>
+<br>
+Click save and complete Wizard
+<br>
+We are now ready to build!<br>
+<br>
+Start a build immediately by clicking the top right hand side fast forward icon&#160;<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-14.png" alt="name project"><br>
+A build will start, and complete!<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-15.png" alt="name project"><br>
+When viewing the build log (this can be done by clicking on the green build number,
+then selecting the log tab) we can see that our UI tests have been run successfully.
+&#160;They are also visible within the 'Unit Tests' tab which displays further metrics
+around the tests.<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-23.png" alt="name project"><br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-22.png" alt="name project">
+<h2>
+Step 5: Getting more advanced</h2>
+<p>Navigate to the ContinuaCI web interfaceOpen ContinuaCISelect "Create Project" from the top tasks dropdown menuName the project something memerable; In our case: "pete sel test 1"Click the "Save &amp; Complete Wizard" buttonClick "Create a Configuration"Name the config something memorable; in our case "sel-testconfig-1"Click save &amp; ContinueClick the 'Enable now' link at the bottom of the page to enable this configurationunder the section "Configuration Repositories", select the "Create" linkName the repository "test_repo"Select "Mercurial" from the "type" dropdown listSelect the Mercurial" tab from the top of the dialogue boxEnter the repository location under "source path" in our case '\\machinename\c$\sel-blog-final'Click validate to ensure all is wellClick save, your repository is now ready to go!Click on the Stages tabWe will add a nuget restore action, click on the "Nuget" section from the categories on the leftDrag and drop the action "Nuget Restore" onto the design surfaceEnter the location of the solution file: "$Source.test_repo$\tests.sln"Click SaveClick on the "Build runners" category from the categories on the left hand menuDrag and drop a Visual Studio action onto the design surface (note that the same outcome can be achieved here with an MSBuild action).Enter the name of the solution file: "$Source.test_repo$\tests.sln"Specify that this should be a 'Release' build under the configuration optionClick saveSelect the 'unit testing' category from the left hand menuDrag and drop an NUnit action onto the design surfaceName our action 'run UI tests'Within the files: option, specify the name of the tests project '$Source.test_repo$\tests\tests.csproj'Within the Project Configuration section specify 'Release'Specify which version of NUnitIn order to provide greater configuration flexibility we can pass in the location of our Selenium server to the tests at runtime. This is done within the 'Environments' tab. In our case the location of the Selenium server isClick SaveClick save and complete WizardWe are now ready to build!Start a build immediately by clicking the top right hand side fast forward iconA build will start, and complete!When viewing the build log (this can be done by clicking on the green build number, then selecting the log tab) we can see that our UI tests have been run successfully. They are also visible within the 'Unit Tests' tab which displays further metrics around the tests.</p><p>
+Lets try a slightly more advanced example. &#160;This time we will examine a common
+use case. &#160;A physical visual inspection test needs to be conducted before a
+release can progress in the pipeline.<br>
+<br>
+Place the following code within our test class.<br>
+<br>
+</p>
+<pre class="brush: c#; toolbar:true">using System;
+using System.Text;
+using NUnit.Framework;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.UI;
+
+namespace SeleniumTests
+{
+    [TestFixture]
+    public class test
+    {
+        private RemoteWebDriver driver;
+       
+
+        [SetUp]
+        public void SetupTest()
+        {
+
+            // Look for an environment variable
+            string server = null;
+            server = System.Environment.GetEnvironmentVariable("SELENIUM_SERVER");
+            if (server == null)
+            {
+                server = "http:// *** PUT THE NAME OF YOUR SERVER HERE ***:4444/wd/hub";
+            }
+            
+            // Remote testing
+            driver = new RemoteWebDriver(new Uri(server), DesiredCapabilities.Firefox());
+        }
+
+        [TearDown]
+        public void TeardownTest()
+        {
+            try
+            {
+                driver.Quit();
+            }
+            catch (Exception)
+            {
+                // Ignore errors if unable to close the browser
+            }
+        }
+
+        [Test]
+        public void FirstSeleniumTest()
+        {
+            driver.Navigate().GoToUrl("http://www.google.com/");
+            IWebElement query = driver.FindElement(By.Name("q"));
+            query.SendKeys("a test");
+            Assert.AreEqual(driver.Title, "Google"); 
+        }
+        [Test]
+        public void MySecondSeleniumTest()
+        {
+            // Navigate to google
+            driver.Navigate().GoToUrl("http://www.google.com/");
+            IWebElement query = driver.FindElement(By.Name("q"));
+            
+            // Write a query into the window
+            query.SendKeys("a test");
+
+            // wait at maximum ten seconds for results to display
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            IWebElement myDynamicElement = wait.Until&lt; IWebElement &gt;((d) =&gt;
+            {
+                return d.FindElement(By.Id("ires"));
+            });
+
+            // take a screenshot of the result for visual verification
+            var fileName = TestContext.CurrentContext.Test.Name + "-" + string.Format("{0:yyyyMMddHHmmss}", DateTime.Now) + ".png";
+            driver.GetScreenshot().SaveAsFile(fileName, System.Drawing.Imaging.ImageFormat.Png);
+
+            // perform an code assertion
+            Assert.AreEqual(driver.Title, "Google");          
+        }
+    }
+}
+</pre>
+<br>
+<br>
+Build, and run the test. &#160;<br>
+<br>
+In this example we added an additional test to perform a google search, wait at
+maximum 10 seconds for &#160;results to display, take a screenshot (stored it to
+disk), and perform an NUnit assertion. &#160;The screenshot output from the test
+can be made available as an artifact within Continua!
+<br>
+<br>
+Firstly lets commit our changes; "hg commit -m "added a more advanced test""<br>
+<br>
+Open the configuration in Continua CI (clicking the pencil icon)<br>
+Navigate to the stages section&#160;<br>
+Double click on the stage name (which will bring up the edit stage Dialogue box)&#160;<br>
+Click on the Workspace rules tab<br>
+Add the following line to the bottom of the text area: "/ &lt; $Source.test_repo$/tests/bin/Release/**.png".
+&#160;This will tell Continua to return any .png files that we produced from this
+test back to the ContinuaCI Server.<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-25.png" alt="name project"><br>
+<br>
+Click on the artifacts tab.<br>
+Add the following line : **.png" &#160;This will enable any .png files within
+the workspace to be picked up and displayed within the Artifacts tab.<br>
+**.png<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-26.png" alt="name project"><br>
+<br>
+Click save<br>
+Click Save &amp; Complete Wizard<br>
+Start a new build<br>
+<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-14.png" alt="name project"><br>
+<br>
+Sweet! &#160;A screenshot of our test was produced, and can be seen within the Artifacts
+tab! &#160; &#160;&#160;<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-27.png" alt="name project"><br>
+Clicking on 'View' will display the image: &#160;<br>
+<br>
+<img src="/Portals/0/ArticleImages/BlogImages/peter/create-project-28.png" alt="name project"><br>
+&#160;<br>
+<p>We have put the sourcecode of this article up on&#160;</p><a href="https://github.com/VSoftTechnologies/Automated-UI-Testing">Github</a><p>.<br>
+</p>
+<br>
+Please subscribe and comment! &#160;We are very excited to see what you guys come
+up with on Continua, happy testing!
+<br>
+<br>
+<h4>
+Some additional considerations:</h4>
+<br>
+<ul>
+    <li>
+    <li>The user which the Selenium service runs under should have correct privileges</li>
+    <li>The machine designated as the Selenium server may require access to the internet
+    if your webapp has upstream dependencies (eg third party API's like github)</li>
+    <li>
+    <li>
+    <li>&#160;&#160;</li>
+</ul>&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    <p>Build, and run the test.In this example we added an additional test to perform a google search, wait at maximum 10 seconds for results to display, take a screenshot (stored it to disk), and perform an NUnit assertion. The screenshot output from the test can be made available as an artifact within Continua!Firstly lets commit our changes; "hg commit -m "added a more advanced test""Open the configuration in Continua CI (clicking the pencil icon)Navigate to the stages sectionDouble click on the stage name (which will bring up the edit stage Dialogue box)Click on the Workspace rules tabAdd the following line to the bottom of the text area: "/ </p></div></body></html>

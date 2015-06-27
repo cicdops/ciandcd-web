@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    Merging Without a Base in Perforce Helix</title></head><body>From:<a href=http://www.perforce.com/blog/150623/merging-without-base-perforce-helix>http://www.perforce.com/blog/150623/merging-without-base-perforce-helix</a><br><br><div><p>I recently had a question about merging files in Perforce Helix that have no direct lineage.</p>
+<p>For example, let's say you want to merge file //depot/main/foo.c (source) to //depot/dev/foo.c (target), which is fine, but you realize the target file was not branched from the source and there is no base (common ancestor). To determine the base, Helix uses integration history created by previous integration commands to know which file revisions to integrate. However, since dev/foo.c was not branched from main/foo.c there is no integration history between these two paths: a baseless merge. &#160;</p>
+<p align="center"><img alt="" src="/sites/default/files/Merge-No-Base.png"></p>
+<p align="center"><img alt="" src="/sites/default/files/baseless-default.png"></p>
+<p>To handle this scenario Helix does a two-way merge for the best results. All the diffs are considered conflicts. Why? Because in the absence of a base, we do not have any way to determine what differences are &#8220;changes&#8221; relative to the base, which is how we normally determine whether diffs are conflicting or not. We found the best and most accurate way to handle this scenario is scheduling a two-way merge.&#160; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p>
+<p>In the past, Helix would not allow baseless merges without the use of p4 integ command flags;</p>
+<p>&#160;&#160;&#160;&#160;&#160; -i/-I uses the first revision of the source as the base for baseless merges, rather than an empty file.&#160;&#160;&#160;</p>
+<p>With the old "-i" behavior, an arbitrarily chosen base can lead to lost changes as seen in the figure below. &#160;</p>
+<p align="center"><img alt="" src="/sites/default/files/baseless-wipeout.png"></p>
+<p>This is why we changed the behavior. If you are stuck in the past, these flags are preserved for backward compatibility but are deprecated.</p>
+<p>To recap, with the current integration behavior, no flags are needed to handle baseless merges.&#160; The Helix integration engine does the right thing for a more realistic and accurate result! Happy merging!</p>
+</div></body></html>

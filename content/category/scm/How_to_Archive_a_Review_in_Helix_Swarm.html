@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    How to Archive a Review in Helix Swarm</title></head><body>From:<a href=http://www.perforce.com/blog/150624/how-archive-review-helix-swarm>http://www.perforce.com/blog/150624/how-archive-review-helix-swarm</a><br><br><div><p><img alt="" src="/sites/default/files/title-tip-tricks9.png"></p>
+<p>We get a lot of positive feedback about Helix Swarm, but some customers are not sure about all of the workflow steps, so here's a quick review.</p>
+<h4><strong>The code review in Helix Swarm can be in one of the following states:</strong></h4>
+<ul><li><strong>Needs Review -&#160;</strong>The review has started and the changes need to be reviewed.</li>
+	<li><strong>Needs Revisions -&#160;</strong>The changes have been reviewed and the reviewer has indicated that further revisions are required.</li>
+	<li><strong>Approved -&#160;</strong>The review has completed. The changes need to be committed.</li>
+	<li><strong>Rejected -&#160;</strong>The review has completed. The changes are undesirable and should not be committed.</li>
+	<li><strong>Archived -</strong>The review has completed for now. However, it is neither rejected nor approved; it is simply put aside in case it is needed in the future.</li>
+</ul><p>Most of these states are self-explanatory with the exception of "Archived" state, which is where my fellow customers feel a bit lost.</p>
+<p>They wonder how they can archive and restore reviews for future consideration. Which can also mean that they inadvertently created a review for something they didn't intend to. That said, the review in question can be archived, restored, updated with new set of files and then routed through the workflow.</p>
+<h4>Let's look at how to "Archive" the review:</h4>
+<p>When you open a review in Swarm, there is a drop-down at the top right corner of the review.&#160;</p>
+<p align="center"><img alt="" src="/sites/default/files/Needs-review-archive.png"></p>
+<p>Select the "Archive" option if you think the review needs to be deffered for future consideration.</p>
+<p>Once you set the state of the review to "Archive", the review disappears from the list of open reviews.</p>
+<p>Now, at a later stage, the project team decides that the review should be restored for immediate consideration.</p>
+<h4>Let's look at how to restore a previously archived review:</h4>
+<p>The previously archived review can be found under, "Closed" review tab. To narrow down your search further, the "Archived" review icon <img alt="" src="/sites/default/files/ArchiveIcon.png">&#160;can be clicked to list only archived reviews.</p>
+<p align="center"><img alt="" src="/sites/default/files/archived-reviews-search.png"></p>
+<p>Select the review you wish to schedule for consideration by clicking on the hyperlinked review ID.&#160;</p>
+<p align="center"><img alt="" src="/sites/default/files/hyperlinked-review.png"></p>
+<p>Again, go to the drop-down at the top right corner of the review. Simply click "Needs Review" and the review will reappear in the list of Opened reviews.</p>
+<p align="center"><img alt="" src="/sites/default/files/arhived-needs-review.png"></p>
+<p>Are you using Helix Swarm? We invite you to try it for free&#8211;it is included in Perforce Helix's free 20&#8211;user edition. <a href="http://info.perforce.com/free.html">Download now</a> and tell us what you think!</p>
+</div></body></html>

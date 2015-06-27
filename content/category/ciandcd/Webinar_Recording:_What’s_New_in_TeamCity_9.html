@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    Webinar Recording: What’s New in TeamCity 9</title></head><body>From:<a href=http://blog.jetbrains.com/blog/2015/01/26/webinar-recording-whats-new-in-teamcity-9/>http://blog.jetbrains.com/blog/2015/01/26/webinar-recording-whats-new-in-teamcity-9/</a><br><br><div><p id="fb-root"></p>&#13;
+ &#13;
+<p>&#13;
+</p><p class="g-plusone"></p>
+ 
+<p></p>
+ 
+<p class="fb-like"></p>&#13;
+&#13;
+<br clear="all"><p>The recording of our recent webinar with Wes Higbee, <strong>What&#8217;s New in TeamCity 9</strong>,&#160;is now available on <a href="http://youtu.be/q62fHl6lrxY">JetBrains YouTube Channel</a>.</p>
+<p>In this webinar, Wes goes over the new features of TeamCity 9, namely: rearranging projects with Project Import; storing settings in VCS; creating and editing Custom Charts; running builds in Cloud Agents; as well as some other improvements.</p>
+<p></p>
+<p>Below are a selection of some of the most frequently asked questions.</p>
+<p></p>
+<h2>&#160;Versioned Settings:</h2>
+<p><strong>Q:&#160;When is this feature going to be available with Perforce?</strong><br>
+<strong></strong>A:&#160;We&#8217;re considering support for Subversion and Perforce in TeamCity 9.1, but can&#8217;t make any guarantees at this point.</p>
+<p><strong>Q:&#160;What about TFS?</strong><br>
+A:&#160;TFS might be supported in the future but after Subversion and Perforce.</p>
+<p><strong>Q:&#160;Given your VCS support priorities for new features, &#160;are Git, Mercurial and TFS your recommended VCS combinations with TeamCity?</strong><br>
+A:&#160;Apart from storing settings in VCS, Git, Mercurial, Subversion and Perforce, they are all supported greatly with TFS catching up. CVS, Vault and ClearCase support can be a bit limited.</p>
+<p><strong>Q:&#160;How does TeamCtiy handle it if somebody corrupts the configuration in the repository?</strong><br>
+A:&#160;If there are errors while applying changes then TeamCity will not change project settings and will show an error.</p>
+<p><strong>Q:&#160;Is it possible to use branches, e.g. to test a change in the build configuration before making it productive?</strong><br>
+<strong></strong>A: Not yet, but we definitely want to add this feature.</p>
+<p><strong>Q:&#160;How does the VCS know which branch to use?</strong><br>
+A:&#160;It uses default branch specified in VCS root.</p>
+<p><strong>Q:&#160;If you want to revert to an earlier version, you need to find the desired version from within the version control system. &#160;That is, there&#8217;s no GUI way to see the previous version from TeamCity perspective?</strong><br>
+A:&#160;There is a changelog tab where you can see all the changes.</p>
+<p><strong>Q:&#160;What about parameters? Are they synced too? If not, the new features could replace templates, couldn&#8217;t they?</strong><br>
+A:&#160;All the settings are synced form the VCS as if you edit the settings right in the TeamCity data directory (or change them in UI).</p>
+<p><strong>Q: If a have sync on the root project, are all sub-projects synced too? Is it recommended to have VCS for the sub projects, or a VCS for the root project only? Or are both recommended?</strong><br>
+A: By default sub projects will be placed into the same version control. If you don&#8217;t want it for some projects, you can disable synchronization in them.</p>
+<h2>Project Import</h2>
+<p><strong>Q:&#160;Can I import a TC8 backup in TC9? It would make testing easier <img src="http://blog.jetbrains.com/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley"> </strong><br>
+A:&#160;No, both servers should have the same version. 9.0 and 9.0.x are compatible, but 8.1 and 9.0 not.</p>
+<h2>Cloud Agents</h2>
+<p><strong>Q:&#160;How does that work out with the licensing system? I guess the number of agents licensed its the hard limit of active agents, including from the cloud?</strong><br>
+A: Yes. The total number of agents (real and virtual) connected at any given time should not exceed the total agent licenses limit. When there are enough agent licences, TeamCity automatically authorizes new cloud agents and unauthorizes the stopped ones.</p>
+<p><strong>Q: How do we create the VM image?Is a build image template available for the Azure VM image?</strong><br>
+A: There are no templates with TeamCity agents for now</p>
+<p><strong>Q: Can we configure the &#8220;on-demand&#8221; agents to use the same VM with more than one agent, until that max out? i.e. 3 agents per Azure VM.</strong><br>
+A: TeamCity assumes there is a single agent per instance. The recommended setup is to have a single agent per machine.</p>
+<p><strong>Q: Can the on-demand agents be used with on-premise vCenter?</strong><br>
+A: Yes we have <a href="http://blog.jetbrains.com/teamcity/2014/12/teamcity-vmware-vsphere-plugin/">vSphere plugin</a> doing the same.</p>
+<p><strong>Q: Does the agent spun up hang around for a while or is it immediately removed?</strong><br>
+A: There is an idle timeout setting to shutdown the agent instance after. When stopped, the agent is deleted from TeamCity list of agents.</p>
+<p><strong>Q: EC2 cloud agents auto-shutdown policy is not the best it could be meaning that it doesn&#8217;t take into account that you always get charged for an hour of usage of an EC2 instance. Any plans to improve this?</strong><br>
+A: Yes, we do have plans to adjust the shut down to the hour limit. You are welcome to vote for <a href="https://youtrack.jetbrains.com/issue/TW-9680">https://youtrack.jetbrains.com/issue/TW-9680</a>.</p>
+<h2>Custom Charts</h2>
+<p><strong>Q: Is it possible to have time instead of build number on the X axis?</strong><br>
+A: No, this is not possible</p>
+<p><strong>Q: I have a configuration that has different snapshot dependencies, is there any way to show the build time from beginning to end, meaning when the first dependency run to the end?</strong><br>
+A: No, statistics charts operate per build. Theoretically you can calculate this time and report it as statistic value in the last build of the chain.</p>
+<p><strong>Q: Can you export the stats data?</strong><br>
+A: Yes, there is a &#8220;download&#8221; action on the chart. Also available via REST API.</p>
+<p><strong>Q: Does TeamCity have possibility to show charts with time that took to run every test?</strong><br>
+A: On the build&#8217;s Tests tab, you can see the duration chart for each test. As well on the Test history page.</p>
+<img class="alignleft  wp-image-2363" alt="Wes McClure" src="http://blog.jetbrains.com/teamcity/files/2015/01/Wes_sq_small.jpg" width="190" height="190"><strong><a title="Follow Wes McClure on Twitter" href="https://twitter.com/g0t4" target="_blank">Wes Higbee</a></strong>&#160;is passionate about helping companies achieve remarkable results with technology and software. He&#8217;s had extensive experience developing software and working with teams to improve how software is developed to meet business objectives. Wes launched <strong><a title="Full City Tech Co." href="http://www.fullcitytechnology.com/" target="_blank">Full City Tech</a></strong> to leverage his expertise to help companies rapidly deliver high quality software to delight customers. He has a strong background in using Continuous Integration with TeamCity to bring quality to the table.<p>is passionate about helping companies achieve remarkable results with technology and software. He&#8217;s had extensive experience developing software and working with teams to improve how software is developed to meet business objectives. Wes launchedto leverage his expertise to help companies rapidly deliver high quality software to delight customers. He has a strong background in using Continuous Integration with TeamCity to bring quality to the table.</p><p>Follow TeamCity updates on our <a title="TeamCity Blog" href="http://blog.jetbrains.com/teamcity/" target="_blank">blog</a>, Twitter <a title="Follow TeamCity on Twitter" href="https://twitter.com/teamcity" target="_blank">@TeamCity</a>, and our <a title="TeamCity Product Pages" href="https://www.jetbrains.com/teamcity/" target="_blank">product pages</a>.</p>
+											</div></body></html>

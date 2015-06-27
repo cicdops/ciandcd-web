@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />Automated Builds vs Continuous Integration</title></head><body>From:<a href=https://www.finalbuilder.com/resources/blogs/postid/703/automated-builds-vs-continuous-integration>https://www.finalbuilder.com/resources/blogs/postid/703/automated-builds-vs-continuous-integration</a><br><br><div><p>
+<a href="http://osherove.com/">Roy Osherove</a> posted an interesting video on youtube recently, talking about the difference between Automated Builds and Continuous Integration.</p>
+<p>This is a subject that comes up often in emails from existing and potential customers. Why do I need FinalBuilder if I have Continua CI, or, why haven't we added all the functionality of FinalBuilder to Continua CI?</p>
+<p>Roy sums up the differences and reasoning in this video quite nicely.</p>
+<p>
+
+</p>
+<p>Roy goes into more detail in his "newish" book , <a href="https://leanpub.com/build">Beautiful Builds</a>. Lots of interesting food for thought. Lets face it, most developers probably don't spend too much time "deep thinking" how the build side of things
+should be done. Roy's book is full of "deep thinking", but Roy sums it all up quite nicely! It's not a long book, around 40 pages and definitely worth a read. </p>
+<h4>FinalBuilder and Continua CI</h4>
+<p>The workflow functionality in Continua CI is inspired by FinalBuilder (which is probably stating the obvious to FinalBuilder users), but the functionality that is there is fairly high level. Your Continua CI Stage workflow can be as simple as a
+single action (for example a FinalBuilder Action or MSBuild, or Rake or Powershell....), or you can make use of the flow control, logic, file operation actions etc and keep your build scripts as simple as your .sln file (or .dproj for delphi developers). That's for you to decide.
+Of course our recommendation is to use FinalBuilder (and I say "of course" because I have wages to pay!) but there are obvious benefits to using FinalBuilder for your automated build scripts.</p>
+<h4>Develop and debug your build scripts on your machine</h4>
+<p>Using FinalBuilder, you can develop and debug your build script on your machine. FinalBuilder allows you to step through the build, set breakpoints, see what is happening, how variables are changing etc. The value of this shouldn't be underestimated; developing a FinalBuilder script is fast, easy and provides immediate feedback. No Web based CI Server (is there any other kind?) can give you this level of immediate feedback.&#160;</p>
+<p>This also has the added benefit in that the FinalBuilder project will be runnable on other developers machines (assuming they have the required tools installed)</p>
+<h4>All of your build script is versioned with your source code.</h4>
+<p>If all of your build script functionality is in a FinalBuilder script, and that script is checked into version control (alongside your source code), then if the structure of your source code changes, so can your FinalBuilder script. The CI server will checkout the correct version of the build script for the version of source code it's checking out.&#160;</p>
+<h4>Better Integration</h4>
+<p>We're currently working on better integration between Continua CI and FinalBuilder. Some of our FinalBuilder Server customers have complained that they lose functionality when moving to Continua CI. We understand that, FinalBuilder Server and FinalBuilder are tightly coupled. When we started
+working on Continua CI, we made a conscious decision to not do that. That means Continua CI doesn't know about the internals of a FinalBuilder project, doesn't know what variables are declared. I still stand by that decision; it made Continua CI a better product. That said, there is more we can do
+to improve how the two products work together. This work will show up in an update over the coming weeks (when it's ready!).
+</p>&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    </div></body></html>

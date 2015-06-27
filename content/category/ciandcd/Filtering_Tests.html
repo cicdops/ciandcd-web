@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />Filtering Tests</title></head><body>From:<a href=https://www.finalbuilder.com/resources/blogs/postid/717/dunitx-updated-filtering-tests>https://www.finalbuilder.com/resources/blogs/postid/717/dunitx-updated-filtering-tests</a><br><br><div><h2>Still evolving</h2>
+<p>DUnitX is still quite young, and still evolving. One of the features most often requested (other than the gui runner, which is still planned) is the ability to select which tests to run. I found myself wishing for that feature recently. I never missed it while the number of my tests were relatively small and fast, but as time went by, it was taking longer and longer to debug tests. So, time to add filtering of fixtures and tests.</p>
+<p>The command options support in DUnitX was to be honest, quite useless and poorly though out. So my first task was to tackle how options were set/used in DUnitX, and find an extensible way of handling command line options. The result turned out better than I exepected, so I have published a separate project for that. <a href="https://github.com/VSoftTechnologies/VSoft.CommandLineParser" alt="VSoft.CommandLine project on github" rel="nofollow" target="_blank">VSoft.CommandLine</a> is a very simple library for defining and parsing command line options, which decouples the definition and parsing from where the parsed values are stored. I'll blog about this library separately.</p>
+<p>I did try to avoid breaking any existing test projects out there. To invoke the command line option parsing, you will need to add a call to TDUnitX.CheckCommandLine;  at the start of you project code, eg:</p>
+<pre class="brush:delphi; toolbar:true;">begin
+  try
+    TDUnitX.CheckCommandLine;
+    //Create the runner
+    runner := TDUnitX.CreateRunner;
+</pre>
+<p>The call should be inside the try/except because it will throw exceptions if any errors are found with the command line options. I modified the IDE Expert to include the needed changes in any new projects it creates, I recommend running the expert to generate a project and then compare it to your existing dpr.</p>
+<h2>Filtering</h2>
+<p>The next thing to look at was how to apply filtering. After much experimentation, I eventually settled on pretty much copying how NUnit does it. I ported the filter and CategoryExpression classes from NUnit, with a few minor mods needed to adapt them to our needs. The cool thing here is I was able to port the associated unit tests over with ease!</p>
+<p>There are two types of filters, namespace/fixture/test filters, and category filters.</p>
+<h3>Namespace/Fixture/Test filtering</h3>
+<p>The new command line options are :</p>
+<pre>--run - specify which Fixtures or Tests to run, separate values with a comma, or specify the option multiple times</pre>
+eg:
+<pre>--run:DUnitX.Tests.TestFixture,DUnitX.Tests.DUnitCompatibility.TMyDUnitTest</pre>
+<p>eg:</p><p>If you specify a namespace (ie unit name or part of a unit name) then all fixtures and tests matching the namespace will run.</p>
+<h3>Category Filters</h3>
+<p>A new CategoryAttribute allows you to a apply categories to fixtures and/or tests. Tests inherit their fixture's categories, except when they have their own CategoryAttribute. You can specify multiple categories, separated by commas, eg:</p>
+<pre class="brush:delphi; toolbar:true;">[TestFixture]
+[Category('longrunning,suspect')]
+TMyFixture  = class
+public
+    [Test]
+    procedure Test1;
+  
+    [Test]
+    [Category('fast')]
+    procedure Test2;
+</pre>
+<p>In the above example, Test1 would have "longrunning" and "suspect" categories, whilst Test2 would have just "fast".</p>
+<p>You can filter tests using these categories, using the --include and/or --exclude command line options. When both options are specifies, all the tests with the included categories are run, except for those with the excluded categories.  The following info is copied from the NUnit doco (on which these options are based) :</p>
+
+    
+        
+            Expression
+            Action
+        
+    
+    
+        
+            A|B|C
+            Selects tests having any of the categories A, B or C.
+        
+        
+            A,B,C
+            Selects tests having any of the categories A, B or C.
+        
+        
+            A+B+C
+            Selects only tests having all three of the categories assigned
+        
+        
+            A+B|C
+            Selects tests with both A and B OR with category C.
+        
+        
+            A+B-C
+            Selects tests with both A and B but not C.
+        
+        
+            -A
+            Selects tests not having category A assigned
+        
+        
+            A+(B|C)
+            Selects tests having both category A and either of B or C
+        
+        
+            A+B,C
+            Selects tests having both category A and either of B or C
+        
+    
+
+<p>As shown by the last two examples, the comma operator is equivalent to | but has a higher precendence. Order of evaluation is as follows:</p>
+<p>
+</p>
+<ol class="operators">
+    <li>Unary exclusion operator (-)</li>
+    <li>High-precendence union operator (,)</li>
+    <li>Intersection and set subtraction operators (+ and binary -)</li>
+    <li>Low-precedence union operator (|)</li>
+</ol>
+<p>&#160;</p>
+<p>
+Note :
+Because the operator characters have special meaning, you should avoid creating a category that uses any of them in it's name. For example, the category "db-tests" could not be used on the command line, since it appears to means "run category db, except for category tests." The same limitation applies to characters that have special meaning for the shell you are using.
+I have also fixed some other minor issues with the naming of repeated tests and test cases to allow them to work with the filter.
+</p>
+<h3>Other options</h3>
+<p>Once you have added the command line check, run yourexe /? to see the other command line options available. None of the options are required so running the exe without any options will behave as it did before.</p>
+<h3>Delphi 2010</h3>
+<p><strong>Resolved</strong>&#160;- Thanks to Stefan Glienke for figuring this out - D2010 now support again . This fix was to remove any use of of STRONGLINKTYPES.&#160;</p>
+<p>One thing of note: at the moment these changes break our D2010 support. I get a linker error when I build :</p>
+<pre>[DCC Fatal Error] F2084 Internal Error: L1737</pre>
+<p>Interestingly, the resulting executable is produced and does seem to run ok, however it makes debugging tests impossible, and of course it would fail in automated build. I did spend several hours trying to resolve this error but got nowhere. Since my usage of DUnitX is currently focused on XE2, I'm willing to live with this and just use an older version of DUnitX for D2010. I have tested with XE2, XE5 and XE6.</p>&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    </div></body></html>

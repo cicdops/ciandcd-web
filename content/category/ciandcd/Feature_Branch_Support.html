@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />Feature Branch Support</title></head><body>From:<a href=http://www.go.cd/2015/04/27/Feature-Branch-Support.html>http://www.go.cd/2015/04/27/Feature-Branch-Support.html</a><br><br><div><p>Go 15.1 introduced support for writing material repository plugins, to extend the kind of source code material
+repositories that Go works with. This resulted in community-driven plugins developed for Go, to implement support for
+feature branches, with help from members of Go's core contributors. This blog posts has information specifically about
+GitHub Pull Request support.</p>
+
+<p><strong>Note:</strong> In this post, the terms Branch and Pull Request are used interchangeably, since a Pull Request is
+essentially just a branch.</p>
+
+<p>As codebases grow and teams start writing more tests, they often hit upon a challenging problem. If they have setup
+their build, test and deploy pipelines as a normal team or teams working with trunk-based development would have, then
+increasing the number of tests they have results in a longer time to certify a build and deploy to production.</p>
+
+<p>Here is an example of a Value Stream Map from <a href="https://build.go.cd">Go CD</a> (Username: view, Password: password) itself,
+where running all the tests and generating installers can take hours:</p>
+
+
+  <img src="/images/blog/feature-branch/mature-ci-cd-setup.png" class="has_border full_size" alt="Figure 1: GoCD - Value Stream Map" id="mature_ci_cd_setup" title="GoCD - Value Stream Map">
+  Figure 1: GoCD - Value Stream Map <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+<p>Due to this, it becomes critical to keep the main Value Stream green all the time. A failed build would mean all other
+commits ready to go in have to wait until the failed build is fixed:</p>
+
+
+  <img src="/images/blog/feature-branch/failed-build.png" class="has_border full_size" alt="Figure 2: Failed build stops everything" id="failed_build" title="Failed build stops everything">
+  Figure 2: Failed build stops everything <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+
+
+<p>The root of this problem is a slow build, and sometimes that can be tackled directly. However, with the advent of
+short-lived feature branches (aka, Pull Requests in GitHub land), this problem can become worse. Since feature
+branches are not regularly verified before merging, merging them could itself be a little risky, and could cause the
+build to fail un-necessarily.</p>
+
+<p>In general, development workflows in organizations has moved to something which looks like:</p>
+<pre><code class="language-text">Pull Request (GitHub, Gerrit etc.) / Feature Branch =&gt; Code Review =&gt; Merge =&gt; Build
+</code></pre><p>Now, whether a feature branch based workflow is the best approach or not is hotly debated (see Martin Fowler's
+<a href="http://martinfowler.com/bliki/FeatureBranch.html">article</a> on this). Organizations who follow a feature branch based
+workflow have been wanting support for it in Go.  Historically, <a href="http://support.thoughtworks.com/entries/22037619-Support-for-feature-branches#view-post-21612654">Go has advocated against feature
+branches</a> and support
+for it has been limited. Go users have come up with some innovative work arounds, like this one from <a href="https://groups.google.com/d/topic/go-cd/veZ5QyySR8k/discussion">Vision
+Critical</a>.</p>
+
+<p>Though the Go core contribution team continues to be wary of long-lived feature branches, short-lived feature branches
+create a window for validating changes before they are merged into the main branch. Since the majority of time spent in
+a CI/CD setup tends to be in running tests, and failed builds are typically due to test failures, you could run tests on
+a proposed change in a feature branch, get feedback about it and fix tests if needed, before merging it into the trunk.
+Though this does not always catch integration issues (that depends on what else was merged before this one was), it
+allows you to increase the chances of your main Value Stream staying green and in a deployable state for longer.</p>
+
+<p>A problem with this approach though, is that every change will be tested twice (once on the feature branch and once on
+the main branch after the merge) which means the effective time for a commit to reach production could be more, unless
+you have more hardware (agents) to run branch builds.</p>
+
+<h3>The way forward</h3>
+
+<p>Assuming you have chosen the approach mentioned above, you can now use Go 15.1, with its two new extension points - <a href="http://www.go.cd/documentation/user/15.1.0/extension_points/scm_extension.html">SCM
+end-point</a> and the <a href="http://www.go.cd/documentation/user/15.1.0/extension_points/notification_extension.html">Notification
+end-point</a>, to test feature
+branches before they are merged.</p>
+
+<p>To use this with GitHub requires the use of two community-driven and community-supported plugins: <a href="https://github.com/ashwanthkumar/gocd-build-github-pull-requests">Git Branch Poller
+Plugin</a> and the <a href="https://github.com/srinivasupadhya/gocd-build-status-notifier">Build Status Notification
+Plugin</a>. The first one is an SCM Material plugin, and is
+responsible for polling a configured repository for changes, while the second one is a Notification plugin, which is
+responsible for notifying GitHub about the suitability of a Pull Request for merging.</p>
+
+<p><strong>Note</strong>: Even though this post specifically mentions GitHub only, plugins have been written to work with plain Git,
+Atlassian Stash, Gerrit and more! See the <a href="http://www.go.cd/community/plugins.html#notification-plugins">Go community plugins
+page</a> for more information.</p>
+
+<h3>Quick Setup</h3>
+
+<ul>
+<li><p>Download the <a href="https://github.com/ashwanthkumar/gocd-build-github-pull-requests#user-content-get-started">Git Branch Poller Plugin</a> and the <a href="https://github.com/srinivasupadhya/gocd-build-status-notifier#user-content-get-started">Build Status Notification Plugin</a>. Place them under <code>&lt;go-server&gt;/plugins/external</code>. Restart the Go Server.</p></li>
+<li><p>Verify that the plugins are loaded correctly.</p></li>
+</ul>
+
+
+  <img src="/images/blog/feature-branch/plugins-loaded.png" class="has_border full_size" alt="Figure 3: Verify Plugins" id="verify_plugins" title="Verify Plugins">
+  Figure 3: Verify Plugins <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+<ul>
+<li><p>Decide which parts of the value stream you want the Pull Requests to run till, and extract a template for those
+pipelines, so that you can have a parallel set of pipelines to run against Pull Requests. The need to create a
+separate set of pipelines is to make sure that the main build and the branch build never get interleaved, and a branch
+build never gets deployed into production, by mistake.</p>
+
+<p>Your decision should be based on how much of your tests can reasonably be run for every Pull Request, and how far down
+the Value Stream can a build containing those changes Go. For some, every test in the system needs to run before it is
+deemed merge-able and for some, only unit and integration tests might be enough. It depends.</p>
+
+<p>Suppose you have a setup of three pipelines like this:</p>
+
+
+  <img src="/images/blog/feature-branch/setup.png" class="full_size" alt="Figure 4: Example setup" id="example_setup" title="Example setup">
+  Figure 4: Example setup <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+<p>and you decide that you want the first two pipelines to run for every Pull Request, you need to change your pipelines
+to look like this:</p>
+
+
+  <img src="/images/blog/feature-branch/with_prs.png" class="full_size" alt="Figure 5: Extract templates, create pipelines for PR" id="create_pipelines" title="Extract templates, create pipelines for PR">
+  Figure 5: Extract templates, create pipelines for PR <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+<p>Based on your decision, extract templates and create the new pipelines:</p>
+
+
+  <img src="/images/blog/feature-branch/extract-template.png" class="has_border full_size" alt="Figure 6: Extract template" id="extract_template" title="Extract template">
+  Figure 6: Extract template <p class="click_to_enlarge">(Click to enlarge)</p>
+</li>
+<li><p>In the new pipeline or pipelines that have been setup to run for every Pull Request, change the Git material to use
+the GitHub material (this material is provided by the GitHub poller plugin installed earlier):</p>
+
+
+  <img src="/images/blog/feature-branch/replace-material-1.png" class="has_border full_size" alt="Figure 7: Add GitHub material" id="add_github_material" title="Add GitHub material">
+  Figure 7: Add GitHub material <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+
+  <img src="/images/blog/feature-branch/replace-material-2.png" class="has_border full_size" alt="Figure 8: Add GitHub material - Details" id="add_github_material_details" title="Add GitHub material - Details">
+  Figure 8: Add GitHub material - Details <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+<p>Once you have setup the GitHub material for the pipeline, you can remove the Git material from that pipeline.</p></li>
+</ul>
+
+<p>That's it.</p>
+
+<h3>Results</h3>
+
+<ul>
+<li><p>Go will trigger builds for every new Pull Request and for new commits to existing Pull Requests:</p>
+
+
+  <img src="/images/blog/feature-branch/trigger-build.png" class="has_border full_size" alt="Figure 9: PR triggers build" id="pr_triggers_build" title="PR triggers build">
+  Figure 9: PR triggers build <p class="click_to_enlarge">(Click to enlarge)</p>
+</li>
+<li><p>Go will update Pull Request in GitHub with the build status:</p>
+
+
+   
+  Figure 10: GitHub PR page gets updated <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+
+   
+  Figure 11: GitHub PR listing page gets updated <p class="click_to_enlarge">(Click to enlarge)</p>
+</li>
+<li><p>Fan-in and Value Stream Map work as expected:</p>
+
+
+  <img src="/images/blog/feature-branch/vsm.png" class="has_border full_size" alt="Figure 12: Fan-in and VSM work" id="vsm_works" title="Fan-in and VSM work">
+  Figure 12: Fan-in and VSM work <p class="click_to_enlarge">(Click to enlarge)</p>
+</li>
+</ul>
+
+<h3>Shortcomings and known issues:</h3>
+
+<ul>
+<li><p>If multiple branches are updated at once, the plugin provides all of them as changes and Go will not run the pipeline
+for every change separately. Go currently combines multiple changes into a single pipeline run (to save time). A
+feature allowing <a href="https://github.com/gocd/gocd/pull/939">"force trigger pipeline for each change"</a> should be able to
+overcome this. This has not yet been accepted into the main GoCD codebase.</p></li>
+<li><p>If there are multiple commits in a branch, the plugin only returns the top commit as a change. Hence only one change
+shows up in the dashboard, value stream, etc. Also, since Go does not know about the other changes you will not be
+able to manually trigger a pipeline with the other commits.</p></li>
+<li><p>The UI is lacking in certain areas: For instance, it is not possible to add an SCM plugin material during pipeline
+creation, to associate an existing SCM to a pipeline you will need to edit Config XML etc. These 
+will be fixed in upcoming releases.</p></li>
+</ul>
+
+<h3>References</h3>
+
+<p>Some discussions on the GoCD mailing lists and on GitHub about this:</p>
+
+ 
+
+<h3>Sample Configuration</h3>
+
+<p>Here is a part of the configuration used to create the images shown above:</p>
+<pre><code class="language-xml">  <p class="nt">&lt;scms&gt;</p>
+    <p class="nt">&lt;scm</p> <p class="na">id=</p><p class="s">"b7386c23-71d5-4581-8129-bba5b67638e4"</p> <p class="na">name=</p><p class="s">"sample-repo"</p><p class="nt">&gt;</p>
+      <p class="nt">&lt;pluginConfiguration</p> <p class="na">id=</p><p class="s">"github.pr"</p> <p class="na">version=</p><p class="s">"1"</p> <p class="nt">/&gt;</p>
+      <p class="nt">&lt;configuration&gt;</p>
+        <p class="nt">&lt;property&gt;</p>
+          <p class="nt">&lt;key&gt;</p>url<p class="nt">&lt;/key&gt;</p>
+          <p class="nt">&lt;value&gt;</p>https://github.com/srinivasupadhya/sample-repo.git<p class="nt">&lt;/value&gt;</p>
+        <p class="nt">&lt;/property&gt;</p>
+      <p class="nt">&lt;/configuration&gt;</p>
+    <p class="nt">&lt;/scm&gt;</p>
+  <p class="nt">&lt;/scms&gt;</p>
+  <p class="nt">&lt;pipelines</p> <p class="na">group=</p><p class="s">"sample-group-master"</p><p class="nt">&gt;</p>
+    <p class="nt">&lt;pipeline</p> <p class="na">name=</p><p class="s">"sample-pipeline-master"</p> <p class="na">template=</p><p class="s">"sample-pipeline"</p><p class="nt">&gt;</p>
+      <p class="nt">&lt;materials&gt;</p>
+        <p class="nt">&lt;git</p> <p class="na">url=</p><p class="s">"https://github.com/srinivasupadhya/sample-repo.git"</p> <p class="na">dest=</p><p class="s">"sample-repo"</p> <p class="na">materialName=</p><p class="s">"sample-repo"</p> <p class="nt">/&gt;</p>
+      <p class="nt">&lt;/materials&gt;</p>
+    <p class="nt">&lt;/pipeline&gt;</p>
+    <p class="nt">&lt;pipeline</p> <p class="na">name=</p><p class="s">"sample-downstream-pipeline-master"</p> <p class="na">template=</p><p class="s">"sample-downstream-pipeline"</p><p class="nt">&gt;</p>
+      <p class="nt">&lt;materials&gt;</p>
+        <p class="nt">&lt;pipeline</p> <p class="na">pipelineName=</p><p class="s">"sample-pipeline-master"</p> <p class="na">stageName=</p><p class="s">"sample-stage-2"</p> <p class="nt">/&gt;</p>
+      <p class="nt">&lt;/materials&gt;</p>
+    <p class="nt">&lt;/pipeline&gt;</p>
+  <p class="nt">&lt;/pipelines&gt;</p>
+  <p class="nt">&lt;pipelines</p> <p class="na">group=</p><p class="s">"sample-group-PR"</p><p class="nt">&gt;</p>
+    <p class="nt">&lt;pipeline</p> <p class="na">name=</p><p class="s">"sample-pipeline-PR"</p> <p class="na">template=</p><p class="s">"sample-pipeline"</p><p class="nt">&gt;</p>
+      <p class="nt">&lt;materials&gt;</p>
+        <p class="nt">&lt;scm</p> <p class="na">ref=</p><p class="s">"b7386c23-71d5-4581-8129-bba5b67638e4"</p> <p class="na">dest=</p><p class="s">"sample-repo"</p> <p class="nt">/&gt;</p>
+      <p class="nt">&lt;/materials&gt;</p>
+    <p class="nt">&lt;/pipeline&gt;</p>
+    <p class="nt">&lt;pipeline</p> <p class="na">name=</p><p class="s">"sample-downstream-pipeline-PR"</p> <p class="na">template=</p><p class="s">"sample-downstream-pipeline"</p><p class="nt">&gt;</p>
+      <p class="nt">&lt;materials&gt;</p>
+        <p class="nt">&lt;pipeline</p> <p class="na">pipelineName=</p><p class="s">"sample-pipeline-PR"</p> <p class="na">stageName=</p><p class="s">"sample-stage-2"</p> <p class="nt">/&gt;</p>
+      <p class="nt">&lt;/materials&gt;</p>
+    <p class="nt">&lt;/pipeline&gt;</p>
+  <p class="nt">&lt;/pipelines&gt;</p>
+  <p class="nt">&lt;templates&gt;</p>
+    <p class="nt">&lt;pipeline</p> <p class="na">name=</p><p class="s">"sample-pipeline"</p><p class="nt">&gt;</p>
+      <p class="nt">&lt;stage</p> <p class="na">name=</p><p class="s">"sample-stage-1"</p><p class="nt">&gt;</p>
+        <p class="nt">&lt;jobs&gt;</p>
+          <p class="nt">&lt;job</p> <p class="na">name=</p><p class="s">"sample-job-1"</p><p class="nt">&gt;</p>
+            <p class="nt">&lt;tasks&gt;</p>
+              <p class="nt">&lt;exec</p> <p class="na">command=</p><p class="s">"ls"</p> <p class="nt">/&gt;</p>
+            <p class="nt">&lt;/tasks&gt;</p>
+          <p class="nt">&lt;/job&gt;</p>
+        <p class="nt">&lt;/jobs&gt;</p>
+      <p class="nt">&lt;/stage&gt;</p>
+      <p class="nt">&lt;stage</p> <p class="na">name=</p><p class="s">"sample-stage-2"</p><p class="nt">&gt;</p>
+        <p class="nt">&lt;jobs&gt;</p>
+          <p class="nt">&lt;job</p> <p class="na">name=</p><p class="s">"sample-job-2"</p><p class="nt">&gt;</p>
+            <p class="nt">&lt;tasks&gt;</p>
+              <p class="nt">&lt;exec</p> <p class="na">command=</p><p class="s">"ls"</p> <p class="nt">/&gt;</p>
+            <p class="nt">&lt;/tasks&gt;</p>
+          <p class="nt">&lt;/job&gt;</p>
+        <p class="nt">&lt;/jobs&gt;</p>
+      <p class="nt">&lt;/stage&gt;</p>
+    <p class="nt">&lt;/pipeline&gt;</p>
+    <p class="nt">&lt;pipeline</p> <p class="na">name=</p><p class="s">"sample-downstream-pipeline"</p><p class="nt">&gt;</p>
+      <p class="nt">&lt;stage</p> <p class="na">name=</p><p class="s">"sample-stage-3"</p><p class="nt">&gt;</p>
+        <p class="nt">&lt;jobs&gt;</p>
+          <p class="nt">&lt;job</p> <p class="na">name=</p><p class="s">"sample-job-3"</p><p class="nt">&gt;</p>
+            <p class="nt">&lt;tasks&gt;</p>
+              <p class="nt">&lt;exec</p> <p class="na">command=</p><p class="s">"ls"</p> <p class="nt">/&gt;</p>
+            <p class="nt">&lt;/tasks&gt;</p>
+          <p class="nt">&lt;/job&gt;</p>
+        <p class="nt">&lt;/jobs&gt;</p>
+      <p class="nt">&lt;/stage&gt;</p>
+    <p class="nt">&lt;/pipeline&gt;</p>
+  <p class="nt">&lt;/templates&gt;</p>
+</code></pre>
+
+<p>As always, Go questions can be asked on the <a href="https://groups.google.com/forum/#!forum/go-cd">mailing list</a>.</p>
+
+</div></body></html>

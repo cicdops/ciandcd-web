@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    Notes from Troy Hunt's Hack Yourself First Workshop</title></head><body>From:<a href=http://java.dzone.com/articles/notes-troy-hunts-hack-yourself>http://java.dzone.com/articles/notes-troy-hunts-hack-yourself</a><br><br><div><p class="print-link"></p><p>Troy Hunt (<a href="https://twitter.com/troyhunt">@troyhunt</a>, <a href="http://www.troyhunt.com/">blog</a>) had a great, very hands-on 2-day workshop about webapp security at NDC Oslo. Here are my notes.</p>
+<h3>Highlights &#8211;&#160;resources</h3>
+
+<p>Personal security and privacy</p>
+
+<ul>
+	<li><a href="https://www.entropay.com/">https://www.entropay.com/</a>&#160;&#8211;&#160;a Prepaid Virtual Visa Card</li>
+	<li>mailinator.com &#8211; tmp email</li>
+	<li>f-secure VPN</li>
+	<li><a href="https://www.netsparker.com/">https://www.netsparker.com/</a>&#160;&#8211; scan a site for issues (insecure cookies, framework disclosure, SQL injection, &#8230;) (lot of $k)</li>
+</ul>
+<p>Site security</p>
+
+<ul>
+	<li><a href="https://report-uri.io/">https://report-uri.io/</a>&#160;&#8211; get reports when CSP rules violated; also displays CSP headers for a site in a human-friendly way</li>
+	<li><a href="https://securityheaders.io/">https://securityheaders.io/</a>&#160;check quality of headers wrt security</li>
+	<li>free SSL &#8211;&#160;<a href="http://www.startssl.com/">http://www.startssl.com/</a>,&#160;<a href="https://www.cloudflare.com/">https://www.cloudflare.com/</a>&#160;(also provides web app firewall and other protections) ;&#160;</li>
+	<li>SSL quality check:&#160;<a href="https://www.ssllabs.com/ssltest/">https://www.ssllabs.com/ssltest/</a>&#160;</li>
+	<li><a href="https://letsencrypt.org/">https://letsencrypt.org/</a>&#160;&#8211; free, automated, open Certificate Authority (Linux Found., Mozilla)</li>
+</ul>
+<p>Breaches etc.</p>
+
+<ul>
+	<li><a href="http://arstechnica.com/security/2015/06/hack-of-cloud-based-lastpass-exposes-encrypted-master-passwords/">http://arstechnica.com/security/2015/06/hack-of-cloud-based-lastpass-exposes-encrypted-master-passwords/</a></li>
+	<li><a href="https://twitter.com/jmgosney">https://twitter.com/jmgosney</a>&#160;&#8211; one of ppl behind&#160;<a href="http://t.co/foXRFfdHV9">http://passwordscon.org&#160;</a>.&#160;<a href="http://t.co/CqoqCIRS6t">http://password-hashing.net&#160;</a>&#160;experts panel. Team Hashcat.&#160;</li>
+	<li><a href="http://arstechnica.com/security/2012/12/25-gpu-cluster-cracks-every-standard-windows-password-in-6-hours/">http://arstechnica.com/security/2012/12/25-gpu-cluster-cracks-every-standard-windows-password-in-6-hours/</a></li>
+</ul>
+<p>To follow</p>
+
+<ul>
+	<li>!&#160;<a href="http://krebsonsecurity.com/">http://krebsonsecurity.com/</a></li>
+	<li>!&#160;<a href="http://www.troyhunt.com/">http://www.troyhunt.com/</a></li>
+	<li>!&#160;<a href="https://www.schneier.com/">https://www.schneier.com/</a></li>
+	<li>!&#160;<a href="https://twitter.com/mikko">https://twitter.com/mikko</a>&#160;(of F-Secure) also great [TED] talks</li>
+	<li>kevin mitnick (jailed for hacking; twitter, books)</li>
+</ul>
+<p>Books</p>
+
+<ul>
+	<li><a href="http://www.amazon.com/We-Are-Anonymous-LulzSec-Insurgency/dp/0316213527">http://www.amazon.com/We-Are-Anonymous-LulzSec-Insurgency/dp/0316213527</a>&#160;&#8211; easy read, hard to put down</li>
+	<li><a href="http://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/1441793755">http://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/1441793755</a>&#160;&#8211; about Mitnick&#8217;s hacking, social engineering, living on the run</li>
+	<li>?&#160;<a href="http://www.amazon.com/Art-Intrusion-Exploits-Intruders-Deceivers/dp/0471782661/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1434466205&amp;sr=1-1&amp;keywords=the+art+of+intrusion&amp;pebp=1434466211598&amp;perid=19A26C170G9Q547TNGW0">http://www.amazon.com/Art-Intrusion-Exploits-Intruders-Deceivers/dp/0471782661/</a></li>
+	<li>Mitnick:&#160;<a href="http://www.amazon.com/Art-Deception-Controlling-Element-Security/dp/076454280X/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1434466237&amp;sr=1-1&amp;keywords=the+art+of+deception&amp;pebp=1434466244836&amp;perid=1ZVNQKRH89H3A414N295">http://www.amazon.com/Art-Deception-Controlling-Element-Security/dp/076454280X/</a>&#160;&#8211; social engineering</li>
+</ul>
+<p>Other</p>
+
+<ul>
+	<li><a href="https://www.xssposed.org/">https://www.xssposed.org/</a></li>
+	<li>See&#160;<a href="https://www.drupal.org/SA-CORE-2014-005">https://www.drupal.org/SA-CORE-2014-005</a></li>
+	<li><a href="https://www.youtube.com/watch?v=Qvhdz8yE_po">https://www.youtube.com/watch?v=Qvhdz8yE_po</a>&#160;&#8211; Havij example</li>
+	<li><a href="http://www.troyhunt.com/2013/07/everything-you-wanted-to-know-about-sql.html">http://www.troyhunt.com/2013/07/everything-you-wanted-to-know-about-sql.html</a>,&#160;<a href="http://www.troyhunt.com/2010/05/owasp-top-10-for-net-developers-part-1.html">http://www.troyhunt.com/2010/05/owasp-top-10-for-net-developers-part-1.html</a>,&#160;<a href="http://www.troyhunt.com/2012/12/stored-procedures-and-orms-wont-save.html">http://www.troyhunt.com/2012/12/stored-procedures-and-orms-wont-save.html</a>,&#160;</li>
+	<li>Googlee: find config files with SA access info: `inurl:ftp inurl:web.config filetype:config sa`</li>
+	<li><a href="https://scotthelme.co.uk/hardening-your-http-response-headers/">https://scotthelme.co.uk/hardening-your-http-response-headers/</a>&#160;and&#160;<a href="https://securityheaders.io/">https://securityheaders.io/</a></li>
+	<li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Public_Key_Pinning">https://developer.mozilla.org/en-US/docs/Web/Security/Public_Key_Pinning</a>&#160;&#8211; prevent MITM</li>
+	<li>wappalyzer chrome plugin displaying info about the server and client that can be detected (jQuery, NewRelic, IIS, win OS, &#8230;)</li>
+	<li><a href="http://www.troyhunt.com/2015/05/do-you-really-want-bank-grade-security.html">http://www.troyhunt.com/2015/05/do-you-really-want-bank-grade-security.html</a></li>
+	<li><a href="http://www.troyhunt.com/2012/05/everything-you-ever-wanted-to-know.html">http://www.troyhunt.com/2012/05/everything-you-ever-wanted-to-know.html</a></li>
+	<li>tool:&#160;<a href="https://github.com/gentilkiwi/mimikatz">https://github.com/gentilkiwi/mimikatz</a>&#160;extract plaintexts passwords, hash, PIN code and kerberos tickets from memory on Windows</li>
+</ul><h3>Notes</h3>
+
+<ul>
+	<li><a href="http://hackyourselffirst.troyhunt.com/">HackYourselfFirst.troyhunt.com</a> &#8211; an example app with many vulnerabilities</li>
+	<li>Note: maximizing your browser window will share info about your screen size, which might help to identify you</li>
+	<li><a href="https://haveibeenpwned.com/">haveibeenpwned.com</a>&#160;&#8211; Troy&#8217;s online DB &#160;of hacked accounts</li>
+</ul>
+<p>Tips</p>
+
+<ul>
+	<li>check robots.txt to know what to access</li>
+</ul>
+<p>Example Issues</p>
+
+<ul>
+	<li>no https on login page</li>
+	<li>insecure psw&#160;requirements</li>
+	<li>cookies not secure flag =&gt; sent over http incl. AuthCookie)</li>
+	<li>psw sent in clear text in confirm email</li>
+	<li>user enumeration, f.eks. an issue with AdultFriendFinder &#8211; entry someone&#8217;s email to login to find out whether they&#8217;ve an account</li>
+	<li>post illegal chars, get them displayed =&gt; injection</li>
+	<li>no anti-automation (captcha) 
+<ul>
+	<li>login confirm. email &amp; autom. creating 1m accounts =&gt; sending 1m emails =&gt; pisses ppl off, likely increase one&#8217;s spam reputation (=&gt; harder to send emails)</li>
+</ul></li>
+	<li>brute-force protection?</li>
+</ul>
+<p><b>### XSS</b></p>
+
+<p>Reflected XSS: display unescaped user input</p>
+
+<ul>
+	<li>Encoding context: HTML, JS, CSS &#8230; have diff. escape sequences for the same char (e.g. &lt;) &#8211; look at where they&#8217;re mixed</li>
+	<li>Check the encoding consistency &#8211; manual encoding, omitting some chars</li>
+	<li>JS =&gt; load ext resources, access cookies, manipulate the DOM</li>
+</ul>
+<p>Task: stal authCookie via search</p>
+
+<p><b>###&#160;SQL injection</b></p>
+
+<p>Error-based injection: when the DB helps us by telling us what is wrong -&gt; use ti learn more and even show some data</p>
+
+<p>Ex.:&#160;<a href="http://hackyourselffirst.troyhunt.com/Make/10?orderby=supercarid">http://hackyourselffirst.troyhunt.com/Make/10?orderby=supercarid</a>&#160;&lt;&#8212;&#8212; supercarid is a column name</p>
+
+<ul>
+	<li>orderby=(select * from userprofile) &#8230;</li>
+	<li>learn about DB sructure, force an exception that shows the valueex.: (select top 1 cast(password) as int from userprofile) =&gt; &#8220;Conversion failed for the nvar value &#8216;passw0rd &#8230;&#8217;&#8221;</li>
+</ul>
+<p>Tips</p>
+
+<ul>
+	<li>think of SQL commands that disclose structure: sys.(tables,columns), system commands</li>
+	<li>enumerate records: nest queries: select top X ows asc then top 1 rows from that desc</li>
+	<li>write out how you think the query works / is being constructed internally&#160;</li>
+	<li>cast things to invalid types to disclose values in err msgs (or implicit cast due to -1 ..)</li>
+</ul>
+<p>#### Defenses</p>
+
+<ul>
+	<li>whitelist input data types (id=123 =&gt; onlyallow ints)</li>
+	<li>enumerable values &#8211; check against an appropr. whitelist</li>
+	<li>if the value is stored &#8211; who uses it, how? making query/insertion safe</li>
+	<li>permissions: give read-only permissions as much as possible; don&#8217;t use admin user from your webapp</li>
+</ul>
+<p><b>###&#160;Mobile apps</b></p>
+
+<ul>
+	<li>Look at HTTP req for sensitive data &#8211; creds, account, &#8230;</li>
+	<li>Apps may ignore certificate validations</li>
+	<li>In your app: param tampering, auth bypass, direct object refs</li>
+	<li>Weak &#160;often: airlines, small scale shops, fast foods, &#8230;</li>
+</ul>
+<p>Tips</p>
+
+<ul>
+	<li>certificate pining &#8211; the app has the fingerprint of the server cert. hardcoded and doesn&#8217;t trust even &#8220;valid&#8221; MITM certificate (banks, dropbox, &#8230;)x</li>
+</ul>
+<p><b>###&#160;CSRF Cross-Site Request Forgery</b></p>
+
+<p>= make the user send a request =&gt; their auth cookie included</p>
+
+<ul>
+	<li>async Ajax req to another site forbidden but that doesn&#8217;t apply to normal post</li>
+</ul>
+<p>Protection</p>
+
+<ul>
+	<li>anti-forgery tags</li>
+</ul>
+<p><b>### Understanding fwrk disclosure</b></p>
+
+<ul>
+	<li><a href="http://www.shodanhq.com/">http://www.shodanhq.com/</a>&#160;-&gt; search for&#160;&#8220;drupal 7&#8221; -&gt; pwn</li>
+</ul>
+<ul>
+	<li>How disclosed:</li>
+</ul>
+<ul>
+	<li>headers</li>
+	<li>&#160;familiar signs &#8211; jsessionid cookie for java, &#8230;</li>
+	<li>The default error and 404 responses may help to recognize the fwr</li>
+	<li>HTML code (reactid), &#8220;.do&#8221; for Sttruts</li>
+	<li>implicit: order of headers (Apache x IIS), paths (capitalized?), response to improper HTTP version/protocol,&#160; 
+<ul>
+	<li>=&gt; likely still possible to figure out the stack but not possible to simple search for fwrk+version</li>
+</ul></li>
+</ul>
+<p><b>### Session hijacking</b></p>
+
+<p>Steal authentication cookie =&gt; use for illegal requests.</p>
+
+<ul>
+	<li>Persistence over HTTP of auth., session: cookie, URL (but URL insecure &#8211; can be shared)</li>
+	<li>Session/auth ID retrieval: insecure transport, referrer, stored in exceptions, XSS</li>
+	<li>Factors limiting hijacking: short duration expiry, keyed to client device / IP (but IPs may rotate, esp, on mobile devices =&gt; be very cautious)</li>
+</ul>
+<p><b>DAY 2</b></p>
+
+<p><b>&#8212;&#8212;&#8211;</b></p>
+
+<p><b>### Cracking passwords</b></p>
+
+<p>Password hashing:&#160;</p>
+
+<ul>
+	<li>salt: so that 2 ppl choosing the same psw will have a different hash =&gt; cracking is # salts * # passwords inst. of just N</li>
+	<li>has cracking tips: 
+<ul>
+	<li>character space <a></a></li>
+	<li>Dictionary: passw0rd, &#8230;</li>
+	<li>Mutations: manipulation and subst. of characters</li>
+</ul></li>
+</ul>
+<p>Tips:</p>
+
+<ul>
+	<li>1Password , LastPass, &#8230;.</li>
+	<li>GPU ~ 100* faster than CPU</li>
+</ul>
+<p>#### Ex: Crack with hashcat</p>
+
+<p>common psw dict + md5-hashed passwords =&gt; crack</p>
+
+<p>./hashcat-cli64.bin &#8211;hash-type=0&#160;StratforHashes.txt&#160;hashkiller.com.dic # 23M psw dict -&gt;&#160;Recovered.: 44 326/860 160 hashes [obs duplications] in 4 min (speed 135.35k plains)</p>
+
+<p>Q: What dictionary we use? Do we apply any mutations to it?</p>
+
+<p><b>### Account enumeration</b></p>
+
+<ul>
+	<li>= Does XY have an account?</li>
+	<li>Multiple vectors (psw reset, register a new user with the same e-mail, &#8230;)</li>
+	<li>Anti-automation: is there any? It may be inconsistent across vectors</li>
+	<li>Does it matter?&#160;(&lt;&gt; privacy needs)</li>
+	<li>How to &#8220;ask&#8221; the site and how to identify + and &#8211; responses?</li>
+	<li>Timing attacks: distinguish positive x negative response based on the latency differing between the two</li>
+</ul>
+<p><b>### HTTPS</b></p>
+
+<p>Confidentiality, Integrity, Authenticity</p>
+
+<p>Traffic hijacking:&#160;[a href="https://www.wifipineapple.com/"]https://www.wifipineapple.com/&#160;&#8211; wifi hotspot with evil capabilities</p>
+
+<ul>
+<ul>
+	<li>monitor probe requests (the phone looks for networks it knows), present yourself as one of those, the phone connects autom. (if no encryption)</li>
+</ul>
+</ul>
+<ul>
+	<li>Consider everything sent over HTTP to be compromised</li>
+	<li>Look at HTTPS content embedded in untrusted pages (iframes, links) &#8211; e.g. payment page embedded in http</li>
+</ul>
+<p>Links</p>
+
+<ul>
+	<li>HSTS Preload &#8211; tell Chrome, FF that your site should only be ever loaded over HTTPS &#8211;&#160;<a href="https://hstspreload.appspot.com/">https://hstspreload.appspot.com/</a></li>
+	<li><a href="https://www.owasp.org/index.php/HTTP_Strict_Transport_Security">https://www.owasp.org/index.php/HTTP_Strict_Transport_Security</a>&#160;header</li>
+</ul>
+<p><b>### Content Scurity Policy header</b></p>
+
+<p><a href="https://developer.chrome.com/extensions/contentSecurityPolicy">https://developer.chrome.com/extensions/contentSecurityPolicy</a>&#160;See e.g.&#160;<a href="https://haveibeenpwned.com/">https://haveibeenpwned.com/</a>&#160;headers</p>
+
+<p>w/o CSP</p>
+
+<ul>
+	<li>anything can be added to the page via a reflected XSS risk</li>
+	<li>Anyth, can be added to the DOM downstream (on a proxy)</li>
+</ul>
+<p>With CSP the browser will only load resources you white-list; any violations can be reported</p>
+
+<p>Use e.g.&#160;<a href="https://report-uri.io/home/generate">https://report-uri.io/home/generate</a>&#160;to create it and the report to watch for violations to fine tune it.</p>
+
+<p><b>### SQL injection cont&#8217;d</b></p>
+
+<p>(Yesterday: Error-Based)</p>
+
+<p><b>#### Union Based SQLi</b></p>
+
+<p>Modify the query to union whatever other data and show them. More data faster than error-based inj.</p>
+
+<p>Ex.:&#160;<a href="http://hackyourselffirst.troyhunt.com/CarsByCylinders?Cylinders=V12">http://hackyourselffirst.troyhunt.com/CarsByCylinders?Cylinders=V12</a>&#160;: &#160;V12 -&gt; `V12&#8242; union select voteid, comments collate SQL_Latin1_General_CP1_CI_AS from vote&#8211; `</p>
+
+<p><b>#### Blind Boolean (laborious)</b></p>
+
+<p>Blind inj.: We can&#8217;t always rely on data being explicitly returned to the UI =&gt; ask a question, draw a conclusion about the data.</p>
+
+<p>Ex:&#160;</p>
+
+<p><a href="http://hackyourselffirst.troyhunt.com/Supercar/Leaderboard?orderBy=PowerKw&amp;asc=false">http://hackyourselffirst.troyhunt.com/Supercar/Leaderboard?orderBy=PowerKw&amp;asc=false</a>&#160;-&gt;&#160;</p>
+
+<p>ordedby =&gt; case when (select count(*) from userprofile) &gt; 1 then powerkw else topspeedkm end</p>
+
+<p>Extract email: Is ascii of the lowercase char #1 &lt; ascii of m ?</p>
+
+<p>Automation: SqlMap</p>
+
+<p><b>#### Time based blind injection</b></p>
+
+<p>When no useful output returned but yes/no responses differ significantly in how much time they take. F.ex. ask the db to delay the OK response.</p>
+
+<p>MS SQL: IF &#8216;b&#8217; &gt; &#8216;a&#8217; WAITFOR DELAY &#8217;00:00:05&#8242;</p>
+
+<p><b>### Brute force attacks</b></p>
+
+<ul>
+	<li>Are there any defences? Often not</li>
+	<li>How are defences impl? 
+<ul>
+	<li>block the req resources</li>
+	<li>block the src IP</li>
+	<li>rate limit (by src IP)</li>
+</ul></li>
+</ul>
+<p><b>### Automation</b></p>
+
+<ul>
+	<li>penetration testing apps and services such as Netsparker,&#160;WhiteHatSec</li>
+	<li>targets identification: shodan, googledorks, randowm crawling</li>
+	<li>think aout the actions that adhere to a pattern &#8211; sql injection, fuzzing (repeat a req. trying diff. values for fields &#8211; SQLi, &#8230;), directory enumeration</li>
+	<li>automation can be used for good &#8211; test your site</li>
+	<li>tip: have autom. penetration testing (and perhaps static code analysis) as a part fo your build pipeline</li>
+</ul>
+<p>Task: Get DB schema using sqlmap (see python2.7 sqlmap.py &#8211;help)</p>
+
+<p><b>### Protection</b></p>
+
+<p>Intrusion Detection System (IDS) &#8211; e.g. Snort</p>
+
+<p>Web Application Firewall (WAF) &#8211; e.g. CloudFare ($20/m)</p>
+
+<p><br></p>	
+	<p></p>
+
+    </div></body></html>

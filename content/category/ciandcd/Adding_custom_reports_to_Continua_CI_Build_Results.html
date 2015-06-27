@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />Adding custom reports to Continua CI Build Results</title></head><body>From:<a href=https://www.finalbuilder.com/resources/blogs/postid/701/adding-custom-reports-to-continua-ci-build-results>https://www.finalbuilder.com/resources/blogs/postid/701/adding-custom-reports-to-continua-ci-build-results</a><br><br><div><p>It's not uncommon for tools run during a build process to create log files, xml or html files etc that you might want to keep, in other words <a href="http://wiki.finalbuilder.com/display/continua/Artifacts" title="Artifacts in Continua CI">Artifacts</a>. Continua CI already has a mechanism for registering Artifacts, which enables them to be viewed/downloaded from the Build Artifacts page. Continua CI also has another way of viewing those files, Reports. Reports are viewed in an iframe, which allows you to stay within the Continua CI UI, but still naviate within the report files. A typical use of the Report feature is showing exported FinalBuilder html logs, or Code Coverate html reports (for example those produced by OpenCover).&#160;</p>
+<h4>Defining a Report</h4>
+<p>Defining a report is relatively simple. Just point it at a file you expect to appear in the Builds Workspace on the Server.</p>
+<p><br>
+</p>
+<img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/CI-Reports/DefineReport.png" alt="Define Report"><p><br>
+</p>
+<p>In this case we're expecting our build process to place a file named FinalBuilderReport.html in the $Workspace$\Reports folder. $Workspace$ will be replaced at run time with the builds workspace path on the server.&#160;</p>
+<p>The next step is to make sure that the file actually gets copied to where we said it would be. We define a <a href="http://wiki.finalbuilder.com/display/continua/Workspace+Rules" title="Workspace Rules Help">Workspace Rule</a> to copy the file back to the build workspace on the server when the Stage completes.&#160;If your tool generates .css and image files then don't forget to add rules to copy those files into place too.&#160;</p>
+<p><br>
+</p>
+<img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/CI-Reports/WorkspaceRules.png" alt="Workspace Rules"><p><br>
+</p>
+<p>The final step is to make sure that the report file is actually produced. In this example, we are using an exported &#160;FinalBuilder Log file, which is created in $Workspace$\Output\FB7 - we tell FinalBuilder where the workspace is by setting a FinalBuilder variable (along with a buch of other stuff like version numbering etc) in the <a href="http://wiki.finalbuilder.com/display/continua/FinalBuilder+Action" title="FinalBuilder Action Help">FinalBuilder Action</a>.&#160;</p>
+<img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/CI-Reports/FinalBuilderVariable.png" alt="Passing the Workspace folder to FinalBuilder"><p><br>
+</p>
+<h4>Viewing the Report</h4>
+<p>All thats left to do now is run the build, and view the report, If everything went to plan, then when you click on the builds Report Tab, you should see something like this :</p>
+<img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/CI-Reports/TheReport.png" alt="Viewing the Report"><p>Notice the Home/Back/Forward Buttons. If your report comprises of multiple pages, and all the links in the html files are relative, then you get full history support in the iframe. FWIW, Open Cover with ReportGenerator does just that. We'll take a look at using Open Cover with Continua CI in a future post.&#160;
+</p>&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    </div></body></html>

@@ -9,12 +9,22 @@ from HEConfig import *
 from optparse import OptionParser
 parser = OptionParser()
 parser.add_option("-u", "--url", dest="url")
+parser.add_option("-t", "--type", dest="type")
 parser.add_option("-c", "--category", dest="category" )
 (options, args) = parser.parse_args()
-print (options.url)
-print (options.category)
+url = options.url
+url_type = options.type #type
+category = options.category
+print (url)
+print (url_type)
+print (category)
 print (args)
 
-print('download link:' + options.url)
-download_file(options.url,config,outputDir,options.category,'')
-
+if url and url_type == 'article':
+    downloadFile(options.url,config,outputDir,options.category,'')
+elif url and url_type == 'feed':
+    downloadFeed(options.url,config,outputDir,options.category,'',max_number)
+elif url and url_type == 'articles':
+    downloadArticles(options.url,config,outputDir,options.category,max_number)
+else:
+    downloadByConfig(urls,config,outputDir,max_number)

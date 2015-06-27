@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />DUnitX has a Wizard!</title></head><body>From:<a href=https://www.finalbuilder.com/resources/blogs/postid/702/dunitx-has-a-wizard>https://www.finalbuilder.com/resources/blogs/postid/702/dunitx-has-a-wizard</a><br><br><div><p>Thanks to a contribution from Robert Love, DUnitX now sports a shiny new IDE Wizard for creating Test projects and Test Units.&#160;</p>
+<p>Before you install and use the wizard, there is one thing I recommend you do. In your Delphi IDE, add and Environment variable DUNITX and point it at your copy of the DUnitX source. The reason for doing this, is that when the wizard creates a project, it adds $(DUNITX) to the project search path. This avoids hard coding the DUnitX folder in yhe project search path, and also avoids installing it in your global library path (I have nothing other than the defaults installed there, I always use the project search path, makes it easier to share projects with other devs).&#160;</p>
+<p><img alt="" src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/DUnitX-Wizard/dunitx-environ.png"></p>
+<p>
+</p>
+<p>Once you have that done (I'm assuming you have pulled down the latest source from GitHub), open the project group (.grouproj) for your IDE version and build the project group. Then right click on the wizard project and click on install :</p>
+<p><img alt="" src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/DUnitX-Wizard/dunitx-install-wizard.png"></p>
+<p>If the package installs successfully then we are ready to use the wizard. Close the project group, and invoke the File\New\Other dialog, you will see the DUnitX Project listed&#160;</p>
+<p>
+</p>
+<p><img alt="" src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/DUnitX-Wizard/dunitx-project.png"><img alt="" src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/DUnitX-Wizard/dunitx-unit.png"></p>
+<p>
+</p>
+<p>You might like to Customize your File\New menu, I made DUnitX prominent on mine (in part to remind myself to create unit tests first!) :</p>
+<p><img alt="" src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/DUnitX-Wizard/dunitx-filenew.png"></p>
+<p><br>
+</p>
+<p>Invoking the wizard will show a simple dialog :</p>
+<p><br>
+</p>
+<p><img alt="" src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/DUnitX-Wizard/dunitx-project-wizard.png"></p>
+<p>The options are pretty self explainatory, so I won't go into them here. The wizard generates a console application, once we have a gui runner (being worked on) we'll update the wizard to add options for that.</p>
+<p>DUnitX is open source, get it from <a href="https://github.com/VSoftTechnologies/DUnitX" target="_blank">GitHub</a>&#160;- contributions are welcome. We also have a <a href="https://plus.google.com/communities/110602661860791972403" target="_blank">Google Plus Community</a>&#160;for DUnitX.</p>
+<p><br>
+</p>&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    </div></body></html>

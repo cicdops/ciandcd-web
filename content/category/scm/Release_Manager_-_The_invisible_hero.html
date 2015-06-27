@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />Release Manager - The invisible hero</title></head><body>From:<a href=https://www.gitlab.com/2015/06/25/release-manager-the-invisible-hero/>https://www.gitlab.com/2015/06/25/release-manager-the-invisible-hero/</a><br><br><div><p>Real heroes are sometimes unknown and we can only see their accomplishments. In GitLab we have one invisible hero every month, when we have our monthly release. As you may know, we&#8217;ve never failed to release a new GitLab version on the 22nd of every month.</p>
+
+<p>As GitLab grows, the release process becomes more complex and becoming a release manager is a more difficult, but a necessary job.</p>
+
+<p>Eight working days before the next release, and we start the countdown. A new volunteer &#8220;hero&#8221; is elected by the team.</p>
+
+ 
+
+
+<h2>But, why is it such a challenging job?</h2>
+
+<p>A release manager is the person who makes sure that everything is ready for the monthly release. They follow up on every single detail and make sure that the new version is working perfectly, including all the improvements and features. They also need to delegate some tasks and make sure that the procedure is being followed.</p>
+
+<p>Consider that right now, GitLab is huge. Our community dishes out around 900 commits a month on GitLab alone. Add Enterprise Edition, GitLab CI and runners, Omnibus-GitLab packages and you get several thousand changes done by hundreds of developers across projects which need to come together (and work) in one day. This is a lot of responsibility for one person.</p>
+
+<h2>So, how do we manage to make it all into a single release every month?</h2>
+
+<p>In GitLab we have a <a href="https://gitlab.com/gitlab-org/gitlab-ce/tree/master/doc/release">release directory</a> for the release documents. The most powerful document for the release is called <a href="https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/release/monthly.md">monthly.md</a>.</p>
+
+<p>Release manager tasks can be broken down into:</p>
+
+<ol>
+<li>Make sure that GitLab CE, EE and GitLab CI repositories have an updated installation and upgraded guides</li>
+<li>Make sure that the Omnibus-GitLab package will be ready for the release</li>
+<li>Release the RC version, do QA, deploy on GitLab.com and ci.GitLab.com</li>
+<li>Follow reported regressions and make sure that developers are aware/working on a fix</li>
+<li>Decide which fixes can go into the release</li>
+<li>Coordinate the package building</li>
+<li>Make sure that the blog post contains all the necessary information</li>
+<li>Do the final release</li>
+<li>Decide if there needs to be a patch release</li>
+<li>Coordinate patch release</li>
+</ol>
+
+
+<p>A release manager volunteers to work late (or early) to get the packages out or deploy the new version to one of our services. No one is forcing you to do so, but if you don&#8217;t, it will complicate the following day. This is a weakness in our process, so we need to work on improving this situation.</p>
+
+<h2>History</h2>
+
+<p>I don&#8217;t know the exact date when the release manager duty was thought off but it was <a href="https://gitlab.com/gitlab-org/gitlab-ce/commit/223070b3fe9cb302d3d47ba5a616d90bab8910fd">around version 6.4</a>.</p>
+
+<p>At that time, we had a couple of other things that were the release manager tasks: Notify everyone of the code-freeze (nothing was merged to master during this time), enforce it and build the packages manually. Yes, manually. This meant connecting to all machines separately and doing few commands to initiate package building. GitLab.com had a separate repository with some custom code, so the deploy needed to be done manually too. I still have nightmares as a result of these 2 things.</p>
+
+<p>As you can imagine, this made the release manager tasks very undesirable and limited to a few people. Even with all the improvements that followed, this job is still not popular.</p>
+
+<h2>Improvements</h2>
+
+<p>Since the painful beginings of the release manager tasks, we&#8217;ve done number of improvements. We did a massive change to the process and made it even more continuous integration oriented than it was before. There are risks to it, but also massive gains:</p>
+
+<ol>
+<li><p>Code freeze was removed so there is no need to watch over anyone&#8217;s shoulders</p></li>
+<li><p>Keeping X git repos in sync. Syncing repositories is now a one-line script where the argument is the version that is being released</p></li>
+<li><p>Automatizing our release process. Omnibus-gitlab packages infrastructure got built, so only supplying the shas of the release version is enough to kick off the automatic builds on all platforms and machines</p></li>
+<li><p>Infrastructure for deploying GitLab.com and ci.gitlab.com got created and they are being updated by using a few lines of commands and packages</p></li>
+<li><p>The release documentation has been updated so many times that room for error is minimal (if you follow the steps closely)</p></li>
+</ol>
+
+
+<p>You would expect that all these improvements would make the Release manager job more appealing since you get to:</p>
+
+<ul>
+<li>Boss around over all of your colleagues. This includes the project lead and the CEO. It is especially sweet when you can say NO to an unreasonable request. After all, all requests are unreasonable but your own and now you get to push that through</li>
+<li>You decide at your leasure when something will be included and pushed</li>
+<li>You are the boss of everything (for a period of time) because everyone says: &#8220;Hey, you are the release manager, your call&#8221;</li>
+</ul>
+
+
+<h2>With all the hard work, how do we choose a volunteer release manager?</h2>
+
+<p>Choosing the release manager is probably one of the hardest tasks.</p>
+
+<p>During our team call, the release manager for the previous release mentions the subject of selecting a new release manager.</p>
+
+<p>At that exact moment, there&#8217;s silence, cameras and mics start breaking down, people forget the whole English language, there is always someone at the door so you need to open it and lots of faces are just looking around the room.</p>
+
+<p>After a few minutes of silence, decision is made, but mostly because we are all friends and we don&#8217;t want to see a colleague suffer for another month.</p>
+
+<p>We&#8217;ve tried improving the desirablity of this task by making procedures easier, but that is still a challenge.</p>
+
+<p>At some point I&#8217;ve asked what kind of reward we could put forward to make people happy to volunteer, but there are no good ideas yet.</p>
+
+<p>My ideas where limited to:</p>
+
+<ul>
+<li><p>Material reward: a gift might be OK for some people, but others have no need for things. In this case we could publicly thank them and acknowledge their work.</p></li>
+<li><p>&#8220;Spiritual&#8221; reward: We do say &#8220;thank you&#8221; to the RM a lot, but this gets spent. Tweeting the name of the release manager might work as a recongnition for some, but I am afraid that it won&#8217;t work for introverts in our team. Being more public might also yield more work for them.</p></li>
+<li><p>Buying a beer or cocktail: This feels like something that would be appreciated, but it would only work for a few employees, since we are a very remote company. Maybe a beer voucher could be sent.</p></li>
+</ul>
+
+
+<p>With that I was out of ideas. This blog post is an attempt to say a thank you to all the release managers. You know who you are and you are a true invisible hero for accomplishing the tasks to make everything go out on schedule.</p>
+
+<p>Do you have any ideas?</p>
+
+<h3>Release manager - my hero.</h3>
+
+                  <a></a><p>Install GitLab on your own server in 2 minutes <a https://www.gitlab.com//downloads id="dl-partial">Let's do it!</a> </p><a https://www.gitlab.com//downloads class="btn btn-block btn-lg btn-purple visible-xs" id="dl-partial-sm">
+  Install GitLab on your own server in 2 minutes
+</a>
+
+
+                  
+                  <p>&#8594; <a https://www.gitlab.com//blog/archives.html>Browse all posts</a></p>
+
+                  <strong><a href="https://twitter.com/gitlab">@gitlab</a></strong>
+    on Twitter.
+
+    <a></a><p>For the latest and most detailed news followon Twitter. <a https://www.gitlab.com//atom.xml class="rss-btn">
+      
+    </a> </p><p>Get every GitLab blog post and stay up to date.</p>
+     
+    <p id="mc_embed_signup" class="newsletter-form">
+       
+    </p>
+     
+
+  <p id="disqus_thread"></p>
+                   
+                  Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;
+                </div></body></html>

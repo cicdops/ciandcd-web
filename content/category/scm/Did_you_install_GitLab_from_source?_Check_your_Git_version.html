@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    <meta name="authors" content="" />Did you install GitLab from source? Check your Git version</title></head><body>From:<a href=https://www.gitlab.com/2015/06/12/did-you-install-gitlab-from-source-recently-check-your-git-version/>https://www.gitlab.com/2015/06/12/did-you-install-gitlab-from-source-recently-check-your-git-version/</a><br><br><div><h1 class="title">Did you install GitLab from source? Check your Git version</h1>
+                     
+                    
+                  
+
+                  <p>Although the preferred way to install GitLab is to use our <a https://www.gitlab.com//downloads>omnibus
+packages</a>, you can also install GitLab Community Edition or
+Enterprise Edition &#8216;from source&#8217;. If you used this installation method, and if
+you compiled Git from source in the process then please check whether your Git
+version defends against Git vulnerability CVE-2014-9390. This issue does not
+apply to our Omnibus packages (DEB or RPM).</p>
+
+ 
+
+
+<p>Although <a https://www.gitlab.com//2014/12/19/gitlab-not-affected-by-CVE-2014-9390-git-vulnerability/>GitLab itself is not affected by
+CVE-2014-9390</a>,
+a GitLab server may be used to deliver &#8216;poisoned&#8217; Git repositories to users on
+vulnerable systems. Upgrading Git on your GitLab server stops users from
+pushing poisoned repositories to your GitLab server.</p>
+
+<p>Due to an oversight, the <a href="https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md">guide for installing GitLab from
+source</a>
+still contained instructions telling administrators to install Git 2.1.2 if the
+version of Git provided by their Linux distribution was too old. Git 2.1.2 does
+not defend against CVE-2014-9390.</p>
+
+<p>If your GitLab server uses <code>/usr/local/bin/git</code> please check your Git version
+using the instructions in this <a href="https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/update/7.11-to-7.12.md#0-double-check-your-git-version">upgrade
+guide</a>.</p>
+
+                  <a></a><p>Install GitLab on your own server in 2 minutes <a https://www.gitlab.com//downloads id="dl-partial">Let's do it!</a> </p><a https://www.gitlab.com//downloads class="btn btn-block btn-lg btn-purple visible-xs" id="dl-partial-sm">
+  Install GitLab on your own server in 2 minutes
+</a>
+
+
+                  
+                  <p>&#8594; <a https://www.gitlab.com//blog/archives.html>Browse all posts</a></p>
+
+                  <strong><a href="https://twitter.com/gitlab">@gitlab</a></strong>
+    on Twitter.
+
+    <a></a><p>For the latest and most detailed news followon Twitter. <a https://www.gitlab.com//atom.xml class="rss-btn">
+      
+    </a> </p><p>Get every GitLab blog post and stay up to date.</p>
+     
+    <p id="mc_embed_signup" class="newsletter-form">
+       
+    </p>
+     
+
+  <p id="disqus_thread"></p>
+                   
+                  Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;
+                </div></body></html>
