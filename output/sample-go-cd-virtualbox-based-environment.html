@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Sample Go CD Virtualbox based environment - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://www.ciandcd.com/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="http://www.ciandcd.com/theme/tipuesearch/tipuesearch.css" media="screen">
+<link href="http://www.ciandcd.com/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://www.ciandcd.com/index.html">ciandcd </a>
+<h4>软件持续集成和持续发布 QQ群：172758282，437085002</h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.ciandcd.com/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://www.ciandcd.com/index.html">首页</a></li>
+
+  <li class="active"><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li ><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+
+  
+    <li ><a href="http://www.ciandcd.com/pages/guan-yu.html">关于</a></li>
+    <li ><a href="http://www.ciandcd.com/pages/awesome.html">Awesome</a></li>
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://www.ciandcd.com/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input">
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+
+From:<a href="http://www.go.cd/2014/09/09/Go-Sample-Virtualbox.html">http://www.go.cd/2014/09/09/Go-Sample-Virtualbox.html</a><br><br><div><p>If you're interested in checking out Go but don't want to spend the time automating your
+own system, this might be a great option for you.</p>
+
+<p><strong>Edit on 11 November, 2014</strong> - This box has been updated to Go version 14.3. For information about
+what's new in this release please see <a href="http://www.go.cd/releases/">http://www.go.cd/releases/</a></p>
+
+<p>We've created an environment using Vagrant and Virtualbox. Once it's up, you'll have a full
+Go installation including several example pipleines. </p>
+
+<h3>System Requirements</h3>
+
+<p><strong>In order to run this you'll need <a href="https://www.virtualbox.org/">Virtualbox</a> 
+and <a href="https://www.vagrantup.com/">Vagrant</a>.</strong> Both of these are available for most operating 
+systems.</p>
+
+<h3>Using the box</h3>
+
+<p>To get started, open a command prompt in an empty directory and type...</p>
+
+<blockquote>
+vagrant init gocd/gocd-demo
+</blockquote>
+
+<p>This will create a file called Vagrantfile in your current directory. </p>
+
+<p>Next, type...</p>
+
+<blockquote>
+vagrant up
+</blockquote>
+
+<p>Completion of this (especially the first time) will take quite a while, depending on your
+bandwidth. Vagrant will be downloading the full box image (almost 1.4GB) from Vagrantcloud 
+while you wait.</p>
+
+<p><strong>Note:</strong> If you have an existing Go installation on the same machine as this virtual machine
+you may get a port conflict. Vagrant will automatically map to a new port which will be 
+shown in the startup messages. </p>
+
+<p>After a few minutes, you should be able to navigate to http://localhost:8153/ on your local
+machine and see the following...</p>
+
+<p><img src="/images/blog/sample-virtualbox/pipelines.png" alt=""></p>
+
+<p>These pipelines are all related, as shown in the following value stream map screenshot...</p>
+
+<p><img src="/images/blog/sample-virtualbox/vsm.png" alt=""></p>
+
+<p>Feel free to play around with the installation and see how everything works. You can always
+reset the box to it's orginal state if you need to!</p>
+
+<h3>What's on the machine?</h3>
+
+<p>The box will be updated as new things come out, but as of this writing...</p>
+
+<ul>
+<li>Go 14.3 Server</li>
+<li>Go 14.3 Agent</li>
+<li>3 very small PHP applications</li>
+<li>Basic Capistrano deployment scripts</li>
+<li>Local Git repo using Gitolite to manage permissions</li>
+<li>A couple simple phpunit tests</li>
+<li>A couple simple watir scripts</li>
+</ul>
+
+<p>All of the code is on the Virtualbox machine at /home/vagrant/projects. The easiest way
+to access this is to type 'vagrant ssh' at the command prompt in the same place you 
+started the machine.</p>
+
+<p>The hope is that using this box you can see how real applications (even if they are small)
+are built, tested and deployed with Go. </p>
+
+<p>As always, Go questions can be asked at <a href="https://groups.google.com/forum/#!forum/go-cd">https://groups.google.com/forum/#!forum/go-cd</a></p>
+
+</div>
+
+<p class="info">
+<h4>
+Posted Sat 27 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li ><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+</ul>
+
+<ul class="tagcloud">
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://www.ciandcd.com/theme/js/jquery.js"></script>
+<script src="http://www.ciandcd.com/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

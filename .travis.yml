@@ -18,7 +18,10 @@ install:
 script:
   - python htmlExtractor/download.py
   - make publish
-  - ghp-import -n output -m "update by travis-ci"
-  - git push -qf https://${TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
 after_success:
   - echo OK
+after_failure:
+  - cp 404.html output/.
+deploy:
+  - ghp-import -n output -m "update by travis-ci"
+  - git push -qf https://${TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages

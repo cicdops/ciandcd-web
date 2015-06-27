@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    perforce基本操作 - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://www.ciandcd.com/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="http://www.ciandcd.com/theme/tipuesearch/tipuesearch.css" media="screen">
+<link href="http://www.ciandcd.com/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://www.ciandcd.com/index.html">ciandcd </a>
+<h4>软件持续集成和持续发布 QQ群：172758282，437085002</h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.ciandcd.com/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://www.ciandcd.com/index.html">首页</a></li>
+
+  <li ><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li class="active"><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+
+  
+    <li ><a href="http://www.ciandcd.com/pages/guan-yu.html">关于</a></li>
+    <li ><a href="http://www.ciandcd.com/pages/awesome.html">Awesome</a></li>
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://www.ciandcd.com/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input">
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+
+From:<a href="http://www.cnblogs.com/itech/archive/2011/08/09/2131743.html">http://www.cnblogs.com/itech/archive/2011/08/09/2131743.html</a><br><br><div><p>&#20197;&#19979;&#30340;p4&#30340;&#22522;&#26412;&#25805;&#20316;&#26159;&#22522;&#20110;P4V&#65292;p4V&#26159;&#36328;&#24179;&#21488;&#30340;p4 visual client&#12290;</p><p>&#160;</p>1&#65289; &#30331;&#24405;&#21644;&#29615;&#22659;&#21464;&#37327;&#12290;server&#65292;&#31561;&#20110;&#29615;&#22659;&#21464;&#37327;P4PORT&#30340;&#20540;&#65292;&#34920;&#31034;p4 server&#30340;&#22320;&#22336;&#65307; user&#65292;&#31561;&#20110;&#29615;&#22659;&#21464;&#37327;P4USER&#30340;&#20540;&#65292;&#20026;p4&#30340;&#29992;&#25143;&#21517;&#65292;&#21807;&#19968;&#26631;&#35782;&#19968;&#20010;&#29992;&#25143;&#65307;workspace&#65292;&#31561;&#20110;P4CLINT&#30340;&#20540;&#65292;&#34920;&#31034;server&#19982;&#26412;&#22320;&#30340;&#30446;&#24405;&#30340;&#23545;&#24212;&#12290;<p>1&#65289; &#30331;&#24405;&#21644;&#29615;&#22659;&#21464;&#37327;&#12290;server&#65292;&#31561;&#20110;&#29615;&#22659;&#21464;&#37327;P4PORT&#30340;&#20540;&#65292;&#34920;&#31034;p4 server&#30340;&#22320;&#22336;&#65307; user&#65292;&#31561;&#20110;&#29615;&#22659;&#21464;&#37327;P4USER&#30340;&#20540;&#65292;&#20026;p4&#30340;&#29992;&#25143;&#21517;&#65292;&#21807;&#19968;&#26631;&#35782;&#19968;&#20010;&#29992;&#25143;&#65307;workspace&#65292;&#31561;&#20110;P4CLINT&#30340;&#20540;&#65292;&#34920;&#31034;server&#19982;&#26412;&#22320;&#30340;&#30446;&#24405;&#30340;&#23545;&#24212;&#12290;</p><p><img alt="" src="http://images.cnblogs.com/cnblogs_com/itech/build/p4v1.png" height="252" width="503">&#160;</p><p>&#160;</p><p>2&#65289; workspace, &#20063;&#31216;&#20026;client spec&#65292;&#34920;&#31034;&#20102;server&#19982;&#26412;&#22320;&#30340;&#28304;&#30721;&#30340;&#30446;&#24405;&#23545;&#24212;&#20851;&#31995;&#12290;<br></p><p><img alt="" src="http://images.cnblogs.com/cnblogs_com/itech/build/p4v2.png" height="484" width="506">&#160;</p><p>&#160;</p><p>3&#65289; &#22686;&#21152;&#26032;&#30340;&#25991;&#20214;&#65292;&#25805;&#20316;&#20026;workspace-&gt;&#22312;&#25991;&#20214;&#25110;&#25991;&#20214;&#22841;&#19978;&#21491;&#38190; -&gt; mark for add<br></p><p><img alt="" src="http://images.cnblogs.com/cnblogs_com/itech/build/p4v3.png" height="296" width="349">&#160;</p><p>&#160;</p><p>4&#65289;&#21024;&#38500;&#25991;&#20214;&#65292;&#25805;&#20316;&#20026;depot-&gt; &#22312;&#25991;&#20214;&#25110;&#25991;&#20214;&#22841;&#19978;&#21491;&#38190; -&gt; mark for delete<br></p><p><img alt="" src="http://images.cnblogs.com/cnblogs_com/itech/build/p4v5.png" height="304" width="376">&#160;</p><p>&#160;</p><p>5) &#20462;&#25913;&#26576;&#20123;&#25991;&#20214;&#65292;&#25805;&#20316;&#20026;depot-&gt; &#22312;&#25991;&#20214;&#25110;&#25991;&#20214;&#22841;&#19978;&#21491;&#38190; -&gt; checkout</p><p><img alt="" src="http://images.cnblogs.com/cnblogs_com/itech/build/p4v4.png" height="286" width="337">&#160;</p><p>&#160;</p><p>6&#65289;changelist, &#27599;&#27425;submit&#25552;&#20132;&#37117;&#20250;&#23545;&#24212;&#21807;&#19968;&#30340;&#19968;&#20010;changelist&#12290;<br></p><p><img alt="" src="http://images.cnblogs.com/cnblogs_com/itech/build/p4v6.png" height="188" width="408">&#160;</p><p>&#160;</p><p>7&#65289; &#19968;&#27425;&#25552;&#20132;&#65292;&#25805;&#20316;&#20026;pending -&gt; default ( pending change list) -&gt; submit<br></p><p><img alt="" src="http://images.cnblogs.com/cnblogs_com/itech/build/p4v7_1.png" height="203" width="430">&#160;</p><p>submit &#22914;&#19979;&#22270;&#65306;</p><p><img alt="" src="http://images.cnblogs.com/cnblogs_com/itech/build/p4v7_2.png" height="419" width="484">&#160;</p><p>&#160;</p><p>8&#65289; &#27604;&#36739;&#25991;&#20214;&#25110;&#25991;&#20214;&#22841;&#30340;&#19981;&#21516;&#65292;&#25805;&#20316;&#20026;&#22312;&#25991;&#20214;&#25110;&#25991;&#20214;&#22841;&#19978;&#21491;&#38190;-&gt;diffagainst<br></p><p><img alt="" src="http://images.cnblogs.com/cnblogs_com/itech/build/p4v8.png" height="378" width="554">&#160;</p><p>&#160;</p><p>9&#65289;&#25991;&#20214;&#30340;&#20462;&#25913;&#21382;&#21490;&#65292;&#25805;&#20316;&#20026;depot-&gt; &#36873;&#25321;&#25991;&#20214;&#25110;&#25991;&#20214;&#20214;-&gt; file history&#65288;folder history&#65289;<br></p><p><img alt="" src="http://images.cnblogs.com/cnblogs_com/itech/build/p4v9.png" height="159" width="583">&#160;</p><p>&#160;</p><p>10) &#21516;&#27493;&#20195;&#30721;&#65292;&#25805;&#20316;&#20026;depot -&gt; &#22312;&#25991;&#20214;&#25110;&#25991;&#20214;&#22841;&#21491;&#38190; -&gt; get latest revision(get revision)<br></p><p><img alt="" src="http://images.cnblogs.com/cnblogs_com/itech/build/p4v10.png" height="388" width="619">&#160;</p>&#160;<p>&#23436;&#65281; <br></p></div>
+
+<p class="info">
+<h4>
+Posted Sat 27 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
+</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li class="active"><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+</ul>
+
+<ul class="tagcloud">
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://www.ciandcd.com/theme/js/jquery.js"></script>
+<script src="http://www.ciandcd.com/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

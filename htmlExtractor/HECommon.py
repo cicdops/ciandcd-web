@@ -134,11 +134,10 @@ def downloadByConfig(urls,config,outputDir,max_number):
     print('category:' + category)
     us = urls[category]
     for u in us:
-        u2,type = u.split(',')
+        u2,type,regex_for_links = u.split(',')
         if(type == 'feed'):
             downloadFeed(u2,category,config,outputDir,max_number)
         elif(type == 'articles'):
-            u2,type,regex_for_links = u.split(',')
             downloadArticles(u2,config,outputDir,category,max_number,regex_for_links)
         else: #article
             downloadFile(u2,category,config,outputDir,'')

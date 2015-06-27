@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    [BuildRelease]跨平台构建工具SCons - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://www.ciandcd.com/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="http://www.ciandcd.com/theme/tipuesearch/tipuesearch.css" media="screen">
+<link href="http://www.ciandcd.com/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://www.ciandcd.com/index.html">ciandcd </a>
+<h4>软件持续集成和持续发布 QQ群：172758282，437085002</h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.ciandcd.com/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://www.ciandcd.com/index.html">首页</a></li>
+
+  <li ><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li class="active"><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+
+  
+    <li ><a href="http://www.ciandcd.com/pages/guan-yu.html">关于</a></li>
+    <li ><a href="http://www.ciandcd.com/pages/awesome.html">Awesome</a></li>
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://www.ciandcd.com/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input">
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+
+From:<a href="http://www.cnblogs.com/itech/archive/2011/09/14/2176243.html">http://www.cnblogs.com/itech/archive/2011/09/14/2176243.html</a><br><br><div><p>&#19968; SCons</p> <p>&#160;SCons&#26159;&#19979;&#19968;&#20195;&#30340;&#24320;&#28304;&#30340;&#36719;&#20214;&#26500;&#24314;&#24037;&#20855;&#12290;</p> <p><img alt="" src="http://images.cnblogs.com/cnblogs_com/itech/scons.png" height="200" width="678" border="0"></p> <p>&#20027;&#39029;&#65306;<a href="http://www.scons.org/" target="_blank">http://www.scons.org/</a></p> <p>&#21442;&#32771;&#65306;<a href="http://www.angelfire.com/linux/skip/Articles/SConsExamples.html" target="_blank">http://www.angelfire.com/linux/skip/Articles/SConsExamples.html</a></p> <p>&#160;</p> <p>&#20108; Scons&#29305;&#28857;</p> <p>&#29305;&#28857;&#22914;&#19979;&#65306; </p> <p>1&#65289;&#37197;&#32622;&#25991;&#20214;&#26159;python&#33050;&#26412;&#65288;&#20351;&#29992;&#21151;&#33021;&#24378;&#22823;&#30340;&#30495;&#23454;&#30340;&#32534;&#31243;&#35821;&#35328;&#35299;&#20915;build&#30340;&#38382;&#39064;&#65289;&#12290;</p> <p>2&#65289;&#20869;&#32622;&#30340;C/C++/Fortran&#30340;&#21487;&#20449;&#30340;&#65292;&#33258;&#21160;&#30340;&#20381;&#36182;&#20998;&#26512;&#65292;&#19981;&#22312;&#38656;&#35201;make depend&#25110;make clean&#26469;&#24471;&#21040;&#25152;&#26377;&#30340;&#20381;&#36182;&#20851;&#31995;&#12290;&#20381;&#36182;&#20851;&#31995;&#20998;&#26512;&#24456;&#23481;&#26131;&#20351;&#29992;&#29992;&#25143;&#23450;&#20041;&#30340;dependency scanner&#25193;&#23637;&#21040;&#20854;&#20182;&#30340;&#35821;&#35328;&#21644;&#25991;&#20214;&#31867;&#22411;&#12290;</p> <p>3&#65289;&#20869;&#32622;&#30340;&#25903;&#25345;c/c++/d/java/fortran/yacc/lex/qt/swig&#21644;&#26500;&#24314;tex&#21644;latex&#25991;&#26723;&#12290;&#24456;&#23481;&#26131;&#36890;&#36807;&#29992;&#25143;&#23450;&#20041;&#30340;builder&#26469;&#25903;&#25345;&#20854;&#20182;&#30340;&#35821;&#35328;&#21644;&#25991;&#20214;&#31867;&#22411;&#12290;</p> <p>4&#65289;build&#20174;&#28304;&#30721;&#31649;&#29702;&#24037;&#20855;&#65288;SVN&#12290;&#12290;&#12290;&#65289;&#25110;&#20854;&#20182;&#30340;build&#33050;&#26412;&#65288;ant&#12290;&#12290;&#12290;&#65289;&#12290;</p> <p>5&#65289;&#20869;&#32622;&#25903;&#25345;&#20174;&#28304;&#30721;&#31649;&#29702;&#24037;&#20855;fetch&#20195;&#30721;&#65292;&#20363;&#22914;sccs&#65292;rcs&#65292;cvs&#65292;bitkeeper&#21644;perforce&#12290;</p> <p>6&#65289;&#20869;&#32622;&#25903;&#25345;&#25152;&#26377;&#30340;Microsoft VisualStudio&#30340;&#25152;&#26377;&#29256;&#26412;&#65292;&#21253;&#25324;&#20135;&#29983;dsp&#65292;dsw&#65292;sln&#21644;vcproj&#25991;&#20214;&#12290;</p> <p>7&#65289;&#21487;&#20449;&#30340;&#20351;&#29992;MD5&#31614;&#21517;&#26469;&#26816;&#27979;build&#30340;changes&#65292;&#21516;&#26102;&#20063;&#25903;&#25345;&#37197;&#32622;&#20026;&#20256;&#32479;&#30340;&#26102;&#38388;&#25139;&#26469;&#26816;&#27979;changes&#12290;</p> <p>8&#65289;&#25913;&#36827;&#20102;&#24182;&#34892;build&#65292;&#20687;make -j&#65292;&#21516;&#26102;&#36816;&#34892;N&#20010;job&#65292;&#19981;&#20915;&#23450;&#20110;&#30446;&#24405;&#30340;&#32487;&#25215;&#32467;&#26500;&#12290;</p> <p>9&#65289;&#38598;&#25104;&#20687;autoconf&#30340;find #include &#25991;&#20214;&#65292;libraries&#65292;functions&#21644;typedefs&#12290;</p> <p>10&#65289;&#25152;&#26377;&#30340;&#20381;&#36182;&#30340;Global view&#12290;</p> <p>11&#65289;&#33021;&#22815;share built files in a cache to speed up multiple builds, &#20687;CCache&#20294;&#26159;&#19981;&#23616;&#38480;&#20110;C/C++&#12290;</p> <p>12&#65289;&#20174;&#19968;&#24320;&#22987;&#23601;&#35774;&#35745;&#20026;&#36328;&#24179;&#21488;&#65292;&#25152;&#20197;&#25903;&#25345;&#25152;&#26377;&#30340;&#31995;&#32479;&#65288;known to work on Linux, other POSIX systems  (including AIX, *BSD systems, HP/UX, IRIX and Solaris), Windows NT, Mac  OS X, and OS/2.&#65289;&#12290;</p> <p>&#160;</p> <p>&#19977;&#160;&#23454;&#20363;hello</p> <p>&#160;1&#65289;&#25991;&#20214;&#65306;</p> <p><p>D:\SCONS<br>&#9474;&#160;&#160;<br>&#9492;&#9472;sample<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;hello.c<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;SConstruct</p></p><p>&#160;2&#65289;hello.c</p> <p><p>#include&#160;</p><p>&lt;</p><p>stdio.h</p><p>&gt;</p><p><br><br></p><p>int</p><p>&#160;main()&#160;{<br>&#160;&#160;printf(</p><p>"</p><p>Hello&#160;World.</p><p>"</p><p>);<br>}<br></p></p><p>&#160;3&#65289;SConstruct</p> <p><p>Program(</p><p>'</p><p>hello.c</p><p>'</p><p>)</p></p><p>&#160;4&#65289;build</p> <p><img alt="" src="http://images.cnblogs.com/cnblogs_com/itech/build/scons2.png" height="391" width="661" border="0"></p> <p>&#160;</p> <p>&#22235; other</p> <p>1&#65289;Builder&#65306; Program(),Library(),SharedLibrary(),Object(),Other Language Builders&#12290;program(''hello.c)&#12290;<br>2) Construction environment: &#29615;&#22659;&#21464;&#37327;&#12290;env=Environment(CC = 'gcc', CCFLAGS = '-O2')&#12290;<br>3) SConstruct: &#36319;&#30446;&#24405;&#19979;&#30340;SConstruct file&#12290;<br>4&#65289;SConscript&#65306;&#23376;&#30446;&#24405;&#19979;&#30340;Sconscript file&#12290;</p> <p>&#23436;&#65281;</p></div>
+
+<p class="info">
+<h4>
+Posted Sat 27 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
+</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li class="active"><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+</ul>
+
+<ul class="tagcloud">
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://www.ciandcd.com/theme/js/jquery.js"></script>
+<script src="http://www.ciandcd.com/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

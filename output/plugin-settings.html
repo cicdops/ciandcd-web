@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Plugin Settings - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://www.ciandcd.com/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="http://www.ciandcd.com/theme/tipuesearch/tipuesearch.css" media="screen">
+<link href="http://www.ciandcd.com/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://www.ciandcd.com/index.html">ciandcd </a>
+<h4>软件持续集成和持续发布 QQ群：172758282，437085002</h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.ciandcd.com/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://www.ciandcd.com/index.html">首页</a></li>
+
+  <li class="active"><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li ><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+
+  
+    <li ><a href="http://www.ciandcd.com/pages/guan-yu.html">关于</a></li>
+    <li ><a href="http://www.ciandcd.com/pages/awesome.html">Awesome</a></li>
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://www.ciandcd.com/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input">
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+
+From:<a href="http://www.go.cd/2015/06/18/plugin-settings.html">http://www.go.cd/2015/06/18/plugin-settings.html</a><br><br><div><p>Go is continously improving its plugin infrastructure. Starting 15.2.0 Go will support "Plugin Settings" that will allow plugins developers to accept global settings. Currently these configurations had to be supported via system properties or a file that is in specified format in a specified location, which makes it a little haphazard. With this feature "all" plugins will have one approach to accept plugins settings from user &amp; access plugin settings from Go Server.</p>
+
+<h3>How does it work?</h3>
+
+<ul>
+<li>On plugin listing page users will see a gear icon (similar to one on the pipeline dashboard) for the plugins that accept plugin settings.</li>
+</ul>
+
+
+  <img src="/images/blog/plugin-settings/list-plugin.png" class="has_border full_size" alt="Figure 1: GoCD - Plugin Listing" id="mature_ci_cd_setup" title="GoCD - Plugin Listing">
+  Figure 1: Plugin listing with gear icon <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+<ul>
+<li>Clicking on the gear icon opens a pop-up that renders "Plugin Settings" template that is provided by the plugin.</li>
+</ul>
+
+
+  <img src="/images/blog/plugin-settings/configure-plugin.png" class="has_border full_size" alt="Figure 2: GoCD - Configure Plugin" id="mature_ci_cd_setup" title="GoCD - Configure Plugin">
+  Figure 2: Configure plugin pop-up <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+<ul>
+<li>On "Save" the user inputs are validated by plugin.</li>
+</ul>
+
+
+  <img src="/images/blog/plugin-settings/configure-plugin-errors.png" class="has_border full_size" alt="Figure 2: GoCD - Configure Plugin Errors" id="mature_ci_cd_setup" title="GoCD - Configure Plugin Errors">
+  Figure 3: Configure plugin pop-up with errors <p class="click_to_enlarge">(Click to enlarge)</p>
+
+
+<p>We hope plugin developers are able to use this feature to provide a better experience to their users.</p>
+
+<h4>References:</h4>
+
+ 
+
+ 
+
+ 
+
+
+
+<p>As always, Go questions can be asked on the <a href="https://groups.google.com/forum/#!forum/go-cd">mailing list</a>.</p>
+
+</div>
+
+<p class="info">
+<h4>
+Posted Sat 27 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li ><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+</ul>
+
+<ul class="tagcloud">
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://www.ciandcd.com/theme/js/jquery.js"></script>
+<script src="http://www.ciandcd.com/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

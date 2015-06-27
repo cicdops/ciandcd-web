@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Jenkins插件之trigger - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://www.ciandcd.com/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="http://www.ciandcd.com/theme/tipuesearch/tipuesearch.css" media="screen">
+<link href="http://www.ciandcd.com/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://www.ciandcd.com/index.html">ciandcd </a>
+<h4>软件持续集成和持续发布 QQ群：172758282，437085002</h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.ciandcd.com/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://www.ciandcd.com/index.html">首页</a></li>
+
+  <li ><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li class="active"><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+
+  
+    <li ><a href="http://www.ciandcd.com/pages/guan-yu.html">关于</a></li>
+    <li ><a href="http://www.ciandcd.com/pages/awesome.html">Awesome</a></li>
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://www.ciandcd.com/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input">
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+
+From:<a href="http://www.cnblogs.com/itech/archive/2011/11/17/2252647.html">http://www.cnblogs.com/itech/archive/2011/11/17/2252647.html</a><br><br><div><p><br></p><p>&#19968; Jenkins&#20869;&#32622;&#30340;trigger&#25554;&#20214;</p><p>1&#65289; build after other projects are built <br></p><p>&#21487;&#20197;&#35774;&#32622;&#22810;&#20010;&#20381;&#36182;&#30340;jobs&#65292;&#24403;&#20219;&#24847;&#19968;&#20010;&#20381;&#36182;&#30340;jobs&#25104;&#21151;&#21518;&#21551;&#21160;&#27492;build&#12290;&#160; &#22810;&#20010;&#20381;&#36182;&#30340;jobs&#38388;&#20351;&#29992;,&#38548;&#24320;&#12290;<br></p><p>2&#65289; Trigger builds remotely (e.g., from scripts)</p><p>&#22312;Authentication Token&#20013;&#25351;&#23450;TOKEN_NAME&#65292;&#28982;&#21518;&#21487;&#20197;&#36890;&#36807;&#36830;&#25509;JENKINS_URL/job/JOBNAME/build?token=TOKEN_NAME&#26469;&#21551;&#21160;build&#12290;<br></p><p>3&#65289;&#160; build periodically<br></p><p>&#22312;schedule&#20013;&#35774;&#32622;&#65292;&#35821;&#27861;&#31867;&#20284;&#20110;cron&#20013;&#35821;&#27861;&#12290;</p><p>4&#65289; Poll SCM <br></p><p>&#22312;schedule&#20013;&#35774;&#32622;&#26102;&#38388;&#38388;&#38548;&#26469;&#25235;&#21462;SCM server&#65292;&#22914;&#26524;&#26377;&#26032;&#30340;&#20462;&#25913;&#65292;&#21017;&#21551;&#21160;build&#12290; &#25152;&#20197;&#36825;&#37324;&#30340;&#20316;&#29992;&#30456;&#24403;&#20110;continous build&#12290;</p><p>&#160;</p><p>&#20108; &#20854;&#20182;&#30340;trigger&#25554;&#20214;</p><p>&#160;</p><p>&#38656;&#35201;&#25163;&#21160;&#23433;&#35013;&#25554;&#20214;&#12290; <br></p><p></p><p></p><p></p><p>&#160;</p><p>&#160;</p><p>&#160;</p><p>&#26356;&#22810;&#65306;</p><p>https://wiki.jenkins-ci.org/display/JENKINS/Plugins</p> <br><p>&#160;</p></div>
+
+<p class="info">
+<h4>
+Posted Sat 27 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
+</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li class="active"><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+</ul>
+
+<ul class="tagcloud">
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://www.ciandcd.com/theme/js/jquery.js"></script>
+<script src="http://www.ciandcd.com/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

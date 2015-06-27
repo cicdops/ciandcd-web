@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    [CruiseControl]在Linux上的配置实例 - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://www.ciandcd.com/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="http://www.ciandcd.com/theme/tipuesearch/tipuesearch.css" media="screen">
+<link href="http://www.ciandcd.com/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://www.ciandcd.com/index.html">ciandcd </a>
+<h4>软件持续集成和持续发布 QQ群：172758282，437085002</h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.ciandcd.com/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://www.ciandcd.com/index.html">首页</a></li>
+
+  <li ><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li class="active"><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+
+  
+    <li ><a href="http://www.ciandcd.com/pages/guan-yu.html">关于</a></li>
+    <li ><a href="http://www.ciandcd.com/pages/awesome.html">Awesome</a></li>
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://www.ciandcd.com/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input">
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+
+From:<a href="http://www.cnblogs.com/itech/archive/2010/07/18/1780363.html">http://www.cnblogs.com/itech/archive/2010/07/18/1780363.html</a><br><br><div><p>&#36716;&#33258;&#65306;<a href="http://www.blogjava.net/lihao336/archive/2010/06/29/324822.html">http://www.blogjava.net/lihao336/archive/2010/06/29/324822.html</a></p>&#13;
+<p>&#160;</p>&#13;
+<p>CruiseControl&#37197;&#32622;&#35828;&#26126;</p>&#13;
+<p><br></p>&#13;
+<p>CruiseControl&#26159;&#19968;&#20010;&#25345;&#32493;&#38598;&#25104;&#24037;&#20855;&#65292;&#25345;&#32493;&#38598;&#25104;&#26159;&#19968;&#20010;&#24456;&#22909;&#30340;&#25935;&#25463;&#23454;&#36341;&#12290;&#22312;&#39033;&#30446;&#20013;&#25645;&#24314;CruiseControl&#29615;&#22659;&#65292;&#36890;&#36807;&#25191;&#34892;&#39057;&#32321;&#30340;&#39033;&#30446;&#26500;&#24314;&#65292;&#21450;&#26102;&#26292;&#38706;&#20986;&#38544;&#34255;&#30340;Bug&#65292;&#20174;&#32780;&#20943;&#23569;&#23450;&#20301;&#20197;&#21450;&#20462;&#25913;Bug&#30340;&#26102;&#38388;&#21644;&#20195;&#20215;&#12290;&#26412;&#25991;&#20171;&#32461;&#20102;&#37197;&#32622;CruiseControl&#30340;&#27493;&#39588;&#12290;&#37197;&#32622;&#29615;&#22659;&#20026;Ubuntu 9.10&#65292;CruiseControl 2.8.3 Binary&#65292;&#29256;&#26412;&#31649;&#29702;&#24037;&#20855;&#20026;SVN&#12290;</p>&#13;
+<p><br></p>&#13;
+<p>&#19968;&#65294;&#20934;&#22791;&#24037;&#20316;</p>&#13;
+<p>1.&#37197;&#32622;Java&#29615;&#22659;</p>&#13;
+<p>calvin@calvin-desktop:~$ sudo gedit /etc/profile</p>&#13;
+<p>&#22312;&#25991;&#20214;&#26411;&#23614;&#28155;&#21152;Java&#29615;&#22659;&#21464;&#37327;&#65306;</p>&#13;
+<p>#set java environment</p>&#13;
+<p>export JAVA_HOME=/home/calvin/development/jdk</p>&#13;
+<p>export JRE_HOME=/home/calvin/development/jdk/jre</p>&#13;
+<p>export CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH</p>&#13;
+<p>export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH</p>&#13;
+<p>&#30331;&#20986;&#20877;&#30331;&#20837;&#29983;&#25928;&#12290;</p>&#13;
+<p><br></p>&#13;
+<p>2.&#35299;&#21387;CruiseControl</p>&#13;
+<p>&#35299;&#21387;&#21040;CruiseControl-2.8.3-bin.zip &#21040;/home/calvin/development/cruisecontrol/cruisecontrol-bin-2.8.3&#20013;&#65292;&#20854;&#20013;&#19977;&#20010;&#20540;&#24471;&#27880;&#24847;&#30340;&#30446;&#24405;&#26159;&#65306;</p>&#13;
+<p>&#30446;&#24405; &#160; &#160; &#160; &#160; &#20869;&#23481;</p>&#13;
+<p>projects &#160; &#160; &#160; &#160;&#23384;&#25918;CruiseControl&#20174;&#28304;&#20195;&#30721;&#20179;&#24211;&#20013;&#26816;&#20986;&#30340;&#20195;&#30721;&#12290;</p>&#13;
+<p>logs &#160; &#160; &#160;&#160;&#160; &#160;&#160;&#160; &#23384;&#25918;&#26500;&#24314;&#25253;&#21578;&#21644;&#26085;&#24535;&#12290;</p>&#13;
+<p>artifacts &#160; &#160; &#160; &#160;&#23384;&#25918;&#26500;&#24314;&#25104;&#21151;&#21518;&#20135;&#29983;&#30340;&#36755;&#20986;&#25991;&#20214;&#65288;&#22914;jar&#21253;&#65292;apk&#21253;&#31561;&#65289;&#12290;</p>&#13;
+<p><br></p>&#13;
+<p>3.&#20174;SVN&#20179;&#24211;&#20013;checkout&#20986;&#28304;&#30721;</p>&#13;
+<p>CruiseControl&#31532;&#19968;&#27425;&#19981;&#25903;&#25345;&#33258;&#21160;&#26816;&#20986;&#20195;&#30721;&#65292;&#25152;&#20197;&#22312;&#26500;&#24314;&#39033;&#30446;&#20043;&#21069;&#35201;&#20808;&#25226;&#39033;&#30446;&#20195;&#30721;&#25163;&#24037;checkout&#21040;&#26412;&#22320;&#12290;&#26412;&#25991;&#20551;&#35774;&#39033;&#30446;&#21517;&#20026;sampleproject&#65292;SVN&#28304;&#20195;&#30721;&#20179;&#24211;&#20301;&#20110;/home/calvin/development/cruisecontrol/DemoSystem/repositoryserver/svnrepository&#20013;&#12290;</p>&#13;
+<ul><li>&#13;
+<p>&#23433;&#35013;subversion&#23458;&#25143;&#31471;</p></li></ul>&#13;
+<p>calvin@calvin-desktop:~$ sudo apt-get install subversion</p>&#13;
+<p><br></p>&#13;
+<ul><li>&#13;
+<p>&#22312;project&#30446;&#24405;&#19979;&#26032;&#24314;sampleproject&#25991;&#20214;&#22841;&#65292;&#29992;&#26469;&#23384;&#25918;&#20934;&#22791;build&#30340;&#24037;&#31243;&#12290;</p></li></ul>&#13;
+<p>calvin@calvin-desktop:~/development/cruisecontrol/cruisecontrol-bin-2.8.3/projects$ mkdir sampleproject</p>&#13;
+<p>calvin@calvin-desktop:~/development/cruisecontrol/cruisecontrol-bin-2.8.3/projects$ svn checkout file:////home/calvin/development/cruisecontrol/DemoSystem/repositoryserver/svnrepository sampleproject</p>&#13;
+<p><br></p>&#13;
+<p>&#20108;&#65294;&#37197;&#32622;config.xml</p>&#13;
+<p>cruisecontrol&#26681;&#25454;config.xml&#20013;&#37197;&#32622;&#30340;&#39033;&#30446;&#20449;&#24687;&#25191;&#34892;&#26500;&#24314;&#12290;</p>&#13;
+<p></p>&#13;
+<p><p>&lt;</p><p>cruisecontrol</p><p>&gt;</p><p><br>&#160;&#160;&#160;&#160;</p><p>&lt;!--</p><p>&#160;&#36825;&#37324;&#30340;name&#24212;&#35813;&#21644;projects&#30446;&#24405;&#19979;&#30340;&#39033;&#30446;&#21517;&#19968;&#33268;&#160;</p><p>--&gt;</p><p><br>&#160;&#160;&#160;&#160;</p><p>&lt;</p><p>project&#160;</p><p>name</p><p>="sampleproject"</p><p>&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;!--</p><p>&#30417;&#21548;&#39033;&#30446;&#29366;&#24577;&#30340;&#21464;&#21270;&#160;</p><p>--&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;</p><p>listeners</p><p>&gt;</p><p>&#160;<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;</p><p>currentbuildstatuslistener&#160;</p><p>file</p><p>="logs/${project.name}/status.txt"</p><p>/&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;/</p><p>listeners</p><p>&gt;</p><p><br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;!--</p><p>&#160;build&#20043;&#21069;&#20174;svn&#26381;&#21153;&#22120;&#19978;&#26356;&#26032;&#26412;&#22320;&#20195;&#30721;&#160;</p><p>--&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;</p><p>bootstrappers</p><p>&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;</p><p>svnbootstrapper&#160;</p><p>localWorkingCopy</p><p>="projects/${project.name}/trunk"</p><p>&#160;</p><p>/&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;/</p><p>bootstrappers</p><p>&gt;</p><p><br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;</p><p>modificationset&#160;</p><p>quietperiod</p><p>="30"</p><p>&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;</p><p>svn&#160;</p><p>localWorkingCopy</p><p>="projects/${project.name}/trunk"</p><p>&#160;</p><p>/&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;/</p><p>modificationset</p><p>&gt;</p><p><br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;!--</p><p>&#160;&#35774;&#23450;&#27599;&#38548;interval&#31186;&#65292;CruiseControl&#21435;&#26816;&#26597;&#24182;&#25191;&#34892;&#19968;&#27425;&#26500;&#24314;&#160;</p><p>--&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;</p><p>schedule&#160;</p><p>interval</p><p>="60"</p><p>&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;</p><p>ant&#160;</p><p>anthome</p><p>="apache-ant-1.7.0"</p><p>&#160;buildfile</p><p>="projects/${project.name}/trunk/build.xml"</p><p>&#160;target</p><p>="all"</p><p>/&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;/</p><p>schedule</p><p>&gt;</p><p><br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;!--</p><p>&#160;&#21457;&#24067;&#26500;&#24314;&#32467;&#26524;&#160;</p><p>--&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;</p><p>publishers</p><p>&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;</p><p>onsuccess</p><p>&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;!--</p><p>&#160;&#23558;&#26500;&#24314;&#30340;&#32467;&#26524;&#65288;&#22914;jar&#21253;&#65292;apk&#21253;&#31561;&#65289;&#21457;&#24067;&#21040;&#25351;&#23450;&#30340;&#20301;&#32622;&#160;</p><p>--&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;</p><p>artifactspublisher&#160;</p><p>dir</p><p>="projects/${project.name}/trunk/dist"</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;dest</p><p>="../logs/SampleCCProject"</p><p>&#160;</p><p>/&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;/</p><p>onsuccess</p><p>&gt;</p><p><br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;!--</p><p>htmlemail&#160;buildresultsurl="http://211.94.155.199:8080/cruisecontrol/buildresults/mobiletv&#160;&#160;mailhost="localhost"&#160;returnname="CruiseControl&#160;result"&#160;returnaddress="localhost@localhost"</p><p>--&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;!--</p><p>failure&#160;address="caojie@cienet.com.cn"&#160;/&gt;<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;success&#160;address="${mail.address.mobiletv"&#160;/&gt;<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/htmlemail&gt;<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;htmlemail&gt;<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;success&#160;address="${mail.address.mobiletv}"/&gt;<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;failure&#160;address="caojie@cienet.com.cn"/&gt;<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/htmlemail&gt;</p><p>--&gt;</p><p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<br><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;</p><p>email&#160;</p><p>mailhost</p><p>="smtp.263xmail.com"</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;returnaddress</p><p>="calvinlee@cienet.com.cn"</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;skipusers</p><p>="true"</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;reportsuccess</p><p>="fixes"</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;subjectprefix</p><p>="[CruiseControl]"</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;buildresultsurl</p><p>="http://buildserver:8080/cruisecontrol/buildresults"</p><p>&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;</p><p>failure&#160;</p><p>address</p><p>="calvinlee@cienet.com.cn"</p><p>&#160;</p><p>/&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;</p><p>success&#160;</p><p>address</p><p>="calvinlee@cienet.com.cn"</p><p>&#160;</p><p>/&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;/</p><p>email</p><p>&gt;</p><p><br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p><p>&lt;/</p><p>publishers</p><p>&gt;</p><p><br>&#160;&#160;&#160;&#160;</p><p>&lt;/</p><p>project</p><p>&gt;</p><p><br></p><p>&lt;/</p><p>cruisecontrol</p><p>&gt;</p><p><br></p></p><p>&#160;</p>&#13;
+<p>&#160;</p>&#13;
+<p>&#19977;.&#37197;&#32622;cruisecontrol.sh</p>&#13;
+<p>cruisecontrol.sh&#26159;cruisecontrol&#30340;&#21551;&#21160;&#33050;&#26412;&#65292;&#36890;&#36807;&#36825;&#20010;&#33050;&#26412;&#20013;&#21021;&#22987;&#21270;&#19968;&#20123;&#29615;&#22659;&#21464;&#37327;&#65292;&#24320;&#22987;&#25191;&#34892;build loop&#65292;&#24182;&#24320;&#21551;jetty&#26381;&#21153;&#22120;&#12290;</p>&#13;
+<p>&#25171;&#24320;cruisecontrol.sh&#65292;&#22312;&#25991;&#20214;&#26411;&#23614;&#25214;&#21040;</p>&#13;
+<p>$JAVA_HOME/bin/java $CC_OPTS -Djavax.management.builder.initial=mx4j.server.MX4JMBeanServerBuilder "-Dcc.library.dir=$LIBDIR" "-Djetty.logs=$JETTY_LOGS" -jar "$LAUNCHER" $@ -jmxport 8000 -webport 8080 -rmiport 1099 &amp;</p>&#13;
+<p>&#21435;&#25481; &amp; &#31526;&#21495;&#65292;&#36825;&#26679;&#21551;&#21160;cruisecontrol&#26102;&#65292;&#38459;&#27490;&#23558;&#20854;&#25918;&#21040;&#21518;&#21488;&#25191;&#34892;&#65292;&#35201;&#20851;&#38381;cruisecontrol&#26102;&#65292;&#25353;&#19979; Ctrl+C &#21363;&#21487;&#12290;</p>&#13;
+<p>&#20462;&#25913;-jmxport&#12289;-webport&#12289;-rmiport&#31561;&#21442;&#25968;&#21487;&#20197;&#33258;&#23450;&#20041;&#39033;&#30446;&#26500;&#24314;&#32467;&#26524;&#30340;&#21457;&#24067;&#31471;&#21475;&#12290;</p>&#13;
+<p><br></p>&#13;
+<p>PS:</p>&#13;
+<p>&#22914;&#26524;&#39033;&#30446;&#30340;log&#25991;&#20214;&#27604;&#36739;&#22823;&#65292;&#25110;&#32773;&#26500;&#24314;&#26102;&#20351;&#29992;&#20869;&#23384;&#36739;&#22810;&#65292;&#21487;&#20197;&#22312;cruisecontrol.sh&#20013;&#22686;&#21152;JAVA&#21629;&#20196;&#34892;&#21442;&#25968;&#65292;&#25193;&#22823;JVM&#30340;&#20869;&#23384;&#65292;&#20197;&#20813;&#20986;&#29616;OutOfMemory&#38169;&#35823;:</p>&#13;
+<p>CC_OPTS="-Xms128m -Xmx256m"</p>&#13;
+<p><br></p>&#13;
+<p>&#22235;.&#37197;&#32622;dashboard-config.xml</p>&#13;
+<p>dashboard&#29992;&#26469;&#26174;&#31034;cruisecontrol&#31649;&#29702;&#30340;&#25152;&#26377;&#39033;&#30446;&#30340;&#26500;&#24314;&#29366;&#24577;&#20449;&#24687;&#12290;</p>&#13;
+<p>dashboard-config.xml&#29992;&#26469;&#37197;&#32622;dashboard&#30340;&#26174;&#31034;&#65292;&#20854;&#20013;&#65292;&#37197;&#32622;&lt;features allowforcebuild="true"/&gt;&#65292;&#37027;&#20040;&#22312;&#27599;&#20010;&#39033;&#30446;&#30340;&#21491;&#20391;&#26377;&#19968;&#20010;&#25353;&#38062;&#65292;&#21333;&#20987;&#35813;&#25353;&#38062;&#23558;&#24378;&#36843;&#35813;&#39033;&#30446;&#36827;&#34892;&#26500;&#24314;&#65292;&#32780;&#19981;&#24517;&#31561;&#21040;&#20854;&#19979;&#19968;&#27425;&#26816;&#26597;&#65292;&#20063;&#19981;&#24517;&#31561;&#21040;&#23427;&#26377;&#29256;&#26412;&#21464;&#21270;&#12290;</p>&#13;
+<p>&#13;
+</p><p></p><p>&#160;</p>&#13;
+<p><p>&#160;</p><p>&lt;</p><p>dashboard</p><p>&gt;</p><p><br>&#160;&#160;</p><p>&lt;</p><p>buildloop&#160;&#160;&#160;</p><p>logsdir</p><p>=""</p><p>&#160;artifactsdir</p><p>=""</p><p>&#160;</p><p>/&gt;</p><p><br></p><p>&#160; &lt;</p><p>features&#160;</p><p>allowforcebuild</p><p>="true"</p><p>/&gt;</p><p><br></p><p>&#160; &lt;</p><p>trackingtool&#160;</p><p>projectname</p><p>=""</p><p>&#160;baseurl</p><p>=""</p><p>&#160;keywords</p><p>=""</p><p>/&gt;</p><p><br>&#160;&#160;</p><p>&lt;</p><p>subtabs</p><p>&gt;</p><p><br>&#160;&#160;&#160;</p><p>&lt;</p><p>subtab&#160;</p><p>class</p><p>="net.sourceforge.cruisecontrol.dashboard.widgets.ErrorsAndWarningsMessagesWidget"</p><p>&#160;</p><p>/&gt;</p><p><br></p><p>&#160; &lt;/</p><p>subtabs</p><p>&gt;</p><p><br>&#160;</p><p>&lt;/</p><p>dashboard</p><p>&gt;</p><p><br></p></p><p>&#160;</p>&#13;
+<p>&#160;</p>&#13;
+<p>&#20116;.&#36816;&#34892;cruisecontrol</p>&#13;
+<p>1.&#32473;cruisecontrol.sh &#28155;&#21152;&#25191;&#34892;&#26435;&#38480;</p>&#13;
+<p>calvin@calvin-desktop:~/development/cruisecontrol/cruisecontrol-bin-2.8.3$ sudo chmod +x cruisecontrol.sh</p>&#13;
+<p>2.&#36816;&#34892; cruisecontrol.sh &#33050;&#26412;</p>&#13;
+<p>calvin@calvin-desktop:~/development/cruisecontrol/cruisecontrol-bin-2.8.3$ ./cruisecontrol.sh</p>&#13;
+<p><br></p>&#13;
+<p>&#20845;.&#26597;&#30475;&#39033;&#30446;&#26500;&#24314;&#32467;&#26524;</p>&#13;
+<p>1.&#36890;&#36807;http://localhost:8080/dashboard/ &#35775;&#38382;&#39033;&#30446;&#26500;&#24314;&#32467;&#26524;&#12290;</p>&#13;
+<p>&#20854;&#20013;&#65292;&#39033;&#30446;&#26377;&#19977;&#31181;&#29366;&#24577;&#65306;</p>&#13;
+<p>Discontinued&#65306;&#34920;&#31034;CruiseControl&#21487;&#20197;&#25214;&#21040;&#35813;&#39033;&#30446;&#30340;&#26085;&#24535;&#25991;&#20214;&#65292;&#20294;&#22312;config.xml&#20013;&#24182;&#27809;&#26377;&#37197;&#32622;&#35813;&#39033;&#30446;&#65292;&#36825;&#31181;&#24773;&#20917;&#19979;CruiseControl&#19981;&#20250;&#21435;&#26500;&#24314;&#23427;&#12290;</p>&#13;
+<p>Inactive&#65306;&#34920;&#31034;&#22312;config.xml&#20013;&#37197;&#32622;&#20102;&#35813;&#39033;&#30446;&#65292;&#20294;&#26159;&#27809;&#26377;&#21457;&#29616;&#20851;&#20110;&#36825;&#20010;&#39033;&#30446;&#30340;Log&#20449;&#24687;&#65292;&#21363;&#22312;CruiseControl&#30340;&#26085;&#24535;&#30446;&#24405;&#20013;&#36824;&#27809;&#26377;&#35813;&#39033;&#30446;&#30340;&#26085;&#24535;&#25991;&#20214;&#65292;&#25110;&#26085;&#24535;&#25991;&#20214;&#34987;&#20154;&#20026;&#21024;&#38500;&#20102;&#12290;CruiseControl&#20250;&#26681;&#25454;&#37197;&#32622;&#20449;&#24687;&#23545;&#36825;&#20010;&#39033;&#30446;&#36827;&#34892;&#26816;&#26597;&#26032;&#29256;&#26412;&#24182;&#36827;&#34892;&#26500;&#24314;&#12290;</p>&#13;
+<p>Active&#65306;&#34920;&#31034;CruiseControl&#21363;&#21487;&#20197;&#25214;&#21040;&#35813;&#39033;&#30446;&#30340;&#26085;&#24535;&#25991;&#20214;&#65292;&#21448;&#22312;config.xml&#20013;&#21487;&#20197;&#21457;&#29616;&#23427;&#12290;&#27492;&#26102;&#65292;&#36825;&#20010;&#39033;&#30446;&#21487;&#33021;&#26159;&#26500;&#24314;&#25104;&#21151;&#65292;&#20063;&#21487;&#33021;&#26159;&#26500;&#24314;&#22833;&#36133;&#65292;&#36824;&#21487;&#33021;&#26159;&#26500;&#24314;&#20013;&#12290;</p>&#13;
+<p>2.&#36890;&#36807;http://localhost:8080/cruisecontrol/ &#26597;&#30475;&#39033;&#30446;&#26500;&#24314;&#35745;&#21010;</p>&#13;
+<p>&#160;</p> </div>
+
+<p class="info">
+<h4>
+Posted Sat 27 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
+</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li class="active"><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+</ul>
+
+<ul class="tagcloud">
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://www.ciandcd.com/theme/js/jquery.js"></script>
+<script src="http://www.ciandcd.com/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>
