@@ -20,9 +20,8 @@ script:
   - make publish
 after_success:
   - echo OK
-after_failure:
-  - echo failed
-after_script:
   - cp 404.html output/.
   - ghp-import -n output -m "update by travis-ci"
   - git push -qf https://${TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
+after_failure:
+  - echo failed
