@@ -9,8 +9,20 @@
   <link href="http://www.ciandcd.com/theme/css/main.css" rel="stylesheet" type="text/css"/>
   <link href="http://www.ciandcd.com/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
   <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
-  <link rel="stylesheet" type="text/css" href="http://www.ciandcd.com/theme/tipuesearch/tipuesearch.css" media="screen">
+
+<script src="http://www.ciandcd.com/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://www.ciandcd.com/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://www.ciandcd.com/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://www.ciandcd.com/theme/tipuesearch/tipuesearch.min.js"></script>
 <link href="http://www.ciandcd.com/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
 
 
   <!--[if lt IE 9]>
@@ -64,7 +76,7 @@ bootstrap-itech - a Pelican theme using Bootstrap
 </ul>
       <form class="navbar-form navbar-left navbar-search" role="search" action="http://www.ciandcd.com/search.html onsubmit="return validateForm(this.elements['q'].value);">
         <div class="form-group search-query">
-          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
         </div>
       </form>
 
@@ -119,6 +131,7 @@ in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
   <li class="active"><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
 </ul>
 
+<h2>标签</h2>
 <ul class="tagcloud">
         <li class="tag-4"><a href="http://www.ciandcd.com/tag/linux.html">linux</a></li>
 </ul>

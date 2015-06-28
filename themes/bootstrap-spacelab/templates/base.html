@@ -10,9 +10,21 @@
   <link href="{{ SITEURL }}/theme/css/{{ CSS_FILE }}" rel="stylesheet" type="text/css"/>
   <link href="{{ SITEURL }}/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
   <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
-  <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/tipuesearch/tipuesearch.css" media="screen">
+
+<script src="{{ SITEURL }}/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="{{ SITEURL }}/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="{{ SITEURL }}/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="{{ SITEURL }}/theme/tipuesearch/tipuesearch.min.js"></script>
   {% if FEED_RSS %}<link href="{{ SITEURL }}/{{ FEED_RSS }}" rel="alternate" type="application/atom+xml" title="{{ SITENAME }} RSS" />
   {% endif %}
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
 
   {% block head %}{% endblock head %}
 
@@ -84,7 +96,7 @@ bootstrap-itech - a Pelican theme using Bootstrap
 </ul>
       <form class="navbar-form navbar-left navbar-search" role="search" action="{{ SITEURL }}/search.html onsubmit="return validateForm(this.elements['q'].value);">
         <div class="form-group search-query">
-          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
         </div>
       </form>
 
@@ -124,6 +136,7 @@ bootstrap-itech - a Pelican theme using Bootstrap
 {% endfor %}
 </ul>
 
+<h2>标签</h2>
 <ul class="tagcloud">
     {% for tag in tag_cloud %}
         <li class="tag-{{ tag.1 }}"><a href="{{ SITEURL }}/{{ tag.0.url }}">{{ tag.0 }}</a></li>
