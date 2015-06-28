@@ -1,1 +1,0 @@
-content/pages/about.md

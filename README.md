@@ -22,7 +22,7 @@
 ###contribution
 1. file issues.
 1. pull requests.
-1. [投稿](contribution.md)
+1. [投稿](about.md)
 
 ###License
 1. MIT License for this source code
