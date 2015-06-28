@@ -74,14 +74,12 @@ https://github.com/getpelican/pelican
 http://twitter.github.com/bootstrap  
 
 ##开发环境
-1. prod环境请参考.travis.yml。　
-2.　本地测试环境　　
-```
+1. prod环境请参考.travis.yml.  
+2. 本地测试环境　　
 *make clean && make html
 *make devserver, or 'cd output && python -m http.server 8000'.
-```
 
-##自动deploy到github pages
+##自动deploy
 1. 所有的修改会被trivs CI自动build和deploy到github pages.  
 
 ##问题
