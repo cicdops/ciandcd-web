@@ -4,11 +4,11 @@ Title: 投稿
 本网站使用github pages技术维护，主要关注软件持续集成和持续发布，欢迎大家提供优秀的相关文章。
 
 #投稿
-## fork本网站源码:git clone https://github.com/ciandcd/ciandcd-web.git.　　
-## 将你的文章放到content/category/下对应的子目录中, 如果是原创文章可以放到content/category/原创.　　
-## 文章的格式可以为markdown，restructuredtext或html,需要一下额外的tags:　　
+1. fork本网站源码:git clone https://github.com/ciandcd/ciandcd-web.git.　　
+1. 将你的文章放到content/category/下对应的子目录中, 如果是原创文章可以放到content/category/原创.　　
+1. 文章的格式可以为markdown，restructuredtext或html,需要一下额外的tags:　　
 　　
-＃＃＃.rst格式
+.rst格式  
 ```
 My super title
 \##############
@@ -23,7 +23,7 @@ My super title
 
 This is the content of my super blog post.
 ```
-###.md格式
+.md格式  
 ```
 Title: My super title
 Date: 2010-12-03 10:20
@@ -36,7 +36,7 @@ Summary: Short version for index and feeds
 
 This is the content of my super blog post.
 ```
-###.html格式
+.html格式  
 ```
 <html>
     <head>
@@ -53,13 +53,13 @@ This is the content of my super blog post.
     </body>
 </html>
 ```
-##　提交你的文章  
+1. 提交你的文章  
 ```
 git add .
 git commit -m "comment"
 git push
 ```
-## 你也可以通过QQ群来提供相关的rss feed。  
+1. 你也可以通过QQ群来提供相关的rss feed。  
 
 #联系
 QQ群：172758282，437085002　　
