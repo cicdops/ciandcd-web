@@ -1,38 +1,42 @@
 import os
 from newspaper import Article,Config
 
+# item: url,type,regex_for_links,tags
+# type can be article,articles,feed
+# regex_for_links is python regex to match links
+# tags is seperated by :
+
 urls = {
     '中文': [
-        'http://feed.cnblogs.com/blog/u/50245/rss,feed,',
-        'http://dockone.io/article/468,article,',
-        'http://dockone.io/article/470,article,',
-        'http://www.cnblogs.com/itech/category/245402.html,articles,http://www.cnblogs.com/itech/(?:archive).*?'
+        'http://feed.cnblogs.com/blog/u/50245/rss,feed,,ciandcd',
+        'http://dockone.io/article/468,article,,ciandcd',
+        'http://dockone.io/article/470,article,,ciandcd',
+        'http://www.cnblogs.com/itech/category/245402.html,articles,http://www.cnblogs.com/itech/(?:archive).*?,ciandcd'
     ],
     'devops': [
-        'http://devops.com/feed/,feed,',
-        'http://dzone.com/mz/devops/rss,feed,',
-        'http://www.planetdevops.net/?feed=rss2,feed,',
-        'http://devops.linuxjournal.com/rss.xml,feed,',
-        'http://blog.devopsguys.com/feed/,feed,',
+        'http://devops.com/feed/,feed,,devops',
+        'http://dzone.com/mz/devops/rss,feed,,devops',
+        'http://www.planetdevops.net/?feed=rss2,feed,,devops',
+        'http://devops.linuxjournal.com/rss.xml,feed,,devops',
+        'http://blog.devopsguys.com/feed/,feed,,devops',
     ],
     'ciandcd': [
-        'http://continuousdelivery.com/feed/,feed,',
-        'http://developer-blog.cloudbees.com/feeds/posts/default,feed,',
-        'https://jazzweb1.torolab.ibm.com/blog/index.php/feed,feed,',
-        'https://jazzweb1.torolab.ibm.com/pub/planet/feed.rss,feed,',
-        'http://www.go.cd/feed/rss.xml,feed,',
-        'http://openbuildservice.org/blog/,feed,',
-        'http://feeds.feedburner.com/AtlassianChina,feed,',
-        'http://blog.jetbrains.com/feed/,feed,',
-        'http://www.pmease.com/rss/hotnews,feed,',
-        'https://jazz.net/blog/index.php/feed/,feed,',
-        'https://www.finalbuilder.com/DesktopModules/LiveBlog/Handlers/Syndication.ashx?mid=632&PortalId=0&tid=181&ItemCount=20,feed,',
+        'http://continuousdelivery.com/feed/,feed,,ciandcd',
+        'http://developer-blog.cloudbees.com/feeds/posts/default,feed,,jenkins',
+        'https://jazzweb1.torolab.ibm.com/blog/index.php/feed,feed,,jazz',
+        'https://jazzweb1.torolab.ibm.com/pub/planet/feed.rss,feed,,jazz',
+        'http://www.go.cd/feed/rss.xml,feed,,go',
+        'http://openbuildservice.org/blog/,feed,,ops',
+        'http://blog.jetbrains.com/feed/,feed,,jetbrains',
+        'http://www.pmease.com/rss/hotnews,feed,,visualbuild',
+        'https://jazz.net/blog/index.php/feed/,feed,,jazz',
+        'https://www.finalbuilder.com/DesktopModules/LiveBlog/Handlers/Syndication.ashx?mid=632&PortalId=0&tid=181&ItemCount=20,feed,,finalbuilder',
     ],
     'scm':[
-        'https://github.com/blog.atom,feed',
-        'http://blog.boxedice.com/feed/,feed',
-        'http://www.perforce.com/blog/rss.xml,feed',
-        'https://www.gitlab.com/atom.xml,feed',
+        'https://github.com/blog.atom,feed,,github',
+        'http://blog.boxedice.com/feed/,feed,,devops',
+        'http://www.perforce.com/blog/rss.xml,feed,,perforce',
+        'https://www.gitlab.com/atom.xml,feed,,gitlab',
     ],
 }
 

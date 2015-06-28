@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Integrating DUnitX Unit Testing with Continua CI - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://www.ciandcd.com/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="http://www.ciandcd.com/theme/tipuesearch/tipuesearch.css" media="screen">
+<link href="http://www.ciandcd.com/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://www.ciandcd.com/index.html">ciandcd </a>
+<h4>软件持续集成和持续发布 QQ群：172758282，437085002</h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.ciandcd.com/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://www.ciandcd.com/index.html">首页</a></li>
+
+  <li class="active"><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li ><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+
+  
+    <li ><a href="http://www.ciandcd.com/pages/guan-yu.html">关于</a></li>
+    <li ><a href="http://www.ciandcd.com/pages/awesome.html">Awesome</a></li>
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://www.ciandcd.com/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input">
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    Integrating DUnitX Unit Testing with Continua CI</h2>
+From:<a href="https://www.finalbuilder.com/resources/blogs/postid/699/integrating-dunitx-unit-testing-with-continua-ci">https://www.finalbuilder.com/resources/blogs/postid/699/integrating-dunitx-unit-testing-with-continua-ci</a><br><br><div><p>Continua CI includes support for running and reporting on Unit Tests, in this post we will take a look at running <a href="https://github.com/VSoftTechnologies/DUnitX" title="DUnitX is open source, on GitHub">DUnitX</a>&#160;Unit Tests. If you not familiar with <a href="https://github.com/VSoftTechnologies/DUnitX" title="DUnitX is open source, on GitHub">DUnitX</a>, it's a newish Delphi Unit Test framework, I <a href="http://www.finalbuilder.com/Resources/Blogs/PostId/697/introducing-dunitx" title="Introducing DUnitX - a Unit Test framework for Delphi">blogged about it recently</a>.&#160;</p>
+<p>I'm not going to cover how to get up and running in Continua CI, but rather I'll focus on the Unit Testing support. If you are not familiar with Continua CI, take a look at <a href="http://www.finalbuilder.com/Resources/Blogs/PostId/695/building-delphi-projects-with-continua-ci" title="Building Delphi projects with Continua CI">this recent post</a> which describes how to build Delphi projects with Continua CI.</p>
+<p>Assuming you have you Continua CI Configuration all set up, lets take a quick look at how to integrate our unit tests into the build process. You need to build a console application, and make use of the xml logger. This is how the dpr of our typical DUnitX console test application might look &#160;:</p>
+<pre class="brush:delphi; toolbar:true;">var
+  runner : ITestRunner;
+  results : IRunResults;
+  logger : ITestLogger;
+  xmlLogger : ITestLogger;
+begin
+  try
+    //Create the runner
+    runner := TDUnitX.CreateRunner;
+   
+    //add a console logger, pass in true to specify quiet mode
+    //as we don't need detailed console output.
+    logger    := TDUnitXConsoleLogger.Create(true);
+    runner.AddLogger(logger);
+    
+    //add an nunit xml loggeer
+    xmlLogger := TDUnitXXMLNUnitFileLogger.Create;
+    runner.AddLogger(nunitLogger);
+
+    //Run tests
+    results := runner.Execute;
+
+    {$IFDEF CI}
+    //Let the CI Server know that something failed.
+    if not results.AllPassed then
+      System.ExitCode := 1;
+    {$ELSE}
+    //We don;t want this happening when running under CI.
+    System.Write('Done.. press  key to quit.');
+    System.Readln;
+    {$ENDIF}
+    
+  except
+    on E: Exception do
+    begin
+      System.Writeln(E.ClassName, ': ', E.Message);
+      System.ExitCode := 2;
+    end;
+  end;
+end.
+</pre>
+<p>The key thing to remember, is that this application is going to be running unattended, so never use ReadLn or any sort of interaction/prompting for input etc. If I had a dollar for every "Finalbuilder/Continua CI hangs during my build" bug report in the last 13 years, I'd be a... well not rich, but a few hundred dollars better off! Notice I used $IFDEF CI above to set the exit code to 1&#160;if not all tests pass.&#160;</p>
+<p>So the next thing we need to is actually get the console application building in Continua CI. I covered building delphi applications with Continua CI in earlier post, so I'll just highlight a few things specific items that we need. Firsly, if you don't have the DUnitX source code in your repository, and have configured a repositoroy for it in Continua CI, then you need to update the Search Path for your console application. If you are using MSBuild to build the console app, then it's done on the Properties tab of the MSBuild Action :</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/DUnitX-CI/DUnitX-MSBuild.png" alt="MSBuild Properties">
+</p>
+<p>I have DUnitX in a Continau CI repository named DUnitX, and I've used the default path to the repository in the workspace ( $Source.DUnitX$ translates to "/Source/DUnitX" in the build workspace). If you are using FinalBuilder, you need to pass that to a FinalBuilder variable in the FinalBuilder Action, I'll cover that in more detail in a future post. Notice I also set the CI define I used in my code. The other important setting, is the ExeOutput path, which much be somewhere inside the build's workspace, so I set it to $Workspace$\Output - Continua CI will translate $Workspace$ at build time to be the workspace folder for the build (each Continua CI build gets a clean unique workspace folder).&#160;</p>
+<p>Now it's time to add our DUnitX action, somewhere in the stage workflow after we have built the test application.&#160;</p>
+<p>&#160;</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/DUnitX-CI/DUnitX-Workflow.png" alt="Stage Workflow">
+</p>
+<p>Setting up the DUnitX action is quite simple :
+</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/DUnitX-CI/DUnitX-Action.png" alt="DUnitX Action">
+</p>
+<p>&#160;</p>
+<p>We set the Test Executable to our test console app, which in the MSBuild action we configured to be output to $Workspace$\Output - and we specify where to put the xml file that DUnitX will generate (because we added the NUnit logger). &#160;The other two options control whether the to fail the Action/Build if any tests fail or error. If you have more than one Unit Test action to run in your build process, then it's bests to leave these unchecked and use the Stage Gate feature (on the Stage Options dialog) to fail the build (more on this later).&#160;</p>
+<p>After running the build, the Unit Test results appear in a two places, firstly the Build Details page, which shows the totals for the build (for all unit tests run) :</p>
+<p>&#160;</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/DUnitX-CI/DUnitX-BuildResult.png" alt="Unit Test Totals">
+</p>
+<p>You can drill into the tests by clickong on the numbers, or by clicking on the Unit Tests tab :&#160;</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/DUnitX-CI/DUnitX-Results.png" alt="Unit Test Details">
+</p>
+<p>This page allows you to filter by status (click on the numbers), and filter by Fixture, Namespacve etc. The first time a test fails, it will show up inder the New Failures category and under Failures. Clicking on a Failed or Errored test expands the row to show the error message logged by the test framework :</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/DUnitX-CI/DUnitX-FailingDetail.png" alt="Failing Test Details">
+</p>
+<p>Notice the Shelve button next to each test. If you have a test that always fails, and you don't want it to cause the build to fail, <a href="http://wiki.finalbuilder.com/display/continua/Unit+Tests#UnitTests-ShelvingTests" title="Shelving/Unshelving Tests">shelving</a>&#160;the tests tells Continua CI to ignore those failures in the future, until you unshelve them. &#160;</p>
+<p>One last feature which I touched on, is the use of Stage Gates to fails the build. Continua CI collects a bunch of metrics during the build, and we can use those metrics in Stage Gate Conditions to fail the build if for example, there are any failing tests. Each Stage has it's own Gate Conditions, which are evaluated once the stage completes.. When the build fails at the Stage Gate, you will see the output of the condition expressions (note, the expressions below are the defaults on all stages) :</p>
+<p><img src="http://www.finalbuilder.com/Portals/0/ArticleImages/BlogImages/vincent/DUnitX-CI/DUnitX-FailingSummary.png" alt="Failed at Stage Gate">
+</p>
+<p>&#160;</p>&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    </div>
+
+<p class="info">
+<h4>
+Posted Sun 28 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li ><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+</ul>
+
+<ul class="tagcloud">
+        <li class="tag-4"><a href="http://www.ciandcd.com/tag/linux.html">linux</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://www.ciandcd.com/theme/js/jquery.js"></script>
+<script src="http://www.ciandcd.com/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

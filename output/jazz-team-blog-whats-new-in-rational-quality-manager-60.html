@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Jazz Team Blog  What’s new in Rational Quality Manager 6.0? - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://www.ciandcd.com/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="http://www.ciandcd.com/theme/tipuesearch/tipuesearch.css" media="screen">
+<link href="http://www.ciandcd.com/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://www.ciandcd.com/index.html">ciandcd </a>
+<h4>软件持续集成和持续发布 QQ群：172758282，437085002</h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.ciandcd.com/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://www.ciandcd.com/index.html">首页</a></li>
+
+  <li class="active"><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li ><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+
+  
+    <li ><a href="http://www.ciandcd.com/pages/guan-yu.html">关于</a></li>
+    <li ><a href="http://www.ciandcd.com/pages/awesome.html">Awesome</a></li>
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://www.ciandcd.com/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input">
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    Jazz Team Blog  What’s new in Rational Quality Manager 6.0?</h2>
+From:<a href="https://jazz.net/blog/index.php/2015/06/26/whats-new-in-rational-quality-manager-6-0/">https://jazz.net/blog/index.php/2015/06/26/whats-new-in-rational-quality-manager-6-0/</a><br><br><div><p>IBM <a href="https://jazz.net/downloads/rational-quality-manager/releases/6.0" target="_blank">Rational Quality Manager</a> (RQM) 6.0 brings both incremental improvements over v5 and a completely new dimension to managing test artifacts. On the incremental improvements front, the team has done a great job to continue to work closely with our customers to further improve the user experience on specific areas such as dashboard widgets or collaboration. At the same time, v6.0 introduces the support of configuration management for test artifacts, linked to other domains such as requirements or design, and contributing to the notion of global configurations across our <a href="https://jazz.net/downloads/clm/releases/6.0" target="_blank">Collaborative Lifecycle Management</a> (CLM) solution. This version marks the beginning of a completely new set of capabilities that empower users to do parallel development and test, and to reuse artifacts in an effective way.</p>
+<h3><strong>Improved user experience</strong></h3>
+<p>Continuing on the work done in RQM 5.0.1 with the introduction of the Test Artifact dashboard widget, RQM 6.0 offers the new Test Statistics widget. Both of those widgets leverage the saved queries created in one of the test artifact views, such as the Test Case Execution Record view. Those live queries can now be reused with their results displayed directly on a dashboard. The Test Statistic widget offers the option to display the result in table format or in graphs such as bar charts, pie charts, or column charts.</p>
+<p><a rel="attachment wp-att-13259" href="https://jazz.net/blog/index.php/2015/06/26/whats-new-in-rational-quality-manager-6-0/improved-ui/"><img class="aligncenter size-full wp-image-13259" title="improved-UI" src="https://jazz.net/blog/wp-content/uploads/2015/06/improved-UI.png" alt="" width="537" height="185"></a></p>
+<p>The team has also worked on improving collaboration support, specifically for concurrent modification of test artifacts. If two people modify the same test plan, suite, or case at the same time, the second person to attempt to save is now prompted with the option to merge the changes.</p>
+<h3><strong>Single sign-on authentication</strong></h3>
+<p>On top of the existing types of single sign-on (SSO) authentication already supported, this version introduces the Jazz Security Architecture SSO based on the OpenID Connect authentication protocol. The new Jazz Authorization Server simplifies the authentication administration. Read more in John Vasta&#8217;s post about <a href="https://jazz.net/blog/index.php/2015/06/19/new-single-sign-on-options-in-clm-6-0/" target="_blank">SSO options in CLM 6.0</a>.</p>
+<h3><strong>Reporting</strong></h3>
+<p>In v5, we introduced Jazz Reporting Service (JRS) as a new option to generate customizable analytics reports with a user-friendly web-based report builder. In v6.0, JRS is now included directly in the CLM package. This increases the availability for better reporting services for all of your applications without requiring the additional effort of organizing, installing, and configuring reporting capability through a separate download and install. There are also a number of new capabilities which make JRS the recommended analytics reporting solution for CLM, such as calculation and roll-up along with graphical report drill-through, new out-of-the-box reports, and interactive runtime filters in the dashboard widget. If you&#8217;d like to learn more, see Ernest Mah&#8217;s post on <a href="https://jazz.net/blog/index.php/2015/06/22/whats-new-in-reporting-for-collaborative-lifecycle-management-6-0/" target="_blank">reporting in CLM 6.0</a>.</p>
+<p><strong>Configuration management</strong></p>
+<p>RQM 6.0 is the first release that includes capabilities to aid in configuration management of test artifacts.</p>
+<p>On a basic level, configuration management enables users to better manage changes and to go back in time if needed through the creation of baselines and the ability to compare and merge. Users can create baselines to record a state in time of a Quality Management (QM) project area. Baselines are immutable and defined for an entire project area. Test artifacts of a baseline cannot be modified. Users can then compare the current state of a QM project area with any previous baseline. The comparison provides both a high-level view of the differences at the project area level as well as a detailed side-by-side comparison at the artifact level. Then, users have the opportunity to roll back some of the changes by merging a previous baseline into the current state and replacing some artifacts with the previous versions from that baseline.</p>
+<p><a rel="attachment wp-att-13260" href="https://jazz.net/blog/index.php/2015/06/26/whats-new-in-rational-quality-manager-6-0/baseline-rollback/"><img class="aligncenter size-full wp-image-13260" title="baseline-rollback" src="https://jazz.net/blog/wp-content/uploads/2015/06/baseline-rollback.png" alt="" width="460" height="155"></a></p>
+<p>In a more advanced usage model, configuration management offers the ability for testers to work independently and in parallel on multiple versions or variants of test artifacts. Users can create parallel streams by branching from an existing baseline. Streams are versions of all the test artifacts of a project area that can be changed. Users can merge changes made in one stream into another by first looking at the differences and then replacing all or some of the current versions by the versions of the artifacts in the baseline.</p>
+<p><a rel="attachment wp-att-13261" href="https://jazz.net/blog/index.php/2015/06/26/whats-new-in-rational-quality-manager-6-0/multi-stream/"><img class="aligncenter size-full wp-image-13261" title="multi-stream" src="https://jazz.net/blog/wp-content/uploads/2015/06/multi-stream.png" alt="" width="468" height="193"></a></p>
+<p>The local Quality Management configurations, both streams and baselines, can then be contributed to global configurations. Global configurations are cross-domain configurations that can link to multiple local configurations from the Requirements Management, Design Management, Software Configuration Management, and Quality Management applications. Global configurations are used to define a common context in which users can work and create all the deliverables for a given version or variant.</p>
+<p><a rel="attachment wp-att-13262" href="https://jazz.net/blog/index.php/2015/06/26/whats-new-in-rational-quality-manager-6-0/configuration-mgmt/"><img class="aligncenter size-full wp-image-13262" title="configuration-mgmt" src="https://jazz.net/blog/wp-content/uploads/2015/06/configuration-mgmt.png" alt="" width="468" height="153"></a></p>
+<p>Finally, by creating a hierarchy of global configurations, it is possible to manage composite product definitions and configurations that enable complex reuse scenarios at the subsystems and components levels.</p>
+<p><a rel="attachment wp-att-13263" href="https://jazz.net/blog/index.php/2015/06/26/whats-new-in-rational-quality-manager-6-0/configuration-mgmt-hierarchy/"><img class="aligncenter size-full wp-image-13263" title="configuration-mgmt-hierarchy" src="https://jazz.net/blog/wp-content/uploads/2015/06/configuration-mgmt-hierarchy.png" alt="" width="468" height="180"></a></p>
+<p><strong>Learn more about RQM 6.0</strong></p>
+<ul>
+<li>For details of what&#8217;s new      in 6.0, check out <a href="https://jazz.net/downloads/clm/releases/6.0?p=news" target="_blank">New &amp; Noteworthy</a> in the Downloads section.</li>
+<li>See the <a href="https://jazz.net/downloads/clm/releases/6.0?p=releaseNotes" target="_blank">Release Notes</a><strong> </strong>for      a list of fixes.</li>
+<li>To see what&#8217;s supported,      see the <a href="https://jazz.net/wiki/bin/view/Deployment/CLMSystemRequirements60" target="_blank">System Requirements</a>.</li>
+</ul>
+<span><img src="https://jazz.net/blog/wp-content/plugins/wp-spamfree/img/wpsf-img.php" width="0" height="0" alt=""></span></div>
+
+<p class="info">
+<h4>
+Posted Sun 28 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li ><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+</ul>
+
+<ul class="tagcloud">
+        <li class="tag-4"><a href="http://www.ciandcd.com/tag/linux.html">linux</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://www.ciandcd.com/theme/js/jquery.js"></script>
+<script src="http://www.ciandcd.com/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

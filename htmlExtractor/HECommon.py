@@ -14,20 +14,24 @@ def writeFile(outPath,content):
     else:
         print ("Error Opening File " + outPath)
 
-def writeHtml(outPath,content,title,link,date,authors):
+def writeHtml(outPath,content,title,link,date,authors,tags):
     html = '''<!DOCTYPE html>
     <html lang="zh-cn">
     <head>
     <meta charset="utf-8"/>
     <title>
     '''
+    html = html + title + '</title>'
+
     if(isinstance(date,datetime)):
         date = date.strftime('%Y-%m-%d %H:%M')
-    if not date:
+    if date != '':
       html = html + '<meta name="date" content="' + date + '"/>'
-    if not authors:
+    if authors != '':
         html = html + '<meta name="authors" content="' + authors + '" />'
-    html = html + title + '</title></head><body>'
+    if tags != '':
+        html = html + '<meta name="tags" content="' + tags + '" />'
+    html = html + '</head><body>'
     html = html + 'From:<a href=' + link + '>' + link + '</a><br><br>'
     html = html + content + '</body></html>'
     writeFile(outPath,html)
@@ -57,7 +61,7 @@ def getLinks(url,regex):
 
     return list(set(links))
 
-def downloadFile(link,category,config,outputDir,date):
+def downloadFile(link,category,config,outputDir,date,tags):
     print('download article from:' + link)
     try:
         try:
@@ -69,8 +73,10 @@ def downloadFile(link,category,config,outputDir,date):
             print(e)
             return 0
 
-        if not a.title:
+        if a.title == '':
            print("cannot find title for " + link)
+           return 0
+
         print('title:' + a.title)
         title2 = re.sub(' ','_',a.title)
         title2 = re.sub('/','_',title2)
@@ -94,9 +100,9 @@ def downloadFile(link,category,config,outputDir,date):
         if(content_html):
             domain = getDomain(link)
             content_html = fixLinks(content_html,domain)
-            writeHtml(outPath,content_html,a.title,link,date,authors)
+            writeHtml(outPath,content_html,a.title,link,date,authors,tags)
         elif(content):
-            writeHtml(outPath,content,a.title,link,date,authors)
+            writeHtml(outPath,content,a.title,link,date,authors,tags)
         else:
             print('Error:cannot find content')
     except Exception as e:
@@ -105,13 +111,13 @@ def downloadFile(link,category,config,outputDir,date):
         return 0
     return 1
 
-def downloadArticles(url,category,config,outputDir,max_number,regex_for_links):
+def downloadArticles(url,category,config,outputDir,max_number,regex_for_links,tags):
     print('download from articles:' + url)
     all = getLinks(url,regex_for_links)
     for article in all[:max_number]:
-        downloadFile(article,category,config,outputDir,'')
+        downloadFile(article,category,config,outputDir,'',tags)
 
-def downloadFeed(feed,category,config,outputDir,max_number):
+def downloadFeed(feed,category,config,outputDir,max_number,tags):
             print('download from feed:' + feed)
             d = feedparser.parse(feed)
             for entry in d.entries[:max_number]:
@@ -126,7 +132,7 @@ def downloadFeed(feed,category,config,outputDir,max_number):
                     date = entry.published
                 except Exception as e:
                     print(e)
-                downloadFile(entry.link,category,config,outputDir,date)
+                downloadFile(entry.link,category,config,outputDir,date,tags)
 
 def downloadByConfig(urls,config,outputDir,max_number):
   print('download from config')
@@ -134,10 +140,11 @@ def downloadByConfig(urls,config,outputDir,max_number):
     print('category:' + category)
     us = urls[category]
     for u in us:
-        u2,type,regex_for_links = u.split(',')
+        u2,type,regex_for_links,tags = u.split(',')
+        tags = re.sub(':',',',tags)
         if(type == 'feed'):
-            downloadFeed(u2,category,config,outputDir,max_number)
+            downloadFeed(u2,category,config,outputDir,max_number,tags)
         elif(type == 'articles'):
-            downloadArticles(u2,config,outputDir,category,max_number,regex_for_links)
+            downloadArticles(u2,config,outputDir,category,max_number,regex_for_links,tags)
         else: #article
-            downloadFile(u2,category,config,outputDir,'')
+            downloadFile(u2,category,config,outputDir,'',tags)

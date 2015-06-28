@@ -90,7 +90,8 @@ bootstrap-itech - a Pelican theme using Bootstrap
 <!-- Content -->
 <div class="col-lg-9">
 <article>
-
+<h2>
+    Git Simple Feature Branch Workflow</h2>
 from:http://java.dzone.com/articles/git-simple-feature-branch<br><div><p class="print-link"></p><p>In my&#160;<a href="http://madhukaudantha.blogspot.com/2015/06/workflows-for-git.html" target="_blank">previous post</a>, I wrote about git work flows. Now I will going to try out simple '<a href="http://madhukaudantha.blogspot.com/2015/06/workflows-for-git.html" target="_blank">Feature Branch Workflow</a>'.<br></p>1. I pull down the latest changes from mastergit checkout mastergit pull origin master2. I make branch to make changes&#160;git checkout -b new-feature3. Now I am working on the feature4. I keep my feature branch fresh and up to date with the latest changes in master, using 'rebase'Every once in a while during the development update the feature branch with the latest changes in master.git fetch origingit rebase origin/masterIn the case where other devs are also working on the same shared remote feature branch, also rebase changes coming from it:git rebase origin/new-featureResolving conflicts during the rebase allows me to have always clean merges at the end of the feature development.5. When I am ready I commit my changesgit add -pgit commit -m "my changes"6. rebasing keeps my code working, merging easy, and history clean.git fetch origingit rebase origin/new-featuregit rebase origin/masterBelow two points are optional6.1 push my branch for discussion (pull-request)git push origin new-feature6.2 feel free to rebase within my feature branch, my team can handle it!git rebase -i origin/master<br><i><b>Few point that can be happen in developing phase.</b></i><br>Another new feature is needed and it need some commits from my new branch 'new-feature' that new feature need new branch and few commits need to push to it and clean from my branch.<br><br>7.1 Creating x-new-feature branch on top of 'new-feature'<br>git checkout -b&#160;x-new-feature&#160;new-feature<br><br>7.2 Cleaning commits<br>//revert a commit<br>git revert --no-commit&#160;<br>//reverting few steps a back from current HEAD<br>git reset --hard HEAD~2<br><br>7.3 Updating the git<br>//Clean new-feature branch<br>git push origin HEAD --force	
 	<p></p>
 
@@ -119,6 +120,7 @@ in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
 </ul>
 
 <ul class="tagcloud">
+        <li class="tag-4"><a href="http://www.ciandcd.com/tag/linux.html">linux</a></li>
 </ul>
 
 <h2>链接</h2>

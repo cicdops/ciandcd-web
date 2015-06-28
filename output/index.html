@@ -11,7 +11,7 @@
   <link rel="stylesheet" type="text/css" href="http://www.ciandcd.com/theme/tipuesearch/tipuesearch.css" media="screen">
 <link href="http://www.ciandcd.com/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
 
-       <link href="http://www.ciandcd.com/jian-dan-de-proxyzhi-tinyhttpproxypy.html" rel="bookmark"/>
+       <link href="http://www.ciandcd.com/sshfan-xiang-lian-jie-ji-autossh.html" rel="bookmark"/>
                    
 
 
@@ -93,680 +93,411 @@ bootstrap-itech - a Pelican theme using Bootstrap
 <div class="col-lg-9">
 
       <article>
-      <h1><a href="http://www.ciandcd.com/jian-dan-de-proxyzhi-tinyhttpproxypy.html" rel="bookmark">
-    简单的proxy之TinyHTTPProxy.py</a></h1>
-
-      From:<a href="http://www.cnblogs.com/itech/p/3800590.html">http://www.cnblogs.com/itech/p/3800590.html</a><br><br><div><h1>&#31616;&#21333;&#30340;proxy&#20043;TinyHTTPProxy.py</h1>&#13;
-<p>&#22914;&#26524;&#26159;&#22312;&#22806;&#20225;&#24037;&#20316;&#30340;&#35805;&#65292;&#21487;&#20197;&#35775;&#38382;&#32654;&#22269;&#30340;&#26426;&#22120;&#65292;&#36825;&#26679;&#23601;&#21487;&#20197;&#22312;&#32654;&#22269;&#30340;&#26426;&#22120;&#19978;&#20026;&#33258;&#24049;&#35013;&#20010;proxy&#65292;&#28982;&#21518;&#26412;&#22320;&#23601;&#21487;&#20197;&#24456;&#23481;&#26131;&#30340;&#20351;&#29992;proxy&#26469;&#19978;&#32593;&#20102;&#12290;</p>&#13;
-<h2>TinyHTTPProxy.py :</h2>&#13;
-<p>&#20027;&#39029;&#65306;<a href="http://www.voidtrance.net/2010/01/simple-python-http-proxy/">http://www.voidtrance.net/2010/01/simple-python-http-proxy/</a>&#160;<br>&#19979;&#36733;&#65306;<a href="http://www.voidtrance.net/downloads/tiny-proxy-0.3.1.tar.gz">http://www.voidtrance.net/downloads/tiny-proxy-0.3.1.tar.gz</a>&#160;</p>&#13;
-<h2>&#20351;&#29992;&#26041;&#27861;&#65306;</h2>&#13;
-<p>1&#65289;&#24456;&#22909;&#29992;&#65292;&#19979;&#36733;&#28982;&#21518;&#22312;&#21518;&#21488;&#36816;&#34892;&#12290;&#21482;&#20381;&#36182;&#20110;&#22522;&#26412;&#30340;python modules&#65292;&#36816;&#34892;&#30340;&#26102;&#20505;&#19981;&#38656;&#35201;root&#26435;&#38480;&#12290;</p>&#13;
-<pre class="brush:python;gutter:true;">proxy [-p port] [-l logfile] [-dh] [allowed_client_name ...]]&#13;
-&#13;
-   -p   - Port to bind to&#13;
-   -l   - Path to logfile. If not specified, STDOUT is used&#13;
-   -d   - Run in the background&#13;
-</pre>&#13;
-<p>&#12288;&#12288;</p>&#13;
-<p>2&#65289; Chrome&#20013;&#30340;switchsharper&#25554;&#20214;&#30340;&#37197;&#32622;&#65306;</p>&#13;
-<p><img src="http://images.cnitblog.com/i/46653/201406/210941084571105.png" alt=""></p>&#13;
-<p><img src="file:///E:/Jason/youdaoyunbiji/itech001@126.com/5ef24a48ecbd4bc0be8eb8dcf3154014/clipboard.png" alt=""></p>&#13;
-<h2>TinyHTTPProxy.py&#30340;&#28304;&#20195;&#30721;:</h2>&#13;
-<pre class="brush:python;gutter:true;">#!/usr/bin/python&#13;
- &#13;
-__doc__ = """Tiny HTTP Proxy.&#13;
- &#13;
-This module implements GET, HEAD, POST, PUT and DELETE methods&#13;
-on BaseHTTPServer, and behaves as an HTTP proxy.  The CONNECT&#13;
-method is also implemented experimentally, but has not been&#13;
-tested yet.&#13;
- &#13;
-Any help will be greatly appreciated.       SUZUKI Hisao&#13;
- &#13;
-2009/11/23 - Modified by Mitko Haralanov&#13;
-             * Added very simple FTP file retrieval&#13;
-             * Added custom logging methods&#13;
-             * Added code to make this a standalone application&#13;
-"""&#13;
- &#13;
-__version__ = "0.3.1"&#13;
- &#13;
-import BaseHTTPServer, select, socket, SocketServer, urlparse&#13;
-import logging&#13;
-import logging.handlers&#13;
-import getopt&#13;
-import sys&#13;
-import os&#13;
-import signal&#13;
-import threading&#13;
-from types import FrameType, CodeType&#13;
-from time import sleep&#13;
-import ftplib&#13;
- &#13;
-DEFAULT_LOG_FILENAME = "proxy.log"&#13;
- &#13;
-class ProxyHandler (BaseHTTPServer.BaseHTTPRequestHandler):&#13;
-    __base = BaseHTTPServer.BaseHTTPRequestHandler&#13;
-    __base_handle = __base.handle&#13;
- &#13;
-    server_version = "TinyHTTPProxy/" + __version__&#13;
-    rbufsize = 0                        # self.rfile Be unbuffered&#13;
- &#13;
-    def handle(self):&#13;
-        (ip, port) =  self.client_address&#13;
-        self.server.logger.log (logging.INFO, "Request from '%s'", ip)&#13;
-        if hasattr(self, 'allowed_clients') and ip not in self.allowed_clients:&#13;
-            self.raw_requestline = self.rfile.readline()&#13;
-            if self.parse_request(): self.send_error(403)&#13;
-        else:&#13;
-            self.__base_handle()&#13;
- &#13;
-    def _connect_to(self, netloc, soc):&#13;
-        i = netloc.find(':')&#13;
-        if i &gt;= 0:&#13;
-            host_port = netloc[:i], int(netloc[i+1:])&#13;
-        else:&#13;
-            host_port = netloc, 80&#13;
-        self.server.logger.log (logging.INFO, "connect to %s:%d", host_port[0], host_port[1])&#13;
-        try: soc.connect(host_port)&#13;
-        except socket.error, arg:&#13;
-            try: msg = arg[1]&#13;
-            except: msg = arg&#13;
-            self.send_error(404, msg)&#13;
-            return 0&#13;
-        return 1&#13;
- &#13;
-    def do_CONNECT(self):&#13;
-        soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)&#13;
-        try:&#13;
-            if self._connect_to(self.path, soc):&#13;
-                self.log_request(200)&#13;
-                self.wfile.write(self.protocol_version +&#13;
-                                 " 200 Connection established\r\n")&#13;
-                self.wfile.write("Proxy-agent: %s\r\n" % self.version_string())&#13;
-                self.wfile.write("\r\n")&#13;
-                self._read_write(soc, 300)&#13;
-        finally:&#13;
-            soc.close()&#13;
-            self.connection.close()&#13;
- &#13;
-    def do_GET(self):&#13;
-        (scm, netloc, path, params, query, fragment) = urlparse.urlparse(&#13;
-            self.path, 'http')&#13;
-        if scm not in ('http', 'ftp') or fragment or not netloc:&#13;
-            self.send_error(400, "bad url %s" % self.path)&#13;
-            return&#13;
-        soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)&#13;
-        try:&#13;
-            if scm == 'http':&#13;
-                if self._connect_to(netloc, soc):&#13;
-                    self.log_request()&#13;
-                    soc.send("%s %s %s\r\n" % (self.command,&#13;
-                                               urlparse.urlunparse(('', '', path,&#13;
-                                                                    params, query,&#13;
-                                                                    '')),&#13;
-                                               self.request_version))&#13;
-                    self.headers['Connection'] = 'close'&#13;
-                    del self.headers['Proxy-Connection']&#13;
-                    for key_val in self.headers.items():&#13;
-                        soc.send("%s: %s\r\n" % key_val)&#13;
-                    soc.send("\r\n")&#13;
-                    self._read_write(soc)&#13;
-            elif scm == 'ftp':&#13;
-                # fish out user and password information&#13;
-                i = netloc.find ('@')&#13;
-                if i &gt;= 0:&#13;
-                    login_info, netloc = netloc[:i], netloc[i+1:]&#13;
-                    try: user, passwd = login_info.split (':', 1)&#13;
-                    except ValueError: user, passwd = "anonymous", None&#13;
-                else: user, passwd ="anonymous", None&#13;
-                self.log_request ()&#13;
-                try:&#13;
-                    ftp = ftplib.FTP (netloc)&#13;
-                    ftp.login (user, passwd)&#13;
-                    if self.command == "GET":&#13;
-                        ftp.retrbinary ("RETR %s"%path, self.connection.send)&#13;
-                    ftp.quit ()&#13;
-                except Exception, e:&#13;
-                    self.server.logger.log (logging.WARNING, "FTP Exception: %s",&#13;
-                                            e)&#13;
-        finally:&#13;
-            soc.close()&#13;
-            self.connection.close()&#13;
- &#13;
-    def _read_write(self, soc, max_idling=20, local=False):&#13;
-        iw = [self.connection, soc]&#13;
-        local_data = ""&#13;
-        ow = []&#13;
-        count = 0&#13;
-        while 1:&#13;
-            count += 1&#13;
-            (ins, _, exs) = select.select(iw, ow, iw, 1)&#13;
-            if exs: break&#13;
-            if ins:&#13;
-                for i in ins:&#13;
-                    if i is soc: out = self.connection&#13;
-                    else: out = soc&#13;
-                    data = i.recv(8192)&#13;
-                    if data:&#13;
-                        if local: local_data += data&#13;
-                        else: out.send(data)&#13;
-                        count = 0&#13;
-            if count == max_idling: break&#13;
-        if local: return local_data&#13;
-        return None&#13;
- &#13;
-    do_HEAD = do_GET&#13;
-    do_POST = do_GET&#13;
-    do_PUT  = do_GET&#13;
-    do_DELETE=do_GET&#13;
- &#13;
-    def log_message (self, format, *args):&#13;
-        self.server.logger.log (logging.INFO, "%s %s", self.address_string (),&#13;
-                                format % args)&#13;
- &#13;
-    def log_error (self, format, *args):&#13;
-        self.server.logger.log (logging.ERROR, "%s %s", self.address_string (),&#13;
-                                format % args)&#13;
- &#13;
-class ThreadingHTTPServer (SocketServer.ThreadingMixIn,&#13;
-                           BaseHTTPServer.HTTPServer):&#13;
-    def __init__ (self, server_address, RequestHandlerClass, logger=None):&#13;
-        BaseHTTPServer.HTTPServer.__init__ (self, server_address,&#13;
-                                            RequestHandlerClass)&#13;
-        self.logger = logger&#13;
- &#13;
-def logSetup (filename, log_size, daemon):&#13;
-    logger = logging.getLogger ("TinyHTTPProxy")&#13;
-    logger.setLevel (logging.INFO)&#13;
-    if not filename:&#13;
-        if not daemon:&#13;
-            # display to the screen&#13;
-            handler = logging.StreamHandler ()&#13;
-        else:&#13;
-            handler = logging.handlers.RotatingFileHandler (DEFAULT_LOG_FILENAME,&#13;
-                                                            maxBytes=(log_size*(1&lt;&lt;20)),&#13;
-                                                            backupCount=5)&#13;
-    else:&#13;
-        handler = logging.handlers.RotatingFileHandler (filename,&#13;
-                                                        maxBytes=(log_size*(1&lt;&lt;20)),&#13;
-                                                        backupCount=5)&#13;
-    fmt = logging.Formatter ("[%(asctime)-12s.%(msecs)03d] "&#13;
-                             "%(levelname)-8s {%(name)s %(threadName)s}"&#13;
-                             " %(message)s",&#13;
-                             "%Y-%m-%d %H:%M:%S")&#13;
-    handler.setFormatter (fmt)&#13;
- &#13;
-    logger.addHandler (handler)&#13;
-    return logger&#13;
- &#13;
-def usage (msg=None):&#13;
-    if msg: print msg&#13;
-    print sys.argv[0], "[-p port] [-l logfile] [-dh] [allowed_client_name ...]]"&#13;
-    print&#13;
-    print "   -p       - Port to bind to"&#13;
-    print "   -l       - Path to logfile. If not specified, STDOUT is used"&#13;
-    print "   -d       - Run in the background"&#13;
-    print&#13;
- &#13;
-def handler (signo, frame):&#13;
-    while frame and isinstance (frame, FrameType):&#13;
-        if frame.f_code and isinstance (frame.f_code, CodeType):&#13;
-            if "run_event" in frame.f_code.co_varnames:&#13;
-                frame.f_locals["run_event"].set ()&#13;
-                return&#13;
-        frame = frame.f_back&#13;
- &#13;
-def daemonize (logger):&#13;
-    class DevNull (object):&#13;
-        def __init__ (self): self.fd = os.open ("/dev/null", os.O_WRONLY)&#13;
-        def write (self, *args, **kwargs): return 0&#13;
-        def read (self, *args, **kwargs): return 0&#13;
-        def fileno (self): return self.fd&#13;
-        def close (self): os.close (self.fd)&#13;
-    class ErrorLog:&#13;
-        def __init__ (self, obj): self.obj = obj&#13;
-        def write (self, string): self.obj.log (logging.ERROR, string)&#13;
-        def read (self, *args, **kwargs): return 0&#13;
-        def close (self): pass&#13;
- &#13;
-    if os.fork () != 0:&#13;
-        ## allow the child pid to instanciate the server&#13;
-        ## class&#13;
-        sleep (1)&#13;
-        sys.exit (0)&#13;
-    os.setsid ()&#13;
-    fd = os.open ('/dev/null', os.O_RDONLY)&#13;
-    if fd != 0:&#13;
-        os.dup2 (fd, 0)&#13;
-        os.close (fd)&#13;
-    null = DevNull ()&#13;
-    log = ErrorLog (logger)&#13;
-    sys.stdout = null&#13;
-    sys.stderr = log&#13;
-    sys.stdin = null&#13;
-    fd = os.open ('/dev/null', os.O_WRONLY)&#13;
-    #if fd != 1: os.dup2 (fd, 1)&#13;
-    os.dup2 (sys.stdout.fileno (), 1)&#13;
-    if fd != 2: os.dup2 (fd, 2)&#13;
-    if fd not in (1, 2): os.close (fd)&#13;
- &#13;
-def main ():&#13;
-    logfile = None&#13;
-    daemon  = False&#13;
-    max_log_size = 20&#13;
-    port = 8000&#13;
-    allowed = []&#13;
-    run_event = threading.Event ()&#13;
-    local_hostname = socket.gethostname ()&#13;
- &#13;
-    try: opts, args = getopt.getopt (sys.argv[1:], "l:dhp:", [])&#13;
-    except getopt.GetoptError, e:&#13;
-        usage (str (e))&#13;
-        return 1&#13;
- &#13;
-    for opt, value in opts:&#13;
-        if opt == "-p": port = int (value)&#13;
-        if opt == "-l": logfile = value&#13;
-        if opt == "-d": daemon = not daemon&#13;
-        if opt == "-h":&#13;
-            usage ()&#13;
-            return 0&#13;
- &#13;
-    # setup the log file&#13;
-    logger = logSetup (logfile, max_log_size, daemon)&#13;
- &#13;
-    if daemon:&#13;
-        daemonize (logger)&#13;
-    signal.signal (signal.SIGINT, handler)&#13;
- &#13;
-    if args:&#13;
-        allowed = []&#13;
-        for name in args:&#13;
-            client = socket.gethostbyname(name)&#13;
-            allowed.append(client)&#13;
-            logger.log (logging.INFO, "Accept: %s (%s)" % (client, name))&#13;
-        ProxyHandler.allowed_clients = allowed&#13;
-    else:&#13;
-        logger.log (logging.INFO, "Any clients will be served...")&#13;
- &#13;
-    server_address = (socket.gethostbyname (local_hostname), port)&#13;
-    ProxyHandler.protocol = "HTTP/1.0"&#13;
-    httpd = ThreadingHTTPServer (server_address, ProxyHandler, logger)&#13;
-    sa = httpd.socket.getsockname ()&#13;
-    print "Servering HTTP on", sa[0], "port", sa[1]&#13;
-    req_count = 0&#13;
-    while not run_event.isSet ():&#13;
-        try:&#13;
-            httpd.handle_request ()&#13;
-            req_count += 1&#13;
-            if req_count == 1000:&#13;
-                logger.log (logging.INFO, "Number of active threads: %s",&#13;
-                            threading.activeCount ())&#13;
-                req_count = 0&#13;
-        except select.error, e:&#13;
-            if e[0] == 4 and run_event.isSet (): pass&#13;
-            else:&#13;
-                logger.log (logging.CRITICAL, "Errno: %d - %s", e[0], e[1])&#13;
-    logger.log (logging.INFO, "Server shutdown")&#13;
-    return 0&#13;
- &#13;
-if __name__ == '__main__':&#13;
-    sys.exit (main ())&#13;
-</pre>&#13;
-<p>&#12288;&#12288;</p>&#13;
-<h2><p>&#20854;&#20182;&#30340;python proxy&#65306;<br></p>https://github.com/senko/tornado-proxy</h2>&#13;
-<p>&#160;</p>&#13;
-<h2>&#23436;&#65281;</h2></div>
-
-      <p class="info">
-<h4>
-Posted Sat 27 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
-</h4>      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/markdown-yu-fa-he-gong-ju.html" rel="bookmark">
-    markdown 语法和工具</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/markdown-yu-fa-he-gong-ju.html">Read more</a></p>
-
-      <p class="info">
-<h4>
-Posted Sat 27 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
-</h4>      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/linuxhe-lei-unixxi-tong-shang-5ge-zui-jia-kai-yuan-bei-fen-gong-ju.html" rel="bookmark">
-    Linux和类Unix系统上5个最佳开源备份工具</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/linuxhe-lei-unixxi-tong-shang-5ge-zui-jia-kai-yuan-bei-fen-gong-ju.html">Read more</a></p>
-
-      <p class="info">
-<h4>
-Posted Sat 27 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
-</h4>      </p>
-
-      </article>
-
-
-      <article>
-      <h1><a href="http://www.ciandcd.com/4ge-ke-yi-fa-song-wan-zheng-dian-zi-you-jian-de-ming-ling-xing-gong-ju.html" rel="bookmark">
-    4个可以发送完整电子邮件的命令行工具</a></h1>
-
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/4ge-ke-yi-fa-song-wan-zheng-dian-zi-you-jian-de-ming-ling-xing-gong-ju.html">Read more</a></p>
-
-      <p class="info">
-<h4>
-Posted Sat 27 June 2015
- by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
-</h4>      </p>
-
-      </article>
-
-
-      <article>
       <h1><a href="http://www.ciandcd.com/sshfan-xiang-lian-jie-ji-autossh.html" rel="bookmark">
     SSH反向连接及Autossh</a></h1>
 
-      
-
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/sshfan-xiang-lian-jie-ji-autossh.html">Read more</a></p>
+      From:<a href="http://www.cnblogs.com/itech/p/4572275.html">http://www.cnblogs.com/itech/p/4572275.html</a><br><br><div><p>&#36716;&#33258;&#65306;&#160;http://www.cnblogs.com/eshizhan/archive/2012/07/16/2592902.html</p><p><strong>0.</strong>&#25509;&#35302;Linux&#24656;&#24597;&#23545;SSH&#20877;&#29087;&#24713;&#19981;&#36807;&#20102;&#65292;&#36824;&#26377;scp&#65292;sftp&#21508;&#31181;&#26041;&#20415;&#30340;&#21151;&#33021;&#65292;&#19968;&#33324;&#30340;&#20351;&#29992;&#37117;&#38656;&#35201;ip:port&#65288;&#22914;&#26524;&#19981;&#26159;&#40664;&#35748;22&#30340;&#35805;&#65289;&#65292;&#20294;&#26377;&#20123;&#24773;&#20917;&#27604;&#36739;&#29305;&#27530;&#65292;&#23601;&#26159;&#24819;&#36830;&#25509;&#19968;&#21488;&#20869;&#32593;&#20027;&#26426;&#65288;&#27604;&#22914;&#20844;&#21496;&#20869;&#32593;&#65292;&#24403;&#28982;&#20320;&#32943;&#23450;&#20570;&#19981;&#20102;Port Forwarding&#65292;&#38500;&#38750;&#20320;&#24819;&#22312;&#20844;&#21496;&#38450;&#28779;&#22681;&#19978;&#25286;&#20010;&#27934;&#65289;&#12290;&#31245;&#25026;&#19968;&#28857;&#32593;&#32476;&#30340;&#31461;&#38795;&#20250;&#26126;&#30333;&#65292;Internet&#19978;&#21435;&#20027;&#21160;&#36830;&#25509;&#19968;&#21488;&#20869;&#32593;&#26159;&#19981;&#21487;&#33021;&#30340;&#65292;&#19968;&#33324;&#30340;&#35299;&#20915;&#26041;&#26696;&#20998;&#20004;&#31181;&#65292;&#19968;&#31181;&#26159;&#31471;&#21475;&#26144;&#23556;&#65288;Port Forwarding&#65289;&#65292;&#23558;&#20869;&#32593;&#20027;&#26426;&#30340;&#26576;&#20010;&#31471;&#21475;Open&#20986;&#38450;&#28779;&#22681;&#65292;&#30456;&#24403;&#20110;&#20004;&#20010;&#22806;&#32593;&#20027;&#26426;&#36890;&#20449;&#65307;&#21478;&#19968;&#31181;&#26159;&#20869;&#32593;&#20027;&#26426;&#20027;&#21160;&#36830;&#25509;&#21040;&#22806;&#32593;&#20027;&#26426;&#65292;&#21448;&#34987;&#31216;&#20316;&#21453;&#21521;&#36830;&#25509;&#65288;Reverse Connection&#65289;&#65292;&#36825;&#26679;NAT&#36335;&#30001;/&#38450;&#28779;&#22681;&#23601;&#20250;&#22312;&#20869;&#32593;&#20027;&#26426;&#21644;&#22806;&#32593;&#20027;&#26426;&#20043;&#38388;&#24314;&#31435;&#26144;&#23556;&#65292;&#33258;&#28982;&#21487;&#20197;&#30456;&#20114;&#36890;&#20449;&#20102;&#12290;&#20294;&#26159;&#65292;&#36825;&#31181;&#26144;&#23556;&#26159;NAT&#36335;&#30001;&#33258;&#21160;&#32500;&#25345;&#30340;&#65292;&#19981;&#20250;&#25345;&#32493;&#19979;&#21435;&#65292;&#22914;&#26524;&#36830;&#25509;&#26029;&#24320;&#25110;&#32773;&#32593;&#32476;&#19981;&#31283;&#23450;&#37117;&#20250;&#23548;&#33268;&#36890;&#20449;&#22833;&#36133;&#65292;&#36825;&#26102;&#20869;&#32593;&#20027;&#26426;&#38656;&#35201;&#20877;&#27425;&#20027;&#21160;&#36830;&#25509;&#21040;&#22806;&#32593;&#20027;&#26426;&#65292;&#24314;&#31435;&#36830;&#25509;&#12290;</p>&#13;
+<p>&#160;</p>&#13;
+<h2>1.&#29702;&#35770;&#30340;&#20171;&#32461;&#23436;&#20102;&#65292;&#19979;&#38754;&#23454;&#38469;&#25805;&#20316;&#65306;</h2>&#13;
+<p>A&#35201;&#25511;&#21046;B</p>&#13;
+<p>A&#20027;&#26426;&#65306;&#22806;&#32593;&#65292;ip&#65306;123.123.123.123&#65292;sshd&#31471;&#21475;&#65306;2221</p>&#13;
+<p>B&#20027;&#26426;&#65306;&#20869;&#32593;&#65292;sshd&#31471;&#21475;&#65306;2223</p>&#13;
+<p>&#26080;&#35770;&#26159;&#22806;&#32593;&#20027;&#26426;A&#65292;&#36824;&#26159;&#20869;&#32593;&#20027;&#26426;B&#37117;&#38656;&#35201;&#36305;ssh daemon</p>&#13;
+<p>&#160;</p>&#13;
+<h4>1.1.&#39318;&#20808;&#22312;B&#19978;&#25191;&#34892;</h4>&#13;
+<pre>$ ssh -NfR 1234:localhost:2223 user1@123.123.123.123 -p2221</pre>&#13;
+<p>&#36825;&#21477;&#35805;&#30340;&#24847;&#24605;&#26159;&#23558;A&#20027;&#26426;&#30340;1234&#31471;&#21475;&#21644;B&#20027;&#26426;&#30340;2223&#31471;&#21475;&#32465;&#23450;&#65292;&#30456;&#24403;&#20110;&#36828;&#31243;&#31471;&#21475;&#26144;&#23556;&#65288;Remote Port Forwarding&#65289;&#12290;</p>&#13;
+<p>&#36825;&#37324;&#27599;&#27425;&#38656;&#35201;&#36755;&#20837;A&#20027;&#26426;user1&#30340;&#30331;&#38470;&#23494;&#30721;&#65292;&#21518;&#38754;&#20250;&#35762;&#21040;&#35299;&#20915;&#21150;&#27861;&#12290;</p>&#13;
+<p>&#160;</p>&#13;
+<h4>1.2.&#36825;&#26102;&#22312;A&#20027;&#26426;&#19978;sshd&#20250;listen&#26412;&#22320;1234&#31471;&#21475;</h4>&#13;
+<pre>$ ss -ant<br>&#13;
+State      Recv-Q Send-Q        Local Address:Port          Peer Address:Port&#13;
+LISTEN     0      128               127.0.0.1:1234                     *:*</pre>&#13;
+<h4>1.3.&#20687;&#24179;&#26102;&#19968;&#26679;&#36830;&#25509;&#21040;A&#20027;&#26426;&#30340;1234&#31471;&#21475;&#23601;&#21487;&#20197;&#25511;&#21046;&#20869;&#32593;B&#20027;&#26426;&#20102;</h4>&#13;
+<pre>$ ssh localhost -p1234</pre>&#13;
+<p>&#160;</p>&#13;
+<h3>2.&#19968;&#24320;&#22987;&#25552;&#21040;&#65292;&#36825;&#31181;&#21453;&#21521;&#36830;&#25509;&#65288;Reverse Connection&#65289;&#19981;&#31283;&#23450;&#65292;&#21487;&#33021;&#38543;&#26102;&#26029;&#24320;&#65292;&#38656;&#35201;&#20869;&#32593;&#20027;&#26426;B&#20877;&#27425;&#21521;&#22806;&#32593;A&#21457;&#36215;&#36830;&#25509;&#65292;&#36825;&#26102;&#38656;&#35201;&#20010;&#8220;&#26379;&#21451;&#8221;&#24110;&#20320;&#22312;&#20869;&#32593;B&#20027;&#26426;&#25191;&#34892;&#36825;&#26465;&#21629;&#20196;&#12290;&#23427;&#23601;&#26159;Autossh&#12290;</h3>&#13;
+<p>&#22312;&#27492;&#20043;&#21069;&#36824;&#35201;&#35299;&#20915;&#20043;&#21069;&#30340;&#19968;&#20010;&#38382;&#39064;&#65292;&#37027;&#23601;&#26159;&#27599;&#27425;&#20869;&#32593;&#20027;&#26426;B&#36830;&#25509;&#22806;&#32593;&#20027;&#26426;A&#26102;&#37117;&#38656;&#35201;&#36755;&#20837;&#23494;&#30721;&#65292;&#36825;&#20010;&#38382;&#39064;ssh&#26412;&#36523;&#26159;&#25552;&#20379;&#21478;&#22806;&#19968;&#31181;&#39564;&#35777;&#26041;&#24335;&#8212;&#8212;&#36890;&#36807;&#23494;&#38053;&#39564;&#35777;&#29992;&#25143;&#36523;&#20221;&#65292;&#23454;&#29616;&#33258;&#21160;&#30331;&#24405;&#12290;</p>&#13;
+<p>&#160;</p>&#13;
+<h4>2.1.&#22312;&#20869;&#32593;B&#20027;&#26426;&#19978;&#29983;&#20135;&#20844;&#38053;&#21644;&#31169;&#38053;</h4>&#13;
+<pre>$ ssh-keygen&#13;
+...(&#19968;&#30452;&#25353;Enter&#65292;&#26368;&#21518;&#22312;~/.ssh/&#19979;&#29983;&#25104;&#23494;&#38053;)&#13;
+$ ls ~/.ssh/&#13;
+id_rsa id_rsa.pub known_hosts</pre>&#13;
+<p>&#160;</p>&#13;
+<h4>2.2.&#22797;&#21046;B&#20027;&#26426;&#19978;&#29983;&#25104;&#30340;id_rsa.pub&#20844;&#38053;&#21040;&#22806;&#32593;A&#20027;&#26426;&#19978;&#65292;&#24182;&#23558;&#20869;&#23481;&#21152;&#20837;&#21040;~/.ssh/authorized_keys&#20013;</h4>&#13;
+<pre>$ cat id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</pre>&#13;
+<p>&#35797;&#19979;&#65292;&#20869;&#32593;B&#20027;&#26426;&#36830;&#25509;&#22806;&#32593;A&#20027;&#26426;&#65292;&#23601;&#19981;&#20877;&#36755;&#20837;&#23494;&#30721;&#39564;&#35777;&#20102;</p>&#13;
+<p>&#34917;&#20805;&#65306;&#20170;&#22825;&#20102;&#35299;&#21040;ssh-copy-id&#36825;&#20010;&#21629;&#20196;&#65292;&#19978;&#38754;&#36825;&#20010;&#25805;&#20316;&#23601;&#21464;&#30340;&#31616;&#21333;&#20102;</p>&#13;
+<pre>$ ssh-copy-id user1@123.123.123.123</pre>&#13;
+<p>&#160;</p>&#13;
+<h4>2.3.&#20877;&#26469;&#30475;&#30475;Autossh&#30340;&#29992;&#27861;</h4>&#13;
+<pre>$ autossh -M 5678 -NR 1234:localhost:2223 user1@123.123.123.123 -p2221</pre>&#13;
+<p>&#27604;&#20043;&#21069;&#30340;&#21629;&#20196;&#28155;&#21152;&#30340;&#19968;&#20010;-M 5678&#21442;&#25968;&#65292;&#36127;&#36131;&#36890;&#36807;5678&#31471;&#21475;&#30417;&#35270;&#36830;&#25509;&#29366;&#24577;&#65292;&#36830;&#25509;&#26377;&#38382;&#39064;&#26102;&#23601;&#20250;&#33258;&#21160;&#37325;&#36830;&#65292;&#21435;&#25481;&#20102;&#19968;&#20010;-f&#21442;&#25968;&#65292;&#22240;&#20026;autossh&#26412;&#36523;&#23601;&#20250;&#22312;background&#36816;&#34892;&#12290;</p>&#13;
+<p>&#160;</p>&#13;
+<h2>3.&#32456;&#26497;&#26041;&#26696;&#65306;&#24403;&#37325;&#21551;&#20869;&#32593;B&#20027;&#26426;&#65292;&#35841;&#26469;&#33258;&#21160;Autossh&#21602;&#65292;&#21152;&#20837;daemon&#21543;</h2>&#13;
+<p>&#20197;daemon&#26041;&#24335;&#25191;&#34892;&#65292;&#30456;&#24403;&#20110;root&#21435;&#25191;&#34892;autossh, ssh&#65292;&#36825;&#26102;&#21018;&#25165;&#26222;&#36890;&#29992;&#25143;&#30446;&#24405;&#19979;&#30340;.ssh/authorized_keys&#25991;&#20214;&#20250;&#19981;&#36215;&#25928;&#12290;&#26377;&#20004;&#31181;&#21150;&#27861;&#35299;&#20915;&#65292;&#19968;&#31181;&#26159;&#29992;autossh&#30340;&#21442;&#25968;&#25351;&#23450;.ssh&#36335;&#24452;&#65307;&#21478;&#22806;&#19968;&#31181;&#26159;&#20197;&#26222;&#36890;&#29992;&#25143;&#36523;&#20221;&#25191;&#34892;daemon&#65292;&#19979;&#38754;&#26159;&#31532;&#20108;&#31181;&#26041;&#24335;&#12290;</p>&#13;
+<pre>/bin/su -c '/usr/bin/autossh -M 5678 -NR 1234:localhost:2223 user1@123.123.123.123 -p2221' - user1</pre>&#13;
+<p>autossh&#36824;&#26377;&#24456;&#22810;&#21442;&#25968;&#65292;&#29992;&#26469;&#35774;&#32622;&#37325;&#36830;&#38388;&#38548;&#31561;&#31561;&#12290;</p>&#13;
+<p>&#23558;&#19978;&#38754;&#21629;&#20196;&#25918;&#20837;&#19979;&#38754;&#21508;&#21551;&#21160;&#26041;&#24335;&#20013;&#65292;&#26681;&#25454;&#33258;&#24049;&#31995;&#32479;&#33258;&#24049;&#37197;&#32622;&#65306;</p>&#13;
+<p>SysV&#65306;/etc/inid.d/autossh</p>&#13;
+<p>Upstart: /etc/init/autossh.conf</p>&#13;
+<p>systemd: /usr/lib/systemd/system/autossh.service</p>&#13;
+<p>&#160;</p>&#13;
+<p>&#160;</p>&#13;
+<h4>P.S.</h4>&#13;
+<p>1.&#23478;&#37324;&#26159;ADSL&#30340;&#35805;&#65292;&#29992;DDNS&#65292;&#35299;&#20915;ip&#38382;&#39064;</p>&#13;
+<p>2.&#22806;&#32593;&#26377;&#36335;&#30001;&#30340;&#21487;&#35774;&#19979;&#31471;&#21475;&#26144;&#23556;</p>&#13;
+<p>3.&#34429;&#28982;&#26377;&#23494;&#38053;&#21644;&#23494;&#30721;&#20445;&#25252;&#65292;&#20294;&#36824;&#35831;&#23567;&#24515;&#20351;&#29992;</p>&#13;
+</div>
 
       <p class="info">
 <h4>
-Posted Sat 27 June 2015
+Posted Sun 28 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
 in <a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a>
+(<a href="http://www.ciandcd.com/tag/linux.html">linux</a>)</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/managing-change-in-sap-reducing-cost-and-risk-with-ibm-devops.html" rel="bookmark">
+    Managing change in SAP: reducing cost and risk with IBM DevOps</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/managing-change-in-sap-reducing-cost-and-risk-with-ibm-devops.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Sun 28 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
 </h4>      </p>
 
       </article>
 
 
       <article>
-      <h1><a href="http://www.ciandcd.com/gitlab-7104-released.html" rel="bookmark">
-    GitLab 7.10.4 released</a></h1>
+      <h1><a href="http://www.ciandcd.com/customer-feedback-drives-continuous-delivery-planning-for-devops.html" rel="bookmark">
+    Customer Feedback drives Continuous Delivery - Planning for DevOps</a></h1>
 
       
 
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/gitlab-7104-released.html">Read more</a></p>
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/customer-feedback-drives-continuous-delivery-planning-for-devops.html">Read more</a></p>
 
       <p class="info">
 <h4>
-Posted Sat 27 June 2015
+Posted Sun 28 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
+in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
 </h4>      </p>
 
       </article>
 
 
       <article>
-      <h1><a href="http://www.ciandcd.com/a-new-gitlab-logo.html" rel="bookmark">
-    A new GitLab Logo</a></h1>
+      <h1><a href="http://www.ciandcd.com/test-early-test-often-continuous-testing-as-part-of-the-devops-lifecycle.html" rel="bookmark">
+    Test early, test often. Continuous testing as part of the DevOps lifecycle</a></h1>
 
       
 
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/a-new-gitlab-logo.html">Read more</a></p>
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/test-early-test-often-continuous-testing-as-part-of-the-devops-lifecycle.html">Read more</a></p>
 
       <p class="info">
 <h4>
-Posted Sat 27 June 2015
+Posted Sun 28 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
+in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
 </h4>      </p>
 
       </article>
 
 
       <article>
-      <h1><a href="http://www.ciandcd.com/simple-words-for-a-gitlab-newbie.html" rel="bookmark">
-    Simple words for a GitLab Newbie</a></h1>
+      <h1><a href="http://www.ciandcd.com/devops-for-enterprise-systems-a-quick-intro.html" rel="bookmark">
+    DevOps for Enterprise Systems - a quick intro</a></h1>
 
       
 
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/simple-words-for-a-gitlab-newbie.html">Read more</a></p>
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/devops-for-enterprise-systems-a-quick-intro.html">Read more</a></p>
 
       <p class="info">
 <h4>
-Posted Sat 27 June 2015
+Posted Sun 28 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
+in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
 </h4>      </p>
 
       </article>
 
 
       <article>
-      <h1><a href="http://www.ciandcd.com/gitlab-gitorious-and-free-software.html" rel="bookmark">
-    GitLab, Gitorious, and Free Software</a></h1>
+      <h1><a href="http://www.ciandcd.com/ibm-mobile-testing-point-of-view.html" rel="bookmark">
+    IBM mobile testing point of view</a></h1>
 
       
 
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/gitlab-gitorious-and-free-software.html">Read more</a></p>
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/ibm-mobile-testing-point-of-view.html">Read more</a></p>
 
       <p class="info">
 <h4>
-Posted Sat 27 June 2015
+Posted Sun 28 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
+in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
 </h4>      </p>
 
       </article>
 
 
       <article>
-      <h1><a href="http://www.ciandcd.com/security-advisory-for-logjam-vulnerability.html" rel="bookmark">
-    Security advisory for Logjam vulnerability</a></h1>
+      <h1><a href="http://www.ciandcd.com/rancher-labs-hopes-to-help-devops-teams-rope-in-container-management.html" rel="bookmark">
+    Rancher Labs hopes to help DevOps teams rope in container management</a></h1>
 
       
 
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/security-advisory-for-logjam-vulnerability.html">Read more</a></p>
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/rancher-labs-hopes-to-help-devops-teams-rope-in-container-management.html">Read more</a></p>
 
       <p class="info">
 <h4>
-Posted Sat 27 June 2015
+Posted Sun 28 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
+in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
 </h4>      </p>
 
       </article>
 
 
       <article>
-      <h1><a href="http://www.ciandcd.com/gitlab-711-released-with-two-factor-authentication-and-a-publicly-viewable-enterprise-edition.html" rel="bookmark">
-    GitLab 7.11 released with Two-factor Authentication and a publicly viewable Enterprise Edition</a></h1>
+      <h1><a href="http://www.ciandcd.com/open-source-and-samsung-take-center-stage-at-red-hat-summit.html" rel="bookmark">
+    Open source and Samsung take center stage at Red Hat Summit</a></h1>
 
       
 
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/gitlab-711-released-with-two-factor-authentication-and-a-publicly-viewable-enterprise-edition.html">Read more</a></p>
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/open-source-and-samsung-take-center-stage-at-red-hat-summit.html">Read more</a></p>
 
       <p class="info">
 <h4>
-Posted Sat 27 June 2015
+Posted Sun 28 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
+in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
 </h4>      </p>
 
       </article>
 
 
       <article>
-      <h1><a href="http://www.ciandcd.com/gitlab-7105-released.html" rel="bookmark">
-    GitLab 7.10.5 released</a></h1>
+      <h1><a href="http://www.ciandcd.com/there-is-only-one-devops-connect.html" rel="bookmark">
+    There is only one DevOps Connect</a></h1>
 
       
 
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/gitlab-7105-released.html">Read more</a></p>
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/there-is-only-one-devops-connect.html">Read more</a></p>
 
       <p class="info">
 <h4>
-Posted Sat 27 June 2015
+Posted Sun 28 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
+in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
 </h4>      </p>
 
       </article>
 
 
       <article>
-      <h1><a href="http://www.ciandcd.com/gitlab-7114-released.html" rel="bookmark">
-    GitLab 7.11.4 released</a></h1>
+      <h1><a href="http://www.ciandcd.com/visualizing-and-defining-requirements-comes-to-devops.html" rel="bookmark">
+    Visualizing and defining requirements comes to DevOps</a></h1>
 
       
 
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/gitlab-7114-released.html">Read more</a></p>
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/visualizing-and-defining-requirements-comes-to-devops.html">Read more</a></p>
 
       <p class="info">
 <h4>
-Posted Sat 27 June 2015
+Posted Sun 28 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
+in <a href="http://www.ciandcd.com/category/devops.html">devops</a>
 </h4>      </p>
 
       </article>
 
 
       <article>
-      <h1><a href="http://www.ciandcd.com/gitlabcom-outage-on-2015-05-29.html" rel="bookmark">
-    GitLab.com outage on 2015-05-29</a></h1>
+      <h1><a href="http://www.ciandcd.com/integrating-dunitx-unit-testing-with-continua-ci.html" rel="bookmark">
+    Integrating DUnitX Unit Testing with Continua CI</a></h1>
 
       
 
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/gitlabcom-outage-on-2015-05-29.html">Read more</a></p>
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/integrating-dunitx-unit-testing-with-continua-ci.html">Read more</a></p>
 
       <p class="info">
 <h4>
-Posted Sat 27 June 2015
+Posted Sun 28 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
 </h4>      </p>
 
       </article>
 
 
       <article>
-      <h1><a href="http://www.ciandcd.com/note-on-license-expiration-in-gitlab-7105-ee.html" rel="bookmark">
-    Note on license expiration in GitLab 7.10.5 EE</a></h1>
+      <h1><a href="http://www.ciandcd.com/building-github-pull-requests-with-continua-ci.html" rel="bookmark">
+    Building GitHub Pull Requests with Continua CI</a></h1>
 
       
 
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/note-on-license-expiration-in-gitlab-7105-ee.html">Read more</a></p>
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/building-github-pull-requests-with-continua-ci.html">Read more</a></p>
 
       <p class="info">
 <h4>
-Posted Sat 27 June 2015
+Posted Sun 28 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
 </h4>      </p>
 
       </article>
 
 
       <article>
-      <h1><a href="http://www.ciandcd.com/how-gitlab-uses-unicorn-and-unicorn-worker-killer.html" rel="bookmark">
-    How GitLab uses Unicorn and unicorn-worker-killer</a></h1>
+      <h1><a href="http://www.ciandcd.com/adding-custom-reports-to-continua-ci-build-results.html" rel="bookmark">
+    Adding custom reports to Continua CI Build Results</a></h1>
 
       
 
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/how-gitlab-uses-unicorn-and-unicorn-worker-killer.html">Read more</a></p>
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/adding-custom-reports-to-continua-ci-build-results.html">Read more</a></p>
 
       <p class="info">
 <h4>
-Posted Sat 27 June 2015
+Posted Sun 28 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
 </h4>      </p>
 
       </article>
 
 
       <article>
-      <h1><a href="http://www.ciandcd.com/implementing-gitlab-ciyml.html" rel="bookmark">
-    Implementing .gitlab-ci.yml</a></h1>
+      <h1><a href="http://www.ciandcd.com/dunitx-has-a-wizard.html" rel="bookmark">
+    DUnitX has a Wizard!</a></h1>
 
       
 
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/implementing-gitlab-ciyml.html">Read more</a></p>
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/dunitx-has-a-wizard.html">Read more</a></p>
 
       <p class="info">
 <h4>
-Posted Sat 27 June 2015
+Posted Sun 28 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
 </h4>      </p>
 
       </article>
 
 
       <article>
-      <h1><a href="http://www.ciandcd.com/did-you-install-gitlab-from-source-check-your-git-version.html" rel="bookmark">
-    Did you install GitLab from source? Check your Git version</a></h1>
+      <h1><a href="http://www.ciandcd.com/automated-builds-vs-continuous-integration.html" rel="bookmark">
+    Automated Builds vs Continuous Integration</a></h1>
 
       
 
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/did-you-install-gitlab-from-source-check-your-git-version.html">Read more</a></p>
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/automated-builds-vs-continuous-integration.html">Read more</a></p>
 
       <p class="info">
 <h4>
-Posted Sat 27 June 2015
+Posted Sun 28 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
 </h4>      </p>
 
       </article>
 
 
       <article>
-      <h1><a href="http://www.ciandcd.com/changes-to-enterprise-edition-subscription-pricing.html" rel="bookmark">
-    Changes to Enterprise Edition subscription pricing</a></h1>
+      <h1><a href="http://www.ciandcd.com/finalbuilder-and-team-foundation-server-2013.html" rel="bookmark">
+    FinalBuilder and Team Foundation Server 2013</a></h1>
 
       
 
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/changes-to-enterprise-edition-subscription-pricing.html">Read more</a></p>
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/finalbuilder-and-team-foundation-server-2013.html">Read more</a></p>
 
       <p class="info">
 <h4>
-Posted Sat 27 June 2015
+Posted Sun 28 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
 </h4>      </p>
 
       </article>
 
 
       <article>
-      <h1><a href="http://www.ciandcd.com/feature-highlight-approve-merge-request.html" rel="bookmark">
-    Feature Highlight: Approve Merge Request</a></h1>
+      <h1><a href="http://www.ciandcd.com/continua-ci-and-the-openssl-heartbleed-vulnerability.html" rel="bookmark">
+    Continua CI and the OpenSSL Heartbleed Vulnerability</a></h1>
 
       
 
-        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/feature-highlight-approve-merge-request.html">Read more</a></p>
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/continua-ci-and-the-openssl-heartbleed-vulnerability.html">Read more</a></p>
 
       <p class="info">
 <h4>
-Posted Sat 27 June 2015
+Posted Sun 28 June 2015
  by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
-in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/refuge-for-automated-build-studio-users.html" rel="bookmark">
+    Refuge for Automated Build Studio Users</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/refuge-for-automated-build-studio-users.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Sun 28 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/automated-ui-testing-done-right-with-continuaci.html" rel="bookmark">
+    Automated UI Testing Done Right with ContinuaCI</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/automated-ui-testing-done-right-with-continuaci.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Sun 28 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://www.ciandcd.com/continuaci-version-15.html" rel="bookmark">
+    ContinuaCI Version 1.5</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://www.ciandcd.com/continuaci-version-15.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Sun 28 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
 </h4>      </p>
 
       </article>
@@ -786,6 +517,7 @@ in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
         <li><a href="http://www.ciandcd.com/index9.html">9</a></li>
         <li><a href="http://www.ciandcd.com/index10.html">10</a></li>
         <li><a href="http://www.ciandcd.com/index11.html">11</a></li>
+        <li><a href="http://www.ciandcd.com/index12.html">12</a></li>
 
     <li><a href="http://www.ciandcd.com/index2.html">&raquo;</a></li>
 </ul>        </nav>
@@ -806,6 +538,7 @@ in <a href="http://www.ciandcd.com/category/scm.html">scm</a>
 </ul>
 
 <ul class="tagcloud">
+        <li class="tag-4"><a href="http://www.ciandcd.com/tag/linux.html">linux</a></li>
 </ul>
 
 <h2>链接</h2>

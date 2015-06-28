@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Jazz Team Blog  Collaborative Lifecycle Management 6.0 in a nutshell - ciandcd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://www.ciandcd.com/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://www.ciandcd.com/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="http://www.ciandcd.com/theme/tipuesearch/tipuesearch.css" media="screen">
+<link href="http://www.ciandcd.com/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="ciandcd RSS" />
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://www.ciandcd.com/index.html">ciandcd </a>
+<h4>软件持续集成和持续发布 QQ群：172758282，437085002</h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.ciandcd.com/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://www.ciandcd.com/index.html">首页</a></li>
+
+  <li class="active"><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li ><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+
+  
+    <li ><a href="http://www.ciandcd.com/pages/guan-yu.html">关于</a></li>
+    <li ><a href="http://www.ciandcd.com/pages/awesome.html">Awesome</a></li>
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://www.ciandcd.com/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input">
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    Jazz Team Blog  Collaborative Lifecycle Management 6.0 in a nutshell</h2>
+From:<a href="https://jazz.net/blog/index.php/2015/06/26/collaborative-lifecycle-mangagement-6-0-in-a-nutshell/">https://jazz.net/blog/index.php/2015/06/26/collaborative-lifecycle-mangagement-6-0-in-a-nutshell/</a><br><br><div><p><a rel="attachment wp-att-13334" href="https://jazz.net/blog/index.php/2015/06/26/collaborative-lifecycle-mangagement-6-0-in-a-nutshell/clm-splash-ga2/"><img class="aligncenter size-full wp-image-13334" title="clm-splash-ga2" src="https://jazz.net/blog/wp-content/uploads/2015/06/clm-splash-ga2.png" alt="CLM 6.0 is here!" width="580" height="300"></a></p>
+<p>Since <a href="http://www-01.ibm.com/common/ssi/cgi-bin/ssialias?subtype=ca&amp;infotype=an&amp;appname=iSource&amp;supplier=897&amp;letternum=ENUS215-208" target="_blank">our announcement</a> on June 9th, we&#8217;ve spent the last couple of weeks here on Jazz.net sharing with all of you more information about the new features and their value. We&#8217;re planning on spending some more time in the next couple of weeks continuing that sharing. But today is an exciting day for all of us on the Collaborative Lifecycle Management (CLM) team&#8212;<a href="https://jazz.net/downloads/clm/releases/6.0" target="_blank">Version 6.0 is generally available!</a></p>
+<p>This is a culmination of a lengthy development cycle for us. If you were following along here on Jazz.net, we developed new capabilities over the course of 11 sprints. Much of that, which you&#8217;ll see as you look through the content in v6.0, was required for the effort&#8212;from the Jazz Foundation on up&#8212;to provide configuration management across the integrated solution. But what you don&#8217;t see, or what maybe isn&#8217;t immediately apparent, is all the work occurring behind the scenes.</p>
+<p>So, to highlight just a few of the changes:</p>
+<ul>
+<li>During v6.0, we shifted to      building twice per day&#8212;10 times per week. This allowed us to slow the      amount of feature change occurring in just daily builds to ensure a more      stable experience.</li>
+<li>We expanded our      development pipeline to 14 different tests, and those tests run against      every build. If you look back as far as five years ago, we had no      automated development pipeline. So from zero automated pipeline testing to      running 140 pipeline tests (14 tests for 10 builds every week) in five      years.</li>
+<li>We built a federated      environment in which to test configuration management. This distributed      environment was built to mimic some of our more complex customer shops and      allow us a much greater depth of testing for v6.0 than we&#8217;ve had in the      past.</li>
+</ul>
+<p>Feature development included Configuration Management as well as a number of DevOps enhancements.</p>
+<p>You&#8217;ll see a lot of Configuration Management content on Jazz.net related to CLM v6.0. Rather than try to give it a full summary here, I&#8217;ll point you to some key information:</p>
+<ul>
+<li>We&#8217;ve put Configuration      Management behind an activation key. The intent here was to ensure you are      walking through <a href="https://jazz.net/servlet/clm-cm/request-key" target="_blank">all the considerations related to CM</a> before you turn it on.</li>
+<li>If you&#8217;re worried that CM      is really just for clients who are building complex hardware devices, it&#8217;s      not. You can use <a href="https://jazz.net/blog/index.php/2015/06/15/configuration-management-%E2%80%93-it%E2%80%99s-not-just-for-building-airplanes-or-cars/" target="_blank">CM in simple scenarios</a> as well.</li>
+<li>And finally, of course,      once you&#8217;ve considered it and understand how you might use it, visit <a href="http://www-01.ibm.com/support/knowledgecenter/SSYMRC_6.0.0/com.ibm.jazz.vvc.doc/topics/c_cm_assess.html?lang=en" target="_blank">Getting      Started with Configuration Management</a>.</li>
+</ul>
+<p>But CM wasn&#8217;t the only set of feature work in CLM v6.0. <a href="https://jazz.net/blog/index.php/2015/06/24/introducing-safe%c2%ae-with-the-power-of-ibm-devops/" target="_blank">SAFe 3.0 brings a new template to Rational Team Concert</a> (RTC) and extends a project to the business teams involved in development. You can get out of the box and up and running with the SAFe template, improving agility and predictability with role-based dashboards. Continued scalability improvements to Enterprise Edition, integration with UrbanCode Deploy, Single Sign-On (SSO) for Kerberos and OIDC for all RTC clients are numbered among other enhancements. Finally, our Reporting team improved setup and configuration, simplified the customer experience, integrated reports into QuickPlanner, and have given you &#8220;near live&#8221; operational reporting.</p>
+<p>I urge you to stop by our <a href="https://jazz.net/wiki/bin/view/Deployment/WebHome" target="_blank">Deployment wiki</a>, one of our most popular destinations.</p>
+<p>All in all, it&#8217;s been a very active release for both Development and Operations, and one we&#8217;re very proud of.</p>
+<span><img src="https://jazz.net/blog/wp-content/plugins/wp-spamfree/img/wpsf-img.php" width="0" height="0" alt=""></span></div>
+
+<p class="info">
+<h4>
+Posted Sun 28 June 2015
+ by <a class="url fn" href="http://www.ciandcd.com/author/itech001.html">itech001</a>
+in <a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a>
+</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="http://www.ciandcd.com/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://www.ciandcd.com/category/devops.html">devops</a></li>
+  <li ><a href="http://www.ciandcd.com/category/scm.html">scm</a></li>
+  <li ><a href="http://www.ciandcd.com/category/zhong-wen.html">中文</a></li>
+</ul>
+
+<ul class="tagcloud">
+        <li class="tag-4"><a href="http://www.ciandcd.com/tag/linux.html">linux</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.ciandcd.com/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+Built using <a href="http://pelican.notmyidea.org/">Pelican</a> and
+<a href="http://twitter.github.com/bootstrap">Bootstrap</a>.
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://www.ciandcd.com/theme/js/jquery.js"></script>
+<script src="http://www.ciandcd.com/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>
