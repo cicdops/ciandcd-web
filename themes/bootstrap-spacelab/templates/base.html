@@ -167,6 +167,13 @@ bootstrap-itech - a Pelican theme using Bootstrap
 </ul>
 {% endif %}
 
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+{% for cat, null in authors %}
+  <li {% if cat == author %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+{% endfor %}
+</ul>
+
 </nav>
 <!-- /Side bar -->
 
