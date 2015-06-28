@@ -5,9 +5,8 @@ Title: 投稿
 
 #投稿
 1. fork本网站源码:git clone https://github.com/ciandcd/ciandcd-web.git.　　
-1. 将你的文章放到content/category/下对应的子目录中, 如果是原创文章可以放到content/category/原创.　　
-1. 文章的格式可以为markdown，restructuredtext或html,需要一下额外的tags:  
-
+2. 将你的文章放到content/category/下对应的子目录中, 如果是原创文章可以放到content/category/原创.　　
+3. 文章的格式可以为markdown，restructuredtext或html,需要一下额外的tags:  
 .rst格式  
 ```
 My super title
@@ -53,13 +52,13 @@ This is the content of my super blog post.
     </body>
 </html>
 ```
-1. 提交你的文章  
+4. 提交你的文章  
 ```
 git add .
 git commit -m "comment"
 git push
 ```
-1. 你也可以通过QQ群来提供相关的rss feed。  
+5. 你也可以通过QQ群来提供相关的rss feed。  
 
 #联系
 QQ群：172758282，437085002　　
