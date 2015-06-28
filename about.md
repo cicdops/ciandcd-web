@@ -8,8 +8,6 @@ Title: 投稿
 1. 将你的文章放到content/category/下对应的子目录中, 如果是原创文章可以放到content/category/原创.　　
 1. 文章的格式可以为markdown，restructuredtext或html,需要一下额外的tags:  
 
-
-　　
 .rst格式  
 ```
 My super title
