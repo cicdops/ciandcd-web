@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'itech001'
 AUTHORS = u'itech001'
-SITENAME = u'ciandcd.com'
+SITENAME = u'ciandcd'
 SITEURL = 'http://www.ciandcd.com'
 #SITESUBTITLE = 'continuous integration and continuous delivery'
 SITESUBTITLE = '软件持续集成和持续发布 QQ群：172758282，437085002'
