@@ -33,6 +33,7 @@ urls = {
         'http://www.pmease.com/rss/hotnews,feed,,visualbuild',
         'https://jazz.net/blog/index.php/feed/,feed,,jazz',
         'https://www.finalbuilder.com/DesktopModules/LiveBlog/Handlers/Syndication.ashx?mid=632&PortalId=0&tid=181&ItemCount=20,feed,,finalbuilder',
+        'http://blog.travis-ci.com/blog.xml,feed,,travis-ci',
     ],
     'scm':[
         'https://github.com/blog.atom,feed,,github',
