@@ -22,8 +22,8 @@ urls = {
     ],
     'ciandcd': [
         'http://continuousdelivery.com/feed/,feed,,ciandcd',
-        'http://feeds.feedburner.com/AtlassianBlogsBamboo','feed',,'bamboo',
-        'http://feeds.feedburner.com/ContinuousBlog','feed',,'jenkins',
+        'http://feeds.feedburner.com/AtlassianBlogsBamboo,feed,,bamboo',
+        'http://feeds.feedburner.com/ContinuousBlog,feed,,jenkins',
         'http://developer-blog.cloudbees.com/feeds/posts/default,feed,,jenkins',
         'https://jazzweb1.torolab.ibm.com/blog/index.php/feed,feed,,jazz',
         'https://jazzweb1.torolab.ibm.com/pub/planet/feed.rss,feed,,jazz',
