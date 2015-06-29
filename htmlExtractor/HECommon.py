@@ -34,8 +34,11 @@ def writeHtml(outPath,content,title,link,date,authors,tags):
     html = html + '</head><body>'
     html = html + 'From:<a href=' + link + '>' + link + '</a><br><br>'
     html = html + content + '</body></html>'
-    writeFile(outPath,html)
-    print("save to:" + outPath)
+    if os.path.exists(outPath):
+        print("The file " + outPath + " is existed, will ignore.")
+    else:
+        writeFile(outPath,html)
+        print("save to:" + outPath)
 
 def getDomain(url):
   m = re.search(r'http[s]?://(.*?)/',url)
