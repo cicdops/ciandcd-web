@@ -21,6 +21,9 @@ script:
 after_success:
   - echo OK
   - cp 404.html output/.
+  - git add .
+  - git commit -m 'update content'
+  - git push https://${TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git master
   - ghp-import -n output -m "update by travis-ci"
   - git push -qf https://${TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
 after_failure:
