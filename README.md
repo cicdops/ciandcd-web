@@ -88,4 +88,4 @@ http://twitter.github.com/bootstrap
 
 ###License
 1. MIT License for this source code  
-1. [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/) for the content of www.ciandcd.com which includes all blogs, pages and articles  
+1. [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/) for the content of www.ciandcd.com which includes all blogs, pages and articles   

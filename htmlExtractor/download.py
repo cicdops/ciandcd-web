@@ -10,9 +10,10 @@ from optparse import OptionParser
 parser = OptionParser()
 parser.add_option("-u", "--url", dest="url")
 parser.add_option("-t", "--type", dest="type")
-parser.add_option("-c", "--category", dest="category" )
-parser.add_option("-r", "--regex", dest="regex_for_links" )
+parser.add_option("-c", "--category", dest="category")
+parser.add_option("-r", "--regex", dest="regex_for_links")
 parser.add_option("-a", "--tags", dest="tags" )
+parser.add_option("-f", "--force", dest="force")
 (options, args) = parser.parse_args()
 url = options.url
 url_type = options.type #type

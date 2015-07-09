@@ -35,8 +35,13 @@ def writeHtml(outPath,content,title,link,date,authors,tags):
     html = html + '</head><body>'
     html = html + 'From:<a href=' + link + '>' + link + '</a><br><br>'
     html = html + content + '</body></html>'
-    if os.path.exists(outPath):
-        print("The file " + outPath + " is existed, will ignore.")
+    force = 1
+    if(force == 0):
+        if os.path.exists(outPath):
+            print("The file " + outPath + " is existed, will ignore.")
+        else:
+            writeFile(outPath,html)
+            print("save to:" + outPath)
     else:
         writeFile(outPath,html)
         print("save to:" + outPath)
