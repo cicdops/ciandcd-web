@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    Launching Missiles With Haskell</title><meta name="date" content="Sun, 28 Jun 2015 01:30:00 -0400"/><meta name="authors" content="John Cook" /><meta name="tags" content="devops" /></head><body>From:<a href=http://java.dzone.com/articles/launching-missiles-haskell>http://java.dzone.com/articles/launching-missiles-haskell</a><br><br><div><p class="print-link"></p><p>Haskell advocates are fond of saying that a Haskell function cannot launch missiles without you knowing it. Pure functions have no side effects, so they can only do what they purport to do. In a language that does not enforce functional purity, calling a function could have arbitrary side effects, including<strong> launching missiles</strong>. But this cannot happen in Haskell.</p>
+
+<p>The difference between pure functional languages and traditional imperative languages is not quite that simple in practice.</p>
+
+<p>Programming with pure functions is conceptually easy but can be awkward in practice. You could just pass each function the state of the world before the call, and it returns the state of the world after the call. It&#8217;s unrealistic to pass a program&#8217;s entire state as an argument each time, so you&#8217;d like to pass just that state that you need to, and have a convenient way of doing so. You&#8217;d also like the compiler to verify that you&#8217;re only passing around a limited slice of the world. That&#8217;s where <strong>monads</strong> come in.</p>
+
+<p>Suppose you want a function to compute square roots and log its calls. Your square root function would have to take two arguments: the number to find the root of, and the state of the log before the function call. It would also return two arguments: the square root, and the updated log. This is a pain, and it makes function composition difficult.</p>
+
+<p><strong>Monads provide a sort of side-band</strong> for passing state around, things like our function call log. You&#8217;re still passing around the log, but you can do it implicitly using monads. This makes it easier to call and compose two functions that do logging. It also lets the compiler check that you&#8217;re passing around a log but not arbitrary state. A function that updates a log, for example, can effect the state of the log, but it can&#8217;t do anything else. It can&#8217;t launch missiles.</p>
+
+<p>Once monads get large and complicated, it&#8217;s hard to know what side effects they hide. <strong>Maybe they can launch missiles after all</strong>. You can only be sure&#160;by studying the source code. Now how do you know that calling a C function, for example, doesn&#8217;t launch missiles? You study the source code. In that sense Haskell and C aren&#8217;t entirely different.</p>
+
+<p>The Haskell compiler does give you assurances that a C compiler does not. But ultimately you have to study source code to know what a function does and does not do.</p>	
+	<p></p>
+
+    </div></body></html>

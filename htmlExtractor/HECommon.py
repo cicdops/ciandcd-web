@@ -15,6 +15,7 @@ def writeFile(outPath,content):
         print ("Error Opening File " + outPath)
 
 def writeHtml(outPath,content,title,link,date,authors,tags):
+    print('date:authors:tags' + date + authors + tags)
     html = '''<!DOCTYPE html>
     <html lang="zh-cn">
     <head>

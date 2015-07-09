@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    Problems with Cobertura and Sonar 5.1</title><meta name="date" content="Sat, 27 Jun 2015 01:30:44 -0400"/><meta name="authors" content="Alex Staveley" /><meta name="tags" content="devops" /></head><body>From:<a href=http://java.dzone.com/articles/problems-cobertura-and-sonar>http://java.dzone.com/articles/problems-cobertura-and-sonar</a><br><br><div><p class="print-link"></p><p>Recently, I was having some bother trying to use Sonar 5.1 with my Grails 2.4.4 project. I was using the usual Groovy stuff:&#160;<i>Gmetrics, Codenarc and Cobertura</i>. For the Sonar database I was using&#160;<i>Postgres 9.4</i>.</p><p>The logfile for the Sonar runner just gave me this:</p><pre class="shell">build 22-Jun-2015 07:44:30 INFO: ------------------------------------------------------------------------
+build 22-Jun-2015 07:44:30 INFO: EXECUTION FAILURE
+build 22-Jun-2015 07:44:30 INFO: ------------------------------------------------------------------------
+build 22-Jun-2015 07:44:30 Total time: 9.153s
+build 22-Jun-2015 07:44:30 Final Memory: 30M/1039M
+build 22-Jun-2015 07:44:30 INFO: ------------------------------------------------------------------------
+error 22-Jun-2015 07:44:30 ERROR: Error during Sonar runner execution
+error 22-Jun-2015 07:44:30 ERROR: Unable to execute Sonar
+error 22-Jun-2015 07:44:30 ERROR: Caused by: Unable to save file sources
+error 22-Jun-2015 07:44:30 ERROR: Caused by: -1</pre><p>Not much use! I thought there was some permission problem, since&#160;<i>"Unable to save file sources"</i>&#160;usually means that! But there were no permission issues. I then disabled the Cobertura part of the analysis and things were ok, so it was something wrong with the Cobertura part. I then:</p><ul><li>enabled verbose logging -- sonar.verbose=true</li><li>enabled full stack trace logging -- using the -e switch</li><li>enabled full debug logging with the -- using the -X switch</li></ul><p>this provided a few more clues.</p><a href="http://dublintech.blogspot.ie/2015/06/problems-with-cobertura-and-sonar-51.html#" class="toolbar_item command_help help">?</a><pre class="shell">error 22-Jun-2015 11:09:06 ERROR: Error during Sonar runner execution
+build 22-Jun-2015 11:09:06 INFO: ------------------------------------------------------------------------
+error 22-Jun-2015 11:09:06 org.sonar.runner.impl.RunnerException: Unable to execute Sonar
+error 22-Jun-2015 11:09:06  at org.sonar.runner.impl.BatchLauncher$1.delegateExecution(BatchLauncher.java:91)
+error 22-Jun-2015 11:09:06  at org.sonar.runner.impl.BatchLauncher$1.run(BatchLauncher.java:75)
+error 22-Jun-2015 11:09:06  at java.security.AccessController.doPrivileged(Native Method)
+error 22-Jun-2015 11:09:06  at org.sonar.runner.impl.BatchLauncher.doExecute(BatchLauncher.java:69)
+error 22-Jun-2015 11:09:06  at org.sonar.runner.impl.BatchLauncher.execute(BatchLauncher.java:50)
+error 22-Jun-2015 11:09:06  at org.sonar.runner.api.EmbeddedRunner.doExecute(EmbeddedRunner.java:102)
+error 22-Jun-2015 11:09:06  at org.sonar.runner.api.Runner.execute(Runner.java:100)
+error 22-Jun-2015 11:09:06  at org.sonar.runner.Main.executeTask(Main.java:70)
+error 22-Jun-2015 11:09:06  at org.sonar.runner.Main.execute(Main.java:59)
+error 22-Jun-2015 11:09:06  at org.sonar.runner.Main.main(Main.java:53)
+error 22-Jun-2015 11:09:06 Caused by: java.lang.IllegalStateException: Unable to save file sources
+error 22-Jun-2015 11:09:06  at org.sonar.batch.index.SourcePersister.persist(SourcePersister.java:84)
+error 22-Jun-2015 11:09:06  at org.sonar.batch.phases.DatabaseModePhaseExecutor.executePersisters(DatabaseModePhaseExecutor.java:165)
+error 22-Jun-2015 11:09:06  at org.sonar.batch.phases.DatabaseModePhaseExecutor.execute(DatabaseModePhaseExecutor.java:133)
+error 22-Jun-2015 11:09:06  at org.sonar.batch.scan.ModuleScanContainer.doAfterStart(ModuleScanContainer.java:264)
+error 22-Jun-2015 11:09:06  at org.sonar.api.platform.ComponentContainer.startComponents(ComponentContainer.java:92)
+error 22-Jun-2015 11:09:06  at org.sonar.api.platform.ComponentContainer.execute(ComponentContainer.java:77)
+error 22-Jun-2015 11:09:06  at org.sonar.batch.scan.ProjectScanContainer.scan(ProjectScanContainer.java:235)
+error 22-Jun-2015 11:09:06  at org.sonar.batch.scan.ProjectScanContainer.scanRecursively(ProjectScanContainer.java:230)
+error 22-Jun-2015 11:09:06  at org.sonar.batch.scan.ProjectScanContainer.doAfterStart(ProjectScanContainer.java:220)
+error 22-Jun-2015 11:09:06  at org.sonar.api.platform.ComponentContainer.startComponents(ComponentContainer.java:92)
+error 22-Jun-2015 11:09:06  at org.sonar.api.platform.ComponentContainer.execute(ComponentContainer.java:77)
+error 22-Jun-2015 11:09:06  at org.sonar.batch.scan.ScanTask.scan(ScanTask.java:57)
+error 22-Jun-2015 11:09:06  at org.sonar.batch.scan.ScanTask.execute(ScanTask.java:45)
+error 22-Jun-2015 11:09:06  at org.sonar.batch.bootstrap.TaskContainer.doAfterStart(TaskContainer.java:135)
+error 22-Jun-2015 11:09:06  at org.sonar.api.platform.ComponentContainer.startComponents(ComponentContainer.java:92)
+error 22-Jun-2015 11:09:06  at org.sonar.api.platform.ComponentContainer.execute(ComponentContainer.java:77)
+error 22-Jun-2015 11:09:06  at org.sonar.batch.bootstrap.GlobalContainer.executeTask(GlobalContainer.java:158)
+error 22-Jun-2015 11:09:06  at org.sonar.batch.bootstrapper.Batch.executeTask(Batch.java:95)
+error 22-Jun-2015 11:09:06  at org.sonar.batch.bootstrapper.Batch.execute(Batch.java:67)
+error 22-Jun-2015 11:09:06  at org.sonar.runner.batch.IsolatedLauncher.execute(IsolatedLauncher.java:48)
+error 22-Jun-2015 11:09:06  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+error 22-Jun-2015 11:09:06  at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+error 22-Jun-2015 11:09:06  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+error 22-Jun-2015 11:09:06  at java.lang.reflect.Method.invoke(Method.java:606)
+error 22-Jun-2015 11:09:06  at org.sonar.runner.impl.BatchLauncher$1.delegateExecution(BatchLauncher.java:87)
+error 22-Jun-2015 11:09:06  ... 9 more
+error 22-Jun-2015 11:09:06 Caused by: java.lang.ArrayIndexOutOfBoundsException: -1
+error 22-Jun-2015 11:09:06  at java.util.ArrayList.elementData(ArrayList.java:371)
+error 22-Jun-2015 11:09:06  at java.util.ArrayList.get(ArrayList.java:384)
+error 22-Jun-2015 11:09:06  at com.google.protobuf.RepeatedFieldBuilder.getBuilder(RepeatedFieldBuilder.java:245)
+error 22-Jun-2015 11:09:06  at org.sonar.server.source.db.FileSourceDb$Data$Builder.getLinesBuilder(FileSourceDb.java:2911)
+error 22-Jun-2015 11:09:06  at org.sonar.batch.index.SourceDataFactory.</pre><p>Now, I could see earlier in the log, that the Cobertura analysis had finished. I could also see that the Cobertura coverage.xml generated ok (this is the file which collates the code coverage info). The next step after creating the coverage.xml file was for the sonar runner to parse it and send a request to Postgres, something had to going wrong at the parsing stage since connecting to Postgres was definitely not an issue (remember everything fine when Cobertura disabled). I knew there was no problem sending the request to Postgres, so thought there must be something odd in the coverage.xml file which meant Sonar runner failed to parse it. As stated, the coverage.xml file details what line number for each class has and hasn't been covered. Sample:</p><a href="http://dublintech.blogspot.ie/2015/06/problems-with-cobertura-and-sonar-51.html#" class="toolbar_item command_help help">?</a><pre class="xml">&lt;class name="com.dublintech.me.ApiLogFilters" filename="com/dublintech/me/ApiLogFilters.groovy" line-rate="0.0" branch-rate="0.0" complexity="0.0"&gt;
+&#160;&#160;&#160;&#160;&lt;methods&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;method name="&lt;clinit&gt;" signature="()V" line-rate="0.0" branch-rate="1.0"&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;lines&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;line number="25" hits="0" branch="false"&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/line&gt;&lt;/lines&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/method&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;...
+&lt;/methods&gt;&lt;/class&gt;
+...</pre><p>So what kind of things could make the parsing barf? What about if there was some odd line number in the coverage.xml file? hmmm... To check this, I ran the following grep:</p><a href="http://dublintech.blogspot.ie/2015/06/problems-with-cobertura-and-sonar-51.html#" class="toolbar_item command_help help">?</a><pre class="shell">&gt; grep "line number" coverage.xml</pre><p>This gave too much. What about any negative line numbers?</p><pre class="shell">&gt;grep "line number=\"\-" coverage.xml</pre><a href="http://dublintech.blogspot.ie/2015/06/problems-with-cobertura-and-sonar-51.html#" class="toolbar_item command_help help">?</a><br><p>Nope, none. Ok go back to exception, look at this line:</p><a href="http://dublintech.blogspot.ie/2015/06/problems-with-cobertura-and-sonar-51.html#" class="toolbar_item command_help help">?</a><pre class="shell">java.lang.ArrayIndexOutOfBoundsException: -1</pre><p>hmmm... If a line number was 0, I wonder could it make some array parsing in the sonar runner throw index out of bounds?</p><a href="http://dublintech.blogspot.ie/2015/06/problems-with-cobertura-and-sonar-51.html#" class="toolbar_item command_help help">?</a><pre class="shell">&gt;grep "line number=\"0" coverage.xml
+</pre><p>Hit! Time to grep lines before and after and get more info about this file.</p><a href="http://dublintech.blogspot.ie/2015/06/problems-with-cobertura-and-sonar-51.html#" class="toolbar_item command_help help">?</a><pre class="shell">&gt;grep -C20 "line number=\"0" coverage.xml
+</pre><p>This gave me the culprit. It made no sense to me why Cobertura was saying that linenumber 0 had 0 hits. It was still possible to open the Cobertura html report and view the analysis. Sonar was just barfing when it was parsing it. So I removed this file from Cobertura analysis by adding the following to my build config.</p><a href="http://dublintech.blogspot.ie/2015/06/problems-with-cobertura-and-sonar-51.html#" class="toolbar_item command_help help">?</a>123456<code>coverage {</code><code>xml = true</code><code>exclusions = [</code><code>"**/com/dublintech/me/MyOddFile*"</code><code>]</code><code>}</code><p>I then re-ran and hey presto, everything working. The file wasn't in the coverage.xml file. This meant the Sonar runner could parse the file and everything was ok.</p><p>I like sonar, I like a stable build and I like rapid feedback so yeah I was a happy person when it was working again!</p>	
+	<p></p>
+
+    </div></body></html>

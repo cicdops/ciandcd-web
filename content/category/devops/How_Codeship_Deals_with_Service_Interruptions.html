@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+    <meta charset="utf-8"/>
+    <title>
+    How Codeship Deals with Service Interruptions</title><meta name="date" content="Sun, 28 Jun 2015 01:30:00 -0400"/><meta name="authors" content="Florian Motlik" /><meta name="tags" content="devops" /></head><body>From:<a href=http://architects.dzone.com/articles/how-codeship-deals-service>http://architects.dzone.com/articles/how-codeship-deals-service</a><br><br><div><p class="print-link"></p><p>As a continuous delivery service, we form an integral part of our customers&#8217; workflow. Any interruption to our service impacts our customers a lot, so we need to make sure we&#8217;re resolving any service interruption immediately. </p>
+
+<p>By building our system to be very resilient with <a href="http://blog.codeship.com/immutable-infrastructure/">immutable infrastructure at the core,</a> we&#8217;re able to react to most interruptions quickly. Additionally <a href="http://blog.codeship.com/fast-software-development-workflow/">we&#8217;ve implemented automatic health checks</a> to remove systems from production as soon as the load or network latency becomes too high.</p>
+
+
+<p>This is very important when deploying into cloud systems because the cloud behaves more unpredictably than your own hardware. You want to take this into account when building your system so <a href="http://blog.codeship.com/fast-software-development-workflow/">your team can be focused on building your product at all times.</a></p>
+
+<p>A <a href="http://blog.statuspage.io/an-insiders-look-into-incident-management-with-codeships-florian-motlik">recent interview I did with Statuspage</a> prompted me to write in more detail about how we respond to incidents. In this post, I&#8217;ll outline our processes, tools, and the document templates we use to make sure we have a repeatable workflow.</p>
+<h2>Downtime Recognition</h2>
+
+<p>Downtime recognition must always be based on metrics in your system. If downtimes are only recognized when your team or customers see it in the production application a negative impact has already happened.</p>
+
+<p>To make sure we&#8217;ve got great insights into our infrastructure, we use <a href="https://www.librato.com/">Librato Metrics</a>, <a href="https://pingdom.com">Pingdom</a>, and <a href="http://newrelic.com/">New Relic</a> for collecting various application and server metrics. Every system has various alerts set that trigger Pagerduty incidents.</p>
+<h3>Our on-call hours</h3>
+
+<p>We use <a href="https://www.pagerduty.com/">Pagerduty</a> to manage on-call times and notify our team of any service interruption. We&#8217;re spread out between Vienna and Boston and a few other remote locations, so we can cover almost 24 hours without getting into somebody&#8217;s night time. A person woken up in the middle of the night will not perform at their best during the outage. Plus, it ruins their productivity for the next day.</p>
+
+<p>Our local coverage times are as follows:</p>
+
+<ul>
+	<li>Europe: 4 a.m. &#8211; 4 p.m. CEST </li>
+	<li>Boston: 10 a.m. &#8211; 10 p.m. EST</li>
+</ul>
+<p><img src="http://blog.codeship.com/wp-content/uploads/2015/06/Primary-on-call.jpg" alt="Primary on call" class="aligncenter size-full wp-image-1747" height="396" width="885"></p>
+
+<p>Both are reasonable times for each city. In the worst case, somebody might be woken up in the morning in Vienna, though that&#8217;s at a time where we get much less traffic, so service interruptions are less likely. We can cover the whole US workday, from East to West Coast, from Boston so nobody has to be woken up during this most crucial time of the day for us.</p>
+
+<p>We&#8217;ve recently switched to weekly schedules, so you&#8217;re on call for a week in your timezone. Weekends are covered completely by one person, so it&#8217;s rare that you have to be on call on a weekend.</p>
+
+<p>To make sure there&#8217;s always somebody covering even if somebody misses a pager call, we&#8217;ve set up a secondary schedule where even non-technical people are on call.</p>
+<h3>Our primary versus secondary schedules</h3>
+
+<p>The primary schedule is always comprised of people who can fix our infrastructure; the secondary is made up of most of the rest of the team. This has several advantages.</p>
+
+<p>First of all, we share on-call duty between most people in the team. Even if one of the developers doesn&#8217;t see the page, somebody else picks up and can ping other developers and talk to customers.</p>
+
+<p>Having only the development team on a schedule would put an unfair burden on the dev team. It would also make it more difficult to resolve the issue and communicate with customers at the same time.</p>
+
+<p>Through this secondary schedule system, we always have somebody we can pull in to take over customer communication. That can mean calling the person on secondary support at night as well if that&#8217;s necessary. It usually isn&#8217;t necessary to pull in the secondary, but it&#8217;s definitely a great fallback to have.</p>
+
+<p>In case a pager call falls through the first and second layer, Jim, our VPE, is on a third layer, and I am on a fourth layer. This makes sure the escalation goes all through the technical team in Codeship if necessary (thankfully it hasn&#8217;t been for a long time). While growing our team, we&#8217;re constantly iterating on our coverage hours to make sure we have great coverage at all times.</p>
+<h2>Downtime Remediation and Follow Up</h2>
+
+<p>As soon as the issue is discovered, the development team will decide who will look into it. Our customer success team will decide who will take over communication for this specific issue and will work with the assigned developer to communicate regularly with our customers.</p>
+
+<p>By defining those two people, we have a clear line of communication between the developers who know the current status of the issue and customer success who can answer support requests and send updates through Twitter or our Statuspage.</p>
+<h3>Steps while fixing the issue</h3>
+
+<p>The first and most important step is to update our <a href="http://status.codeship.com">Statuspage</a>. We want to make sure we&#8217;re always communicating immediately with our customers if we have a service interruption.</p>
+
+<p><img src="http://blog.codeship.com/wp-content/uploads/2015/06/StatusPage.jpg" alt="StatusPage" class="aligncenter size-full wp-image-1748" height="396" width="885"></p>
+
+<p>We&#8217;re always trying to ask ourselves, &#8220;How would we expect important services that we use to communicate with us in a downtime?&#8221; and &#8220;How can we build more long-term trust through our downtime communication?&#8221;</p><p>The way you communicate to your customers during a downtime will decide if they trust you more or less in the future. A single interruption doesn&#8217;t necessarily erode trust, but a downtime with bad communication definitely will. Customers expect full transparency when issues are coming up, including a detailed description of what the issue is and how it will be resolved.</p>
+
+<p>While fixing the issue, we will regularly update our customers through various channels, and the development team and customer success are in constant contact with each other.</p>
+
+<p>As we&#8217;re currently growing our engineering team, we will probably move to a setup where the roles are even more clearly defined. As soon as you have several teams working on different services where downtime might impact several services at once, you need to have a higher level management role in place to manage the downtime effort.</p>
+
+<p>Heroku released a very interesting post last year about <a href="https://blog.heroku.com/archives/2014/5/9/incident-response-at-heroku">their incident response</a> with the Incident Command System. It&#8217;s definitely an interesting approach that we&#8217;re thinking about for the future.</p>
+<h2>Debriefings</h2>
+
+<p>As soon as an issue is fixed, we start work on a debriefing about the service interruption. We&#8217;ve found structured debriefings to be an incredibly helpful tool to get an overview of the whole issue and determine future steps we need to take.</p><p>Because we&#8217;re spread out between Europe and the US, compiling this debrief is typically done asynchronously on GitHub with people commenting or committing and pushing changes directly onto the debriefing branch. Meetings or calls are done if necessary, but typically don&#8217;t have to be part of a debriefing.</p>
+
+<p>We have a GitHub repository called Operations that contains our debriefings as well as a template for them. I&#8217;ve copied the template into a <a href="https://gist.github.com/flomotlik/333ce689db7099911f9e">GitHub Gist</a>.</p>
+
+<p>The template contains an executive summary so anyone can get a quick overview on what happened. We can share this summary internally.</p>
+
+<p>The debriefing template then dives into different aspects of the issue, from detailed technical descriptions to customer communication. We also capture any steps we can take to improve our resolution efforts in the future.</p>
+
+<p>We want to make sure this document accurately reflects what has happened and digs deep while at the same time doesn&#8217;t push blame on anyone. Only when we analyze exactly what happened in our technology and process are we able to improve. But we won&#8217;t be able to dig deep and make sure everyone opens up about their mistakes if we then turn around and immediately use it to punish people.</p>
+
+<p>One very important lesson we&#8217;ve learned about our template is to leave irrelevant sections of the template empty instead of removing them for a particular debriefing. Removing irrelevant sections makes it difficult to compare debriefings to one another. It can also cause somebody not directly involved with the downtime to wonder if something is missing or getting hidden. Debriefings should be as transparent as possible to maintain your team&#8217;s trust in the process.</p>
+
+<p>The debriefings also capture To Dos, so it&#8217;s easy for anyone to follow up and see if we followed through with steps we needed to improve.</p>
+
+<p>These debriefings also form the core data we use to write any public follow-up blog post or any other customer communication we&#8217;re doing after the resolution.</p>
+<h2>Conclusions</h2>
+
+<p>By having a well-defined process that goes from detection of an issue to customer communication to solving the issue to debriefing, we can focus all of our energy on resolving an issue once it comes up instead of scrambling to find an ad hoc process.</p>
+
+<p>In fact, we want this process to be so second nature to everyone that we wrote down a document outlining those steps and hung them up in some of our restrooms. You can download the document <a href="https://dl.dropboxusercontent.com/u/6869608/HowtoresolveanIssue.pdf">here</a>.</p>
+
+<p>We also include the document as part of our onboarding activities. This ensures that everyone who joins knows exactly how to resolve an issue once they become part of the Pagerduty schedule.</p>
+
+<p>While we&#8217;re definitely going to change and formalize our process as we grow, we feel we&#8217;ve got the right balance of process and flexibility for the current size of our team.</p>
+
+<p>Let us know if you have a different process for finding or resolving issues in your system in the comments.</p><br>	
+	<p></p>
+
+    </div></body></html>

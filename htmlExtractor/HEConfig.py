@@ -11,6 +11,10 @@ urls = {
         'http://feed.cnblogs.com/blog/u/50245/rss,feed,,ciandcd',
         'http://dockone.io/article/468,article,,ciandcd',
         'http://dockone.io/article/470,article,,ciandcd',
+        'http://www.cnblogs.com/zz0412/tag/jenkins/,articles,http://www.cnblogs.com/zz0412/p/jenkins.*,jenkins',
+        'http://www.cnblogs.com/zz0412/tag/jenkins/default.html?page=2,articles,http://www.cnblogs.com/zz0412/p/jenkins.*,jenkins',
+    ],
+    'itech': [
         'http://www.cnblogs.com/itech/category/245402.html,articles,http://www.cnblogs.com/itech/(?:archive).*?,ciandcd'
     ],
     'devops': [
