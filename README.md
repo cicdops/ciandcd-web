@@ -1,7 +1,7 @@
 Title: 投稿
 
 ##LOGO
-![logo](ciandcd.png)  
+![logo](ciandcd.png)   
 
 ##build 状态
 [![Build Status](https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master)](https://travis-ci.org/ciandcd/ciandcd-web/)  
