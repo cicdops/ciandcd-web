@@ -1,6 +1,7 @@
 #!/bin/bash
-#./build.sh
 
-ghp-import -m "update site" -b gh-pages output
-git push origin gh-pages
-
+git pull
+echo `date` > date.txt
+git add .
+git commit -m "update"
+git push  
