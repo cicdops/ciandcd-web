@@ -7,7 +7,7 @@ AUTHORS = u'itech001'
 SITENAME = u'ciandcd'
 SITEURL = 'http://www.ciandcd.com'
 #SITESUBTITLE = 'continuous integration and continuous delivery'
-SITESUBTITLE = '软件持续集成和持续发布 QQ群：172758282，<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=d15cb26237b499f41b21a6e95ddc436766a383a725106a92bd69cdf860a64d34"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="ciandcd.com" title="ciandcd.com"></a>'
+SITESUBTITLE = '软件持续集成和持续发布 QQ群：172758282<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=d15cb26237b499f41b21a6e95ddc436766a383a725106a92bd69cdf860a64d34"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="ciandcd.com" title="ciandcd.com"></a>'
 
 PATH = 'content'
 TIMEZONE = 'Asia/Shanghai'
