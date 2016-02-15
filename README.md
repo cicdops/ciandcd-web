@@ -64,7 +64,7 @@ This is the content of my super blog post.
 
 ##联系
 email: itech001@126.com  
-QQ群：172758282，437085002  　　
+QQ群：172758282  　　
 
 ##感谢
 https://www.python.org/  
