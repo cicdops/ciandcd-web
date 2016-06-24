@@ -25,7 +25,7 @@ CACHE_PATH = 'cache'
 PDF_GENERATOR = False
 #READERS = {'html': None}
 PAGE_PATHS = ['pages']
-STATIC_PATHS = ['images', 'extra/CNAME','extra/robots.txt',]
+STATIC_PATHS = ['images', 'extra/robots.txt',]
 # path-specific metadata
 EXTRA_PATH_METADATA = {
         'extra/CNAME': {'path': 'CNAME'},
