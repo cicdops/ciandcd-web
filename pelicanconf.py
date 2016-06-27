@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'itech001'
 AUTHORS = u'itech001'
-SITENAME = u'ciandcd'
+SITENAME = u'news.ciandcd.com'
 SITEURL = 'http://ciandcd.github.io/ciandcd-web'
 #SITESUBTITLE = 'continuous integration and continuous delivery'
 SITESUBTITLE = '软件持续集成和持续发布 QQ群：172758282<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=d15cb26237b499f41b21a6e95ddc436766a383a725106a92bd69cdf860a64d34"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="ciandcd.com" title="ciandcd.com"></a><a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a>'
