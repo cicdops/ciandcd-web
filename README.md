@@ -9,7 +9,7 @@ Title: 投稿
 ##关于ciandcd.com  
 本网站使用github pages技术维护，主要关注软件持续集成和持续发布，欢迎大家提供优秀的相关文章。  
 
-##投稿
+##投稿  
 1. fork本网站源码:git clone https://github.com/ciandcd/ciandcd-web.git.　　
 2. 将你的文章放到content/category/下对应的子目录中, 如果是原创文章可以放到content/category/原创.　　
 3. 文章的格式可以为markdown，restructuredtext或html。  
@@ -64,7 +64,7 @@ This is the content of my super blog post.
 
 ##联系
 email: itech001@126.com  
-QQ群：172758282  　　
+QQ群：172758282 / 567940397 / 567931165   
 
 ##感谢
 https://www.python.org/  
@@ -76,8 +76,8 @@ http://twitter.github.com/bootstrap
 ##开发环境
 1. prod环境请参考.travis.yml.  
 2. 本地测试环境　　
-*make clean && make html
-*make devserver, or 'cd output && python -m http.server 8000'.
+*make clean && make html  
+*make devserver, or 'cd output && python -m http.server 8000'.  
 
 ##自动deploy
 1. 所有的修改会被trivs CI自动build和deploy到github pages.  
