@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    GitLab, Gitorious, and Free Software - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    GitLab, Gitorious, and Free Software</h2>
+From:<a href="https://www.gitlab.com/2015/05/20/gitlab-gitorious-free-software/">https://www.gitlab.com/2015/05/20/gitlab-gitorious-free-software/</a><br><br><div><h1 class="title">GitLab, Gitorious, and Free Software</h1>
+                     
+                    
+                  
+
+                  <p>This is a guest post by <a href="http://mikegerwitz.com/">Mike Gerwitz</a>, a <a href="https://www.gnu.org/philosophy/free-sw.html">free software</a> hacker and
+ activist, and author of <a href="https://gnu.org/software/easejs">GNU ease.js</a>.</p>
+
+<p>In early March of this year, it was announced that
+<a href="https://about.gitlab.com/2015/03/03/gitlab-acquires-gitorious/">GitLab would acquire Gitorious</a> and shut down <code>gitorious.org</code> by 1
+June, 2015.  <a href="https://news.ycombinator.com/item?id=9138419">Reactions from the community</a> were mixed, and
+understandably so: while GitLab itself is a formidable alternative to wholly
+proprietary services, its acquisition of Gitorious strikes a chord with the
+free software community that gathered around Gitorious in the name of
+<a href="https://www.gnu.org/philosophy/free-sw.html">software freedom</a>.</p>
+
+ 
+
+
+<p>After hearing that announcement,
+<a href="http://mikegerwitz.com/">as a free software hacker and activist myself</a>, I was naturally
+uneasy.  Discussions of alternatives to Gitorious and GitLab ensued on the
+<a href="https://lists.gnu.org/mailman/listinfo/libreplanet-discuss"><code>libreplanet-discuss</code></a> mailing list.  Sytse Sijbrandij (GitLab
+B.V. CEO) happened to be present on that list;
+<a href="https://lists.gnu.org/archive/html/libreplanet-discuss/2015-03/msg00075.html">I approached him very sternly</a> with a number of concerns, just as I
+would with anyone that I feel does not understand certain aspects of the
+<a href="https://www.gnu.org/philosophy/free-sw.html">free software philosophy</a>.  To my surprise, this was not the case at
+all.</p>
+
+<p>Sytse has spent a lot of time accepting and considering community input for
+both the Gitorious acquisition and GitLab itself.  He has also worked with
+me to address some of the issues that I had raised.  And while these issues
+won&#8217;t address everyone&#8217;s concerns, they do strengthen GitLab&#8217;s commitment to
+<a href="https://www.gnu.org/philosophy/free-sw.html">software freedom</a>, and are commendable.</p>
+
+<p>I wish to share some of these details here; but to do so, I first have to
+provide some background to explain what the issues are, and why they are
+important.</p>
+
+<h2>Free Software Ideology</h2>
+
+<p><a href="https://gitorious.org/">Gitorious</a> was (and still is) one of the most popular Git repository
+hosts, and largely dominated until the introduction of GitHub.  But even as
+users flocked to <a href="http://mikegerwitz.com/about/githubbub">GitHub&#8217;s proprietary services</a>, users who value freedom
+continued to support Gitorious, both on <code>gitorious.org</code> and by installing
+their own instances on their own servers.  Since Gitorious is
+<a href="https://www.gnu.org/philosophy/free-sw.html">free software</a>, users are free to study, modify, and share it with
+others.  But <a href="https://www.gnu.org/philosophy/who-does-that-server-really-serve.html">software freedom does not apply to Services as a
+Software Substitute (SaaSS)</a> or remote services&#8212;you cannot apply the
+<a href="https://www.gnu.org/philosophy/free-sw.html">four freedoms</a> to something that you do not yourself possess&#8212;so why do
+users still insist on using <code>gitorious.org</code> despite this?</p>
+
+<p>The matter boils down to supporting a philosophy:  The
+<a href="https://www.gnu.org/licenses/gpl.html">GNU General Public License (GPL)</a> is a license that turns copyright on
+its head: rather than using copyright to restrict what users can do with a
+program, the GPL instead <a href="https://www.gnu.org/licenses/quick-guide-gplv3.html">ensures users' freedoms</a> to study, modify, and
+share it.  But that isn&#8217;t itself enough: to ensure that the software always
+remains free (as in freedom), the GPL ensures that all derivatives are
+also licensed under similar terms.  This is known as <a href="https://www.gnu.org/philosophy/pragmatic.html">copyleft</a>, and it
+is vital to the free software movement.</p>
+
+<p>Gitorious is licensed under the
+<a href="https://www.gnu.org/licenses/agpl.html">GNU Affero General Public License Version 3 (AGPLv3)</a>&#8212;this takes the
+<a href="https://www.gnu.org/licenses/gpl.html">GPL</a> and adds an additional requirement: if a modified version of the
+program is run on a sever, users communicating with the program on that
+server must have access to the modified program&#8217;s source code.  This ensures
+that <a href="https://www.gnu.org/licenses/why-affero-gpl.html">modifications to the program are available to all users</a>; they
+would otherwise be hidden in private behind the server, with others unable
+to incorporate, study, or share them.  The AGPLv3 is an ideal license for
+Gitorious, since most of its users will only ever interact with it over a
+network.</p>
+
+<p>GitLab is also free software: its <a href="https://www.gnu.org/licenses/license-list.html#Expat">Expat license</a> (commonly referred to
+ambiguously as the &#8220;MIT license&#8221;) permits all of the same freedoms that
+are granted under the the GNU GPL.  But it does so in a way that is highly
+permissive: it permits relicensing under any terms, free or not.  In other
+words, one can fork GitLab and derive a proprietary version from it, making
+changes that deny users <a href="https://www.gnu.org/philosophy/free-sw.html">their freedoms</a> and cannot be incorporated back
+into the original work.</p>
+
+<p>This is the issue that the free software community surrounding Gitorious has
+a problem with: any changes contributed to GitLab could in turn benefit a
+proprietary derivative.  This situation isn&#8217;t unique to GitLab: it applies
+to all non-copyleft (&#8220;permissive&#8221;) <a href="https://www.gnu.org/licenses/license-list.html">free software licenses</a>.  And this
+issue is realized by GitLab itself in the form of its GitLab Enterprise
+Edition (GitLab EE): a proprietary derivative that adds additional
+features atop of GitLab&#8217;s free Community Edition (CE).  For this reason,
+many free software advocates are uncomfortable contributing to GitLab, and
+feel that they should instead support other projects; this, in turn, means
+not supporting GitLab by using and drawing attention to their hosting
+services.</p>
+
+<p>The copyleft vs. permissive licensing debate is one of the free software
+movement&#8217;s most heated.  I do not wish to get into such a debate here.  One
+thing is clear: GitLab Community Edition (GitLab CE) is free
+software.  Richard Stallman (RMS) <a href="https://lists.gnu.org/archive/html/libreplanet-discuss/2015-03/msg00095.html">responded directly to the thread on
+<code>libreplanet-discuss</code></a>, stating plainly:</p>
+
+<blockquote><p> We have a simple way of looking at these two versions.  The free
+ version is free software, so it is ethical.  The nonfree version is
+ nonfree software, so it is not ethical.</p></blockquote>
+
+<p>Does GitLab CE deserve attention from the free software community?  I
+believe so.  Importantly, there is another strong consideration: displacing
+proprietary services like GitHub and Bitbucket, which host a large number of
+projects and users.  GitLab has a strong foothold, which is an excellent
+place for a free software project to be in.</p>
+
+<p>If we are to work together as a community, we need to respect GitLab&#8217;s
+free licensing choices just as we expect GitLab to respect ours.  Providing
+respect does not mean that you are conceding: I will never personally use a
+non-copyleft license for my software; I&#8217;m firmly rooted in my dedication to
+the <a href="https://www.gnu.org/philosophy/free-sw.html">free software philosophy</a>, and I&#8217;m sure that many other readers are
+too.  But using a non-copyleft license, although many of us consider it to
+be a weaker alternative, <a href="https://www.fsf.org/blogs/rms/selling-exceptions">is not wrong</a>.</p>
+
+<h2>Free JavaScript</h2>
+
+<p>As I mentioned above,
+<a href="https://www.gnu.org/philosophy/who-does-that-server-really-serve.html">software freedom and network services are separate issues</a>&#8212;the four
+freedoms do not apply to interacting with <code>gitlab.com</code> purely over a network
+connection, for example, because you are not running its software on your
+computer.  However, there is an overlap: JavaScript code downloaded to be
+executed in your web browser.</p>
+
+<p><a href="https://www.gnu.org/philosophy/javascript-trap.html">Non-free JavaScript</a> is a particularly nasty concern: it is software
+that is downloaded automatically from a server&#8212;often without prompting
+you&#8212;and then immediately executed.  Software is now being executed on your
+machine, and <a href="https://www.gnu.org/philosophy/free-sw.html">your four freedoms</a> are once again at risk.  This, then,
+<a href="https://www.gnu.org/software/easejs/whyfreejs.html">is the primary concern</a> for any users visiting <code>gitlab.com</code>: not only
+would this affect users that use <code>gitlab.com</code> as a host, but it would also
+affect any user that visits the website.  That would be a problem, since
+hosting your project there would be inviting users to run proprietary
+JavaScript.</p>
+
+<p>As I was considering migrating my projects to GitLab, this was the
+<a href="https://lists.gnu.org/archive/html/libreplanet-discuss/2015-04/msg00019.html">first concern I brought up to Sytse</a>.  This problem arises because
+<code>gitlab.com</code> uses a GitLab EE instance: if it had used only its Community
+Edition (GitLab CE)&#8212;which is free software&#8212;then all served JavaScript
+would have been free.  But any scripts served by GitLab EE that are not
+identical to those served by GitLab CE are proprietary, and therefore
+unethical.  This same concern applies to GitHub, Bitbucket, and other
+proprietary hosts that serve JavaScript.</p>
+
+<p>Sytse surprised me by stating that he would be willing to
+<a href="https://lists.gnu.org/archive/html/libreplanet-discuss/2015-04/msg00020.html">freely license all JavaScript in GitLab EE</a>, and by offering to give
+anyone access to the GitLab EE source code who wants to help out.  I took
+him up on that offer.  Initially, I had submitted a patch to merge all
+GitLab EE JavaScript into GitLab CE, but Sytse came up with another,
+superior suggestion, that ultimately provided even greater reach.</p>
+
+<p><strong>I&#8217;m pleased to announce that Sytse and I were able to agree on a license
+change (with absolutely no friction or hesitation on his part) that
+liberates all JavaScript served to the client from GitLab EE instances.</strong>
+There are two concerns that I had wanted to address: JavaScript code
+directly written for the client, and any code that produced JavaScript as
+output.  In the former case, this includes JavaScript derived from other
+sources: for example, GitLab uses CoffeeScript, which compiles into
+JavaScript.  The latter case is important: if there is any code that
+generates fragments of JavaScript&#8212;e.g. dynamically at runtime&#8212;then that
+code must also be free, or users would not be able to modify and share the
+resulting JavaScript that is actually being run on the client.  Sytse
+accepted my change verbatim, while adding his own sentence after mine to
+disambiguate.  At the time of writing this post, GitLab EE&#8217;s source code
+isn&#8217;t yet publicly visible, so here is the relevant snippet from its
+<code>LICENSE</code> file:</p>
+
+<blockquote><p>The above copyright notices applies only to the part of this Software that
+is not distributed as part of GitLab Community Edition (CE), and that is
+not a file that produces client-side JavaScript, in whole or in part. Any
+part of this Software distributed as part of GitLab CE or that is a file
+that produces client-side JavaScript, in whole or in part, is copyrighted
+under the MIT Expat license.</p></blockquote>
+
+<h2>Further Discussion</h2>
+
+<p>My discussions with Sytse did not end there: there are other topics that
+have not been able to be addressed before my writing of this post that would
+do well to demonstrate commitment toward <a href="https://www.gnu.org/philosophy/free-sw.html">software freedom</a>.</p>
+
+<p>The license change liberating client-side JavaScript was an excellent
+move.  To expand upon it, I wish to submit a patch that would make GitLab
+<a href="https://www.gnu.org/software/librejs/free-your-javascript.html">LibreJS compliant</a>; this provides even greater guarantees, since it
+would allow for users to continue to block other non-free JavaScript that
+may be served by the GitLab instance, but not produced by it.  For example:
+a website/host that uses GitLab may embed proprietary JavaScript, or modify
+it without releasing the source code.  Another common issue is the user of
+analytics software; <code>gitlab.com</code> uses Google Analytics.</p>
+
+<p>If you would like to help with LibreJS compliance, please <a href="http://mikegerwitz.com/">contact me</a>.</p>
+
+<p>I was brought into another discussion between Sytse and RMS that is
+unrelated to the GitLab software itself, but still a positive demonstration
+of a commitment to <a href="https://www.gnu.org/philosophy/free-sw.html">software freedom</a>&#8212;the replacement of Disqus on the
+<code>gitlab.com</code> blog with a free alternative.  Sytse ended up making a
+suggestion, saying he&#8217;d be &#8220;happy to switch to&#8221; <a href="https://github.com/phusion/juvia">Juvia</a> if I&#8217;d help with
+the migration.  I&#8217;m looking forward to this, as it is an important
+discussion area (that I honestly didn&#8217;t know existed until Sytse told me
+about it, because I don&#8217;t permit proprietary JavaScript!).  He was even kind
+enough to compile a PDF of comments for one of our discussions, since he was
+cognizant ahead of time that I would not want to use Disqus.  (Indeed, I
+will be unable to read and participate in the comments to this guest post
+unless I take the time to freely read and reply without running Disqus'
+proprietary JavaScript.)</p>
+
+<p>Considering the genuine interest and concern expressed by Sytse in working
+with myself and the free software community, I can only expect that GitLab
+will continue to accept and apply community input.</p>
+
+<h2>Actions Speak Louder Than Words</h2>
+
+<p>It is not possible to address the copyleft issue without a change in
+license, which GitLab is not interested in doing.  So the best way to
+re-assure the community is through action.  <a href="https://news.ycombinator.com/item?id=9141801">To quote Sytse</a>:</p>
+
+<blockquote><p>I think the only way to prove we&#8217;re serious about open source is in our
+actions, licenses or statements don&#8217;t help.</p></blockquote>
+
+<p>There are fundamental disagreements that will not be able to be
+resolved between GitLab and the free software community&#8212;like their
+<a href="https://lists.gnu.org/archive/html/libreplanet-discuss/2015-03/msg00076.html">&#8220;open core&#8221; business model</a>.  But after working with Sytse and seeing
+his interactions with myself, RMS, and many others in the free software
+community, I find his actions to be very encouraging.</p>
+
+<p>Are you interested in helping other websites liberate their JavaScript?
+ Consider <a href="https://fsf.org/campaigns/freejs">joining the FSF&#8217;s campaign</a>, and
+ <a href="https://www.gnu.org/software/easejs/whyfreejs.html">please liberate your own</a>!</p>
+
+<p>This post is licensed under the
+ <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
+
+                  <a></a><p>Install GitLab on your own server in 2 minutes <a https: www.gitlab.com downloads id="dl-partial">Let's do it!</a> </p><a https: www.gitlab.com downloads class="btn btn-block btn-lg btn-purple visible-xs" id="dl-partial-sm">
+  Install GitLab on your own server in 2 minutes
+</a>
+
+
+                  
+                  <p>&#8594; <a https: www.gitlab.com blog archives.html>Browse all posts</a></p>
+
+                  <strong><a href="https://twitter.com/gitlab">@gitlab</a></strong>
+    on Twitter.
+
+    <a></a><p>For the latest and most detailed news followon Twitter. <a https: www.gitlab.com atom.xml class="rss-btn">
+      
+    </a> </p><p>Get every GitLab blog post and stay up to date.</p>
+     
+    <p id="mc_embed_signup" class="newsletter-form">
+       
+    </p>
+     
+
+  <p id="disqus_thread"></p>
+                   
+                  Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;
+                </div>
+
+<p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a>
+</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

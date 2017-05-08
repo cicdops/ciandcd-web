@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Two paths to metal devops: cloud-like API driven & cluster building - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    Two paths to metal devops: cloud-like API driven & cluster building</h2>
+from:http://devops.com/2015/06/19/two-paths-metal-devops-cloud-like-api-driven-cluster-building/<br><div><p>I&#8217;ve been seeing a rising interest in <a href="http://devops.com/2015/03/06/vms-vs-containers-vms-becoming-el-caminos/">metal DevOps</a>&#160;fueled by containers and scale-out data center platforms (like Hadoop, Ceph &amp; OpenStack) that run at the metal level. While I see this is a growing general trend (<a href="http://packet.net">Packet</a>, <a href="http://www.internap.com/bare-metal/bare-metal-cloud/">Internap</a><a href="https://wiki.openstack.org/wiki/Ironic">,</a>&#160;<a href="http://www.rackspace.com/en-us/cloud/servers/onmetal">RackSpace</a>,&#160;<a href="https://wiki.openstack.org/wiki/Ironic">OpenStack Ironic</a>, <a href="https://maas.ubuntu.com/">MaaS</a>), I&#8217;m going to stay firmly within <a href="http://rackn.com">my wheelhouse</a> and use <a href="http://github.com/opencrowbar/core">OpenCrowbar</a> as my reference here.</p>
+<p>Building on the API-driven metal features of OpenCrowbar, this has translated into two paths for workloads to run on metal:</p>
+<p>1) <b>&#8220;Cloudify&#8221; the metal using APIs</b> from tools like <a href="https://github.com/chef/chef-provisioning">Chef Provision</a>, <a href="http://docs.saltstack.com/en/latest/topics/cloud/install/index.html">SaltStack Libcloud</a>, <a href="https://github.com/docker/machine">Docker Machine</a>, <a href="https://github.com/cloudfoundry/bosh">Cloud Foundry BOSH</a>. These tools have clients that target cloud APIs like OpenStack and Amazon. These same clients work against cloud are easily ported to Crowbar&#8217;s APIs. &#160;Five years ago, conventional wisdom was that we&#8217;d need a universal cloud API; however, practice has shown it&#8217;s not very difficult to wrap APIs in a way that does not reduce every cloud to a least common denominator.</p>
+<p>2) <b>DevOps deploy the workload</b> using hand-offs to tools like Chef, Saltstack, Puppet or Ansible. This approach leverages the community scripts (Cookbooks, Modules, Playbooks) for the workload with the critical ability to create a tuned environment and inject the needed parameters directly into the scripts. &#160;A critical lesson we learned going from Crowbar v1 to v2 was for our scripts to have crisp attribute input/output boundary to avoid embedding environmental knowledge into the code.</p>
+<p>While I&#8217;m casting this in Crowbar terms, I see this approach to metal as coming into the market by force fuels by a desire for containers-on-metal and devops-on-metal.</p>
+<h2>Let&#8217;s look at some of the unique and shared use-cases for each approach:</h2>
+
+
+
+
+<p><strong>Metal API</strong></p>
+
+<strong>Both</strong>
+
+<p><strong>Metal Cluster</strong></p>
+
+
+
+
+<ul>
+<li>Easy Cloud to Metal Migration</li>
+<li>Minimal Tool Customization</li>
+</ul>
+
+
+<ul>
+<li>Portability of DevOps Scripts</li>
+<li>Take advantage of power cycling</li>
+<li>Enables constant refresh cycles</li>
+</ul>
+
+
+<ul>
+<li>Leverage Hardware features</li>
+<li>Advanced Network topologies</li>
+</ul>
+
+
+
+
+<p>In either case, you have to handle bespoke (hipster word for custom) steps in the provisioning flow that are unique to the your operational needs. Our experience is that each site (even each server!) is unique in some incremental way. &#160;For example, one site may require teamed networks with VLANs while another requires flat networks with an SDN layer.</p>
+<p><strong>These differences are not mistakes or errors</strong>: the reality of physical ops and individual operational choices mean that there are a lot of valid configurations. Rather than attempt the Sisyphean task of enforced conformity, we work to abstract differences so that they can be ignored when they are not material.</p>
+<p>In the end, the choices are <b>not </b>mutually exclusive. Metal APIs are often faster but harder to optimize. You can use them to get started quickly and then invest time to optimize a cluster for long term operations. <b>The underlying physical orchestration can support both.</b></p>
+<p>Are you looking at getting closer to metal? &#160;Which of the options above makes the most sense to you? &#160;I&#8217;d love to hear about your use-cases, architecture and configuration requirements.</p>
+</div>
+
+<p class="info">
+<h4>
+Posted Fri 19 June 2015
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

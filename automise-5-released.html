@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Automise 5 Released! - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    Automise 5 Released!</h2>
+From:<a href="https://www.finalbuilder.com/resources/blogs/postid/744/automise-5-released">https://www.finalbuilder.com/resources/blogs/postid/744/automise-5-released</a><br><br><div><p>Today we are delighted to release the Automise 5, which now includes a gift. Automise Run-time is now free.</p>
+<p>As explained in the Beta announcement, our continuous delivery cycle has worked well for Automise 4. Producing constant stream of updates and fixes. Now, with significant updates to the internal workings for Automise today we are releasing Automise 5. </p>
+<h2>What's new in Automise 5</h2>
+<h3>Stepping Engine</h3>
+<p>We have undertaken a major rewrite of the internal stepping engine for Automise 5. This has reduced the moving parts, while also enabling extra features to be implemented. In the end this will mean your projects will run faster, consume less resources, and also providing some extra tools for debugging projects.</p>
+<h3>Action List Dependencies</h3>
+<p>Action Lists can now list other action lists that they depend on. For example this allows specifying a UploadAndClean Action List that depends on the Clean and Upload Action Lists. When UploadAndClean is run, if the Clean and Upload Action Lists have not been run they will be. </p>
+<p><img alt="Action List Dependencies" src="/blogimages/jason/Automise5-beta-release/at5_actionlist_dependencies.png"></p>
+<h3>Step into included projects</h3>
+<p>Previously, debugging include project actions meant running the entire included project when stepping over the action. In Automise 5, debugging allows for stepping into the included project. This will open the included project, if is not already open, and start to debug that project. </p>
+<h3>Breakpoint Conditions</h3>
+<p>We have also added to the debugging experience with breakpoint conditions. These work like break point conditions in Visual Studio. They present options for stopping the executing of a script when variables have certain values, or a condition specified becomes true. Conditions can also be the number of passes over the breakpoint.</p>
+<p><img alt="Action List Dependencies" src="https://www.finalbuilder.com/blogimages/jason/Automise5-beta-release/at5_breakpoint_properties.png"></p>
+<h3>IDE Themes (Light and Dark)</h3>
+<p>After five years we thought it was time Automise got a new coat of paint. We have implemented two new themes, a light and dark theme (defaulting to the dark on first run up). Choose your side wisely&#8230;</p>
+
+    
+        
+            
+            <img alt="Action List Dependencies" src="https://www.finalbuilder.com/blogimages/jason/Automise5-beta-release/at5_dark_theme.png">
+            
+            
+            <img alt="Action List Dependencies" src="https://www.finalbuilder.com/blogimages/jason/Automise5-beta-release/at5_light_theme.png">
+            
+        
+    
+
+<h3>Action List Out Parameters</h3>
+<p>Action Lists parameters can now be defined as an out parameter. These parameters can have their value set inside the action list. On exiting the action list the calling Run Action List action will set the variable assigned as the out variable with that value. This effectively adds the ability to have action lists work as functions and return values calculated in the action list.</p>
+<h3>Project Formats</h3>
+<p>Let&#8217;s face it, xml files are difficult to diff. To make diffs easier Automise 5 has introduce two major updates to the Automise project file structure.</p>
+<p>&#160; &#160;1. A new DSL project file format (the new default format) (atp5)</p>
+<p>&#160; &#160;2. A new XML project file format (atx5)</p>
+<p>New Actions</p>
+<p>We have done some major work to bring new Azure and Amazon S3 actions to you. Some of these being:</p>
+<ul>
+    <li>Amazon S3 - Added bucket delete object, bucket list objects, bucket list, upload directory, and download folder actions.</li>
+    <li>Azure Actions - Added Login, Logout, Config Mode actions.</li>
+    <li>Azure Group Actions - Added Group Create, Group Delete, Group List, Group Log Show, Group Set, Group Show actions.</li>
+    <li>Azure VM - Added VM Capture, VM Create, VM Deallocate, VM Delete, VM List, VM List, VM Quick Create, VM Restart, VM Start, VM Stop actions.</li>
+    <li>Azure Storage - Added Storage File Copy Show, Storage File Copy Start, Storage File Copy Stop, Storage File Delete, Storage File Download, Storage File List, Storage File Upload actions.</li>
+</ul>
+<h3>New License Manager</h3>
+<p>Automise 5 introduces a new license manager that allows you to download licenses directly from the store. It will be presented to you on first load, or when no valid license has been found. You can also get to it from the Help menu.</p>
+<p>All that you will require to download a license from the store is your store credentials. It will then log in for you, and download a list of licenses that will work for the current version of Automise. If you had a current Automise 4 subscription as of 28 March 2016, you will already have an Automise 5 license waiting for you in your store account.</p>
+<p>In addition there is a simpler way to get Trial license, all that you require is a valid email address to receive a verification code on.</p>&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    </div>
+
+<p class="info">
+<h4>
+Posted Tue 29 March 2016
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a>
+(<a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a>)</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

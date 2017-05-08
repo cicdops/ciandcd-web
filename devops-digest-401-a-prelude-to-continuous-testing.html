@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    DevOps Digest 401: A Prelude to Continuous Testing - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    DevOps Digest 401: A Prelude to Continuous Testing</h2>
+From:<a href="https://www.perforce.com/blog/170221/devops-digest-401-prelude-continuous-testing">https://www.perforce.com/blog/170221/devops-digest-401-prelude-continuous-testing</a><br><br><div><p><img alt="" src="/sites/default/files/images/blog/DevOps_401.jpg"></p>
+<p>It&#8217;s time to move past the nuts of bolts of builds and Continuous Integration (CI) and focus on closing an easily overlooked gap in the age of Agile: the gap between how things should work versus how they actually work.</p>
+<p>In recent years, a movement has been brewing to do away with Quality Assurance (QA) altogether, the argument generally being that the Agile focus on unit tests guarantees that shipping software works as intended. This is problematic on multiple counts, not the least of which being that unit tests check only what developers think to test. Sometimes, it can take a fresh set of eyes and a different perspective to catch defects.</p>
+<p>Further, unit tests can check many things, but are by nature designed to run in isolation and execute quickly, which means they often &#8220;mock&#8221; (e.g., simulate) database and other such connections. They&#8217;re great &#160;for validating individual bits of code, but are a lousy solution for other testing needs.</p>
+<p>Continuous Testing (CT) is such a broad field, often varying widely from industry to industry &#8212; even project to project &#8212;&#160;that we&#8217;re not going to build a lot of specific machinery. Instead, in this chapter, you&#8217;ll select the strategies and tools best suited to your own circumstances.</p>
+<h2>High-level Testing Strategies</h2>
+<p>Let&#8217;s begin with the broadest outlines of high-level testing strategies. Your first line of defense is static testing, which takes its name from the fact that your code remains &#8220;at rest.&#8221;</p>
+<p>Bringing a second pair of eyes to bear often catches things that the original developers didn&#8217;t. Techniques such as pair programming, mandatory code reviews, static analysis tools, and so forth can be useful in verifying that the code &#8220;looks right&#8221; for its intended purpose. You may know this by another name, as static testing is often considered verification.</p>
+<p>But of course, any static testing is limited by the simple fact that it doesn&#8217;t involve executing the code. Even the best musicians and composers gain a new understanding of a piece when it&#8217;s performed, no matter how well their mind&#8217;s eye (ear?) can translate sheet music, and the same is true of software.</p>
+<p>That&#8217;s why executing code, or dynamic testing, is also critical for success. And again, you may know this by another name, as dynamic testing is often considered validation. In the end, your users don&#8217;t care about the code, they want the software to work as expected.</p>
+<h2>Exploring Testing Types</h2>
+<p>Dynamic testing invariably leads to a variety of important questions, first among which is arguably from whose perspective do we test? The way you answer that question effectively tells you whether you&#8217;re embracing:</p>
+<ul><li>White-box Testing leverages detailed knowledge of internals</li>
+<li>Black-box Testing focuses wholly on the &#8220;surface&#8221;, avoiding any knowledge of internal details</li>
+<li>Gray-box Testing is a mix of white- and black-box testing</li>
+</ul><p>&#160;</p>
+<p>It may seem like a subtle or even useless distinction, but you&#8217;ll easily find arguments for and against each choice.</p>
+<p>White-box testing can be particularly useful because it proceeds in full possession of detailed internal knowledge, which allows you to construct test cases to exercise relevant cases to execute all logical code paths. Black-box testing can be especially useful when dealing with software components, as in the end, what usually matters most is that they produce the proper outputs for a given set of inputs. And in some cases, gray-box testing may be necessary to ensure that a set of operations goes to completion correctly given some initial state (e.g., certain known or expected records in a database table or other storage).</p>
+<p>What your project does and how you want to verify that it&#8217;s doing it correctly should guide your choice when it comes to these options. The one &#8220;golden rule&#8221; we can easily recommend is (1) to pay careful attention to how much knowledge of the system&#8217;s operation is essential to constructing high-quality tests, and then (2) balance that against the expectations with which you intend to saddle your users. In a highly technical application it&#8217;s not at all improper to require much of your users, but a dirt-simple app intended for all mobile phone users is a completely different story.</p>
+<h3>Testing in Layers</h3>
+<p>Speaking of different stories, layers of testing are also relevant. It doesn&#8217;t make sense, for example, to test low-level driver code a user is never going to interact with the same way you test some custom-built user-interface element that users will &#8220;abuse&#8221; in all sorts of unexpected ways. In short, there are a number of different layers, levels, or scopes at which it can be relevant to test, enumerated here in order of increasing complexity:</p>
+<ol><li>Unit testing</li>
+<li>Integration testing</li>
+<li>Interface testing</li>
+<li>System testing</li>
+<li>Acceptance testing</li>
+</ol><p>&#160;</p>
+<p>We&#8217;ll talk about each of these in turn, beginning with unit testing. As already mentioned, unit tests are intended to exercise and validate the operation of some small bit of code as quickly as possible. Developers working with object-oriented languages, for example, often create a suite (or suites) of tests to exercise each individual &#8220;class&#8221; they create. Unit tests are often white-box in nature because these are bits of code expected to be used only by developers, though black-box and gray-box testing can also prove helpful. The key point is that unit tests ensure a single thing works as intended.</p>
+<p>In contrast, integration testing is inherently focused at a higher layer/level because it ensures that the classes, modules, components, etc. that comprise some larger logical unit of software work together. In effect, integration testing by definition seeks to ensure that multiple things work together as intended.</p>
+<p>Interface testing is similar to integration testing in that it typically involves exercising multiple things, but with a particular focus on making sure that any communications occurs correctly between larger units of software. In software, &#8216;interface&#8217;, in the field of software anyway, is typically defined as some shared boundary that divides separate units of software (often called components).<a href="#_ftn1" name="_ftnref1" title="" id="_ftnref1">[1]</a> The goal of interface testing is (unsurprisingly) to ensure that all data and operations shared between those larger units of software are correct.</p>
+<p>The next step up the ladder of testing complexity is system testing, which can be thought of as integration testing writ large. In other words, instead of talking about bringing several lower-level bits of code (often components) together and making sure they work, system testing aims at validating the operation of some higher-level unit of software that can be thought of a thing in its own right.</p>
+<p>The example of client-server software illustrates this. In such an architecture, a server program can typically be considered a complete system in its own right. It accepts commands or other interactions from a client, perhaps involving authentication and/or authorization to make sure those operations are allowed, and then carries out tasks and/or responds with the proper outputs. Clients that &#8220;know&#8221; how to utilize the server can also be thought of systems in their own right.</p>
+<p>Acceptance testing begins when you bring them together to verify that everything works properly at the very highest level possible: user interactions with the product as a whole. While system testing shows you defects in a server, only acceptance testing shows you whether the overall process is good enough, from a user perspective, to ship.</p>
+<p>It is rather common to leverage automated testing tools for the lowest three (unit, integration, and interface) testing levels. It&#8217;s often harder (and generally more expensive) to acquire good tools for system and acceptance testing. Alhtough progress has been made in recent years, you&#8217;ll still have to get your hands dirty if you commit to higher-level testing.</p>
+<h3>Types of Testing</h3>
+<p>We&#8217;ll barely scratch the surface as we explore different types of testing. The following are ordered roughly in terms of commonality, highest to lowest, descending into testing obscurity as we go.</p>
+<p>The most commonly known types of testing are arguably alpha testing and beta testing. By software tradition, an alpha release is a feature-incomplete version of a product or service that is nevertheless ready for at least some review. Alpha testing is usually conducted internally and typically open only to those with the kind of high level of understanding and patience necessary to navigate the rough waters of unfinished software. It can be helpful in making sure the project is on the right path before getting too far along the development calendar.</p>
+<p>In contrast, a beta release is typically a feature-complete version of a product that is ready for at least some external review and perhaps even production use. Beta testing is usually conducted with a limited set of users, often important customers seeking special influence over product development. It provides a final gut-check of the planned feature set before a more general release of a given product or service.</p>
+<p>Next is smoke testing, or sanity testing, which is &#160;almost the opposite of unit tests. For whereas unit tests often comprise highly specific suites that seek to exercise the individual bits that go into an application in a rigorous way, smoke testing is often involves limited high-level tests to ensure that nothing has gone horribly wrong &#8212; usually implemented from the end-user&#8217;s standpoint. Smoke testing is usually the most basic hurdle for a build to vault.</p>
+<p>Regression testing is another very common type, focusing on making sure that some new change hasn&#8217;t broken features that were already working. This type of testing typically occurs right before a new release or when some crucial fix is performed after a disastrous report from the field. A one-line code change can cause chaos, and regression testing usually catches unintended consequences before release.</p>
+<p>Performance testing is also common, particularly with software designed for high-volume applications or real-time processing. This type of testing often includes sub-types such as load testing, to validate that software performs acceptably under some large amount of concurrent work in progress, or stress testing, to validate that the software&#8217;s functionality will degrade gracefully under unexpected conditions (e.g., memory or storage scarcity). For the most demanding applications, real-time testing validates that a given system (often a hardware/software hybrid device) can execute tasks within a strict time limit. This can be crucial for medical devices, for example, or other high-risk products that must always deliver timely results.</p>
+<p>Especially popular today is A/B testing. The ubiquity of the web, and its ease of deployment, have made it possible for various web applications and services to offer multiple variants of a given page or function to users in a controlled environment. This allows organizations to collect data on usage, practicality, and utility of two different ways of doing something, easily retiring the less desirable once the data is gathered. This kind of testing improves perceived user value and prevents bad design and implementation decisions by utilizing real-time user feedback.</p>
+<p>And of course the list goes on. Install/uninstall testing verifies that a product may be added or removed to/from a computer or user account. Security testing comes in many shapes and forms, from checking for known exploits (e.g., SQL injection) to hammering randomly at various interfaces to see what breaks. Internationalization testing focuses on accurate linguistic translations as well as cultural norms and standards (e.g., currency formats, calendar representations, etc.).</p>
+<h3>The Reality of Testing</h3>
+<p>It&#8217;s simply not possible to test everything thoroughly. Testing is often only partially directed at validating proper function. Its more important role , particularly in our increasingly litigious society, is often reducing risk of legal exposure and subsequently mitigating legal actions. Whatever your core concerns, do your homework and choose the testing most useful for assuaging them.</p>
+<p>A final caveat is relevant for those wondering how truly complete testing remains impossible, even in today&#8217;s age of increasing computer automation. It&#8217;s not difficult if you consider how thoroughly insurmountable the problem really is.</p>
+<p>Many lines of code involve potential logical branching; i.e., making a decision based on some data and choosing an alternate path of subsequent execution as a result. Even relatively trivial software can involve hundreds of thousands of lines of code, so the sheer number of total execution paths to test is enormous.</p>
+<p>And that&#8217;s just execution. Consider also that for any input field on a user interface, a user can enter whatever characters are allowed. That often means the entire alphabet as well as numbers, symbols, and perhaps even extended characters or entire other character sets in the era of Unicode. In short, there is often an effectively infinite set of possible input data to test.</p>
+<p>And that doesn&#8217;t include the variety of interactions possible between applications today or the complexity of the environments in which they execute. Cross-platform software these days operates on Windows, macOS, Linux/Unix, and even various mobile operating systems such as Android and/or iOS.</p>
+<p>Combinatorically speaking, you put all of this together and even the proverbial infinity of monkeys are not going to be able to test your software completely prior to the heat death of our universe. And besides, I&#8217;ve yet to meet a company that has the budget for infinite monkeys and billions of monkey-years of testing.</p>
+<p>Testing is a bit like a software version of the famous Gordian knot. Unravelling all the threads is impossible, so your best bet is to trim off only the bits you care about with your own project-management version of the sword of Alexander. Choose what gives you the biggest-quality-value bang for your test-resources buck and expand from there as needed.</p>
+<p>Thus ends our prelude to tackling CT. Next time, we&#8217;ll cover it a little more specifically, using our sample application as a guide, and discuss how managing testing environments is crucial for reliable, repeatable, high-quality results.</p>
+<p>&#160;</p>
+<h2>You Ask, We Answer</h2>
+<p>As previously mentioned, this is your roadmap to creating a successful DevOps pipeline. Don&#8217;t understand something? Just ask. Need to dive a little deeper?&#160;Send an email to&#160;<a href="mailto:info@perforce.com?subject=DevOps%20Digest%20Question">info@perforce.com</a>&#160;with your questions. Then, stay tuned for a live Q&amp;A webinar at the end of this series.</p>
+<h2>Get DevOps Digest Sent to Your Inbox</h2>
+<p>You don&#8217;t need to remember to check back with us each week. Instead, get the digest delivered directly to your inbox.&#160;<a href="http://info.perforce.com/devops_digest_reg.html">Subscribe</a>&#160;to our 25-week DevOps Digest and we&#8217;ll get you where you need to go, one email at a time.</p>
+<h2>See Perforce Helix in Action!</h2>
+<p>Join us for a live demo every other Tuesday and see the best of Perforce Helix in 20 minutes.&#160;<a href="http://info.perforce.com/helix-live-demo-reg.html">Save your spot!</a></p>
+<p id="ftn1">&#160;</p>
+<p>&#160;</p>
+</div>
+
+<p class="info">
+<h4>
+Posted Tue 21 February 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a>
+(<a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a>)</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

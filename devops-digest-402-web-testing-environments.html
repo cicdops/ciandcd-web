@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    DevOps Digest 402: Web Testing Environments - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    DevOps Digest 402: Web Testing Environments</h2>
+From:<a href="https://www.perforce.com/blog/170228/devops-digest-402-web-testing-environments">https://www.perforce.com/blog/170228/devops-digest-402-web-testing-environments</a><br><br><div><p><img alt="" src="/sites/default/files/images/blog/DevOps_402.jpg"></p>
+<p>Having briefly covered testing strategies, layers/scopes, and testing types in <a href="https://www.perforce.com/blog/170221/devops-digest-401-prelude-continuous-testing">Issue 401</a>, let&#8217;s now return to our sample application and illustrate how to make some choices. Again, we&#8217;re not going to build specific machinery, but rather evaluate your testing requirements against your comfort level to select the right strategy, layers, testing types, and tools.</p>
+<p>Our sample is an MVC web application built atop Microsoft&#8217;s .NET framework using C#, which automatically winnows away a variety of tools and narrows the focus for our lower-layer testing decisions.</p>
+<p>For example, because we&#8217;re dealing with a web application, our architectural choices help influence our testing choices. Our sample is trivial, but it at least outlines a development roadmap along which major functionality will be packaged in various library assemblies, then consumed through interfaces served up via <a href="https://en.wikipedia.org/wiki/Dependency_injection">DI</a>.</p>
+<p>There are a number of solid freely available DI tools, including the injection mechanics built into the MVC framework by Microsoft. No matter which you use, it helps considerably in unit testing. DI makes it simple to create a single test assembly for each library assembly, which can provide the unit tests to exercise all the lowest-layer functionality.</p>
+<p>Where said tests are concerned, white-box testing is often the right choice, because only developers can know all the subtleties built into the underlying implementation. Crafting unit tests carefully to exercise as many code paths as possible provides assurance that the implementation works as intended. The code coverage reports we implemented in <a href="http://www.perforce.com/blog/170116/devops-digest-308-code-coverage-analysis">Issue 308</a> are very useful in determining which code remains to be exercised.</p>
+<p>When it comes to functionality exposed across assembly boundaries, then interface testing with a black-box testing approach also makes sense. Such tests are written purely from the standpoint of a consumer of that functionality, wholly ignorant of the internal implementation details.</p>
+<p>This combination delivers a powerful one-two punch for knocking out bugs and defects. The unit tests ensure best intentions are met for the details of an implementation, while interface tests ensure that the &#8220;surface&#8221; works well to provide reusable pieces. In effect, this approach jointly satisfies producers and consumers of low-level functionality.</p>
+<p>And as long as care is taken in keeping such units of functionality isolated and maximally orthogonal, this simple architecture makes it possible to grow an application for years. It&#8217;s a poor-man&#8217;s component-based development, without the additional work required to treat components as things in themselves.</p>
+<p>We chose NUnit as our tool to illustrate executing unit tests via Jenkins in <a href="https://www.perforce.com/blog/170110/devops-digest-307-running-unit-tests-helix-jenkins">Issue 307</a>. But as mentioned then, Microsoft Visual Studio includes its own MSTest facilities out of the box, and there are other suitable alternatives (<a href="http://code.google.com/archive/p/mb-unit/">MbUnit</a> and <a href="http://xunit.github.io">xUnit</a> ) for unit tests that also serve nicely for interface testing when coupled with other tools.For example, you can inject faux expected behavior into interfaces for testing using &#8220;mocking&#8221; tools <a href="http://hibernatingrhinos.com/oss/rhino-mocks">Rhino Mocks</a>, <a href="http://nmock3.codeplex.com">NMock3</a>, or <a href="http://www.moqthis.com">Moq</a>&#8212;all common frameworks worth considering for .NET development.</p>
+<p>But unit and interface tests ensure only that the implementation performs as the developers intend. They don&#8217;t tell you whether the product&#8217;s resulting feature set actually satisfies the design requirements from a top-level user perspective.</p>
+<p>As crazy as it sounds, substantial disconnects between the expectations of business stakeholders and what the developers actually create are surprisingly frequent. There are many factors for this, not the least of which being that various groups involved often don&#8217;t share the same language or level of understanding. Nonetheless, the issue for testing is how to make sure problems get caught and stopped as quickly as possible, preferably before wasting considerable time and effort on a bad direction.</p>
+<p>This sort of disconnect is surely one of the reasons for the rise of Behavior-Driven Development (BDD) as an evolution of Test-Driven Development (TDD). BDD has implications for testing at all levels, but the way it helps facilitate discussion and understanding has led the industry to a renewed focus on acceptance testing.</p>
+<p>Acceptance tests are often comparatively simple to exercise with web applications, particularly those built on the model-view-controller (MVC) paradigm, so they&#8217;re a good fit for our sample. The point is to tie togetherthe business requirements with actual results through a simple, shared vocabulary.</p>
+<p>Those unfamiliar with BDD should expect to confront a given-when-then approach to acceptance tests. The approach assumes some well-known state of affairs (given), at which point something happens (when), in light of which a given set of outcomes should prevail (then). For example, consider this: &#8220;Given a customer record on file, when a request comes in to update its password, then the database should be updated and the customer should be emailed a notification.&#8221;</p>
+<p>Breaking high-level functionality down in this tripartite manner facilitates communication between those writing the requirements and those writing the software, capturing behavioral expectations in simple language to avoid disconnect by keeping stakeholders on the same page.</p>
+<p>It also simplifies acceptance testing, which for our sample could easily be implemented in <a href="http://www.fitnesse.org">FitNesse</a>, <a href="http://github.com/nbehave/NBehave">NBehave</a>, <a href="http://specflow.org">SpecFlow&#8217;s Cucumber for .NET</a>, <a href="http://specsfor.com/SpecsForMvc/default.cshtml">SpecsFor.Mvc</a>, etc. They all work a bit differently but provide essentially the same set of services. Again, the most important thing to remember is that they must bridge the gap between your key stakeholders to avoid wasting time building the wrong thing.</p>
+<p>The last sorts of testing it makes sense to consider here (for our sample) are load, stress, and performance testing. Web server technology has advanced to the point where standing up even non-trivial web applications is a generally simple thing.</p>
+<p>Keeping it up and running under adverse conditions, however, and responding to users in a timely fashion can be a different story. Products can falter in the market when organizations don&#8217;t do load, stress, or performance testing prior to release.</p>
+<p>One of the up sides of creating a popular product is that you&#8217;ll discover soon enough how well it performs under load and stress. The down side is that your users will be unhappy if they&#8217;re the ones doing your testing rather than your QA personnel. Unlike your employees, your users aren&#8217;t under any compunction to keep coming back for more.</p>
+<p>So do yourself a favor and discover how your product performs under load and stress before you release it to the general populace. For our sample application, a valid choice would be to rely upon the load-testing mechanisms built into Microsoft Visual Studio. The Microsoft Azure cloud in particular is a powerful ally in discovering how well a web application performs.</p>
+<p>But again, there are various third-party tools that can also be helpful. Popular options include <a href="http://jmeter.apache.org">Apache&#8217;s JMeter</a>, <a href="http://grinder.sourceforge.net">The Grinder</a>, and <a href="http://qatestingtools.com/testing-tool/pylt">Pylot</a>. If you&#8217;ve got the budget, there are also commercial offerings worth considering.</p>
+<p>No discussion of Continuous Testing (CT) would be complete without saying at least something about your test lab itself. That&#8217;s because the state of our industry has advanced so quickly that the environments in which we test are almost always more complicated than the products being tested.</p>
+<p>Think about it for a moment. How many lines of code make up your product: tens of thousands, hundreds of thousands, millions? The operating systems on which our products execute these days are typically measured in tens of millions of lines of code. No matter how complicated your products are, the environment(s) in which they execute are likely more complicated, often by orders of magnitude.</p>
+<p>Software developers know how frustrating it is to keep receiving bug reports from the field that you simply can&#8217;t reproduce. Something must be different; the question is always what. Crucial to answering that question is having repeatable environments.</p>
+<p>Fortunately, great progress has been made in the last decade in terms of infrastructure management tools. Tools like <a href="http://puppet.com">Puppet</a>, <a href="http://www.chef.io">Chef</a>, <a href="http://www.ansible.com">Ansible</a>, <a href="http://saltstack.com">Salt</a>, <a href="http://www.fabfile.org">Fabric</a>, and others produce repeatable environments in a highly automated way. Despite their differences, they all come down to specifying configuration data through a series of scripts and/or input flies.</p>
+<p>We&#8217;ll cover these tools in greater depth when we tackle Continuous Delivery but they can greatly simplify the process of standing up repeatable environments for testing as well. Small investments in surmounting their learning curves can pay huge dividends by making sure your tests execute under the same circumstances reliably and repeatably every time.</p>
+<p>Regardless of which strategies and tools you choose, tying it all together falls on the shoulders of your version control system (VCS). You&#8217;ll store test scripts, sample input files and other data, infrastructure management details, and so forth. Any VCS worth the name can store these sorts of files, usually text and comparatively small.</p>
+<p>But only Perforce Helix gives you additional options, making it possible to store and version much larger data sets. Once you have a given set of test environments defined, Helix can store them as Docker images or even full virtual machines if needed. Infrastructure management tools can help you build well-defined environments, and Helix can help you maintain and recover them, skipping the time-consuming steps to rebuild them every time.</p>
+<p>And so ends our high-level survey of CT. The keys to getting the best value for your testing investments are (1) to identify the strategies, test types, and tools that make the most sense for your projects, and (2) build them on top of the repeatable foundation supplied by today&#8217;s infrastructure management tools.</p>
+<p>Next time, we&#8217;ll move on to CD and provide more specific details about those tools, their operation, and review some details to help you determine which of them best fit your organization. In the meantime, good luck getting your automated testing off the ground.</p>
+<h2>You Ask, We Answer</h2>
+<p>As previously mentioned, this is your roadmap to creating a successful DevOps pipeline. Don&#8217;t understand something? Just ask. Need to dive a little deeper?&#160;Send an email to&#160;<a href="mailto:info@perforce.com?subject=DevOps%20Digest%20Question">info@perforce.com</a>&#160;with your questions. Then, stay tuned for a live Q&amp;A webinar at the end of this series.</p>
+<h2>Get DevOps Digest Sent to Your Inbox</h2>
+<p>You don&#8217;t need to remember to check back with us each week. Instead, get the digest delivered directly to your inbox.&#160;<a href="http://info.perforce.com/devops_digest_reg.html">Subscribe</a>&#160;to our 25-week DevOps Digest and we&#8217;ll get you where you need to go, one email at a time.</p>
+<h2>See Perforce Helix in Action!</h2>
+<p>Join us for a live demo every other Tuesday and see the best of Perforce Helix in 20 minutes.&#160;<a href="http://info.perforce.com/helix-live-demo-reg.html">Save your spot!</a></p>
+</div>
+
+<p class="info">
+<h4>
+Posted Tue 28 February 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a>
+(<a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a>)</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

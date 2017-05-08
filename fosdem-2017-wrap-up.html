@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    FOSDEM 2017 Wrap-up - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    FOSDEM 2017 Wrap-up</h2>
+From:<a href="http://feedproxy.google.com/~r/ContinuousBlog/~3/x1erwqvtBtQ/">http://feedproxy.google.com/~r/ContinuousBlog/~3/x1erwqvtBtQ/</a><br><br><div><p>In early February numerous free and open source developers from around the
+world traveled to Brussels, Belgium, for arguably the largest event of its
+kind:
+<a href="https://fosdem.org">FOSDEM</a>. Among the thousands of hackers in attendance
+were a dozen or so Jenkins contributors. We have attended the event in the
+past, but this year we had a blizzard of activity spanning four days around the FOSDEM
+weekend.</p>
+<a class="image" href="https://www.flickr.com/photos/12508267@N00/32449169840/in/album-72157680098353926/"><img src="https://c1.staticflickr.com/3/2328/32449169840_f8fec9c11a_z.jpg" alt="Brussels City Hall"></a>
+<p class="title">Figure 1. City Hall, photo by Kohsuke Kawaguchi</p>
+<p>One of our "accidental traditions" has become a
+<a href="https://www.meetup.com/jenkinsmeetup/events/236370435/">happy hour</a>
+the Friday night before FOSDEM truly begins at Cafe Le Roy d&#8217;Espagne on Grand
+Place right in the middle of Brussels. Conveniently located a few hundred meters away from the
+<a href="https://fosdem.org/2017/beerevent/">FOSDEM Beer Event</a>
+at Delirium Cafe, each year we are inevitably joined by friends from other open
+source projects who know they&#8217;re welcome to join us for a few drinks.</p>
+<a class="image" href="https://www.flickr.com/photos/12508267@N00/31987111834/in/album-72157680098353926/"><img src="https://c1.staticflickr.com/1/497/31987111834_39773bc5ab_z.jpg" alt="Happy hour at Cafe Le Roy"></a>
+<p class="title">Figure 2. Cafe Le Roy, photo by Kohsuke Kawaguchi</p>
+<p>After dinner and drinks, a few of us decided it would be a good idea (it
+wasn&#8217;t) to walk over to check out the FOSDEM Beer Event and maybe have just
+one more beer. For the uninitiated, Belgian beers tend to be strong, as the FOSDEM organizers warn:</p>
+<blockquote>
+<p>Unlike some other beers, Belgian beer is not just coloured water. Some beers
+contain significant quantities of alcohol and will give you a pounding
+hangover.</p>
+</blockquote>
+<p>Unfortunately, some of us seem to re-learn this lesson each year at FOSDEM!</p>
+
+<p>Bright and early the following day, FOSDEM really kicked off with keynotes and
+the project tables lining a number of corridors.</p>
+<a class="image" href="https://www.flickr.com/photos/12508267@N00/32706234821/in/album-72157680098353926/"><img src="https://c1.staticflickr.com/3/2035/32706234821_2997a98b52_z.jpg" alt="Busy FOSDEM hall"></a>
+<p class="title">Figure 3. A busy hall at FOSDEM, photo by Kohsuke Kawaguchi</p>
+<p>At the Jenkins project&#8217;s table we typically spend two full days answering questions,
+showing off the latest and greatest Jenkins features, and of course handing out
+Jenkins stickers. The table is where many contributors, myself included, have
+a rare opportunity to talk with dozens of enthusiastic Jenkins users from
+across the broader open source community. This year we were very fortunate to have a
+tremendous number of contributors available at the table to answer hundreds of
+questions throughout the two days of FOSDEM.</p>
+<p>I would like to thank everybody by name, but the entire weekend was such a blur
+that I&#8217;m not sure I would be able to remember everybody who helped! We couldn&#8217;t have
+had a successful event without their support, so many thanks to all the
+contributors who helped!</p>
+<p>In addition to the Jenkins project table, we had two contributors present in
+the
+<a href="https://fosdem.org/2017/schedule/track/testing_and_automation/">Testing and Automation</a>
+devroom, which I helped organize in between answering Jenkins questions.</p>
+<h4 id="declarative-pipelines-in-jenkins"><a class="anchor" href="#declarative-pipelines-in-jenkins"></a>Declarative Pipelines in Jenkins</h4>
+<p>The first presentation was a stellar introduction to
+<a http: feedproxy.google.com doc book pipeline>Declarative Pipelines</a>
+in Jenkins, by long-time contributor and primary developer of Declarative
+Pipeline support,
+<a href="https://github.com/abayer">Andrew Bayer</a>.</p>
+
+    
+
+<h4 id="using-containers-for-building-and-testing"><a class="anchor" href="#using-containers-for-building-and-testing"></a>Using Containers for Building and Testing</h4>
+<p>Later in the day,
+<a href="https://github.com/carlossg">Carlos Sanchez</a>,
+another long-time contributor, maintainer of the
+<a href="https://plugins.jenkins.io/kubernetes">Kubernetes plugin</a> and a number of Jenkins- and Maven-related
+Docker containers, provided a great overview of the current state of using
+containers for building and testing in Jenkins.</p>
+
+    
+
+
+<p>After a very busy two days at FOSDEM, a few contributors remained in Brussels
+for a day-long
+<a href="https://www.meetup.com/jenkinsmeetup/events/236370750/">Post-FOSDEM Contributor Hackathon</a>
+sponsored by CloudBees, Inc. and
+<a href="http://www.betacowork.com/">Betacowork Brussels</a>. Trying to cram lots of
+hacking into a single day is challenging, so the day was mostly filled with
+discussions, some light prototyping, and a bit of recovery from the hectic
+weekend at FOSDEM. :)</p>
+<a class="image" href="https://www.flickr.com/photos/12508267@N00/32015233063/in/album-72157680098353926/"><img src="https://c1.staticflickr.com/3/2087/32015233063_47128bac1c_z.jpg" alt="Daniel presented at the hackathon"></a>
+<p class="title">Figure 4. Daniel Beck presenting on CLI prototyping, photo by Kohsuke Kawaguchi</p>
+<h2 id="thanks"><a class="anchor" href="#thanks"></a>Thanks</h2>
+<p>Of course I would like to extend many thanks to all the contributors who
+participated in the various FOSDEM related events, but I would call special
+attention to the logistics and planning work done by contributors Alyssa Tong,
+Damien Duportal, and Olivier Vernin. Thanks to their work coordinating all the
+plans, reservations, and schedules, we had a flawless weekend
+of high-intensity Jenkins discussion, advocacy, and hacking.</p>
+<p>I hope to see everybody back in Brussels next year for FOSDEM 2018!</p>
+</div>
+
+<p class="info">
+<h4>
+Posted Thu 16 March 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a>
+(<a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a>)</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

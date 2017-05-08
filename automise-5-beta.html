@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Automise 5 Beta - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    Automise 5 Beta</h2>
+From:<a href="https://www.finalbuilder.com/resources/blogs/postid/741/automise-5-beta">https://www.finalbuilder.com/resources/blogs/postid/741/automise-5-beta</a><br><br><div><p>Today we are delighted to release the Automise 5 BETA, which contains our new Stepping Engine and Action List Dependencies as the headline features. </p>
+<p>For five years we have updated and improved Automise 4 through our continuous delivery cycle.&#160;This has worked well. Allowing for improvements to actions (like FTP\SFTP\FTPS suite) to come out gradually and consistently. Allowing everyone to pick and choose at which point to take feature updates.</p>
+<p>The Automise 5 signals a major "tick" to this regular flow of updates. The majority of these updates are at the core of what Automise does to solve your automation challenges.</p>
+<h2>What's new in Automise 5</h2>
+<h3>Stepping Engine</h3>
+<p>We have undertaken a major rewrite of the internal stepping engine for Automise 5. This has reduced the moving parts, while also enabled extra features to be implemented. In the end this will mean your projects will run faster, consume less resources, while also providing some extra tools for debugging projects.</p>
+<h3>Action List Dependencies</h3>
+<p>Action Lists now allow for listing of other Actions Lists they are dependent on. Dependencies are always run before the action lists which depend on them. For example this allows specifying a UploadAndClean Action List that depends on the Clean and Upload Action List. When UploadAndClean is run, if the Clean and Upload Action Lists have not been run they will be.</p>
+<p><img alt="Action List Dependencies" src="/blogimages/jason/Automise5-beta-release/at5_actionlist_dependencies.png"></p>
+<h3>Step into included projects</h3>
+<p>Due to the previous version of the stepping engine stepping into included projects was not possible. Instead the user had to wait for the included project to complete before continuing with debugging. Stepping into included projects with Automise 5 will now open the included project, and continue stepping from inside the included project.</p>
+<h3>Breakpoint Conditions</h3>
+<p>Another addition to the debugging experience is breakpoint conditions. These allow stopping the executing of a script at a certain point in time. Conditions can be a number of passes over the breakpoint, or when a variable equals a certain value.</p>
+<p><img alt="Action List Dependencies" src="https://www.finalbuilder.com/blogimages/jason/Automise5-beta-release/at5_breakpoint_properties.png"></p>
+<h3>IDE Themes (Light and Dark)</h3>
+<p>After five years we thought it was time Automise got a new coat of paint. We have implemented two new themes, a light and dark theme (defaulting to the dark on first run up).</p>
+
+    
+        
+            
+            <img alt="Action List Dependencies" src="https://www.finalbuilder.com/blogimages/jason/Automise5-beta-release/at5_dark_theme.png">
+            
+            
+            <img alt="Action List Dependencies" src="https://www.finalbuilder.com/blogimages/jason/Automise5-beta-release/at5_light_theme.png">
+            
+        
+    
+
+<h3>Action List Out Parameters</h3>
+<p>Action Lists now allow for retrieving any number of values from them. A variable assigned to the out parameter on the Action List will be given the value of that parameter when the Action List has completed. This will allow for more Action Lists that generate values for use else where in the Automise Project.</p>
+<h3>Project Formats</h3>
+<p>Since the start of Automise the project files have used XML for their structure. As Automise has grown, so too have the elements in the projects XML file. This has placed more strain on those left to diff versions of Automise projects.</p>
+<p>To aleavate this challenge Automise 5 has introduce two major updates to the Automise project file structure.</p>
+<p>&#160; &#160;1. A new DSL project file format (the new default format)</p>
+<p>&#160; &#160;2. A new XML project file format</p>
+<p>The new Automise DSL structure is concise, and very simple to diff.</p>
+<pre class="brush:delphi; toolbar:true;">project
+begin
+    projectid = {04710B72-066E-46E7-84C7-C04A0D8BFE18}
+    Action List
+    begin
+        name = Default
+        Action Listid = {E6DE94D6-5484-45E9-965A-DB69885AA5E2}
+        rootaction
+        begin
+            action.group
+            begin
+                id = {D860420B-DE46-4806-959F-8A92A0C86429}
+            end
+        end
+    end
+end
+</pre>
+The new Automise XML structure is a great deal less verbose than the older format.
+<pre class="brush:xml; toolbar:true;">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;Automise&gt;
+    &lt;project&gt;
+        &lt;projectid&gt;{6A717C24-D00F-4983-9FD0-148B2C609634}&lt;/projectid&gt;
+        &lt;Action List&gt;
+            &lt;name&gt;Default&lt;/name&gt;
+            &lt;Action Listid&gt;{E6DE94D6-5484-45E9-965A-DB69885AA5E2}&lt;/Action Listid&gt;
+            &lt;rootaction&gt;
+                &lt;action.group&gt;
+                    &lt;id&gt;{D860420B-DE46-4806-959F-8A92A0C86429}&lt;/id&gt;
+                &lt;/action.group&gt;
+            &lt;/rootaction&gt;
+        &lt;/Action List&gt;
+    &lt;/project&gt;
+&lt;/Automise&gt;
+</pre>
+<p>The new Automise XML structure is a great deal less verbose than the older format.</p><p>&#160;</p>
+<h3>New Actions</h3>
+<p>Not much to report here, most of the focus has been on the Stepping engine and the IDE. We do have some updates to AWS EC2 and Azure in progress, they will most likely be added in an update when they are ready.&#160;</p>
+<h3>How do I get the Beta?</h3>
+<p>Links to the beta downloads will be published to the&#160;</p><a href="https://www.finalbuilder.com/downloads/automise">Automise Downloads</a><p>&#160;page.&#160;</p>
+<h3>What if I find a bug?</h3>
+<p>Email support (please added Beta to the subject). When reporting an issue, be sure to include the beta build number and details about your environment. Please test with the latest beta build before reporting bugs.&#160;</p><br>
+<br>
+<p>We are particularly keen for people to load up their existing projects from older (ie 4 or earlier) versions of Automise, save them in AT5 format, and load them again and confirm that everything loaded ok.&#160;</p><br>
+<br>
+<h3>When will it be released?</h3>
+<h3></h3>
+<p>When it's ready ;) Seriously, though, we expect the release to happen in the next few weeks. Automise 5 is based on FinalBuilder 8, which has been out for several months now and is quite stable.&#160;</p>&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    </div>
+
+<p class="info">
+<h4>
+Posted Thu 21 January 2016
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a>
+(<a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a>)</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

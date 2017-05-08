@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    TFS/VSO Task for Running FinalBuilder Project - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    TFS/VSO Task for Running FinalBuilder Project</h2>
+From:<a href="https://www.finalbuilder.com/resources/blogs/postid/736/finalbuilder-vso-task">https://www.finalbuilder.com/resources/blogs/postid/736/finalbuilder-vso-task</a><br><br><div><a></a><br>
+<br>
+Those who use TFS on-prem will be very familiar with our XAML build activity already. This activity took a great deal of confusion out of the XAML build process. Changing a build progress from a complex workflow into a simple to maintain FinalBuilder project. The time and effort saved is huge, especially considering the "default" XAML workflow looks like this:<br>
+<br>
+<img alt="" src="https://www.finalbuilder.com/blogImages/jason/FinalBuilder-VSO/OldXAMLProcess.png"><br>
+<br>
+Thankfully Microsoft have improved on their build system with the release of Team Foundation Build 2015. You can read more about this at <a></a><br>
+<br>
+The FinalBuilder task is our custom task for TFS Build 2015. It offers TFS script builders the ability to still have a simplified overview of their build process while still gaining the power of FinalBuilder and all its supported actions. With FinalBuilder TFS build script creators are able to perform a wide number of tasks that would otherwise require breaking out powershell and diving into the TFS agent environment variables.&#160;<br>
+<br>
+When installed, the FinalBuilder Task gives users the following UI. All of the properties present in the UI are easily accessible from within any FinalBuilder script run by the task. FinalBuilder also gives simple access to a list of files that triggered the build.<br>
+<br>
+<img alt="" src="https://www.finalbuilder.com/blogImages/jason/FinalBuilder-VSO/FinalBuilderTaskOptionsAll.png">
+<br>
+<h2>Installation and Usage</h2>
+The steps to adding custom build activities to your TFS and VSO instances are quick and easy. We have created a&#160;<a></a><h2>Repository Clone</h2>
+To clone this repository use the following command line. You will require git to be installed and available on your path.<br>
+<pre class="brush:shell; gutter:false; highlight:3">&gt; mkdir VSoft
+&gt; cd VSoft
+&gt; git clone https://github.com/VSoftTechnologies/FinalBuilder-VSO.git
+Cloning into 'FinalBuilder-VSO'...
+remote: Counting objects: X, done.
+remote: Compressing objects: 100% (X/X), done.
+remote: Total X (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (X/X), done.
+Checking connectivity... done.
+</pre>
+With the repository cloned we require the TFS Extensions Command Line Utility (tfx-cli). It comes as a Node Package Manager (npm) package. Npm comes with both the node.js and io.js installer. Download the installer for your Windows platform and run it.<br>
+<br>
+To check that NPM is working correctly you can use the npm version command<br>
+<pre class="brush:shell; gutter:false; highlight:1">&gt; npm -v
+2.10.1
+</pre>
+Now your able to install the tfx-cli package using npm. Install this globally so that its accessable on the command line. The command line for this is as follows;<br>
+<pre class="brush:shell; gutter:false; highlight:1">&gt; npm install -g tfx-cli
+tfx-cli@0.1.11 C:\Users\&lt;username&gt;\AppData\Roaming\npm\node_modules\tfx-cli
+&#9500;&#9472;&#9472; os-homedir@1.0.1
+&#9500;&#9472;&#9472; async@1.4.2
+&#9500;&#9472;&#9472; colors@1.1.2
+&#9500;&#9472;&#9472; minimist@1.2.0
+&#9500;&#9472;&#9472; node-uuid@1.4.3
+&#9500;&#9472;&#9472; q@1.4.1
+&#9500;&#9472;&#9472; read@1.0.7 (mute-stream@0.0.5)
+&#9500;&#9472;&#9472; validator@3.43.0
+&#9500;&#9472;&#9472; shelljs@0.5.3
+&#9500;&#9472;&#9472; vso-node-api@0.3.4
+&#9492;&#9472;&#9472; archiver@0.14.4 (buffer-crc32@0.2.5, lazystream@0.1.0, async@0.9.2, readable-stream@1.0.33, tar-stream@1.1.5, glob@4.3.5, lodash@3.2.0, zip-stream@0.5.2)
+</pre>
+To test that tfx-cli is working correctly and is on the path use the tfx command.<br>
+<pre class="brush:shell; gutter:false; highlight:1">&gt; tfx
+Copyright Microsoft Corporation
+tfx &lt;command&gt; [&lt;subcommand(s)&gt; ...] [&lt;args&gt;] [--version] [--help] [--json]
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; fTfs
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; fSSSSSSSs
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; fSSSSSSSSSS
+&#160; &#160; &#160;TSSf &#160; &#160; &#160; &#160; fSSSSSSSSSSSS
+&#160; &#160; &#160;SSSSSF &#160; &#160; fSSSSSSST SSSSS
+&#160; &#160; &#160;SSfSSSSSsfSSSSSSSt &#160; SSSSS
+&#160; &#160; &#160;SS &#160;tSSSSSSSSSs &#160; &#160; &#160;SSSSS
+&#160; &#160; &#160;SS &#160; fSSSSSSST &#160; &#160; &#160; SSSSS
+&#160; &#160; &#160;SS fSSSSSFSSSSSSf &#160; &#160;SSSSS
+&#160; &#160; &#160;SSSSSST &#160; &#160;FSSSSSSFt SSSSS
+&#160; &#160; &#160;SSSSt &#160; &#160; &#160; &#160;FSSSSSSSSSSSS
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; FSSSSSSSSSS
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;FSSSSSSs
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; FSFs &#160; &#160;(TM)
+commands:
+&#160; &#160;build
+&#160; &#160; &#160; &#160; manage task extensions and builds
+&#160; &#160;help
+&#160; &#160; &#160; &#160; command help
+&#160; &#160;login
+&#160; &#160; &#160; &#160; login and cache credentials. types: pat (default), basic
+&#160; &#160; &#160; &#160; login &lt;collection url&gt; [--authtype &lt;authtype&gt;] [options]
+&#160; &#160;parse
+&#160; &#160; &#160; &#160; parse json by piping json result from another tfx command
+&#160; &#160; &#160; &#160; parse &lt;jsonfilter&gt; [options]
+&#160; &#160;version
+&#160; &#160; &#160; &#160; output the version
+&#160; &#160; &#160; &#160; version [options]
+Options:
+&#160; &#160;--help &#160; &#160;: get help on a command
+&#160; &#160;--json &#160; &#160;: output in json format. &#160;useful for scripting
+</pre>
+For tfx-cli to upload a task to TFS it needs to be logged in. We can do this once so that all following commands will use the some credentials. The method used depends on whether your using VSO or an On Prem installation.<br>
+<h2>On Premises Login</h2>
+For on premises TFS basic authentication will need to be enabled. The tfx-cli project has a great guide on how to achieve this Using tfx against Team Foundation Server (TFS) 2015 using Basic Authentication.<br>
+<br>
+Once TFS has been configured to use basic authentication use the tfx-cli login command to connect to TFS. You will be prompted for the TFS collection URL to connect to, and the username and password for accessing that collection.<br>
+<pre class="brush:shell; gutter:false; highlight:1">&gt; tfx login --authType basic
+Copyright Microsoft Corporation
+Enter collection url &gt; http://&lt;server&gt;:&lt;port&gt;/tfs/&lt;collection&gt;
+Enter username &gt; &lt;user&gt;@&lt;domain&gt;
+Enter password &gt; &lt;password&gt;
+logged in successfully
+</pre>
+With a successful login subsequent commands will not require us to provide the credentials again.<br>
+<h2>Visual Studio Online (VSO) Login</h2>
+For VSO login you need a personal access token setup under your account. There is a great article to configure an access token located at Using Personal Access Tokens to access Visual Studio Online.<br>
+<br>
+With the personal access token configured use the tfx-cli login command to connect to VSO. You will be prompted for the TFS collection URL to connect to, and access token for accessing that collection.<br>
+<pre class="brush:shell; gutter:false; highlight:1">&gt; tfx login
+Copyright Microsoft Corporation
+Enter collection url &gt; https://&lt;vsoname&gt;.visualstudio.com/&lt;collection&gt;
+Enter personal access token &gt; &lt;access token&gt;
+logged in successfully
+</pre>
+With a successful login subsequent commands will not require us to provide the credentials again.<br>
+<h2>Uploading Task</h2>
+Once logged into TFS we are able to upload the FinalBuilder task to the server. Tasks are uploaded to the server, the server will then pass them onto agents requried to run those tasks.<br>
+<br>
+To upload the task use the tfx-cli tasks upload command. Each command shown below is a sub-command of the previous, so order does matter here. The overwrite option is included so that any previously installed version is overwritten. Note however the highest version number of the task will win when running builds.<br>
+<br>
+Note: This command is run under the directory in which this repositry was cloned to (i.e. FinalBuilderTFS).<br>
+<pre class="brush:shell; gutter:false; highlight:1">&gt; tfx build tasks upload ./FinalBuilder --overwrite
+Copyright Microsoft Corporation<br>
+
+task at: ./FinalBuilder uploaded successfully!
+</pre>
+To test that the FinalBuilder task is now installed on the builds page for teh collection the task was uploaded to. Create a new empty Team Foundation Build definition. After clicking "Add build step" a FinalBuilder task should appear in the "Build" category.<br>
+<h2>Further Steps</h2>
+For more information on the following subjects please follow the links;<br>
+<br>
+How to configure the build task refer to <a></a><br>
+How to install FinalBuilder on an agent refer to <a></a><br>
+How to create a FinalBuilder VSO agent refer to Creating a <a></a><br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    <p>Today we are announcing the new build step for Team Foundation Build 2015. This task will allow users of TFS on-prem and VSO to run FinalBuilder projects on Team Foundation Build agents. The task itself is open source and can be found on <a href="https://github.com/VSoftTechnologies/FinalBuilder-VSO">GitHub</a> Those who use TFS on-prem will be very familiar with our XAML build activity already. This activity took a great deal of confusion out of the XAML build process. Changing a build progress from a complex workflow into a simple to maintain FinalBuilder project. The time and effort saved is huge, especially considering the "default" XAML workflow looks like this:Thankfully Microsoft have improved on their build system with the release of Team Foundation Build 2015. You can read more about this at <a href="https://msdn.microsoft.com/Library/vs/alm/Build/feature-overview">Team Foundation Build 2015</a> . In summary, the new build system greatly simplifies the build process into a list of tasks to perform.The FinalBuilder task is our custom task for TFS Build 2015. It offers TFS script builders the ability to still have a simplified overview of their build process while still gaining the power of FinalBuilder and all its supported actions. With FinalBuilder TFS build script creators are able to perform a wide number of tasks that would otherwise require breaking out powershell and diving into the TFS agent environment variables.When installed, the FinalBuilder Task gives users the following UI. All of the properties present in the UI are easily accessible from within any FinalBuilder script run by the task. FinalBuilder also gives simple access to a list of files that triggered the build.The steps to adding custom build activities to your TFS and VSO instances are quick and easy. We have created a <a href="https://github.com/VSoftTechnologies/FinalBuilder-VSO">GitHub Repository</a> for explaining how to install, and use our FinalBuilder VSO task.To clone this repository use the following command line. You will require git to be installed and available on your path.With the repository cloned we require the TFS Extensions Command Line Utility (tfx-cli). It comes as a Node Package Manager (npm) package. Npm comes with both the node.js and io.js installer. Download the installer for your Windows platform and run it.To check that NPM is working correctly you can use the npm version commandNow your able to install the tfx-cli package using npm. Install this globally so that its accessable on the command line. The command line for this is as follows;To test that tfx-cli is working correctly and is on the path use the tfx command.For tfx-cli to upload a task to TFS it needs to be logged in. We can do this once so that all following commands will use the some credentials. The method used depends on whether your using VSO or an On Prem installation.For on premises TFS basic authentication will need to be enabled. The tfx-cli project has a great guide on how to achieve this Using tfx against Team Foundation Server (TFS) 2015 using Basic Authentication.Once TFS has been configured to use basic authentication use the tfx-cli login command to connect to TFS. You will be prompted for the TFS collection URL to connect to, and the username and password for accessing that collection.With a successful login subsequent commands will not require us to provide the credentials again.For VSO login you need a personal access token setup under your account. There is a great article to configure an access token located at Using Personal Access Tokens to access Visual Studio Online.With the personal access token configured use the tfx-cli login command to connect to VSO. You will be prompted for the TFS collection URL to connect to, and access token for accessing that collection.With a successful login subsequent commands will not require us to provide the credentials again.Once logged into TFS we are able to upload the FinalBuilder task to the server. Tasks are uploaded to the server, the server will then pass them onto agents requried to run those tasks.To upload the task use the tfx-cli tasks upload command. Each command shown below is a sub-command of the previous, so order does matter here. The overwrite option is included so that any previously installed version is overwritten. Note however the highest version number of the task will win when running builds.Note: This command is run under the directory in which this repositry was cloned to (i.e. FinalBuilderTFS).To test that the FinalBuilder task is now installed on the builds page for teh collection the task was uploaded to. Create a new empty Team Foundation Build definition. After clicking "Add build step" a FinalBuilder task should appear in the "Build" category.For more information on the following subjects please follow the links;How to configure the build task refer to <a href="https://github.com/VSoftTechnologies/FinalBuilder-VSO/blob/master/docs/TaskUI.md">Task UI</a> How to install FinalBuilder on an agent refer to <a href="https://github.com/VSoftTechnologies/FinalBuilder-VSO/blob/master/docs/InstallingFinalBuilder.md">Installing FinalBuilder</a> How to create a FinalBuilder VSO agent refer to Creating a <a href="https://github.com/VSoftTechnologies/FinalBuilder-VSO/blob/master/docs/FinalBuilderVSOAgent.md">VSO FinalBuilder Agent</a> </p></div>
+
+<p class="info">
+<h4>
+Posted Thu 17 September 2015
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a>
+(<a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a>)</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

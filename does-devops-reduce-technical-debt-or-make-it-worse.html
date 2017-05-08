@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Does DevOps Reduce Technical Debt--or Make it Worse? - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    Does DevOps Reduce Technical Debt--or Make it Worse?</h2>
+From:<a href="http://java.dzone.com/articles/does-devops-reduce-technical-0">http://java.dzone.com/articles/does-devops-reduce-technical-0</a><br><br><div><p class="print-link"></p><p> DevOps can help <a href="http://www.informationweek.com/strategic-cio/how-devops-can-cut-innovation-crushing-technical-debt/a/d-id/1318677">reduce technical debt</a> in some fundamental ways. </p>
+<h2>Continuous Delivery/Deployment</h2>
+
+<p> First, building a <a href="http://devops.com/2014/07/29/continuous-delivery-pipeline/">Continuous Delivery/Deployment pipeline</a>, automating the work of migration and deployment, will force you to clean up inconsistencies and holes in configuration and code deployment, and inconsistencies between development, test and production environments. </p>
+
+<p> And automated Continuous Delivery and <a href="http://shop.oreilly.com/product/0636920039297.do">Infrastructure as Code</a> gets rid of dangerous one-of-a-kind <a href="http://martinfowler.com/bliki/SnowflakeServer.html">snowflakes</a> and <a href="http://java.dzone.com/articles/configuration-drift">configuration drift</a> caused by making configuration changes and applying patches manually over time. Which makes systems easier to setup and manage, and reduces the risk of an un-patched system becoming the target of a security attack or the <a href="https://news.ycombinator.com/item?id=7652036">cause of an operational problem</a>. </p>
+
+<p> A CD pipeline also makes it easier, cheaper and faster to pay down other kinds of technical debt. With Continuous Delivery/Deployment, you can test and push out patches and refactoring changes and platform upgrades faster and with more confidence. </p>
+<h2>Positive Feedback</h2>
+
+<p> The Lean feedback cycle and <a href="http://leankit.com/blog/2015/03/3-reasons-it-ops-uses-lean-flow-kanban-for-devops-part-2-of-3/">Just-in-Time prioritization</a> in DevOps ensures that you&#8217;re working on whatever is most important to the business. This means that bugs and usability issues and security vulnerabilities don&#8217;t have to wait until after the next feature release to get fixed. Instead, problems that impact operations or the users will get fixed immediately. </p>
+
+<p> Teams that do <a href="https://codeascraft.com/2012/05/22/blameless-postmortems/">Blameless Post-Mortems</a> and <a href="http://www.kitchensoap.com/2014/11/14/the-infinite-hows-or-the-dangers-of-the-five-whys/">Root Cause(s) Analysis</a> when problems come up will go even further, and fix problems at the source and improve in fundamental and important ways. </p>
+
+<p> But there&#8217;s a negative side to DevOps that can add to technical debt costs. </p>
+<h2>Erosive Change</h2>
+
+<p> Michael Feathers&#8217; research has shown that constant, <a href="http://swreflections.blogspot.ca/2012/10/bad-things-happen-to-good-code.html">iterative change is erosive</a>: the same code gets changed over and over, the same classes and methods become bloated (because it is naturally easier to add code to an existing method or a method to an existing class), structure breaks down and the design is eventually lost. </p>
+
+<p> DevOps can make this even worse. </p>
+
+<p> DevOps and Continuous Delivery/Deployment involves pushing out lots of small changes, running experiments and iteratively tuning features and the user experience based on continuous feedback from production use. </p>
+
+<p> Many DevOps teams work directly on the code mainline, &#8220;<a href="http://theagileadmin.com/2010/06/24/velocity-2010-always-ship-trunk/">branching in code</a>&#8221; to &#8220;<a href="http://agiletesting.blogspot.ca/2009/07/dark-launching-and-other-lessons-from.html">dark launch</a>&#8221; code changes, while code is still being developed, using conditional logic and flags to skip over sections of code at run-time. This can make the code hard to understand, and potentially dangerous: if a <a href="http://martinfowler.com/bliki/FeatureToggle.html">feature toggle</a> is turned on before the code is ready,<a href="http://web.archive.org/web/20110721063430/http://jamesmckay.net/2011/07/why-does-martin-fowler-not-understand-feature-branches/"> bad things can happen</a>. </p>
+
+<p> Feature flags are also used to run A/B experiments and control risk on release, by rolling out a change incrementally to a few users to start. But the longer that feature flags are left in the code, the <a href="http://swreflections.blogspot.ca/2014/08/feature-toggles-are-one-of-worst-kinds.html">harder it is to understand and change</a>. </p>
+
+<p> There is a lot of housekeeping that needs to be done in DevOps: upgrading the CD pipeline and making sure that all of the tests are working; maintaining Puppet or Chef (or whatever configuration management tool you are using) recipes; disciplined, <a href="http://swreflections.blogspot.com/2012/04/what-refactoring-is-and-what-it-isnt.html">day-to-day refactoring</a>; keeping track of features and options and cleaning them up when they are no longer needed, getting rid of dead code and trying to keep the code as simple as possible. </p>
+<h2>Microservices and Technology Choices</h2>
+
+<p><a href="http://martinfowler.com/articles/microservices.html">Microservices </a> are a <a href="http://www.infoq.com/news/2014/08/microservices-monoliths">popular architectural approach for DevOps</a> teams. </p>
+
+<p> This is because loosely-coupled Microservices are easier for individual teams to independently deploy, change, <a href="http://jimplush.com/talk/2015/02/28/microservices-allow-for-localized-tech-debt/">refactor or even replace</a>. </p>
+
+<p> And a Microservices-based approach provides developers with more freedom when deciding on language or technology stack: teams don&#8217;t necessarily have to work the same way, they can choose the right tool for the job, as long as they support an API contract for the rest of the system. </p>
+
+<p> In the short term there are obvious advantages to giving teams more freedom in making technology choices. They can deliver code faster, quickly try out prototypes, and teams get a chance to experiment and learn about different technologies and languages. </p>
+
+<p> But Microservices &#8220;<a href="http://highscalability.com/blog/2014/4/8/microservices-not-a-free-lunch.html">are not a free lunch</a>&#8221;. As you add more services, system testing costs and complexity increase. Debugging and problem solving gets harder. And as more teams choose different languages and frameworks, it&#8217;s harder to track vulnerabilities, harder to operate, and harder for people to switch between teams. Code gets duplicated because teams want to minimize coupling and it is difficult or impossible to share libraries in a polyglot environment. Data is often duplicated between services for the same reason, and data inconsistencies creep in over time. </p>
+<h2>Negative Feedback</h2>
+
+<p> There is a potentially negative side to the Lean delivery feedback cycle too. </p>
+
+<p> Constantly responding to production feedback, always working on what&#8217;s most immediately important to the organization, doesn&#8217;t leave much space or time to consider bigger, longer-term technical issues, and to work on paying off deeper architectural and technical design debt that result from poor early decisions or incorrect assumptions. </p>
+
+<p> Smaller, more immediate problems get fixed fast in DevOps. Bugs that matter to operations and the users can get fixed right away instead of waiting until all the features are done, and patches and upgrades to the run-time can be pushed out more often. Which means that you can pay off a lot of debt before costs start to compound. </p>
+
+<p> But behind-the-scenes, strategic debt will continue to add up. Nothing&#8217;s broke, so you don&#8217;t have to fix anything right away. And you can&#8217;t refactor your way out of it either, at least not easily. So you end up living with a poor design or an aging technology platform, slowly slowing down your ability to respond to changes, to come up with new solutions. Or forcing you to continue filling in security holes as they come up, or scrambling to scale as load increases. </p>
+
+<p> DevOps can reduce technical debt. But only if you work in a highly disciplined way. And only if you raise your head up from tactical optimization to deal with bigger, more strategic issues before they become real problems. </p>	
+	<p></p>
+
+    </div>
+
+<p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

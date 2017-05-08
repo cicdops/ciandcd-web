@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    What does the future of IT Operations look like (in a #DevOps world)? - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    What does the future of IT Operations look like (in a #DevOps world)?</h2>
+From:<a href="http://blog.devopsguys.com/2015/06/30/what-does-the-future-of-it-operations-look-like-in-a-devops-world/">http://blog.devopsguys.com/2015/06/30/what-does-the-future-of-it-operations-look-like-in-a-devops-world/</a><br><br><div><blockquote><p>What does the future of IT Operations look like? As more businesses rely on virtualisation, containers, cloud, Infrastructure as a Service and Microservices is there still a role for IT Operations? How do these teams change to continue to deliver value when supporting Agile Operations techniques?</p></blockquote>
+<p>Is there still a role for IT Operations? Absolutely 100% (we believe that so much we <a href="http://www.devopsguys.com/">started a company</a> to offer application-centric cloud operations!).</p>
+<p>We blogged about this back in 2013 when we said that &#8220;<a href="http://blog.devopsguys.com/2013/02/17/devops-does-not-equal-developers-managing-production/">Devops Does Not Equal &#8220;Developers Managing Production</a>&#8221;. We said then:</p>
+<blockquote><p>&#8220;Operations is a discipline, with its own patterns &amp; practices, methodologies, models, tools, technology etc. Just because modern cloud hosting makes it easier to deploy servers without having to know one end of a SCSI cable from another doesn&#8217;t mean you &#8220;know&#8221; how to do Operations (just like my knowledge of SQL is enough to find out the information I need to know monitor and manage the environment but a long way from what&#8217;s required to develop a complex, high-performing website).&#8221; &#8211; @TheOpsMgr</p></blockquote>
+<p>This&#160;still holds true today.</p>
+<p>That said, the role of Operations is changing &#8211; Ops has to become more &#8220;Application-Centric&#8221; and understand the applications that are running on the platforms they provide. It&#8217;s not enough anymore to take a narrow view that says &#8220;my servers are OK, it&#8217;s not my fault the application doesn&#8217;t work&#8221;. Well, it might not be your &#8220;fault&#8221; but you share the responsibility for making sure the application is available for your customers. Stop passing the buck!</p>
+<p>Operations people almost certainly need to learn to code, since we are heading towards a code-driven, API enabled world.&#160; If you can&#8217;t code (or at least have solid scripting skills) you risk being left behind will be left behind.</p>
+<p>More importantly, the Operations Engineer/Developer of the future will be filling a role more akin to that of a &#8220;<a href="http://en.wikipedia.org/wiki/Process_engineering">process engineer</a>&#8221; in a physical factory or logistical supply chain.</p>
+<p>A process engineer designs a process and production line that transforms raw materials into a finished product.</p>
+<p>The Operations Engineer/Developer of the future will be building Digital Supply Chains and Digital Production Lines.</p>
+<p>These Digital Supply Chains will transform raw materials (source code) via continuous integration, test automation, packaging, release automation, infrastructure-as-code etc into applications running in cloud-hosted environments.</p>
+<p>The rate of changes flowing along the Digital Supply Chain will far exceed &#8220;old school&#8221; Change and Release methodologies &#8211; you can&#8217;t have a weekly CAB (Change Advisory Board) meeting if you&#8217;re doing multiple deployments per day (or every 11.6 seconds&#160;&#224;&#160;la Amazon).</p>
+<p>So, just like a physical production line includes statistical sampling, automated testing etc., so will the Digital Supply Chain of the future. We already do this with TDD/BDD, automated testing with tools like Selenium etc but it will become the Operations Engineer/Developer job to ensure that the digital production line delivers release packages of sufficient quality to ensure the stability of the application (and the organisation&#8217;s revenue that depends on it!).</p>
+<p>Modern supply chains are complex and have many interdependencies on 3rd parties, particularly if you&#8217;re operating a &#8220;Just-In-Time&#8221; (JIT) model. Modern software applications have the ultimate in JIT dependencies due to their integrations with 3rd party SaaS API&#8217;s like payment gateways, recommendation engines, authentication gateways, cloud providers etc. Modern Operations Engineers will need to ensure that they design the digital supply chain that can cope with failures in these interdependencies, or at least ensure that they select the right 3rd party partners who can offer the right levels of performance and availability needed for their applications.</p>
+<p>In summary, will the Operations Engineer/Developer of the future be &#8220;just managing (virtual) servers&#8221;? No, almost certainly not.</p>
+<p>What they will be doing is designing and building complex digital supply chains with complex interdependencies both internally and externally to the organisation, digital supply chains designed to meet the needs of applications that are designed to meet the needs of their customers, safely, securely and cost-effectively.</p>
+<p>The Q&amp;A above is&#160;part of material prepared as our contribution to an CA ebook on &#8220;Agile Operations&#8221;. We wrote our thoughts on 6&#160;questions, of which 4 will be used in the ebook, scheduled to come out in August 2015. You can read the earlier Q&amp;A here &#8211;&#160;<a href="http://blog.devopsguys.com/2015/06/23/what-is-important-for-an-it-ops-to-team-more-effectively-with-preproduction-teams-devops/" target="_blank">http://blog.devopsguys.com/2015/06/23/what-is-important-for-an-it-ops-to-team-more-effectively-with-preproduction-teams-devops/</a>&#160;&#160;</p>
+</div>
+
+<p class="info">
+<h4>
+Posted Tue 30 June 2015
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+(<a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a>)</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

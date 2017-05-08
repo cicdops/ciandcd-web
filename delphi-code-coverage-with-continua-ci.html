@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Delphi Code Coverage with Continua CI - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    Delphi Code Coverage with Continua CI</h2>
+From:<a href="https://www.finalbuilder.com/resources/blogs/postid/738/delphi-code-coverage-with-continua-ci">https://www.finalbuilder.com/resources/blogs/postid/738/delphi-code-coverage-with-continua-ci</a><br><br><div><p>
+Testing code is something we all do. Whether it be manual usability testing, unit testing, or integration testing, knowing how much of the application is covered by the tests is important. Without knowing what parts of the application are covered, there is no way to know if key features are tested.<br>
+<br>
+When performing unit testing there is an analytical way to determine what parts of the source code are covered by the tests. This is typically call source code coverage. Working with Delphi, one of the tools that performs this task is called DelphiCodeCoverage (open source). It can be located on <a href="https://github.com/NeonGraal/DelphiCodeCoverage">GitHub</a>&#160;(more recent fork)&#160;and <a href="http://sourceforge.net/projects/delphicodecoverage">SourceForge</a>. Under the hood this tool simply marks each line of source code as "hit" when the application calls it at least once. From there it can generate a detailed report giving the overall coverage statistics for the project, as well as the individual lines not hit in the testing.
+</p>
+<p>
+<img alt="" src="https://www.finalbuilder.com/blogImages/jason/DelphiCodeCoverage/CodeCoverage_ContinuaCoverageReport.png">
+</p>
+<h2>Code Coverage</h2>
+What I will go through below is how to setup code coverage on a unit test project, and hook that into a continuous integration process using Continua CI. I will assume that if you require knowledge on how to setup a project on Continua CI you will refer to the <a></a><br>
+<br>
+The code that I would like to get a code coverage report on is the <a></a><a></a><br>
+<br>
+An extra consideration to have with a unit testing project is to make sure it can run under continuous integration. This means that it should run to completion and produce an output file that is able to be imported into the build summary. With this in mind I have created a "CI" <a></a><br>
+<br>
+All this code and other related scripts are located in the <a></a><br>
+<br>
+<h2>DelphiCodeCoverage</h2>
+To generate a code coverage report I decided to use DelphiCodeCoverage. The tool has a number of command line options, all of which are spelt out on the GitHub page. Some of the options are a little overwhelming in the effort they require. An example of this is passing a file that contains all the source directories to search for classes to include in the code coverage report. Thankfully there is a wizard supplied with DelphiCodeCoverage that will help generate a batch file containing the correct parameters to pass to DelphiCodeCoverage.&#160;<br>
+<br>
+In my project I have placed DelphiCodeCoverage into a sub-folder call "CodeCoverage" and included it into source control. There are two reasons I am doing this;<br>
+1. The code coverage executable is now available everywhere the source is pulled to.&#160;<br>
+2. It simplifies the script I will need for the CI Server.&#160;<br>
+If your uncomfortable with placing binaries into your source control, this can be altered without affecting the produced report.&#160;<br>
+<br>
+Running the code coverage wizard your presented with a page to enter the executable, map file, source, and output directory locations. Below are the settings I have used:
+<p>What I will go through below is how to setup code coverage on a unit test project, and hook that into a continuous integration process using Continua CI. I will assume that if you require knowledge on how to setup a project on Continua CI you will refer to the <a href="http://wiki.finalbuilder.com/display/continua/Part+1%3A+Create+your+First+Project">Create your First Project</a> wiki page.The code that I would like to get a code coverage report on is the <a href="https://github.com/VSoftTechnologies/DelphiCodeCoverageExample/blob/master/Core/Core.Card.pas" target="_blank">Core.Card.pas</a> unit. The unit tests for this class are located in the tests folder and have a corresponding name of <a href="https://github.com/VSoftTechnologies/DelphiCodeCoverageExample/blob/master/Tests/Core.CardTests.pas" target="_blank">Core.CardTests.pas</a> . You may have noticed that some of the code paths are not fully covered in my unit tests. This is intentional, and something that we will come to a little later on.An extra consideration to have with a unit testing project is to make sure it can run under continuous integration. This means that it should run to completion and produce an output file that is able to be imported into the build summary. With this in mind I have created a "CI" <a href="http://wiki.finalbuilder.com/display/continua/Configurations" target="_blank">configuration</a> on my unit testing project. This conditionally compiles the unit testing project so that it does not wait for user input (something my debug configuration does) and generates an XML output file.All this code and other related scripts are located in the <a href="https://github.com/VSoftTechnologies/DelphiCodeCoverageExample">VSoftTechnologies/DelphiCodeCoverageExample</a> GitHub repository. Feel free to clone it to get a better sense of code coverage and the project structure I am using.To generate a code coverage report I decided to use DelphiCodeCoverage. The tool has a number of command line options, all of which are spelt out on the GitHub page. Some of the options are a little overwhelming in the effort they require. An example of this is passing a file that contains all the source directories to search for classes to include in the code coverage report. Thankfully there is a wizard supplied with DelphiCodeCoverage that will help generate a batch file containing the correct parameters to pass to DelphiCodeCoverage.In my project I have placed DelphiCodeCoverage into a sub-folder call "CodeCoverage" and included it into source control. There are two reasons I am doing this;1. The code coverage executable is now available everywhere the source is pulled to.2. It simplifies the script I will need for the CI Server.If your uncomfortable with placing binaries into your source control, this can be altered without affecting the produced report.Running the code coverage wizard your presented with a page to enter the executable, map file, source, and output directory locations. Below are the settings I have used:</p><p>
+<br>
+<br>
+<img alt="" src="https://www.finalbuilder.com/blogImages/jason/DelphiCodeCoverage/CodeCoverageWizard_Executable.png">
+<br>
+<br>
+<img alt="" src="https://www.finalbuilder.com/blogImages/jason/DelphiCodeCoverage/CodeCoverageWizard_Source.png">
+<br>
+<br>
+<img alt="" src="https://www.finalbuilder.com/blogImages/jason/DelphiCodeCoverage/CodeCoverageWizard_Output.png">
+<br>
+<br>
+<img alt="" src="https://www.finalbuilder.com/blogImages/jason/DelphiCodeCoverage/CodeCoverageWizard_Settings.png"><br>
+<br>
+</p>
+The last option for the wizard allows for making all paths relative. This is exactly what we require to have our generated batch file run on any system, however at the time of writing it does not work correctly. This meant that I had to manually change all paths to a version that was relative to the folder in which DelphiCodeCoverage was located.
+<h4>dcov_execute.bat before</h4>
+<pre class="brush:delphi; toolbar:true;">"I:\Examples\DUnitX_CodeCoverage\CodeCoverage\CodeCoverage.exe" 
+-e "I:\Examples\DUnitX_CodeCoverage\Win32\Debug\DUnitX_And_CodeCoverage.exe" 
+-m "I:\Examples\DUnitX_CodeCoverage\Win32\Debug\DUnitX_And_CodeCoverage.map" 
+-uf dcov_units.lst -spf dcov_paths.lst 
+-od "I:\Examples\DUnitX_CodeCoverage\CodeCoverage\Output\" -lt -html
+</pre>
+<h4>dcov_execute.bat after</h4>
+<pre class="brush:delphi; toolbar:true;">"CodeCoverage.exe" 
+-e "..\Win32\CI\DUnitX_And_CodeCoverage.exe" 
+-m "..\Win32\CI\DUnitX_And_CodeCoverage.map" 
+-ife -uf dcov_units.lst -spf dcov_paths.lst -od ".\Output\" -lt -html
+</pre>
+Note: Line breaks are only included above for readability. There are none in the resulting batch files.
+<br>
+<br>
+Another alteration that I have made to the batch file is to include the "-ife" option. The option will include file extensions. This means that it will stop a unit like "Common.Encoding" being 'converted' to "Common". As in my project I have unit called "Core.Cards.pas" this option is required to have it included in generated code coverage report.&#160;<br>
+<br>
+Next the relative path change should be applied to the two generated list files <a></a><a></a><br>
+<br>
+Now that the batch file and list files have been corrected running the dcov_executable.bat should produce summary out similar to that below. Note that the unit test project needs to be compiled as DelphiCodeCoverage runs the unit test executable.<br>
+<pre class="brush:delphi; toolbar:true;">**********************************************************************
+*              DUnitX - (c) 2013 Vincent Parrett                     *
+*                    vincent@finalbuilder.com                        *
+*                                                                    *
+*        License - http://www.apache.org/licenses/LICENSE-2.0        *
+**********************************************************************
+  Fixture : Core
+  -------------------------------------------------
+     Fixture : Core.CardTests
+     -------------------------------------------------
+        Fixture : Core.CardTests.TCardTest
+        -------------------------------------------------
+          Test : Core.CardTests.TCardTest.A_Card_FacingUp_Once_Flipped_Is_Facing_Down
+          -------------------------------------------------
+          Executing Test : A_Card_FacingUp_Once_Flipped_Is_Facing_Down
+            Success.
+         Running Fixture Teardown Method : Destroy
+
+         Done testing.
+         Tests Found   : 1
+         Tests Ignored : 0
+         Tests Passed  : 1
+         Tests Leaked  : 0
+         Tests Failed  : 0
+         Tests Errored : 0
+
+Summary:
++-----------+-----------+-----------+
+|   Lines   |  Covered  | Covered % |
++-----------+-----------+-----------+
+|        15 |        11 |      73 % |
++-----------+-----------+-----------+
+</pre>
+<h2>Continuous Integration</h2>
+With the code coverage batch file we are now able to run code coverage on any system, include on a continuous integration system. Our goal with the continuous integration is to have the unit tests built and run each time a set of code is checked into source control. This will allow us to then track if any unit tests fail, and changes in the code coverage.&#160;<br>
+<br>
+To achieve this I have create a&#160;<a></a><br>
+<p>The last option for the wizard allows for making all paths relative. This is exactly what we require to have our generated batch file run on any system, however at the time of writing it does not work correctly. This meant that I had to manually change all paths to a version that was relative to the folder in which DelphiCodeCoverage was located.Note: Line breaks are only included above for readability. There are none in the resulting batch files.Another alteration that I have made to the batch file is to include the "-ife" option. The option will include file extensions. This means that it will stop a unit like "Common.Encoding" being 'converted' to "Common". As in my project I have unit called "Core.Cards.pas" this option is required to have it included in generated code coverage report.Next the relative path change should be applied to the two generated list files <a href="https://github.com/VSoftTechnologies/DelphiCodeCoverageExample/blob/master/CodeCoverage/dcov_paths.lst">dcov_paths.lst</a> and <a href="https://github.com/VSoftTechnologies/DelphiCodeCoverageExample/blob/master/CodeCoverage/dcov_units.lst">dcov_units.lst</a> . The paths file should be the only one that has path in need of altering to be relative. Both however need to be checked to make sure they contain everything to be covered in the report. If there are source folders missing they need to be added to the dcov_paths.lst file. If there are unit names missing they need to be added to the dcov_units.lst file.Now that the batch file and list files have been corrected running the dcov_executable.bat should produce summary out similar to that below. Note that the unit test project needs to be compiled as DelphiCodeCoverage runs the unit test executable.With the code coverage batch file we are now able to run code coverage on any system, include on a continuous integration system. Our goal with the continuous integration is to have the unit tests built and run each time a set of code is checked into source control. This will allow us to then track if any unit tests fail, and changes in the code coverage.To achieve this I have create a <a href="http://wiki.finalbuilder.com/display/continua/Configurations" target="_blank">Continua CI configuration</a> that builds my unit test project, runs the unit tests under code coverage, and then import the unit test results into the build summary.</p><p>
+<br>
+<img alt="" src="https://www.finalbuilder.com/blogImages/jason/DelphiCodeCoverage/CodeCoverage_ContinuaActions.png">
+</p>
+The FinalBuilder action calls the FinalBuilder project responsible for compiling the DUnitX unit test project. It uses the CI configuration so that the unit tests executable will run to completion, and will produce an NUnit XML results file in the same directory as the executable. It is important to build the unit tests each time as the source code for our project would have changed each time we run the continuous integration. Note that you do not have to use FinalBuilder, you can also use MSBuild to build your DUnitX Project - see&#160;<a></a><br>
+<br>
+The <a></a><br>
+<p>The FinalBuilder action calls the FinalBuilder project responsible for compiling the DUnitX unit test project. It uses the CI configuration so that the unit tests executable will run to completion, and will produce an NUnit XML results file in the same directory as the executable. It is important to build the unit tests each time as the source code for our project would have changed each time we run the continuous integration. Note that you do not have to use FinalBuilder, you can also use MSBuild to build your DUnitX Project - see <a href="https://www.finalbuilder.com/resources/blogs/postid/699/integrating-dunitx-unit-testing-with-continua-ci" target="_blank">Integrating DUnitX Unit Testing with Continua CI</a> The <a href="http://wiki.finalbuilder.com/display/continua/Execute+Program+Action" target="_blank">execute program action</a> simply runs the code coverage batch file generated above. This batch file will run the unit test project we compiled and log code coverage information as it does. The result will be a summary written out to our build log while also html files written to the report folder we specified in the batch file. It is these html files which we will attach to the continuous build report a little later.</p><p>
+<br>
+<img alt="" src="https://www.finalbuilder.com/blogImages/jason/DelphiCodeCoverage/CodeCoverage_ContinuaExecuteProgram.png">
+</p>
+<br>
+Lastly we want to import the actual unit test results. These are written out by DUnitX as a NUnit compatible XML file which we can import with the "Import NUnit Tests" action. The results from the XML file will be attached to the build report presented by Continua CI.<br>
+<p>Lastly we want to import the actual unit test results. These are written out by DUnitX as a NUnit compatible XML file which we can import with the "Import NUnit Tests" action. The results from the XML file will be attached to the build report presented by Continua CI.</p><p>
+<br>
+<img alt="" src="https://www.finalbuilder.com/blogImages/jason/DelphiCodeCoverage/CodeCoverage_ContinuaImportNUnit.png">
+</p>
+As all builds for Continua CI are run on agents, and all build reports come from the server, we need to transfer the code coverage report back to the server. This is done through <a></a><p>\Output\CodeCoverage\" the report should appear in "Source\Output\CodeCoverage\Output" (Note that $Source.DelphiCodeCoverage.Path$ was mapped to the \Source\ folder on the agent). Workspace rules use the greater than symbol to signal the files should be copied from the server to the agent, and the less than symbol to copy from the agent to the server. This therefore leaves use the workspace rule of "&#8220;/Output/CodeCoverage/ &lt; \Source\CodeCoverage\Output\*.html" to get all code coverage report files back to the server.&#160;</p><br>
+<p>As all builds for Continua CI are run on agents, and all build reports come from the server, we need to transfer the code coverage report back to the server. This is done through <a href="http://wiki.finalbuilder.com/display/continua/Workspace+Rules" target="_blank">workspace rules</a> on the build stage. In this example DelphiCodeCoverage writes out all html report files to a relative directory of ".\Output\". This means if we run the DelphiCodeCoverage batch file from "Source</p><p>
+<br>
+<img alt="" src="https://www.finalbuilder.com/blogImages/jason/DelphiCodeCoverage/CodeCoverage_ContinuaWorkspaceRules.png">
+</p>
+Now that the html reports are on the server, we need to show them against the Continua CI build. To achieve this we use the <a></a><br>
+<p>Now that the html reports are on the server, we need to show them against the Continua CI build. To achieve this we use the <a href="http://wiki.finalbuilder.com/display/continua/Reports" target="_blank">reports section</a> of our Continua CI configuration. The reports section allows us to specify a file to attach to the build as a report to be displayed or offered as a download. In this case we want to display the report summary html file. All reports work from the server point of view, and each build has it own workspace on the server. To this end the report we want to be display would have been copied to "$Workspace$\Output\CodeCoverage\CodeCoverage_summary.html".</p><p>
+<br>
+<img alt="" src="https://www.finalbuilder.com/blogImages/jason/DelphiCodeCoverage/CodeCoverage_ContinuaCreateReport.png">
+</p>
+<h2>The Code Coverage Report</h2>
+The end report appearing in the report section of the Continua CI build summary.&#160;<br>
+<p>The end report appearing in the report section of the Continua CI build summary.</p><p>
+<br>
+<img alt="" src="https://www.finalbuilder.com/blogImages/jason/DelphiCodeCoverage/CodeCoverage_ContinuaCoverageReport.png">
+</p>
+As shown in the report the example project has some code that is not covered during unit testing. This reduces the overall coverage to 73%. If I had more than one unit each would have their own code coverage summary. In addition I could click on each file and get a line by line report to see what section of the unit is not covered.&#160;<br>
+<p>As shown in the report the example project has some code that is not covered during unit testing. This reduces the overall coverage to 73%. If I had more than one unit each would have their own code coverage summary. In addition I could click on each file and get a line by line report to see what section of the unit is not covered.</p><p>
+<br>
+<img alt="" src="https://www.finalbuilder.com/blogImages/jason/DelphiCodeCoverage/CodeCoverage_ContinuaCoverageMissing.png">
+</p>
+<h2>
+Final Notes
+</h2>
+It is worth mentioning that code coverage is only one arrow in a software testing quiver. In my example I purposely chose to include code that was not covered. This showed the power of code coverage in picking up where unit testing should potentially be directed to next. I also included code where the unit tests cover the code, however not fully. The code testing Core.Card.Flip only tests one path through the code, not all the possible paths. Currently the test sees if the code works when going from face up to face down, not from face down to face up. Although in this example it might be benign, it shows that other tools are needed to help cover this gap.&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    <p>It is worth mentioning that code coverage is only one arrow in a software testing quiver. In my example I purposely chose to include code that was not covered. This showed the power of code coverage in picking up where unit testing should potentially be directed to next. I also included code where the unit tests cover the code, however not fully. The code testing Core.Card.Flip only tests one path through the code, not all the possible paths. Currently the test sees if the code works when going from face up to face down, not from face down to face up. Although in this example it might be benign, it shows that other tools are needed to help cover this gap.</p></div>
+
+<p class="info">
+<h4>
+Posted Mon 09 November 2015
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a>
+(<a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a>)</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

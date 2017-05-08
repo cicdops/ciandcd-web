@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Category: devops - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+       <link href="http://ciandcd.github.io/ciandcd-web/why-is-git-better-than-mercurial.html" rel="bookmark"/>
+                   
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/why-is-git-better-than-mercurial.html" rel="bookmark">
+    Why is Git better than Mercurial?</a></h1>
+
+      From:<a href="http://java.dzone.com/articles/why-git-better-mercurial">http://java.dzone.com/articles/why-git-better-mercurial</a><br><br><div><p class="print-link"></p><p>&#160;</p><p>Which of the two main distributed version control systems (DVCS),
+ Mecurial and GIT, is better and why? This is an old argument, with 
+forum posts galore about which is better; with users of both arguing 
+their case, however this argument never seems to be resolved. This is 
+because the feature sets are so similar, and after researching the 
+various strengths and weaknesses it became clear that they both have 
+clear advantages for certain situations, &#8211; different use cases. Below we
+ have listed both pros and cons for both Git and Mercurial in order for 
+our readers to be able to make their own decision as to what is best for
+ them, after all user requirements and team requirements differ; there 
+is no one size fits all.</p>
+<h2>Commonly found comments about Git</h2>
+<p>GIT is overly complex in every sense of the word, in particular the 
+information model and the command line syntax as well as the help 
+documentation, none of it is easy to understand. The statement &#8220;if you 
+don&#8217;t understand the functionality don&#8217;t use it, just use it like 
+subversion&#8221; just doesn&#8217;t fit for the simple reason that most commands 
+lead to further commands, where simple actions can require complex 
+actions to undo or refine.</p>
+<p>The decision as to whether to use Git on a development project or 
+not, is primarily a question of how knowledgeable of Git the individuals
+ are within the team, a single weak link can bring down the entire team.
+ The obvious example of this is seen in the version control of Git. It 
+is simply put, &#8211; unsafe, &#8211; prone to accidental alteration by users 
+(potentially affecting the entire team), therefore a high minimum 
+knowledge requirement is necessary. Consider a Git test, what should the
+ pass rate be? 70%, 80% or 90%?</p>
+<p>Continuing on the overly complex nature of Git&#8217;s design, the obvious 
+point is that it puts control firmly in the project managers hands or 
+whoever is maintaining the codebase, you might wonder why that is bad? 
+The problem is that the majority of Git users are coders (contributors) 
+and what they need most of all is a clean interface which is where Git 
+fails to deliver, putting functionality over usability, favoring the 
+maintainer over the contributor.</p>
+<p><a href="http://intland.com/wp-content/uploads/2015/01/git_mercurial_pros_cons-intland-software.png"><img class="alignright size-medium wp-image-14944" src="http://intland.com/wp-content/uploads/2015/01/git_mercurial_pros_cons-intland-software-336x850.png" alt="Pors and Cons of Git and Mercurial" width="336" height="850"></a></p>
+<h2>Git is different but not necessarily better than Mercurial</h2>
+<p>It is often said that working with Git is much better then Mercurial.
+ The two clearly have pros and cons but one is not necessarily better 
+than the other is. It is all depends on your knowledge and expectations.</p>
+<ul><li>The method by which both Git and Mercurial handle history, is 
+essentially just a directed acyclic graph. However, Mercurial provides 
+you with a simple linear history that can cause confusion due to the 
+lack of information, whereas Git enables you to follow the history 
+backwards but this is complicated and hard to follow, therefore this can
+ cause confusion.</li><li>It is often an argument that Git handles branches better than 
+Mercurial without any particular reason. As a Mercurial user, you might 
+see two branches (named branches and repository clones) and all your 
+changes will belong to a named branch. The confusion starts if you have 
+many with the same name. Branches structure in Git enables you to avoid 
+putting code where you did not want.</li></ul>
+<ul><li>Git enforces technical excellence; &#8211; if you do not know everything 
+about Git then you should not be using Git else you are a danger to 
+others work. Simply put, a Git team is an expert team.</li></ul>
+<ul><li>Git is more powerful for larger projects, one good example is the functionality provided by &#8220;partial checkouts&#8221;.</li></ul>
+<ul><li>Last, but not least, the biggest non-technical different between 
+Mercurial and Git is the marketing. Git seems to be better marketed 
+these days and that clearly makes many people use Git.</li></ul>	
+	<p></p>
+
+    </div>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/7-things-i-didnt-expect-to-hear-at-gartners-it-ops-summit.html" rel="bookmark">
+    7 Things I Didn’t Expect to Hear at Gartner’s IT Ops Summit</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/7-things-i-didnt-expect-to-hear-at-gartners-it-ops-summit.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/blue-green-deployment-with-a-single-database.html" rel="bookmark">
+    Blue-Green Deployment With a Single Database</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/blue-green-deployment-with-a-single-database.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/cameron-of-gartner-talks-devops-devops-days-austin.html" rel="bookmark">
+    Cameron of Gartner talks DevOps – DevOps Days Austin</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/cameron-of-gartner-talks-devops-devops-days-austin.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/cardiff-silicon-valley-comes-to-wales.html" rel="bookmark">
+    Cardiff: Silicon Valley comes to Wales</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/cardiff-silicon-valley-comes-to-wales.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/create-a-maven-archetype.html" rel="bookmark">
+    Create a Maven archetype</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/create-a-maven-archetype.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/customer-feedback-drives-continuous-delivery-planning-for-devops.html" rel="bookmark">
+    Customer Feedback drives Continuous Delivery - Planning for DevOps</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/customer-feedback-drives-continuous-delivery-planning-for-devops.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/deployment-automation-basics.html" rel="bookmark">
+    Deployment Automation Basics</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/deployment-automation-basics.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/devops-for-enterprise-systems-a-quick-intro.html" rel="bookmark">
+    DevOps for Enterprise Systems - a quick intro</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/devops-for-enterprise-systems-a-quick-intro.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/devops-leadership-series-compliance-testing-and-rugged.html" rel="bookmark">
+    DevOps Leadership Series: Compliance, Testing, and Rugged</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/devops-leadership-series-compliance-testing-and-rugged.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/does-devops-reduce-technical-debt-or-make-it-worse.html" rel="bookmark">
+    Does DevOps Reduce Technical Debt--or Make it Worse?</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/does-devops-reduce-technical-debt-or-make-it-worse.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/how-to-debug-your-maven-build-with-eclipse.html" rel="bookmark">
+    How to Debug Your Maven Build with Eclipse</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/how-to-debug-your-maven-build-with-eclipse.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/how-to-get-your-servers-out-of-coma-first-steps-in-capacity-planning-and-management.html" rel="bookmark">
+    How to get your servers out of coma – First steps in capacity planning and management</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/how-to-get-your-servers-out-of-coma-first-steps-in-capacity-planning-and-management.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/how-to-keep-rest-api-credentials-secure.html" rel="bookmark">
+    How to Keep REST API Credentials Secure</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/how-to-keep-rest-api-credentials-secure.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/ibm-cloudant-the-do-more-nosql-data-layer.html" rel="bookmark">
+    IBM Cloudant: The Do-More NoSQL Data Layer</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/ibm-cloudant-the-do-more-nosql-data-layer.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/ibm-mobile-testing-point-of-view.html" rel="bookmark">
+    IBM mobile testing point of view</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/ibm-mobile-testing-point-of-view.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/improve-quality-and-increase-your-business-agility-through-automated-testing-test-automation-solutions-for-financial-services-organizations.html" rel="bookmark">
+    Improve quality and increase your business agility through automated testing. Test automation solutions for Financial Services Organizations</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/improve-quality-and-increase-your-business-agility-through-automated-testing-test-automation-solutions-for-financial-services-organizations.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/investing-in-your-infrastructure.html" rel="bookmark">
+    Investing in Your Infrastructure</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/investing-in-your-infrastructure.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/lastpass-breach-password-security-and-reason.html" rel="bookmark">
+    LastPass Breach, Password Security, and Reason</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/lastpass-breach-password-security-and-reason.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+
+      <article>
+      <h1><a href="http://ciandcd.github.io/ciandcd-web/managing-change-in-sap-reducing-cost-and-risk-with-ibm-devops.html" rel="bookmark">
+    Managing change in SAP: reducing cost and risk with IBM DevOps</a></h1>
+
+      
+
+        <p><a class="btn btn-mini btn-primary" href="http://ciandcd.github.io/ciandcd-web/managing-change-in-sap-reducing-cost-and-risk-with-ibm-devops.html">Read more</a></p>
+
+      <p class="info">
+<h4>
+Posted Mon 08 May 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4>      </p>
+
+      </article>
+
+        <nav class="pagination">
+<ul class="pagination">
+    <li class="disabled"><span>&laquo;</span></li>
+
+      <li class="active"><span>1</span></li>
+        <li><a href="http://ciandcd.github.io/ciandcd-web/category/devops2.html">2</a></li>
+        <li><a href="http://ciandcd.github.io/ciandcd-web/category/devops3.html">3</a></li>
+        <li><a href="http://ciandcd.github.io/ciandcd-web/category/devops4.html">4</a></li>
+        <li><a href="http://ciandcd.github.io/ciandcd-web/category/devops5.html">5</a></li>
+
+    <li><a href="http://ciandcd.github.io/ciandcd-web/category/devops2.html">&raquo;</a></li>
+</ul>        </nav>
+
+
+
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

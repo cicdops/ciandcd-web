@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    How to Monitor a Java EE DataSource - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    How to Monitor a Java EE DataSource</h2>
+from:http://java.dzone.com/articles/how-monitor-java-ee-datasource<br><div><p class="print-link"></p><h3>Introduction</h3><p><a href="https://github.com/vladmihalcea/flexy-pool">FlexyPool</a>&#160;is an open-source framework that can monitor a&#160;<a href="http://docs.oracle.com/javase/7/docs/api/javax/sql/DataSource.html">DataSource</a>connection usage. This tool come out of necessity, since we previously lacked support for provisioning connection pools.</p><p>FlexyPool was initially designed for stand-alone environments and the<a href="http://docs.oracle.com/javase/7/docs/api/javax/sql/DataSource.html">DataSource</a>&#160;proxy configuration was done programmatically. Using&#160;<a href="http://vladmihalcea.com/2013/12/15/why-i-like-spring-bean-aliasing/">Spring bean aliases</a>, we could even substitute an already configured DataSource with the FlexyPool Metrics-aware proxy alternative.</p><h3>Java EE support</h3><p>Recently, I&#8217;ve been asked about supporting Java EE environments and in the true open-source spirit, I accepted the challenge. Supporting a managed environment is tricky because the DataSource is totally decoupled from the application-logic and made available through a&#160;<a href="https://en.wikipedia.org/wiki/Java_Naming_and_Directory_Interface">JNDI</a>&#160;lookup.</p><p>One drawback is that we can&#8217;t use automatic pool sizing strategies, since most Application Servers return a custom DataSource implementation (which is closely integrated with their in-house JTA transaction manager solution), that doesn&#8217;t offer access to reading/writing the connection pool size.</p><p>While the DataSource might not be adjustable, we can at least monitor the connection usage and that&#8217;s enough reason to support Java EE environments too.</p><h3>Adding declarative configuration</h3><p>Because we operate in a managed environment, we can no longer configure the DataSource programmatically, so we need to use the declarative configuration support.</p><p>By default, FlexyPool looks for the&#160;flexy-pool.properties&#160;file in the current Class-path. The location can be customized using the&#160;flexy.pool.properties.pathSystem property , which can be a:</p><ul><li>URL (e.g.&#160;file:/D:/wrk/vladmihalcea/flexy-pool/flexy-pool-core/target/test-classes/flexy-pool.properties)</li><li>File system path (e.g.&#160;D:\wrk\vladmihalcea\flexy-pool\flexy-pool-core\target\test-classes\flexy-pool.properties)</li><li>Class-path nested path (e.g.&#160;nested/fp.properties)</li></ul><p>The properties file may contain the following configuration options:</p>Parameter nameDescription<p>flexy.pool.data.source.unique.name</p><p>Each FlexyPool instance requires a unique name so that JMX domains won&#8217;t clash</p><p>flexy.pool.data.source.jndi.name</p><p>The JNDI DataSource location</p><p>flexy.pool.data.source.jndi.lazy.lookup</p><p>Whether to lookup the DataSource lazily (useful when the target DataSource is not available when the FlexyPoolDataSource is instantiated)</p><p>flexy.pool.data.source.class.name</p><p>The DataSource can be instantiated at Runtime using this Class name</p><p>flexy.pool.data.source.property.*</p><p>If the DataSource is instantiated at Runtime, each flexy.pool.data.source.property.${java-bean-property} will set the java-bean-property of the newly instantiated DataSource (e.g. flexy.pool.data.source.property.user=sa)</p><p>flexy.pool.adapter.factory</p><p>Specifies the PoolAdaptorFactory, in case the DataSource supports dynamic sizing. By default it uses the generic DataSourcePoolAdapter which doesn&#8217;t support auto-scaling</p><p>flexy.pool.metrics.factory</p><p>Specifies the MetricsFactory used for creating Metrics</p><p>flexy.pool.metrics.reporter.log.millis</p><p>Specifies the metrics log reported interval</p><p>flexy.pool.metrics.reporter.jmx.enable</p><p>Specifies if the jmx reporting should be enabled</p><p>flexy.pool.metrics.reporter.jmx.auto.start</p><p>Specifies if the jmx service should be auto-started (set this to true in Java EE environments)</p><p>flexy.pool.strategies.factory.resolver</p><p>Specifies a ConnectionAcquiringStrategyFactoryResolver class to be used for obtaining a list of ConnectionAcquiringStrategyFactory objects. This should be set only if the PoolAdaptor supports accessing the DataSource pool size.</p><h3>Hibernate ConnectionProvider</h3><p>Most Java EE applications already use&#160;<a href="https://en.wikipedia.org/wiki/Java_Persistence_API">JPA</a>&#160;and for those who happen to be using Hibernate, we can make use of the&#160;<a href="https://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html/ch03.html#configuration-jdbc-properties">hibernate.connection.provider_class</a>configuration property for injecting our proxy DataSource.</p><p>Hibernate provides many built-in extension points and the connection management is totally configurable. By providing a custom<a href="https://docs.jboss.org/hibernate/orm/4.3/javadocs/org/hibernate/engine/jdbc/connections/spi/ConnectionProvider.html">ConnectionProvider</a>&#160;we can substitute the original DataSource with the FlexyPool proxy.</p><p>All we have to do is adding the following property to our&#160;persistence.xml&#160;file:</p><pre class="xml">&lt;property name="hibernate.connection.provider_class"
+          value="com.vladmihalcea.flexypool.adaptor.FlexyPoolHibernateConnectionProvider"/&gt;</pre><p>Behind the scenes, this provider will configure a FlexyPoolDataSource and use it whenever a new connection is requested:</p><pre class="java">private FlexyPoolDataSource&lt;DataSource&gt; flexyPoolDataSource;
+ 
+@Override
+public void configure(Map props) {
+    super.configure(props);
+    LOGGER.debug(
+        "Hibernate switched to using FlexyPoolDataSource
+    ");
+    flexyPoolDataSource = new FlexyPoolDataSource&lt;DataSource&gt;(
+        getDataSource()
+    );
+}
+ 
+@Override
+public Connection getConnection() throws SQLException {
+    return flexyPoolDataSource.getConnection();
+}</pre><h3>Instantiating the actual DataSource at runtime</h3><p>If you&#8217;re not using Hibernate, you need to have the FlexyPoolDataSource ready before the&#160;<a href="https://docs.oracle.com/javaee/7/api/javax/persistence/EntityManagerFactory.html">EntityManagerFactory</a>&#160;finishes bootstrapping:</p><pre class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://java.sun.com/xml/ns/persistence
+        http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"&gt;
+ 
+    &lt;persistence-unit name="persistenceUnit" transaction-type="JTA"&gt;
+ 
+        &lt;provider&gt;org.hibernate.jpa.HibernatePersistenceProvider&lt;/provider&gt;
+ 
+        &lt;jta-data-source&gt;java:global/jdbc/flexypool&lt;/jta-data-source&gt;
+ 
+        &lt;properties&gt;
+            &lt;property
+                name="hibernate.hbm2ddl.auto"
+                value="update"/&gt;
+ 
+            &lt;property
+                name="hibernate.show_sql"
+                value="true"/&gt;
+ 
+            &lt;property
+                name="hibernate.dialect"
+                value="org.hibernate.dialect.HSQLDialect"/&gt;
+ 
+            &lt;property
+                name="hibernate.transaction.jta.platform"
+                value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/&gt;
+        &lt;/properties&gt;
+    &lt;/persistence-unit&gt;
+&lt;/persistence&gt;</pre><p>While in a production Java EE environment we use an Application server specific DataSource configuration, for simplicity sake, I&#8217;m going to configure the FlexyPooldataSource using the&#160;<a href="http://docs.oracle.com/javaee/7/api/javax/annotation/sql/DataSourceDefinition.html">DataSourceDefinition</a>&#160;annotation:</p><pre class="java">@DataSourceDefinition(
+    name = "java:global/jdbc/flexypool",
+    className = "com.vladmihalcea.flexypool.FlexyPoolDataSource")
+@Stateless
+public class FlexyPoolDataSourceConfiguration {}</pre><p>We now need to pass the actual DataSource properties to FlexyPool and this is done through the flexy-pool.properties configuration file:</p><pre class="shell">flexy.pool.data.source.unique.name=unique-name
+flexy.pool.data.source.class.name=org.hsqldb.jdbc.JDBCDataSource
+flexy.pool.data.source.property.user=sa
+flexy.pool.data.source.property.password=
+flexy.pool.data.source.property.url=jdbc:hsqldb:mem:test
+flexy.pool.metrics.reporter.jmx.auto.start=true</pre><p>The actual DataSource is going to be created by the FlexyPoolDataSource on start-up.</p><h3>Locating the actual DataSource from JNDI</h3><p>If the actual DataSource is already configured by the Application Server, we can instruct FlexyPool to fetch it from JNDI. Let&#8217;s say we have the following DataSource configuration:</p><pre class="java">@DataSourceDefinition(
+    name = "java:global/jdbc/default",
+    className = "org.hsqldb.jdbc.JDBCDataSource",
+    url = "jdbc:hsqldb:mem:test",
+    initialPoolSize = 3,
+    maxPoolSize = 5
+)
+@Stateless
+public class DefaultDataSourceConfiguration {}</pre><p>To proxy the JNDI DataSource, we need to configure FlexyPool like this:</p><pre class="shell">flexy.pool.data.source.unique.name=unique-name
+flexy.pool.data.source.jndi.name=java:global/jdbc/default
+flexy.pool.metrics.reporter.jmx.auto.start=true</pre><p>The FlexyPoolDataSource is defined alongside the actual DataSource:</p><pre class="java">@DataSourceDefinition(
+    name = "java:global/jdbc/flexypool",
+    className = "com.vladmihalcea.flexypool.FlexyPoolDataSource")
+@Stateless
+public class FlexyPoolDataSourceConfiguration {}</pre><p>The JPA will have to fetch the FlexyPoolDataSource instead of the actual one:</p><pre class="xml">&lt;jta-data-source&gt;java:global/jdbc/flexypool&lt;/jta-data-source&gt;
+</pre><p>In&#160;<a href="https://github.com/vladmihalcea/flexy-pool/tree/master/flexy-tomee">TomEE</a>, because the DataSourceDefinitions are not lazily instantiated, the actual DataSource might not be available in the JNDI registry when the FlexyPoolDataSource definition is processed.</p><p>For this, we need to instruct FlexyPool to dely the JNDI lookup until the DataSource is actually requested:</p><pre class="shell">flexy.pool.data.source.jndi.lazy.lookup=true</pre><h3>Conclusion</h3><p>The last time I used Java EE was in 2008, on a project that was using Java EE 1.4 with EJB 2.1. After 7 years of using Spring exclusively, I&#8217;m pleasantly surprised by the Java EE experience.&#160;<a href="http://arquillian.org/">Arquillian</a>&#160;is definitely my favourite add-on, since integration testing is of paramount importance in enterprise applications.&#160;<a href="http://antoniogoncalves.org/2011/09/25/injection-with-cdi-part-iii/">CDI</a>&#160;is both easy and powerful and I&#8217;m glad the dependency injection got standardised.</p><p>But the best asset of the Java EE platform is the community itself. Java EE has very strong community, willing to give you a hand when in need. I&#8217;d like to thank&#160;<a href="https://twitter.com/l33tj4v4">Steve Millidge (Founder of Payara and C2B2)</a>&#160;for giving me some great tips on designing the FlexyPool Java EE integration,&#160;<a href="https://twitter.com/alexsotob">Alex Soto</a>,&#160;<a href="https://twitter.com/agoncal">Antonio Goncalves</a>&#160;and all the other Java EE members whom I had some very interesting conversations on Twitter.</p>	
+	<p></p>
+
+    </div>
+
+<p class="info">
+<h4>
+Posted Fri 19 June 2015
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a>
+</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Book Review: The Phoenix Project - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    Book Review: The Phoenix Project</h2>
+From:<a href="http://continuousdelivery.com/2013/01/book-review-the-phoenix-project/">http://continuousdelivery.com/2013/01/book-review-the-phoenix-project/</a><br><br><div><p class="post-headline"><h1>Book Review: The Phoenix Project</h1></p><p>I am not going to do a ton of book reviews on this blog (I have one more planned for next month). I&#8217;ll only bother posting reviews of books that I believe are both excellent and relevant to <a href="http://continuousdelivery.com/">Continuous Delivery</a>. This book easily satisfies both criteria. Full disclosure: Gene gave me a draft of this book for free for reviewing purposes.</p>
+<p>You&#8217;ve probably heard of Gene Kim, Kevin Behr and George Spafford before. They are the three amigos responsible for <a href="http://www.amazon.com/dp/0975568612?tag=contindelive-20">The Visible Ops Handbook</a>, which can be found in the book pile of every good IT operator. Their new book, <a href="http://www.amazon.com/dp/0988262592?tag=contindelive-20">The Phoenix Project:  A Novel About IT, DevOps, and Helping Your Business Win</a>, follows the format of Eliyahu Goldratt&#8217;s classic, <a href="http://www.amazon.com/dp/0884271951?tag=contindelive-20">The Goal</a>.</p>
+<p>Told from the perspective of newly-minted VP of IT Operations Bill Palmer, it describes the turnaround of failing auto parts company Parts Unlimited. This is to be achieved through the delivery of the eponymous Phoenix Project, a classic &#8220;too big to fail&#8221; software project designed to build a system which will revive the fortunes of the company.</p>
+<p></p>
+<p>To quote (p51):</p>
+<blockquote><p>
+The plot is simple: First, you take an urgent date-driven project, where the shipment date cannot be delayed because of external commitments made to Wall Street or customers. Then you add a bunch of developers who use up all the time in the schedule, leaving no time for testing or operations deployment. And because no one is willing to slip the deployment date, everyone after Development has to take outrageous and unacceptable shortcuts to hit the date.</p>
+<p>The results are never pretty. Usually, the software product is so unstable and unusable that even the people who were screaming for it end up saying that it&#8217;s not worth shipping. And it&#8217;s always IT Operations who still has to stay up all night, rebooting servers hourly to compensate for crappy code, doing whatever heroics are required to hide from the rest of the world just how bad things really are.
+</p></blockquote>
+<p>Part One of the book describes in loving detail the enormous clusterfuck pie that is baked from these ingredients. The pie is spiced with an internal Sarbanes-Oxley audit which reveals 952 control deficiencies, an outage of the payroll processing system, and various other problems that conspire to deepen the woe of the operations group, all of which are clearly drawn from the deep well of the authors&#8217; real-life experiences.</p>
+<p>Apart from the main characters &#8211; our hero Bill, his boss Steve, and the evil villain Sarah &#8211; The Phoenix Project features a delightful rogues&#8217; gallery which anyone working in an enterprise will recognize:</p>
+<ul>
+<li>Brent Geller, the boy wonder whose encyclopedic knowledge of the company&#8217;s Byzantine IT systems means that his involvement is necessary to get anything done.</li>
+<li>Patty McKee, the Director of Support who runs a change management process so bureaucratic that everybody bypasses it.</li>
+<li>John Pesche, the black binder wielding Chief Information Security Officer whose constant meddling under the guise of improving security has turned him into a pariah.</li>
+</ul>
+<p>The second part of the book details how the IT group is reborn from the ashes of the Phoenix Project into a high-performing organization that is a strategic partner to the business. This is achieved through the application of a heavy dose of lean thinking (including <a href="http://www.amazon.com/dp/0321601912?tag=contindelive-20">continuous delivery</a>) administered by Erik, a mercurial IT and manufacturing guru Steve is courting to join the board. The book does an excellent job of showing &#8211; as well as telling &#8211; how to apply the concepts (and the effect of doing so) in an enterprise with plenty of technical debt. Perhaps the most eyebrow-raising part of this section is the way in which John has his soul mercilessly crushed to the point where he goes on a multi-day drinking spree before he is rehabilitated towards the end of the book (he is a phoenix too).</p>
+<p>John&#8217;s narrative arc is just one example of how the book also succeeds as a novel. It&#8217;s gripping, with moments of drama and high emotion, as well as some great one-liners. There was even one point when I teared up (bear in mind that I also cried during Forrest Gump &#8211; unlike the book&#8217;s central characters, I did not serve in the armed forces). </p>
+<p>Nobody who has read The Goal will miss The Phoenix Project&#8217;s similarity in terms of style and plot. Perhaps my favourite thing about the book&#8217;s pedagogical style is the way Erik (like Jonah in The Goal) uses the Socratic Method to give Bill the tools to solve his problems by himself. Of course this learning process is fictional, but it means you get to see Bill struggling with the questions and trying things out.</p>
+<p>It remains to be seen whether readers of the book will be able to apply these techniques as successfully as Bill without a real Erik to guide them. But of course, this is a limitation of any book. If I had one criticism it&#8217;s that unlike real life, there aren&#8217;t many experiments in the book that end up making things worse, and it&#8217;s this process of failing fast, learning from your failures, and coming up with new experiments that is instrumental to a real learning culture.</p>
+<p>One important point worth noting if you are working in an organization like Parts Unlimited is this: the IT department&#8217;s rebirth is only possible because of the Titanic proportions of the disaster that unfolds in Part One. For management to truly embrace change, a compelling event or a teachable moment (i.e. a Charlie Foxtrot) is required. Unless your organization faces the same existential threat that Parts Unlimited does, you&#8217;ll have a much harder time convincing people they should adopt the tools described in the book.</p>
+<p>Overall, The Phoenix Project is a fantastic read. It&#8217;s entertaining, cathartic, inspirational and informative. If, like me, you have an enormous backlog of books (and more work in process than you&#8217;d like) I suggest giving yourself a break and putting this one to the top of your list. It&#8217;ll only take you a day or two, and despite its conceptual density it will leave you feeling refreshed and energized with a bunch of new ideas to try out. <a href="http://www.amazon.com/dp/0988262592?tag=contindelive-20">The Phoenix Project</a> deserves to be read by everyone who works in &#8211; or with &#8211; IT.</p>
+</div>
+
+<p class="info">
+<h4>
+Posted Thu 17 January 2013
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a>
+(<a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a>)</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Important Scripting-related Security Advisory - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    Important Scripting-related Security Advisory</h2>
+From:<a href="http://feedproxy.google.com/~r/ContinuousBlog/~3/loYYyn-dNUo/">http://feedproxy.google.com/~r/ContinuousBlog/~3/loYYyn-dNUo/</a><br><br><div><p>We also included some plugins that received security fixes in the past that haven&#8217;t been mentioned in a security advisory before:</p><p>Additionally, we included other plugins in the advisory that are not getting updated today, but whose vulnerabilities are similar to those of plugins getting fixed. In total, over 30 plugins are part of the advisory .</p><p>While there are fixes for other vulnerabilities as well, the majority of the advisory (and the rest of this blog post) is about arbitrary code execution vulnerabilities in Jenkins plugins.</p><p>Unfortunately, other plugins weren&#8217;t integrating with Script Security plugin. And even diligent administrators who understand the problem of arbitrary code execution via Groovy scripts may not be able to tell whether a given plugin is affected: In some cases, you&#8217;d need to dive into the source code to see whether, and how, it uses Groovy in a way that can be exploited by regular users to perform actions they otherwise wouldn&#8217;t be allowed to do.</p><p>We were treating this as a security issue for the first time in the fix for SECURITY-125, about two years ago, something that first required splitting off the Matrix Project type from core into a plugin, and making use of Script Security Plugin .</p><p>This bled over into plugins: It&#8217;s just easy for a plugin developer to build on top of Groovy and let the users figure out exactly what they want to do. Unfortunately, for a long time, there was no technology in Jenkins to limit what could be done in Groovy scripts, so anywhere Groovy would be executed, arbitrary code could be executed.</p><p>Jenkins administrators have long been able to use the Groovy script console and related functionality to execute arbitrary code in Jenkins for diagnostic or otherwise administrative purposes. Rather than having to rely on plugins implementing the desired functionality, experienced Jenkins admins were able to run a number of scripts as needed to implement various administrative features.</p><p>For that reason, the Jenkins security team decided that we would fix as many of the plugins as we can handle, and leaving the others to their maintainers.</p><p>The advisory issued today lists all plugins we could find that implement any arbitrary code execution vulnerability (i.e. all three levels described above). As this affects over 30 plugins, many of them not actively maintained, the problem exceeds the capacity of the Jenkins security team to address them all.</p><p>Arbitrary code execution is a serious enough issue that publishing a security advisory for just a few plugins would actually be detrimental to overall security: Malicious users would be able to review the fixes we do publish, and try to find other plugins affected by a similar vulnerability.</p><p>The most severe ones are those that require little or no access to Jenkins to successfully exploit. This typically does require the Overall/Read permission to access certain endpoints, but Pipeline as Code may allow people with SCM commit access to exploit scripting related weaknesses as well.</p><p>The next level up are vulnerabilities that effectively grant the ability to run arbitrary scripts to users who are able to configure jobs. While these users aren&#8217;t administrators, they have a nontrivial level of permissions, so are somewhat trusted. This is often a difficult configuration to adequately secure, but it&#8217;s a supported configuration, and any plugin that undermines the security of this configuration will be treated as having a vulnerability.</p><p>The lowest severity ones are those that confuse Overall/Administer and Overall/Run Scripts permissions. These are irrelevant for most Jenkins instances. More on that later.</p><h3 id="how-to-proceed"><a class="anchor" href="#how-to-proceed"></a>How to proceed</h3>
+<p>We strongly advise administrators to review the list of affected plugins in the advisory, and look for any plugins that are installed on their instances.
+It is very likely there&#8217;s at least one plugin installed that is affected by this.
+If you&#8217;re on Jenkins 2.40 or newer, or Jenkins LTS 2.32.2 or newer, a warning will appear that informs you about vulnerable plugins you currently have installed.</p>
+<p>Once you&#8217;ve determined which plugins you use are included in the advisory, you need to determine whether it is something that affects your particular setup.</p>
+<ul>
+<li>
+<p>If the vulnerability confuses Overall/Administer and Overall/Run Scripts, but all administrators of your Jenkins instance are able to run scripts anyway, this vulnerability is not a problem for you.
+This is the case in the vast majority of Jenkins instances.
+Only custom setups, typically to allow for hosted Jenkins services, don&#8217;t grant Overall/Run Scripts permission to administrators.</p>
+</li>
+<li>
+<p>If the vulnerability allows users with the permission to e.g. configure jobs to execute arbitrary code, it is only a problem if there are users that have the lower permission (e.g. Item/Configure) but not the higher (Overall/Run Scripts).
+Simple authorization strategies like Logged in users can do anything are therefore not affected by this issue.</p>
+</li>
+<li>
+<p>Even vulnerabilities that require no notable permissions in Jenkins may have prerequisites to be exploitable.
+For example, Overall/Read access may be required, but only granted to users who are also administrators, or in Pipeline as Code setups, everyone with SCM commit access may also be a Jenkins administrator.</p>
+</li>
+</ul>
+<p>The above should guide your decision how urgently you should upgrade affected plugins with a fix, or disable affected plugins without a fix.
+Remember that you may decide in the future to reconfigure Jenkins in a way that makes previously irrelevant permission distinctions a huge problem, so it is not a good idea to continue using vulnerable plugin versions indefinitely.</p>
+<p>After deciding to upgrade a plugin, review the advisory and the plugin documentation for information about the migration.
+The scripts provided in <a href="https://github.com/jenkinsci-cert/security-advisory-2017-04-10">this GitHub repository</a> may help you in determining whether you&#8217;re using affected features.
+If you&#8217;re not using any of the affected features, it&#8217;s likely that there won&#8217;t be any problems and you can just upgrade.
+If you are using affected features, you should carefully read the documentation on how the upgrade works: Affected plugin features may effectively be disabled until an administrator approves the scripts in use, potentially resulting in build failures.</p>
+</div>
+
+<p class="info">
+<h4>
+Posted Mon 10 April 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a>
+(<a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a>)</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

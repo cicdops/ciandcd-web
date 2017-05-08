@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Delivery Pipelines, with Jenkins 2, SonarQube, and Artifactory - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    Delivery Pipelines, with Jenkins 2, SonarQube, and Artifactory</h2>
+From:<a href="http://feedproxy.google.com/~r/ContinuousBlog/~3/pjzDw5vAwLk/">http://feedproxy.google.com/~r/ContinuousBlog/~3/pjzDw5vAwLk/</a><br><br><div><p>This is a guest post by Michael H&#252;ttermann . Michael is an expert in Continuous Delivery, DevOps and SCM/ALM. More information about him at huettermann.net , or follow him on Twitter: @huettermann .</p><p>Continuous Delivery and DevOps are well known and widely spread practices nowadays. It is commonly accepted that it is crucial to form great teams and define shared goals first and then choose and integrate the tools fitting best to given tasks. Often it is a mashup of lightweight tools, which are integrated to build up Continuous Delivery pipelines and underpin DevOps initiatives. In this blog post, we zoom in to an important part of the overall pipeline, that is the discipline often called Continuous Inspection, which comprises inspecting code and injecting a quality gate on that, and show how artifacts can be uploaded after the quality gate was met. DevOps enabler tools covered are Jenkins, SonarQube, and Artifactory.</p><p>The change triggers a new run of the pipeline. Oh no! The build pipeline broke, and the change is not further processed. In the following image you see that a defined quality gate was missed. The visualizing is done with Jenkins Blue Ocean.</p><p>Let&#8217;s consider the following scenario. One of the busy developers has to fix code, and checks in changes to the central version control system. The day was long and the night short, and against all team commitments the developer did not check the quality of the code in the local sandbox. Luckily, there is the build engine Jenkins which serves as a single point of truth, implementing the Delivery Pipeline with its native pipeline features, and as a handy coincidence SonarQube has support for Jenkins pipeline.</p><p>You already know that quality cannot be injected after the fact, rather it should be part of the process and product from the very beginning. As a commonly used good practice, it is strongly recommended to inspect the code and make findings visible, as soon as possible. For that SonarQube is a great choice. But SonarQube is not just running on any isolated island, it is integrated in a Delivery Pipeline. As part of the pipeline, the code is inspected, and only if the code is fine according to defined requirements, in other words: it meets the quality gates, the built artifacts are uploaded to the binary repository manager.</p><p>Many options are available to integrate and configure SonarQube. Please consult the documentation for alternatives. Same applies to the other covered tools.</p><p>We do not want to discuss in detail all used tools, and also covering the complete Jenkins build job would be out of scope. But the interesting extract here in regard of the inspection is the following stage defined in Jenkins pipeline DSL:</p><p>During a team meeting it was decided to define this to be a Blocker, and SonarQube was configured accordingly. Furthermore, a SonarQube quality gate was created to break any build, if a blocker was identified. Let&#8217;s now quickly look into the code. Yes, SonarQube is right, there is the issue with the following code snippet.</p><p>What is the underlying issue? We can open the SonarQube web application and drill down to the finding. In the Java code, obviously a string literal is not placed on the right side.</p><h3 id="sonarqube-quality-gate"><a class="anchor" href="#sonarqube-quality-gate"></a>SonarQube Quality Gate</h3>
+<p>As part of a Jenkins pipeline stage, SonarQube is configured to run and inspect the code. But this is just the first part,
+because we now also want to add the quality gate in order to break the build. The next stage is covering exactly that, see
+next snippet. The pipeline is paused until the quality gate is computed, specifically the waitForQualityGate step will pause the
+pipeline until SonarQube analysis is completed and returns the quality gate status. In case a quality gate was missed, the build breaks.</p>
+<p class="title">config.xml: SonarQube Quality Gate</p>
+<pre class="nowrap">    stage("SonarQube Quality Gate") { <i class="conum"></i><b>(1)</b>
+        timeout(time: 1, unit: 'HOURS') { <i class="conum"></i><b>(2)</b>
+           def qg = waitForQualityGate() <i class="conum"></i><b>(3)</b>
+           if (qg.status != 'OK') {
+             error "Pipeline aborted due to quality gate failure: ${qg.status}"
+           }
+        }
+    }</pre>
+
+
+<i class="conum"></i><b>1</b>
+The defined quality gate stage.
+
+
+<i class="conum"></i><b>2</b>
+A timeout to define when to proceed without waiting for any results for ever.
+
+
+<i class="conum"></i><b>3</b>
+Here we wait for the OK. Underlying implementation is done with SonarQube&#8217;s webhooks feature.
+
+
+
+
+
+<i class="fa icon-note" title="Note"></i>
+
+
+<p>This blog post is an appetizer, and scripts are excerpts. For more information, please consult the respective documentation, or a good book, or the great community, or ask your local expert.</p>
+
+
+
+<p>Since they all work in a wonderful Agile team, the next available colleague just promptly fixes the issue. After checking in
+the fixed code, the build pipeline runs again.</p>
+<p><img src="/images/post-images/sonarqube-jenkins/04_PipelineFixedBlueOcean.png" alt="04 PipelineFixedBlueOcean"></p>
+<p>The pipeline was processed successfully, including the SonarQube quality gate, and as the final step, the packaged and tested artifact was
+deployed to <a href="http://www.jfrog.org/artifactory">Artifactory</a>. There are a couple of different flexible ways how to upload the artifacts,
+the one we use here is using an upload spec to actually collect and upload the artifact which was built at the very beginning of the pipeline.
+Also meta information are published to Artifactory, since it is the context which matters and thus we can add valuable labels to the artifact for further processing.</p>
+<p class="title">config.xml: Upload to Artifactory</p>
+<pre class="nowrap">stage ('Distribute binaries') { <i class="conum"></i><b>(1)</b>
+    def SERVER_ID = '4711' <i class="conum"></i><b>(2)</b>
+    def server = Artifactory.server SERVER_ID
+    def uploadSpec = <i class="conum"></i><b>(3)</b>
+    """
+    {
+    "files": [
+        {
+            "pattern": "all/target/all-(*).war",
+            "target": "libs-snapshots-local/com/huettermann/web/{1}/"
+        }
+      ]
+    }
+    """
+    def buildInfo = Artifactory.newBuildInfo() <i class="conum"></i><b>(4)</b>
+    buildInfo.env.capture = true <i class="conum"></i><b>(5)</b>
+    buildInfo=server.upload(uploadSpec) <i class="conum"></i><b>(6)</b>
+    server.publishBuildInfo(buildInfo) <i class="conum"></i><b>(7)</b>
+}</pre>
+
+
+<i class="conum"></i><b>1</b>
+The stage responsible for uploading the binary.
+
+
+<i class="conum"></i><b>2</b>
+The server can be defined Jenkins wide, or as part of the build step, as done here.
+
+
+<i class="conum"></i><b>3</b>
+In the upload spec, in JSON format, we define what to deploy to which target, in a fine-grained way.
+
+
+<i class="conum"></i><b>4</b>
+The build info contains meta information attached to the artifact.
+
+
+<i class="conum"></i><b>5</b>
+We want to capture environmental data.
+
+
+<i class="conum"></i><b>6</b>
+Upload of artifact, according to upload spec.
+
+
+<i class="conum"></i><b>7</b>
+Build info are published as well.
+
+
+<p>Now let&#8217;s see check that the binary was deployed to Artifactory, successfully. As part of the context information, also a reference to the
+producing Jenkins build job is available for better traceability.</p>
+<p><img src="/images/post-images/sonarqube-jenkins/05_BinaryDeployedInArtifactory.png" alt="05 BinaryDeployedInArtifactory"></p>
+</div>
+
+<p class="info">
+<h4>
+Posted Tue 18 April 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a>
+(<a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a>)</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

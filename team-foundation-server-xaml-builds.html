@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Team Foundation Server XAML Builds - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    Team Foundation Server XAML Builds</h2>
+From:<a href="https://www.finalbuilder.com/resources/blogs/postid/735/team-foundation-server-xaml-builds">https://www.finalbuilder.com/resources/blogs/postid/735/team-foundation-server-xaml-builds</a><br><br><div><h2>Team Foundation Server XAML Builds</h2>
+<p>Today we have released an update for Team Foundation Server XAML activities for FinalBuilder 7 and 8. These updates are to deal with conflicts caused by GAC installing these activities. </p>
+<p>Since 2010 Team Foundation Server has allowed custom activities to allow provide extra functionality in XAML build workflows. For those that have not had the (dis)pleasure, XAML workflows can be difficult to work with. To alleviate this pain point we implemented XAML build templates and custom activities to allow people to run any FinalBuilder script within the build workflow without the need to edit XAMAL. Customers we have talked to say this simplifies their TFS XAML build workflows a great deal. </p>
+<p>In previous releases, FinalBuilder&#8217;s installer automatically installed the TFS XAML activity into the GAC. The version of the activity installed was based on the TFS Agent detected on the machine in question. Installing into the GAC was done to simplify the process. This way the developer would simply use the activities in their build workflow and it would be picked up through the GAC. </p>
+<p>With the introduction of the new TFS build in TFS 2015 and TFS-Git in TFS 2013 this is no longer advisable. In the case of TFS-Git Workflows, assembly conflicts can cause assembly load issues. &#160;If the activity requires a different assembly version to those already loaded by the TFS agent, you would see assembly load errors with lib2gitsharp. With TFS 2013 having five updates this is increasingly possible . </p>
+<p>The way to avoid any assembly loading issue for custom activities is to use &#8220;version control paths for custom XAML activities&#8221;. To be clear, we have left the GAC installation option in both FinalBuilder 7 and 8. We however do recommend switching to using custom XAML activity paths, especially if you&#8217;re using TFS-Git. </p>
+<p>To this end, the FinalBuilder installers now give the option as to whether to install the XAML build activities into the GAC or not. Only FinalBuilder 7 will automatically install TFS activities into the GAC for TFS 2012 and earlier agents, with FinalBuilder 8 you much chose whether to GAC install the assemblies.</p>
+<p>Note that if activities were previously installed in the GAC restarting the TFS Build Controller is required. This refreshes the build controller and releases any assemblies that it may have previously loaded.</p>
+<p><img alt="" src="https://www.finalbuilder.com/blogImages/jason/TeamFoundationServerXAMLBuilds/FinalBuilder-XAML-Setup.png"></p>
+<h2>Creating a build definition</h2>
+<p>The creation of the build definition is exactly the same as before. If you&#8217;re interested in how to setup a build definition from scratch using the FinalBuilder XAML templates please review the &#8220;<a https: www.finalbuilder.com resources blogs postid 705 finalbuilder-and-team-foundation-server-2013>FinalBuilder and Team Foundation Server</a>&#8221; article. </p>
+<h2>Custom XAML activities</h2>
+<p>Version control paths for custom XAML activities is a feature in TFS XAML build controllers. This feature allows the build controller to source all assemblies required for an activity from a known location. If a required assembly is missing from this location the standard .Net assembly lookup methodology is used. </p>
+<p>Using version control paths for custom XAML activities requires the activity assemblies to be added to a repository on the TFS system. This repository can be shared with other code, or can be a repository just for the assemblies. As the custom folder does not change based on the build being performed, we suggest a separate TFS repository for the custom activities. The repository can also be either a TFS or Git-TFS repository. Both will work the same. </p>
+<p>To add the custom activity assemblies to a repository connect to the repository through team explorer in visual studio. </p>
+<p>In the source control view create a new folder that will hold the custom activity assemblies.</p>
+<p><img alt="" src="https://www.finalbuilder.com/blogImages/jason/TeamFoundationServerXAMLBuilds/CustomActivitiesInRepo.png"></p>
+<p>In the GAC sub-folder in your FinalBuilder installation (typically &#8220;%ProgramFiles(x86)%\FinalBuilder 8\GAC\&#8221;) there are folders for each version of TFS custom activities are provided for. From the folder relating the TFS version copy all assemblies contained within into the newly created repository folder. </p>
+<p><img alt="" src="https://www.finalbuilder.com/blogImages/jason/TeamFoundationServerXAMLBuilds/FinalBuilderGACFolder.png"></p>
+<p>From the source control explorer add these files to source control.</p>
+<p><img alt="" src="https://www.finalbuilder.com/blogImages/jason/TeamFoundationServerXAMLBuilds/CustomActivitiesFolderWithAssemblies.png"></p>
+<h2>Updating the XAML Build Controller</h2>
+<p>Next the build controller needs to be configured use the repository location. In the builds tab of team explorer click on the &#8220;Actions&#8221; link. A drop down will appear with the option to &#8220;Manage Build Controllers&#8230;&#8221;. Click the &#8220;Manage Build Controllers&#8230;&#8221; menu item.</p>
+<p><img alt="" src="https://www.finalbuilder.com/blogImages/jason/TeamFoundationServerXAMLBuilds/ManageBuildControllers.png"> </p>
+<p>From the build controllers window that opens select the build controller responsible for the FinalBuilder builds. If there is more than one controller simply follow these steps for each controller. Next click the &#8220;Properties&#8221; button.</p>
+<p>This will present the build properties dialogue in which the &#8220;Version control path to custom assemblies&#8221; can be set. Select the folder that was created in the repository that is responsible for the custom activity assemblies. Now confirm this change by clicking OK on the build controller properties dialogue. </p>
+<p><img alt="" src="https://www.finalbuilder.com/blogImages/jason/TeamFoundationServerXAMLBuilds/VersionControlPathSet.png"></p>
+<p>This has now setup the build controller to source custom assemblies from the configured repository folder. The most recent checked in assemblies will always be sourced. Therefore keeping this repository folder in sync with the custom activities used in build workflows is very important. </p>
+<p>Once the custom path is set the build controller can run builds using the custom activities. To test simply queue a build using the FinalBuilder custom activities.&#160;</p>&#13;
+                        <br>&#13;
+                        <br>&#13;
+                        <br><br> &#13;
+                    </div>
+
+<p class="info">
+<h4>
+Posted Wed 16 September 2015
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a>
+(<a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a>)</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

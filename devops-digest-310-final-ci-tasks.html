@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    DevOps Digest 310: Final CI Tasks - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    DevOps Digest 310: Final CI Tasks</h2>
+From:<a href="https://www.perforce.com/blog/170214/devops-digest-310-final-ci-tasks">https://www.perforce.com/blog/170214/devops-digest-310-final-ci-tasks</a><br><br><div><p><img alt="DevOps Digest 310 main graphic" src="/sites/default/files/images/devops-hero-310.jpg"></p>
+<p>In our last article, we looked at how to promote code automatically from lower-level, less stable streams to higher-level, more stable streams as a prelude to producing release builds for testing and distribution.</p>
+<p>However, organizations often need to (1) archive various build artifacts (and perhaps other data), and (2) label the files that went into producing said builds for future reference. In this article, we&#8217;ll leverage Helix for those tasks as we end our chapter on Continuous Integration.</p>
+<p>Helix shines thanks to its unparalleled ability to store build artifacts that would choke other systems. For our purposes, the term &#8220;build artifacts&#8221; refers to any by-products of the process of assembling what you actually ship from various input files.</p>
+<p>For example, while the ultimate, desired result of compiling and linking legacy C++ source code is typically an executable, the larger process may also produce all sorts of things you may need in the future:</p>
+<ul><li>Symbol files</li>
+<li>Dictionary files</li>
+<li>Library files</li>
+<li>Hash signatures</li>
+<li>Documentation</li>
+<li>Unit test results</li>
+<li>Screenshots from UI tests</li>
+<li>Metrics</li>
+</ul><p>Deciding what to keep is important. Bugs reported from older software can become more painful to fix than they should be, simply because the stack dump collected can&#8217;t be matched against re-generated symbol files with time stamps that don&#8217;t match the original build. Storing original symbols can mean the difference between a simple debugging session and telling your customers you can&#8217;t find the problem.</p>
+<p>You should always store files you can&#8217;t regenerate easily, files you must keep for compliance, or files that have important time stamps in your version control system. Less important or easily replaced data can be left in the folders of your CI tool or deleted altogether.</p>
+<p>With other version control systems, keeping such build artifacts can be painful, even impossible in the case of large, binary files. But Helix can easily handle files of all types and sizes, so storing them is a simple matter of submitting them after the build process. This is easily accomplished with commands like the following:</p>
+<p>&#160;</p>
+<pre>p4 rec
+
+p4 submit -d &#8220;Storing build artifacts.&#8221;</pre><p>&#160;</p>
+<p>Those two commands reconcile new files in your Helix workspace, respecting the contents of the <a href="https://www.perforce.com/blog/161010/devops-digest-203-creating-new-application-helix">ignore file</a><a href="https://www.perforce.com/blog/161010/devops-digest-203-creating-new-application-helix">&#160;</a> and submit your work back to the server. If you use DVCS, then you&#8217;ll need one more command:</p>
+<p>&#160;</p>
+<pre>p4 push</pre><p>&#160;</p>
+<p>A traditional workspace sends content back to the server with a &#8220;submit&#8221; command, but DVCS lets you submit locally and requires you to &#8220;push&#8221; work back to the server as desired. Whichever approach you take, your build artifacts will be safely stored and versioned in perpetuity.</p>
+<h2>Label Strategy</h2>
+<p>Having talked about what to keep, let&#8217;s now prepare for the need to regenerate other items at some future date. Implicit in that process is the assumption that you can somehow retrieve everything that went into a particular build in the first place. As you might expect by now, Helix offers a number of options to assist.</p>
+<h3>The Change List</h3>
+<p>The most simple, performant option is the humble change list. Those accustomed to using other systems often overlook how useful such a simple integer can be. But in Helix, a single submitted change list number is all you need to get back to a particular point in time. Consider the following command:</p>
+<p>&#160;</p>
+<pre>p4 sync @13</pre><p>&#160;</p>
+<p>We&#8217;ve used the &#8220;p4 sync&#8221; many times; however, the use of the &#8216;@&#8216; symbol tells the command that we only want our workspace to include files from a particular submitted change list number (here, number 13).</p>
+<p>When users submit content to Helix Versioning Engine, it creates a new snapshot at that point in time that is forever linked with the submitted change list number. To retrieve the files for any build, we look in our Jenkins history and sync our workspace to the corresponding submitted change list number.</p>
+<p>Of course, numbers like &#8220;13&#8221; are much harder to remember than something more meaningful like &#8220;ReleaseCandidate1&#8221;. Thus, Helix offers a number of ways to tie more meaningful text to versions of content.</p>
+<p>The most lightweight method is to use a job. Jobs can be very helpful bringing together disparate tools for Application Lifecycle Management (ALM) since every submitted change list related to fulfilling the requirements for a fix or enhancement can be linked to a job.</p>
+<p>Because Helix jobs have both names and submitted change list numbers, they may effectively serve to link the two forever. It takes two commands to create a job and assign it a particular change list number:</p>
+<p>&#160;</p>
+<pre>p4 job ReleaseCandidate1
+
+p4 fix -c13 ReleaseCandidate1</pre><p>&#160;</p>
+<p>The first creates a new job named &#8220;ReleaseCandiate1&#8221; by invoking your editor with a sample job template. Save and exit your editor to create the job. Give it any description you like, to remember the details of the &#8220;ReleaseCandidate1&#8221; job. When you save and exit your editor, the job will be created. It will also be left in the &#8220;open&#8221; state, to indicate work on that job is still pending. <a href="https://www.perforce.com/perforce/doc.current/manuals/p4sag/chapter.jobspecs.html">Helix jobs</a> are very powerful yet oft-underutilized for managing workflow.</p>
+<p>The second command changes the status of the newly-opened job to &#8220;closed&#8221;, forever linking it with submitted change list number &#8220;13&#8221;. Now you can determine the corresponding submitted change list number(s) from the job&#8217;s name:</p>
+<p>&#160;</p>
+<pre>p4 fixes -j ReleaseCandidate1</pre><p>&#160;</p>
+<p>That command produces output of the form &#8220;[JobName] fixed by change [SubmittedChangeListNumber] on [Date] by [User]@[Workspace] (closed)&#8221;. In other words, one command simplifies translating a given job name into the corresponding submitted change list number(s). Jobs are easily managed through automation, so they&#8217;re a great tool to leverage.</p>
+<p>But they&#8217;re also limited in function. A submitted change list is forever tied to a particular point in time, but you can&#8217;t later update it, <a href="https://www.perforce.com/perforce/doc.current/manuals/cmdref/p4_change.html">except in certain, rare instances</a>. And while jobs are great for a variety of purposes, they can be associated with more than one submitted change list number and might offer either a little less or far more than what you&#8217;re really after.</p>
+<p>This is why Helix also offers labels. Users can work with labels using several commands, two of which are all-too-easily conflated by new users, and have a higher overhead on the server than mechanisms we&#8217;ve already discussed. For many use cases, labels may be used without ever running into any issues, but labelling millions of files can take time, so bear that in mind when using labels with automated systems.</p>
+<h3>The &#8220;tag&#8221; Command</h3>
+<p>The first way of working with Helix labels is via the tag command:</p>
+<p>&#160;</p>
+<pre>p4 tag -l ReleaseCandidate1 //DevOps/Main/...</pre><p>&#160;</p>
+<p>Like many Helix commands, this one creates a label specification on the server and associates it with the latest revision of all files in our &#8220;Main&#8221; stream. This is exactly the sort of operation one might perform as part of an automated release-build process. Just as we previously saw how to sync a workspace to a particular change list number, our new label may now be used in its place:</p>
+<p>&#160;</p>
+<pre>p4 sync @ReleaseCandidate1</pre><p>&#160;</p>
+<p>That command syncs the workspace to the versions of files tagged with the &#8220;ReleaseCandidate1&#8221; label. It offers a more direct way to access those files compared to using a job to look up the number and then syncing to that number.</p>
+<p>Labels also offer other interesting functionality. Just as with other specifications stored on the Helix server, a label specification may later be examined and/or altered using the following command:</p>
+<p>&#160;</p>
+<pre>p4 label ReleaseCandidate1</pre><p>&#160;</p>
+<p>This invokes your editor and shows you what the &#8220;p4 tag&#8221; command created behind the scenes. It also shows that the label is marked with the attributes &#8220;unlocked&#8221; and &#8220;noautoreload&#8221;. Unlike many systems, you can lock Helix labels to prevent future changes.</p>
+<p>If you update the label spec to &#8220;locked&#8221;, then the set of files/revisions associated with that label may no longer be changed by anyone, even the label owner. The label owner may later edit the spec and unlock the label, but until then it&#8217;s effectively frozen. This is great for identifying content securely for compliance.</p>
+<p>Let&#8217;s set the &#8220;noautoreload&#8221; attribute aside for now and move on to other storage details. Helix labels offer greater functionality insofar as they may be limited with a view. If you open the label spec for the one we just created, for example, its view section reads:</p>
+<p>&#160;</p>
+<pre>View:
+
+      //DevOps/...
+
+      //depot/...</pre><p>&#160;</p>
+<p>That limits the scope of the label. Because we created it on the &#8220;Main&#8221; stream, both &#8220;DevOps&#8221; and the default depot were included in the label&#8217;s view. Were we to try to apply that label elsewhere, we&#8217;d meet with issues.</p>
+<p>Note: changing the view after the fact won&#8217;t change the files already associated with that label, it merely restricts the scope of the label&#8217;s use in future commands.</p>
+<p>&#160;</p>
+<h3>The &#8220;labelsync&#8221; Command</h3>
+<p>That offers a natural segue to another useful label-related command, &#8220;labelsync&#8221;:</p>
+<p>&#160;</p>
+<pre>p4 labelsync -l ReleaseCandidate1 //DevOps/Main/...</pre><p>&#160;</p>
+<p>The best way to describe the differences between &#8220;tag&#8221; and &#8220;labelsync&#8221; is to say that &#8220;tag&#8221; always adds file revisions to a label, whereas &#8220;labelsync&#8221; replaces all the file revisions contained by the label. Though to be clear, &#8220;labelsync&#8221;, like &#8220;tag&#8221;, creates a new label specification if one doesn&#8217;t already exist.</p>
+<p>One subtle difference, however, is that &#8220;labelsync&#8221;&#160; doesn&#8217;t select the head revisions of all the files. Rather, it associates the label with whatever revisions are in the current workspace. The &#8220;labelsync&#8221; command is also exclusive, meaning it removes the label from anything outside the current set of files, unlike &#8220;tag&#8221; which simply adds. In short, &#8220;labelsync&#8221; was intended to make it easy to define a label so it matches the content of the current workspace exactly.</p>
+<p>Clear as mud, right? An example should help illustrate the differences in intended use. Let&#8217;s say that you&#8217;re not exactly using Trunk-Based Development (TBD) and don&#8217;t have the luxury of taking a known-good build from your &#8220;Main&#8221; stream at any moment.</p>
+<p>A common, alternate way of working is to let the release-build system &#8220;float&#8221; or &#8220;roll&#8221; a label like &#8220;LastKnownGoodBuild&#8221; forward at the conclusion of every successful test run. Testers tend to love this approach as they know they can always sync their workspaces to that floating label.</p>
+<p>One problem with this approach, however, is that every time that label rolls forward, the previous known-good build is lost. The most frequently used workaround is to copy the existing label to something more specific before rolling it forward:</p>
+<p>&#160;</p>
+<pre>p4 tag -l LastKnownGoodBuild_01_24_2017 @LastKnownGoodBuild</pre><p>&#160;</p>
+<p>So here&#8217;s the catch: what if the people relying on that floating label need to work with some previous known-good build? Or worse, what if your automated systems that rely on that floating label need to work with some previous known-good build? This is where the &#8220;labelsync&#8221; command shines:</p>
+<p>&#160;</p>
+<pre>p4 labelsync -l LastKnownGoodBuild @LastKnownGoodBuild_01_24_2017</pre><p>&#160;</p>
+<p>That command replaces the contents of the floating label with the contents of the date-specific label, so you that when everyone syncs, they&#8217;ll get exactly what you want them to get. In short, if you stick with the &#8220;tag&#8221; command to associate files with a label and the &#8220;labelsync&#8221; command to reset the contents of a label, you&#8217;ll never go wrong.</p>
+<p>One last thing remains before we&#8217;re done with labels, and that&#8217;s a bit of advice for working with them at scale. That is, if you&#8217;re working with millions of files, but absolutely must rely on lots of labels, how can you maintain good performance and manage the load on the server as time marches onward?</p>
+<p>Helix supplies a little-known feature that allows you to &#8220;unload&#8221; label data from the server, archiving what you no longer need:</p>
+<p>&#160;</p>
+<pre>p4 unload -l ReleaseCandidate1</pre><p>&#160;</p>
+<p>What that does &#8220;under the hood&#8221; is move the details for the label to a special unload depot. Should you ever need that data back, it&#8217;s a simple enough thing to undo:</p>
+<p>&#160;</p>
+<pre>p4 reload -l ReleaseCandidate1</pre><p>&#160;</p>
+<p>Of course, unloading labels one at a time could be just as painful as having too many in the first place, so the command (thankfully) can also unload anything older than a specified date:</p>
+<p>&#160;</p>
+<pre>p4 unload -f -al -d 2017/01/01</pre><p>&#160;</p>
+<p>That commandunloads all labels prior to the beginning of this current year, effectively starting with a blank slate. Helix provides some nice &#8220;housekeeping&#8221; abilities that both your server admin(s) and day-to-day users will appreciate. For more details, including information on the aforementioned &#8220;noautoreload&#8221; attribute, <a href="https://www.perforce.com/perforce/doc.current/manuals/cmdref/p4_label.html">click here</a>.</p>
+<p>There are other CI topics we could discuss, but we&#8217;ve covered a lot, and it&#8217;s time to move on to the next step in our DevOps pipeline: Continuous Testing.</p>
+<h2>You Ask, We Answer</h2>
+<p>As previously mentioned, this is your roadmap to creating a successful DevOps pipeline. Don&#8217;t understand something? Just ask. Need to dive a little deeper?&#160;Send an email to&#160;<a href="mailto:info@perforce.com?subject=DevOps%20Digest%20Question">info@perforce.com</a>&#160;with your questions. Then, stay tuned for a live Q&amp;A webinar at the end of this series.</p>
+<h2>Get DevOps Digest Sent to Your Inbox</h2>
+<p>You don&#8217;t need to remember to check back with us each week. Instead, get the digest delivered directly to your inbox.&#160;<a href="http://info.perforce.com/devops_digest_reg.html">Subscribe</a>&#160;to our 25-week DevOps Digest and we&#8217;ll get you where you need to go, one email at a time.</p>
+<h2>See Perforce Helix in Action!</h2>
+<p>Join us for a live demo every other Tuesday and see the best of Perforce Helix in 20 minutes.&#160;<a href="http://info.perforce.com/helix-live-demo-reg.html">Save your spot!</a></p>
+</div>
+
+<p class="info">
+<h4>
+Posted Tue 14 February 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a>
+(<a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a>)</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>

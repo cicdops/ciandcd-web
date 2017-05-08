@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Best Practices from Galactic Bricklayers - www.ciandcd.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ciandcd.github.io/ciandcd-web/theme/css/pygment.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css"/>
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_content.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch_set.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/tipuesearch/tipuesearch.min.js"></script>
+<link href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" rel="alternate" type="application/atom+xml" title="www.ciandcd.com RSS" />
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+          'mode': 'json',
+          'contentLocation': 'tipuesearch_content.json'
+     });
+});
+</script>
+
+
+  <!--[if lt IE 9]>
+    <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<!--
+bootstrap-itech - a Pelican theme using Bootstrap
+-->
+<body>
+
+<!-- Header -->
+<header>
+<div class="container-fluid">
+<h1 class="page-header"><a href="http://ciandcd.github.io/ciandcd-web/index.html">www.ciandcd.com </a>
+<h4>软件持续集成和持续发布 QQ群：172758282 / 567940397 / 567931165 <a href="https://travis-ci.org/ciandcd/ciandcd-web/"><img src="https://camo.githubusercontent.com/bba1a9ccd5663588705b6df1b02e3a7dad66a36c/68747470733a2f2f7472617669732d63692e6f72672f6369616e6463642f6369616e6463642d7765622e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/ciandcd/ciandcd-web.svg?branch=master" style="max-width:100%;"></a></h4></h1>
+</div>
+</header>
+<!-- /Header -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://ciandcd.github.io/ciandcd-web/index.html"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+  <li><a href="http://ciandcd.github.io/ciandcd-web/index.html">首页</a></li>
+
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+
+
+
+
+</ul>
+      <form class="navbar-form navbar-left navbar-search" role="search" action="http://ciandcd.github.io/ciandcd-web/search.html onsubmit="return validateForm(this.elements['q'].value);">
+        <div class="form-group search-query">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://www.cnblogs.com/itech">itech</a></li>
+        <li><a href="https://github.com/ciandcd">Github</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Body -->
+<section id="body">
+<div class="container-fluid">
+
+<!-- Nav bar -->
+<!-- /Nav bar -->
+
+<!-- Main block -->
+<div class="row">
+
+<!-- Content -->
+<div class="col-lg-9">
+<article>
+<h2>
+    Best Practices from Galactic Bricklayers</h2>
+From:<a href="https://www.perforce.com/blog/170303/best-practices-galactic-bricklayers">https://www.perforce.com/blog/170303/best-practices-galactic-bricklayers</a><br><br><div><p><img alt="" src="/sites/default/files/images/gdbp-blog-cloudimperium.jpg"></p>
+<p>As an adage, &#8220;Rome wasn&#8217;t built in a day&#8221; is quite pervasive, despite often being halved for brevity. The omitted modifier &#8211; &#8220;They were laying bricks every hour&#8221; &#8211; is a sentiment not lost on the game developers at Cloud Imperium Games (CIG). That&#8217;s because CIG is building a digital environment every bit as cosmopolitan, mercantile, and eminent as the sprawling Italian capital.</p>
+<p>In short, they're building a whole universe.</p>
+<p>Star Citizen, the long-anticipated space simulation game, is scaling its development efforts to an unparalleled degree. Under the guidance of Chris Roberts, the esteemed game designer has helmed the growing development efforts since 2012, with a final vision that pairs nominally disparate game genres into one, including first-person shooter (FPS), massive multiplayer online (MMO), and co-operative campaigns. &#160;&#160;</p>
+<p>It&#8217;s this pedigree and sheer scope that has beckoned supporters across the globe, enthusiastic to receive the final iteration, to donate more than $140 million toward development efforts. As the largest crowd-funded project in history, the ambitions of Star Citizen are directly correlated with the support provided by their financial backers.</p>
+<p>&#8220;We do things different than normal game publishing,&#8221; says CIG Director of IT, Mike Jones, citing the influx of end-user monetary support, &#8220;We don&#8217;t answer to bankers.&#8221;</p>
+<p>But with such support from the soon-to-be denizens of Star Citizen&#8217;s universe, there comes the burden of anticipated returns. Prospective gaming inhabitants have already purchased virtual ships and virtual accessories for in-game use, and CIG has worked diligently to provide playable game elements along the development cycle, lest the citizens revolt and commence the fall of Rome.</p>
+<p>Ok, hyperbole aside, it&#8217;s true that CIG relies on the single source of truth in Perforce Helix to manage their workflows. Below are just a few ways that CIG brings their burgeoning galaxies to life, including speedy server architectures, efficient stream branches, scalable workspaces, and fine-grained security throughout.</p>
+<h3>Scale. Scale. Scale.</h3>
+<p>An ever-expanding universe is a tough horse to reign in. CIG&#8217;s distributed development teams operate from a main repository stream consisting of 338,000 files and nearly six terabytes of data. What&#8217;s more, the total sync of all Helix Ops streams total 23 million files and 90 terabytes data.</p>
+<p>A non-optimal server system will buckle under a high degree of interaction and workflow, overloading server specs. That downtime interrupts development cycles and sends development benchmarks into disarray. But with Helix, server systems continue to provide the CIG network with an exceptional data rate.</p>
+<p>So much so, that CIG upgraded studios to a gigabit fiber to accommodate the mass of data being moved. &#8220;We have a lot of changes coming in. The amount of activity on [the Helix] server is impressive,&#8221; says Jones.</p>
+<p>The Helix Versioning Engine expertly supports CIG&#8217;s highly distributed and collaborative teams, too, and the processes that CIG DevOps teams rely on. &#160;</p>
+<p>"You used to be in a box &#8211; and you didn't tell anybody what you're working on," says CIG's Network Services Manager, Paul Vaden, adding "We're very open in our development effort," citing waves of outreach, including multimedia demos and playable content of Star Citizen that has been continuously delivered to gaming fans throughout development.</p>
+<p>"A lot of companies will wait; we put ours out as soon as it is ready," says Vaden, with CIG revealing their latest demo at Gamescom 2016 in August. "We tend to expose our work sooner than others."</p>
+<p>This approach has afforded CIG the latitude to keep growing Star Citizen while simultaneously providing concurrent backers with immersive content in the lead up to their final deployment. This means developers can keep iterating persistent server environments, variable simulation categories, and over 100 unique star systems while crowd-source capital continues to climb.</p>
+<h3>Fine Grained Access Control</h3>
+<p>CIG is doing something so ambitious that the stakes are equally high. With teams spread across the world, relying on 24/7 work cycles and distributed personnel, Helix provides a secure platform during development. Helix fine-grained security controls access to data down to the file level, and as a result, projects are protected against unforeseen bugs and late-term glitches that can mitigate the success of a game release.</p>
+<p>"We have developers all over the world, including many contractors. Perforce allows us to define very granular access to the game, resulting in faster turnaround and better control," says Vaden. "We limit a great deal of what developers have access to, otherwise copies of your game get out before it's ready."</p>
+<p>This is a critical comfort, as stable access control is essential when content is released at various project milestones; for example, "Star Citizen had a Gamescom stream and we limited access to that stream because we couldn't afford to break our build stream last minute."</p>
+<p>Helix gives build managers a single source of truth for who has what and where they have it. "I can see in one place who has access to which files&#8211; I don't have to jump around looking for them."</p>
+<h3>Branches with Brains</h3>
+<p>Securing financing and an immutable data security tool is essential to supporting your development projects. But Helix is there, too, when you commence the brass tacks of building your award-winning titles. Star Citizen is no exception.</p>
+<p>Beyond asset clarity, Helix also offers bolstered operational efficiency for DevOps teams via development streams.</p>
+<p>Proudly called &#8220;branches with brains,&#8221; Helix streams technology helps synchronize all the contributions from multiple offices yet allows different stakeholders to pare down the overall working set as needed via virtual streams.</p>
+<p>Design artists -- less utilized in certain areas of software development yet essential in gaming &#8211; are able to lockdown their non-mergeable binary files. This feature prevents artists from editing files already in use by another artist, ensuring all teams avoid time/productivity loss, making Helix an unparalleled in gaming version control.</p>
+<p>"Helix is eminently easier to administer, to setup," says Jones. "It supports the DevOps workflows required for us to deliver a better product."</p>
+<h3>System Stability</h3>
+<p>The hefty development environments that CIG navigates are propped up firmly by Helix to ensure an optimal server architecture.</p>
+<p>CIG development teams can execute day-to-day operations with exceeding confidence, relying on built-in backup components, ready at a moment's notice, to replace primary components without shutting the system down.</p>
+<p>A variety of hot spares and cold standbys allow admins to safeguard against system failures, integrate vital components, and push scheduled data backups without service interruptions.</p>
+<p>Stable enterprise scaling, development efficiencies, and an industry-specific set of platform features; these are just a few reasons Helix is an optimal solution. "It's pretty obvious why Perforce is so prevalent in the gaming industry," says Vaden.</p>
+<p>Everything CIG does within the growing Star Citizen universe is supported by Helix, according to Jones: "If Perforce wasn't around, we'd be hard-pressed to find a better version control solution.&#8221;</p>
+<h3>Conclusion</h3>
+<p>Cloud Imperium Games is committed to Helix versioning over the long haul. That&#8217;s because, for a project already years in the making, developers need a stable, scalable versioning platform to reach the developmental finish line.</p>
+<p>Add in fine-grained security features and better operational efficiency, and you have the first layer of benefits Helix supports.</p>
+<p>To learn more about the innovative strategies CIG uses to buttress their expansive universe, check out our Game Development Best Practices eBook to glean game development insight from the industry&#8217;s most well-respected studios, including Epic Games, CD PROJEKT RED, and The Chinese Room.</p>
+<p><a href="http://info.perforce.com/game-dev-best-practices-ebook.html">Download here.</a></p>
+<p>&#160;</p>
+<p>&#160;</p>
+<p>&#160;</p>
+<p>&#160;</p>
+<p>&#160;</p>
+<p>&#160;</p>
+</div>
+
+<p class="info">
+<h4>
+Posted Fri 03 March 2017
+ by <a class="url fn" href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a>
+in <a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a>
+(<a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a>)</h4></p>
+
+</article>
+</div>
+<!-- /Content -->
+
+<!-- Side bar -->
+<nav class="col-lg-3">
+
+<h2>分类</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/ciandcd.html">ciandcd</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/category/devops.html">devops</a></li>
+  <li class="active"><a href="http://ciandcd.github.io/ciandcd-web/category/scm.html">scm</a></li>
+</ul>
+
+<h2>标签</h2>
+<ul class="tagcloud">
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/devops.html">devops</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/jenkins.html">jenkins</a></li>
+        <li class="tag-1"><a href="http://ciandcd.github.io/ciandcd-web/tag/finalbuilder.html">finalbuilder</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/ciandcd.html">ciandcd</a></li>
+        <li class="tag-2"><a href="http://ciandcd.github.io/ciandcd-web/tag/perforce.html">perforce</a></li>
+</ul>
+
+<h2>链接</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://www.cnblogs.com/itech/">itech</a></li>
+</ul>
+
+<h2>联系</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="http://ciandcd.github.io/ciandcd-web/feeds/rss.xml" type="application/rss+xml" rel="alternate">Site Feed</a></li>
+  <li><a href="https://github.com/ciandcd">Github</a></li>
+</ul>
+
+<h2>作者</h2>
+<ul class="nav nav-pills nav-stacked">
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/about-the-author.html">About The Author</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/alex-staveley.html">Alex Staveley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/antti-virtanen.html">Antti Virtanen</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/barton-george.html">Barton George</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/elizabeth-geno.html">Elizabeth Geno</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/florian-motlik.html">Florian Motlik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/gene-kim.html">Gene Kim</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/itech001.html">itech001</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jez-humble.html">Jez Humble</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-cook.html">John Cook</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/john-esser.html">John Esser</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jules-louis.html">Jules Louis</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/jullietta-jung.html">Jullietta Jung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/kobi-halperin.html">Kobi Halperin</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/meta-brown.html">Meta Brown</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/michelle-d-souza.html">Michelle D Souza</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/nathaniel-eliot.html">Nathaniel Eliot</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/patrik-carlos.html">Patrik Carlos</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/peter-spung.html">Peter Spung</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/piotr-oktaba.html">Piotr Oktaba</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ragnar-lonn.html">Ragnar Lönn</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/ralph-tice.html">Ralph Tice</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/scuzza-man.html">Scuzza Man</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/sven-malvik.html">Sven Malvik</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/tony-bradley.html">Tony Bradley</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/william-pietri.html">William Pietri</a></li>
+  <li ><a href="http://ciandcd.github.io/ciandcd-web/author/yegor-bugayenko.html">Yegor Bugayenko</a></li>
+</ul>
+
+</nav>
+<!-- /Side bar -->
+
+</div>
+<!-- /Main block -->
+
+<!-- Footer -->
+<div class="row"><div class="col-lg-12">
+<footer><small>
+QQ群：172758282 / 567940397 / 567931165
+</small></footer>
+</div></div>
+<!-- /Footer -->
+
+</div></section>
+<!-- /Body -->
+
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/jquery.js"></script>
+<script src="http://ciandcd.github.io/ciandcd-web/theme/js/bootstrap.js"></script>
+
+
+</body>
+</html>
